@@ -63,6 +63,10 @@ const copy = {
       available: "VERFÜGBAR",
       worldwide: "Weltweit",
     },
+    heroBadge: {
+      exp1: "Jahre Erfahrung",
+      exp2: "im Webdesign",
+    },
     work: {
       eyebrow: "Ausgewählte Verbesserungen",
       title: "Was hinter der Oberfläche steckt",
@@ -345,6 +349,8 @@ const copy = {
       linkedinValue: "Profil ansehen",
       phoneLabel: "Telefon",
       phoneValue: "+49 152 556 546 20",
+      locationLabel: "Standort",
+      locationValue: "Nürnberg, Deutschland",
       statusLabel: "Kontakt",
     },
     footer: {
@@ -395,6 +401,10 @@ const copy = {
       country: "Nuremberg, Germany",
       available: "AVAILABLE",
       worldwide: "Worldwide",
+    },
+    heroBadge: {
+      exp1: "Years of Experience",
+      exp2: "in Web Design ",
     },
     work: {
       eyebrow: "Selected engineering improvements",
@@ -672,6 +682,8 @@ const copy = {
       linkedinValue: "View profile",
       phoneLabel: "Mobile",
       phoneValue: "+49 152 556 546 20",
+      locationLabel: "Location",
+      locationValue: "Nuremberg, Germany",
       statusLabel: "Contact",
     },
     footer: {
@@ -1340,7 +1352,18 @@ function App() {
 
             <div className="hero-art">
               <div className="hero-art__profile">
-                <img className="hero-art__badge" src={heroBadge} alt="" />
+                <div class="hero-art__badge__wrapper">
+                  <img className="hero-art__badge" src={heroBadge} alt="" />
+
+                  <div class="hero-art__badge__text">
+                    <span class="hero-art__badge__text">
+                      {text.heroBadge.exp1}
+                    </span>
+                    <span class="hero-art__badge__text">
+                      {text.heroBadge.exp2}
+                    </span>
+                  </div>
+                </div>
                 <div class="hero-art__portrait__background"></div>
 
                 <img
@@ -2204,7 +2227,35 @@ function App() {
                     <span>{text.contact.phoneValue}</span>
                   </span>
                 </a>
+                <div className="contact-channel contact-channel--location">
+                  <span className="contact-channel__label">
+                    {text.contact.locationLabel}
+                  </span>
+                  <span className="contact-channel__value">
+                    <svg
+                      aria-hidden="true"
+                      viewBox="0 0 64 80"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M32 3C16 3 5 15 5 31c0 18 15 34 23 42 2.4 2.4 5.6 2.4 8 0 8-8 23-24 23-42C59 15 48 3 32 3Z"
+                        stroke="currentColor"
+                        stroke-width="6.2"
+                        stroke-linejoin="round"
+                      />
+                      <circle
+                        cx="32"
+                        cy="30"
+                        r="10"
+                        stroke="currentColor"
+                        stroke-width="6.2"
+                      />
+                    </svg>
 
+                    <span>{text.contact.locationValue}</span>
+                  </span>
+                </div>
                 <div className="contact-channel contact-channel--status">
                   <span className="contact-channel__label">
                     {text.contact.statusLabel}

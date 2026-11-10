@@ -37,7 +37,6 @@ a {
 .portfolio-shell {
   --serif: var(--sans);
   width: min(calc(100% - 48px), 1440px);
-  margin: 28px auto;
   overflow: clip;
 }
 
@@ -1286,12 +1285,6 @@ a {
   background: var(--dark);
 }
 
-@media (min-width: 1500px) {
-  .portfolio-shell {
-    margin-block: 36px;
-  }
-}
-
 @media (max-width: 1080px) {
   .work__feature-grid {
     grid-template-columns: minmax(0, 1fr);
@@ -1313,8 +1306,6 @@ a {
 @media (max-width: 900px) {
   .portfolio-shell {
     width: min(calc(100% - 28px), 1440px);
-    margin-block: 16px;
-    border-radius: 24px;
   }
 
   .site-header {
@@ -1345,8 +1336,6 @@ a {
 @media (max-width: 700px) {
   .portfolio-shell {
     width: calc(100% - 16px);
-    margin: 8px auto;
-    border-radius: 20px;
   }
 
   .site-header {
@@ -1670,8 +1659,6 @@ a {
 @media (max-width: 420px) {
   .portfolio-shell {
     width: calc(100% - 10px);
-    margin-block: 5px;
-    border-radius: 17px;
   }
 
   .language-switch__option {
@@ -2549,7 +2536,6 @@ a {
   --lemon: #f3d95d;
   --dark: #292929;
   width: min(calc(100% - 56px), 1360px);
-  margin-block: 34px;
   font-family: var(--sans);
 }
 
@@ -3497,8 +3483,6 @@ a {
 @media (max-width: 900px) {
   .portfolio-shell {
     width: min(calc(100% - 28px), 1360px);
-    margin-block: 16px;
-    border-radius: 23px;
   }
 
   .site-header {
@@ -3534,8 +3518,6 @@ a {
 @media (max-width: 700px) {
   .portfolio-shell {
     width: calc(100% - 16px);
-    margin: 8px auto;
-    border-radius: 19px;
   }
 
   .site-header {
@@ -3872,8 +3854,6 @@ a {
 @media (max-width: 420px) {
   .portfolio-shell {
     width: calc(100% - 10px);
-    margin-block: 5px;
-    border-radius: 0;
   }
 
   .site-header {
@@ -4393,25 +4373,6 @@ a {
   border-radius: 5px;
   background: #f4f3ee;
   font-size: 8.8px;
-}
-
-.contact__inner {
-  display: grid;
-  width: min(100%, 1120px);
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.7fr);
-  grid-template-areas:
-    "eyebrow action"
-    "title action"
-    "email action";
-  align-items: start;
-  gap: 0 34px;
-  padding: 23px 26px;
-  border: 1px solid rgb(255 255 255 / 12%);
-  border-radius: 9px;
-  background:
-    radial-gradient(ellipse at 96% 0%, rgb(243 217 93 / 17%), transparent 36%),
-    #292929;
-  box-shadow: 0 8px 22px rgb(41 41 37 / 10%);
 }
 
 .contact__inner > .eyebrow {
@@ -5499,19 +5460,6 @@ a {
   font-size: 6.6px;
 }
 
-.site-footer.section-wrap {
-  width: min(100% - (var(--gutter) * 2), var(--container));
-  min-height: 58px;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: 14px;
-  margin: 0 auto clamp(12px, 2vw, 22px);
-  padding: 8px 13px;
-  border: 1px solid #e0dfd9;
-  border-radius: 999px;
-  background: linear-gradient(100deg, #eceeed 0%, #f3f2ec 66%, #faf4db 100%);
-  box-shadow: 0 4px 12px rgb(41 41 37 / 5%);
-}
-
 .site-footer .wordmark {
   gap: 6px;
   padding: 3px 8px 3px 3px;
@@ -5813,15 +5761,8 @@ a {
 }
 
 .contact__inner {
-  display: block;
-  width: min(100%, 1120px);
-  padding: 20px;
   border: 1px solid #e1dfd7;
-  border-radius: 12px;
-  color: #292929;
-  background:
-    radial-gradient(ellipse at 92% 8%, rgb(243 217 93 / 24%), transparent 34%),
-    linear-gradient(110deg, #e9ebeb 0%, #f0f0ec 58%, #fbf5dc 100%);
+  background: #f2f2f2;
   box-shadow: 0 10px 24px rgb(41 41 37 / 7%);
 }
 
@@ -6411,21 +6352,28 @@ a.contact-channel:hover .contact-channel__value {
 }
 
 .contact-channel__value svg {
-  width: 15px;
-  height: 15px;
-  flex: 0 0 15px;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.5;
 }
+.contact-channel--email .contact-channel__value svg {
+  height: 22px;
+  flex: 0 0 22px;
+}
+.contact-channel--phone .contact-channel__value svg {
+  height: 23px;
+  flex: 0 0 23px;
+}
 
 .contact-channel--linkedin .contact-channel__value svg:last-child {
-  width: 12px;
-  height: 12px;
-  flex-basis: 12px;
-  margin-left: auto;
+  width: 20px;
+  height: 20px;
+  flex-basis: 20px;
   stroke-width: 1.4;
 }
 
@@ -6444,7 +6392,12 @@ a.contact-channel:hover .contact-channel__value {
   font-weight: 550;
   text-align: center;
 }
-
+.contact-channel--location .contact-channel__value {
+  justify-content: center;
+  border-color: #bfbfbf;
+  background: #bfbfbf;
+  color: #292929;
+}
 .contact-channel--status .contact-channel__action {
   justify-content: center;
   gap: 7px;
