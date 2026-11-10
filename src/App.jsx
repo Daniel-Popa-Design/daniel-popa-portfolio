@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import portrait from "./assets/daniel-popa-cutout.png";
 import dpMonogram from "./assets/dp-monogram.svg";
 import bubbleTalk from "./assets/BubbleTalk.svg";
+import heroBadge from "./assets/Hero-Badge.svg";
 import "./App.scss";
 import "./Redesign.scss";
 
@@ -9,7 +10,7 @@ const countdownDomains = {
   northstar: {
     name: "NORTHSTAR",
     cc25: "#285b78",
-    cc25Dark: "#a9ccdc",
+    cc25Dark: "#020202",
   },
   afterglow: {
     name: "AFTERGLOW",
@@ -1339,24 +1340,19 @@ function App() {
 
             <div className="hero-art">
               <div className="hero-art__profile">
+                <img className="hero-art__badge" src={heroBadge} alt="" />
+                <div class="hero-art__portrait__background"></div>
+
                 <img
-                  className="hero-art__portrait"
+                  className="hero-art__portrait hero-art__portrait--inside"
                   src={portrait}
                   alt={text.hero.art}
                 />
-              </div>
-              <div className="hero-art__dashboard">
-                <div className="hero-art__details">
-                  <div
-                    className="hero-art__detail"
-                    aria-label={text.hero.available}
-                  >
-                    <span className="hero-art__icon hero-art__icon--globe">
-                      <GlobeIcon />
-                    </span>
-                    <p className="hero-art__value">{text.hero.worldwide}</p>
-                  </div>
-                </div>
+                <img
+                  className="hero-art__portrait hero-art__portrait--outside"
+                  src={portrait}
+                  alt={text.hero.art}
+                />
               </div>
             </div>
           </section>
@@ -2208,20 +2204,7 @@ function App() {
                     <span>{text.contact.phoneValue}</span>
                   </span>
                 </a>
-                <div className="contact-channel contact-channel--location">
-                  <span className="contact-channel__label">
-                    {text.hero.location}
-                  </span>
-                  <div
-                    className="hero-art__detail hero-art__detail--action"
-                    aria-label={text.hero.location}
-                  >
-                    <span className="hero-art__icon hero-art__icon--location">
-                      <LocationIcon />
-                    </span>
-                    <p className="hero-art__value">{text.hero.country}</p>
-                  </div>
-                </div>
+
                 <div className="contact-channel contact-channel--status">
                   <span className="contact-channel__label">
                     {text.contact.statusLabel}
