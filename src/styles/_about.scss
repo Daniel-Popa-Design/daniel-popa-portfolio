@@ -1,0 +1,406 @@
+// About — one badge-style card: experience emblem | bio, then career history.
+// Shared look (card, hexagon, coin, pills) comes from _badge.scss.
+
+.about {
+  overflow: hidden;
+  background: transparent;
+}
+
+.about__inner {
+  display: grid;
+  width: 100%;
+  max-width: none;
+  grid-template-columns: 200px minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(20px, 2.5vw, 32px) clamp(20px, 3vw, 40px);
+  padding: clamp(20px, 2.5vw, 32px);
+}
+
+// ---------------------------------------------------------------------------
+// Experience emblem — hexagon with progress ring, "10+", star coin, tags
+// ---------------------------------------------------------------------------
+
+.about-meter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+.about-meter__emblem {
+  width: 150px;
+}
+
+.about:hover .about-meter__emblem {
+  transform: translateY(-2px) rotate(-3deg);
+}
+
+.about-meter__track {
+  fill: none;
+  stroke: var(--badge-ink);
+  stroke-dasharray: 0.5 2.5;
+  stroke-linecap: round;
+  stroke-width: 5;
+}
+
+.about-meter__arc {
+  fill: none;
+  stroke: var(--badge-gold);
+  stroke-dasharray: 78 100;
+  stroke-linecap: round;
+  stroke-width: 7;
+}
+
+// Number sits over the hexagon's centre (viewBox centre = 50% / 50%)
+.about-meter__value {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.portfolio-shell .about-meter__value {
+  strong {
+    color: var(--badge-ink);
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -0.06em;
+    line-height: 1;
+  }
+
+  sup {
+    margin-left: 1px;
+    color: #b69e33;
+    font-size: 0.5em;
+    vertical-align: top;
+  }
+}
+
+.portfolio-shell .about-meter__value small {
+  margin-top: 4px;
+  color: #5e5e58;
+  font-size: 8.8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.about-meter__tags {
+  align-items: center;
+}
+
+// ---------------------------------------------------------------------------
+// Bio
+// ---------------------------------------------------------------------------
+
+.about__copy {
+  padding-left: clamp(20px, 3vw, 40px);
+  border-left: 1px solid var(--line);
+
+  > .eyebrow {
+    margin: 2px 0 7px;
+    font-size: 8.8px;
+  }
+
+  h2 {
+    margin: 0 0 8px;
+    color: #282826;
+    font-size: clamp(28.6px, 3.3vw, 39.6px);
+    font-weight: 500;
+    letter-spacing: -0.08em;
+    line-height: 1;
+
+    span {
+      color: #b8a13e;
+      font-family: var(--serif);
+      font-weight: 400;
+    }
+  }
+
+  > p {
+    margin: 0 0 6px;
+    color: #5e5e58;
+    line-height: 1.45;
+  }
+
+  .about__lead {
+    margin-bottom: 7px;
+    color: #343431;
+    font-family: var(--serif);
+    font-size: 12.1px;
+    font-weight: 550;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Career history
+// ---------------------------------------------------------------------------
+
+.about__experience {
+  grid-column: 1 / -1;
+  min-width: 0;
+  padding: var(--space-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.about__experience-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+
+  .eyebrow {
+    margin: 0 0 4px;
+    font-size: 8.8px;
+  }
+
+  h3 {
+    margin: 0;
+    color: var(--ink);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.05em;
+
+    span {
+      color: #b8a13e;
+    }
+  }
+}
+
+.about__experience-emblem {
+  width: 46px;
+}
+
+// Career strip — badge-coloured pills
+.career-strip {
+  display: grid;
+  grid-template-columns: minmax(104px, 1fr) minmax(104px, 1fr) minmax(240px, 4fr) minmax(98px, 0.9fr);
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.career-strip__segment {
+  display: grid;
+  min-width: 0;
+  grid-template-rows: auto 32px;
+  gap: 5px;
+}
+
+.portfolio-shell .career-strip__label {
+  overflow: hidden;
+  color: #65655e;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.portfolio-shell .career-strip__value {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  padding: 0 14px;
+  overflow: hidden;
+  border: 1px solid var(--badge-ink);
+  border-radius: 999px;
+  color: #fff;
+  background: var(--badge-ink);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.career-strip__segment--2 .career-strip__value {
+  border-color: var(--badge-teal);
+  background: var(--badge-teal);
+}
+
+.portfolio-shell .career-strip__segment--3 .career-strip__value {
+  justify-content: center;
+  color: var(--badge-ink);
+  background:
+    repeating-linear-gradient(130deg, rgba(255, 255, 255, 0.75) 0 3px, transparent 3px 7px),
+    linear-gradient(180deg, #e8e8e8, #d1d1d1);
+  font-weight: 500;
+}
+
+.portfolio-shell .career-strip__segment--4 .career-strip__value {
+  justify-content: center;
+  color: var(--badge-ink);
+  background: #fff;
+}
+
+// Timeline — open columns separated by fine vertical dividers
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding-top: 4px;
+}
+
+.timeline-entry {
+  display: grid;
+  min-width: 0;
+  align-content: start;
+  justify-items: start;
+  gap: 10px;
+  padding-inline: clamp(16px, 2vw, 24px);
+
+  &:first-child {
+    padding-left: 0;
+  }
+
+  &:last-child {
+    padding-right: 0;
+  }
+
+  & + & {
+    border-left: 1px solid var(--line);
+  }
+}
+
+.timeline-entry__body h4 {
+  margin: 0;
+  font-size: 13.2px;
+  font-weight: 620;
+  letter-spacing: -0.035em;
+  line-height: 1.3;
+}
+
+.portfolio-shell .timeline-entry__company {
+  margin: 4px 0 6px;
+  color: #1d7d68; // darker badge teal, AA on the light card
+  font-weight: 650;
+}
+
+.timeline-entry__description {
+  max-width: 550px;
+  margin: 0;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+
+// ---------------------------------------------------------------------------
+// Responsive
+// ---------------------------------------------------------------------------
+
+@media (max-width: 900px) {
+  .about__inner {
+    grid-template-columns: 170px minmax(0, 1fr);
+  }
+
+  .about-meter__emblem {
+    width: 130px;
+  }
+
+}
+
+@media (max-width: 700px) {
+  .about__inner {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 18px;
+  }
+
+  // Emblem left, tags right — like the note-card head
+  .about-meter {
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .about-meter__emblem {
+    width: 112px;
+    margin-bottom: 10px;
+  }
+
+  .portfolio-shell .about-meter__value strong {
+    font-size: 30px;
+  }
+
+  .portfolio-shell .about-meter__value small {
+    font-size: 7.7px;
+  }
+
+  .about-meter__tags {
+    align-items: flex-start;
+  }
+
+  .about__copy {
+    padding: 18px 0 0;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .about__experience-heading {
+    gap: 12px;
+  }
+
+  // Stacked: dividers turn horizontal
+  .timeline {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .timeline-entry {
+    padding: 16px 0;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    & + & {
+      border-top: 1px solid var(--line);
+      border-left: 0;
+    }
+  }
+
+  .timeline-entry > * {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  // Career strip becomes a vertical path with chevrons between steps
+  .career-strip {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .career-strip__segment {
+    position: relative;
+    grid-template-rows: auto minmax(38px, auto);
+  }
+
+  .career-strip__segment:not(:last-child)::after {
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    border-right: 1.5px solid #99978d;
+    border-bottom: 1.5px solid #99978d;
+    content: "";
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  .portfolio-shell .career-strip__value {
+    min-height: 38px;
+    padding-inline: 14px;
+    line-height: 1.35;
+    white-space: normal;
+  }
+
+  .portfolio-shell .career-strip__segment--3 .career-strip__value {
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+}

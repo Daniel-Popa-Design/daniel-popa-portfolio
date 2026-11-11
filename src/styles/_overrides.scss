@@ -1,0 +1,10 @@
+// Global overrides — rules that must win over section styles by source order.
+// Keep this list short; prefer fixing the section rule instead of adding here.
+
+.portfolio-shell * {
+  font-family: var(--sans);
+}
+
+body :where(p, span, a, li, label, small, strong, em, button, input, textarea, select, legend, dt, dd, figcaption, code):not(h1, h1 *, h2, h2 *, h3, h3 *, h4, h4 *, h5, h5 *, h6, h6 *):not([class*=title], [class*=title] *) {
+  font-size: 13px;
+}

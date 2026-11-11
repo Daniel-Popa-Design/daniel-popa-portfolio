@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import portrait from "./assets/daniel-popa-cutout.png";
 import dpMonogram from "./assets/dp-monogram.svg";
 import bubbleTalk from "./assets/BubbleTalk.svg";
 import heroBadge from "./assets/Hero-Badge.svg";
-import "./App.scss";
-import "./Redesign.scss";
 
 const countdownDomains = {
   northstar: {
@@ -72,6 +70,10 @@ const copy = {
       title: "Was hinter der Oberfläche steckt",
       aside:
         "Wie eine flexible Farbpalette und klare semantische Rollen gemeinsame Komponenten in einem Multi-Brand-Publishing-System unterstützen.",
+      noteLabel: "Kontext",
+      noteTab: "3 Fallstudien",
+      exampleLabel: "Beispiel",
+      exampleTab: "2 Portale · 1 Gelb",
       tokenIndex: "01 / DESIGN-SYSTEM",
       tokenTitle: ["Flexible Farben.", "Klare Rollen."],
       tokenLead:
@@ -123,6 +125,8 @@ const copy = {
       countdownTitle: ["Ein Countdown,", "passend zur Marke."],
       countdownDescription:
         "Eine gemeinsame Modulstruktur passt sich mit wenigen Farb-Tokens, Inhalten und Layoutvarianten an unterschiedliche Portalidentitäten an.",
+      countdownNoteLabel: "Prinzip",
+      countdownNoteTab: "2 Portale · 2 Modi",
       countdownLabel: "Shadowstone Release-Countdown",
       countdownButton: "Alle Shadowstone-Infos",
       release: "Release",
@@ -147,6 +151,8 @@ const copy = {
       title: "Kleine Details, bessere Erlebnisse.",
       description:
         "Vier kurze Beispiele zeigen, wie ich Layout-Verschiebungen reduziere, Tastaturbedienung verbessere, Touch-Ziele vergrößere und unnötige Bewegung vermeide. Konzeptbeispiele, keine gemessenen Projektergebnisse.",
+      noteLabel: "Praxis",
+      noteTab: "4 Beispiele",
       beforeState: "Vorher · Werbefläche nicht reserviert",
       afterState: "Nachher · Werbefläche reserviert",
       cards: [
@@ -235,7 +241,7 @@ const copy = {
       meterTitle: "Web-Erfahrung",
       meterUnit: "Jahre im Web",
       meterStart: "2011",
-      meterCurrent: "HEUTE",
+      meterCurrent: "heute",
       meterAria: "Mehr als zehn Jahre Erfahrung im Web, seit 2011.",
       title: ["Design im Kopf.", "Entwicklung im Fokus."],
       lead: "Aus meiner Basis in Grafik- und Mediendesign ist ein Arbeitsstil gewachsen, der Gestaltung und Frontend verbindet – von der ersten Idee bis zum fertigen Web-Erlebnis.",
@@ -249,6 +255,7 @@ const copy = {
       title: "Mit Bedacht gewählte Kompetenzen",
       aside:
         "Von der ersten Idee bis zum geprüften Frontend: vier Disziplinen, die sich in meiner Arbeit ergänzen.",
+      noteLabel: "Überblick",
       boardLabel: "Kompetenzbereiche",
       areaUnit: "Bereiche",
       skillUnit: "Kompetenzen",
@@ -411,6 +418,10 @@ const copy = {
       title: "Behind the interface",
       aside:
         "How a flexible color palette and a few clear semantic roles support shared components across a multi-brand publishing system.",
+      noteLabel: "Context",
+      noteTab: "3 case studies",
+      exampleLabel: "Example",
+      exampleTab: "2 portals · 1 yellow",
       tokenIndex: "01 / DESIGN SYSTEM",
       tokenTitle: ["Flexible colors.", "Clear roles."],
       tokenLead:
@@ -462,6 +473,8 @@ const copy = {
       countdownTitle: ["A countdown,", "shaped for the brand."],
       countdownDescription:
         "A single module structure adapts to different portal identities through a small set of color tokens, content and layout variants.",
+      countdownNoteLabel: "Principle",
+      countdownNoteTab: "2 portals · 2 modes",
       countdownLabel: "Shadowstone release countdown",
       countdownButton: "All Shadowstone updates",
       release: "Release",
@@ -485,6 +498,8 @@ const copy = {
       title: "Small details, better experiences.",
       description:
         "Four quick examples show how I reduce layout shifts, improve keyboard access, make touch targets easier to hit, and avoid unnecessary motion. These are concept examples, not measured project results.",
+      noteLabel: "In practice",
+      noteTab: "4 examples",
       beforeState: "Before · ad space not reserved",
       afterState: "After · ad space reserved",
       cards: [
@@ -569,7 +584,7 @@ const copy = {
       meterTitle: "Web experience",
       meterUnit: "years on the web",
       meterStart: "2011",
-      meterCurrent: "TODAY",
+      meterCurrent: "today",
       meterAria: "More than ten years of web experience, since 2011.",
       title: ["Design-minded.", "Build-focused."],
       lead: "My foundation in graphic and media design shaped an approach that brings visual craft and frontend together, from the first idea to the finished web experience.",
@@ -583,6 +598,7 @@ const copy = {
       title: "A considered skill set",
       aside:
         "From the first idea to a tested frontend: four disciplines that come together in my work.",
+      noteLabel: "Overview",
       boardLabel: "Areas of practice",
       areaUnit: "areas",
       skillUnit: "skills",
@@ -706,66 +722,6 @@ function ArrowIcon({ diagonal = false, down = false }) {
       ) : (
         <path d="M3 10h13m-5-5 5 5-5 5" />
       )}
-    </svg>
-  );
-}
-
-function ExpertiseIcon({ name }) {
-  const paths = {
-    interface: (
-      <>
-        <rect x="3" y="5" width="18" height="13" rx="2" />
-        <path d="M8 21h8m-4-3v3M6 8h12v7H6z" />
-      </>
-    ),
-    systems: (
-      <>
-        <rect x="4" y="4" width="16" height="16" rx="3" />
-        <path d="M8 8h8v8H8zM1.5 9v9a2 2 0 0 0 2 2h9" />
-      </>
-    ),
-    development: <path d="m8 7-5 5 5 5m8-10 5 5-5 5m-2-12-4 14" />,
-    quality: (
-      <>
-        <path d="M12 3 20 6v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6l8-3Z" />
-        <path d="m8.5 12 2.3 2.3 4.8-4.8" />
-      </>
-    ),
-  };
-
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
-      {paths[name]}
-    </svg>
-  );
-}
-
-function LocationIcon() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 48 48" fill="none">
-      <path
-        d="M24 41s14-12.7 14-24A14 14 0 0 0 10 17c0 11.3 14 24 14 24Z"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.8"
-      />
-      <circle cx="24" cy="17" r="5.5" stroke="currentColor" strokeWidth="1.8" />
-    </svg>
-  );
-}
-
-function GlobeIcon() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 48 48" fill="none">
-      <circle cx="24" cy="24" r="19" stroke="currentColor" strokeWidth="1.8" />
-      <path
-        d="M5.5 24h37M24 5c5.2 5 8 11.4 8 19s-2.8 14-8 19c-5.2-5-8-11.4-8-19s2.8-14 8-19ZM9.2 13.5c4.1 2.8 9.1 4.2 14.8 4.2s10.7-1.4 14.8-4.2M9.2 34.5c4.1-2.8 9.1-4.2 14.8-4.2s10.7 1.4 14.8 4.2"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.5"
-      />
     </svg>
   );
 }
@@ -1227,6 +1183,226 @@ function LanguageSwitcher({ language, onChange, label }) {
   );
 }
 
+// Note-card icons — drawn on a 48-unit grid in the hero-badge style:
+// white shapes with an ink outline, accents in badge gold / teal.
+// Fill roles come from classes (see _note-card.scss): default white,
+// .is-gold, .is-teal, .is-ink, .is-line (stroke only).
+const noteIcons = {
+  // Fanned colour swatches — design tokens
+  swatches: (
+    <>
+      <rect x="17.5" y="7" width="13" height="31" rx="3" transform="rotate(-24 24 38)" />
+      <rect className="is-teal" x="17.5" y="7" width="13" height="31" rx="3" />
+      <rect className="is-gold" x="17.5" y="7" width="13" height="31" rx="3" transform="rotate(24 24 38)" />
+      <path className="is-line" d="M21 12.5h6M21 16.5h6" transform="rotate(24 24 38)" />
+      <circle cx="24" cy="38" r="2.6" />
+    </>
+  ),
+  // Stopwatch with a gold progress wedge — release countdown
+  stopwatch: (
+    <>
+      <rect x="19.5" y="3.5" width="9" height="5" rx="1.6" />
+      <path className="is-line" d="M24 8.5v3.5M35.4 13.6l2.4-2.4" />
+      <circle cx="24" cy="28" r="15" />
+      <path className="is-gold" d="M24 28V17a11 11 0 0 1 9.5 16.5Z" />
+      <path className="is-line" d="M24 15.5v1.6M36.5 28h-1.6M24 40.5v-1.6M11.5 28h1.6" />
+      <circle className="is-ink" cx="24" cy="28" r="2.1" />
+    </>
+  ),
+  // Cursor clicking a button, with a sparkle — UX details
+  cursor: (
+    <>
+      <rect className="is-teal" x="5" y="11" width="27" height="17" rx="5" />
+      <path className="is-line" d="M10.5 19.5h9" />
+      <path d="M24.5 21.5 39 27.4l-6.4 2.3-2.5 6.6Z" />
+      <path className="is-gold" d="m40.5 5 1.3 3.5 3.5 1.3-3.5 1.3-1.3 3.5-1.3-3.5-3.5-1.3 3.5-1.3Z" />
+    </>
+  ),
+  // Toolbox with a gold latch — skill set
+  toolbox: (
+    <>
+      <path className="is-line" d="M18 15v-4.5a2.5 2.5 0 0 1 2.5-2.5h7a2.5 2.5 0 0 1 2.5 2.5V15" />
+      <rect x="5" y="15" width="38" height="24" rx="4" />
+      <path className="is-line" d="M5 25h38M12 15v24M36 15v24" />
+      <rect className="is-gold" x="19.5" y="21.5" width="9" height="8" rx="2" />
+    </>
+  ),
+  // Browser window with a cursor — UI/UX design
+  interface: (
+    <>
+      <rect x="4" y="8" width="40" height="30" rx="4" />
+      <path className="is-teal" d="M4 12a4 4 0 0 1 4-4h32a4 4 0 0 1 4 4v4H4Z" />
+      <path className="is-line" d="M11 24h14M11 30h9" />
+      <rect className="is-gold" x="30" y="22" width="8" height="10" rx="2" />
+      <path d="m31 31 9 3.6-3.9 1.4-1.5 4Z" />
+    </>
+  ),
+  // Stacked layers — visual design & systems
+  systems: (
+    <>
+      <path d="M24 26 6 18l18-8 18 8Z" transform="translate(0 12)" />
+      <path className="is-teal" d="M24 26 6 18l18-8 18 8Z" transform="translate(0 6)" />
+      <path className="is-gold" d="M24 26 6 18l18-8 18 8Z" />
+    </>
+  ),
+  // Code window — frontend & WordPress
+  development: (
+    <>
+      <rect x="4" y="8" width="40" height="32" rx="4" />
+      <path className="is-line" d="M4 15h40" />
+      <circle className="is-gold" cx="9.5" cy="11.5" r="1.4" />
+      <circle className="is-teal" cx="14" cy="11.5" r="1.4" />
+      <path className="is-line" d="m17 22-5 5.5 5 5.5M31 22l5 5.5-5 5.5M26.5 20.5l-5 14" />
+    </>
+  ),
+  // Shield with a check — quality & accessibility
+  quality: (
+    <>
+      <path d="M24 4 40 10v11c0 10-6.8 17.3-16 21-9.2-3.7-16-11-16-21V10Z" />
+      <path className="is-teal" d="M24 9.5 35 13.7v7.5c0 7.3-4.7 12.6-11 15.4-6.3-2.8-11-8.1-11-15.4v-7.5Z" />
+      <path className="is-line" d="m18.5 23 4 4 7.5-8" />
+      <circle className="is-gold" cx="38" cy="38" r="4" />
+    </>
+  ),
+  // Two speech bubbles — contact
+  chat: (
+    <>
+      <path d="M5 10a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v11a4 4 0 0 1-4 4H16l-7 5v-5.4A4 4 0 0 1 5 21Z" />
+      <path className="is-line" d="M11 13h16M11 18h10" />
+      <path className="is-teal" d="M43 23a4 4 0 0 0-4-4H25a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8l6 4.5V35a4 4 0 0 0 4-4Z" />
+      <circle className="is-gold" cx="27.5" cy="27" r="1.6" />
+      <circle className="is-gold" cx="32" cy="27" r="1.6" />
+      <circle className="is-gold" cx="36.5" cy="27" r="1.6" />
+    </>
+  ),
+  // Target with an arrow — the approach
+  target: (
+    <>
+      <circle cx="22" cy="26" r="16" />
+      <circle className="is-teal" cx="22" cy="26" r="10" />
+      <circle className="is-gold" cx="22" cy="26" r="4" />
+      <path className="is-line" d="M22 26 39 9M33 8.5h6.5V15" />
+    </>
+  ),
+  // Light bulb — why it matters
+  bulb: (
+    <>
+      <path d="M24 7a12 12 0 0 0-7 21.7c1.3 1 2 2.5 2 4.1V35h10v-2.2c0-1.6.7-3.1 2-4.1A12 12 0 0 0 24 7Z" />
+      <path className="is-line" d="m20 22 4 4 4-4M24 26v8" />
+      <rect className="is-gold" x="18.5" y="37" width="11" height="5" rx="2" />
+      <path className="is-line" d="M5 19h3.5M39.5 19H43M9.5 6.5l2.5 2.5M38.5 6.5 36 9" />
+    </>
+  ),
+  // Puzzle piece — my contribution
+  puzzle: (
+    <>
+      <path
+        className="is-teal"
+        d="M8 14h9a4.5 4.5 0 1 1 9 0h9v9a4.5 4.5 0 1 1 0 9v9h-9a4.5 4.5 0 1 0-9 0H8v-9a4.5 4.5 0 1 0 0-9Z"
+      />
+      <circle className="is-gold" cx="40" cy="9" r="4" />
+    </>
+  ),
+  // Signpost — career path
+  signpost: (
+    <>
+      <path className="is-line" d="M24 5v34" />
+      <path d="M24 9h14.5l4 4.5-4 4.5H24Z" />
+      <path className="is-teal" d="M24 21H9.5l-4 4.5 4 4.5H24Z" />
+      <rect className="is-gold" x="15" y="39" width="18" height="5" rx="2.5" />
+    </>
+  ),
+};
+
+// Rounded hexagon shape from Hero-Badge.svg.
+const HEX_PATH =
+  "M84.89,1c6.01,0,11.08,1.58,16.46,4.75l55.72,31.97c7.6,4.43,11.71,11.4,11.71,20.58v70.91c0,9.5-4.12,16.14-11.71,20.58l-55.72,32.61c-10.45,6.01-22.48,6.01-32.92,0l-55.72-32.61c-7.6-4.43-11.71-11.08-11.71-20.58V58.3c0-9.18,4.12-16.14,11.71-20.58L68.43,5.75c5.38-3.17,10.45-4.75,16.46-4.75Z";
+
+// Star from Hero-Badge.svg, used on the "achievement" coin.
+const STAR_PATH =
+  "M85.44,165.11l5.82,9.92c.09.16.24.27.42.3l11.3,2.43c.48.1.67.69.34,1.06l-7.7,8.55c-.12.13-.18.31-.16.49l1.16,11.42c.05.49-.45.85-.9.65l-10.58-4.63c-.16-.07-.35-.07-.52,0l-10.58,4.63c-.45.2-.95-.16-.9-.65l1.16-11.42c.02-.18-.04-.36-.16-.49l-7.7-8.55c-.33-.37-.14-.95.34-1.06l11.3-2.43c.18-.04.33-.15.42-.3l5.82-9.92c.25-.42.86-.42,1.11,0Z";
+
+// ---------------------------------------------------------------------------
+// Badge primitives (styles: _badge.scss) — shared by note cards and About.
+// ---------------------------------------------------------------------------
+
+// Grey rounded hexagon; children are drawn in its 170×188 coordinate space.
+function HexEmblem({ children }) {
+  const gradientId = `hex-${useId().replace(/:/g, "")}`;
+  return (
+    <svg className="hex-emblem" viewBox="-2 -2 173.78 192" aria-hidden="true">
+      <defs>
+        <linearGradient id={gradientId} x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stopColor="#e8e8e8" />
+          <stop offset="1" stopColor="#c8c8c8" />
+        </linearGradient>
+      </defs>
+      <path
+        className="hex-emblem__shape"
+        d={HEX_PATH}
+        fill={`url(#${gradientId})`}
+      />
+      {children}
+    </svg>
+  );
+}
+
+// One of the 48-unit icons, centred in the hexagon.
+function HexIcon({ name }) {
+  return (
+    <g className="hex-emblem__icon" transform="translate(33.3 42.4) scale(2.15)">
+      {noteIcons[name]}
+    </g>
+  );
+}
+
+// White coin: "typing" dots, the gold star, or a waving hand.
+function BadgeCoin({ variant = "dots" }) {
+  return (
+    <span className={`badge-coin badge-coin--${variant}`} aria-hidden="true">
+      {variant === "star" ? (
+        <svg viewBox="65 163 40 40">
+          <path d={STAR_PATH} />
+        </svg>
+      ) : variant === "wave" ? (
+        <svg viewBox="0 0 24 24">
+          <g className="badge-coin__hand">
+            <path d="M9 21.5C6.6 20.6 4.9 18.4 4.4 15.9l-.9-4.3A1.3 1.3 0 0 1 6 11l1.3 3.2V5.2a1.4 1.4 0 0 1 2.8 0V3.6a1.4 1.4 0 0 1 2.8 0v1a1.4 1.4 0 0 1 2.8 0v2.6a1.4 1.4 0 0 1 2.8 0v7.4c0 3.8-2.9 7-6.7 7.2-1 .1-1.9 0-2.8-.3Z" />
+            <path className="is-line" d="M10.1 5.2v6.3M12.9 4.6v6.9M15.7 7.2v4.8" />
+          </g>
+          <path className="is-line" d="M19.6 2.6c1.2.6 2 1.6 2.3 2.9M2.3 5.2c.3-1.3 1.1-2.3 2.3-2.9" />
+        </svg>
+      ) : (
+        <>
+          <i />
+          <i />
+          <i />
+        </>
+      )}
+    </span>
+  );
+}
+
+function NoteCard({ icon, label, tab, children }) {
+  return (
+    <div className="note-card badge-card">
+      <div className="note-card__head">
+        <span className="badge-emblem note-card__emblem">
+          <HexEmblem>
+            <HexIcon name={icon} />
+          </HexEmblem>
+          <BadgeCoin />
+        </span>
+        <span className="badge-tags">
+          <span className="badge-tag">{label}</span>
+          <span className="badge-tag badge-tag--fact">{tab}</span>
+        </span>
+      </div>
+      <p className="note-card__text">{children}</p>
+    </div>
+  );
+}
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [language, setLanguage] = useState("de");
@@ -1259,11 +1435,11 @@ function App() {
         {text.skip}
       </a>
 
-      <div className="portfolio-shell">
-        <header className="site-header">
+      <header className="site-header" id="page-top">
+        <div className="site-header__inner">
           <a
             className="wordmark"
-            href="#top"
+            href="#page-top"
             aria-label={text.home}
             onClick={closeMenu}
           >
@@ -1310,8 +1486,10 @@ function App() {
               <span />
             </button>
           </div>
-        </header>
+        </div>
+      </header>
 
+      <div className="portfolio-shell">
         <main id="main">
           <section
             className="hero section-wrap"
@@ -1320,7 +1498,10 @@ function App() {
           >
             <div className="hero__copy">
               <p className="hero__greeting">
-                <span>{text.hero.greeting}</span>
+                <span className="hero__greeting-text">
+                  {text.hero.greeting}
+                </span>
+                <BadgeCoin variant="wave" />
               </p>
               <h1 id="hero-title">
                 Daniel <span>Popa</span>
@@ -1337,11 +1518,11 @@ function App() {
                     {text.hero.work} <ArrowIcon down />
                   </a>
                   <a
-                    className="header-cv hero-cv"
+                    className="hero-cv"
                     href={`${import.meta.env.BASE_URL}Lebenslauf_Daniel_Popa.pdf`}
                     download="Lebenslauf_Daniel_Popa.pdf"
                   >
-                    <span>Lebenslauf herunterladen</span>
+                    <span>{text.hero.downloadCv}</span>
                     <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
                       <path d="M10 3v10m-4-4 4 4 4-4M4 16v2h12v-2"></path>
                     </svg>
@@ -1352,19 +1533,19 @@ function App() {
 
             <div className="hero-art">
               <div className="hero-art__profile">
-                <div class="hero-art__badge__wrapper">
+                <div className="hero-art__badge__wrapper">
                   <img className="hero-art__badge" src={heroBadge} alt="" />
 
-                  <div class="hero-art__badge__text">
-                    <span class="hero-art__badge__text">
+                  <div className="hero-art__badge__text">
+                    <span>
                       {text.heroBadge.exp1}
                     </span>
-                    <span class="hero-art__badge__text">
+                    <span>
                       {text.heroBadge.exp2}
                     </span>
                   </div>
                 </div>
-                <div class="hero-art__portrait__background"></div>
+                <div className="hero-art__portrait__background" />
 
                 <img
                   className="hero-art__portrait hero-art__portrait--inside"
@@ -1393,11 +1574,17 @@ function App() {
                   <span>.</span>
                 </h2>
               </div>
-              <p className="section-heading__aside">{text.work.aside}</p>
+              <NoteCard
+                icon="swatches"
+                label={text.work.noteLabel}
+                tab={text.work.noteTab}
+              >
+                {text.work.aside}
+              </NoteCard>
             </div>
 
             <div className="work__feature-grid">
-              <div className="work__story-column">
+              <div className="work__story-column badge-card">
                 <article
                   className="token-case-study"
                   aria-labelledby="token-case-title"
@@ -1495,7 +1682,11 @@ function App() {
                           </div>
                         </div>
                       </div>
-                      <p>
+                      <NoteCard
+                        icon="swatches"
+                        label={text.work.exampleLabel}
+                        tab={text.work.exampleTab}
+                      >
                         {text.work.tokenExample
                           .split(/(<[^>]+>)/)
                           .map((part, index) => {
@@ -1510,29 +1701,50 @@ function App() {
                               part
                             );
                           })}
-                      </p>
+                      </NoteCard>
                     </div>
                   </div>
                 </article>
 
                 <div className="token-case-study__takeaways">
                   <div>
-                    <span className="token-case-study__label">
-                      {text.work.approachLabel}
+                    <span className="badge-emblem token-case-study__takeaway-icon">
+                      <HexEmblem>
+                        <HexIcon name="target" />
+                      </HexEmblem>
                     </span>
-                    <p>{text.work.approach}</p>
+                    <div>
+                      <span className="badge-tag badge-tag--ghost">
+                        {text.work.approachLabel}
+                      </span>
+                      <p>{text.work.approach}</p>
+                    </div>
                   </div>
                   <div>
-                    <span className="token-case-study__label">
-                      {text.work.mattersLabel}
+                    <span className="badge-emblem token-case-study__takeaway-icon">
+                      <HexEmblem>
+                        <HexIcon name="bulb" />
+                      </HexEmblem>
                     </span>
-                    <p>{text.work.matters}</p>
+                    <div>
+                      <span className="badge-tag badge-tag--ghost">
+                        {text.work.mattersLabel}
+                      </span>
+                      <p>{text.work.matters}</p>
+                    </div>
                   </div>
                   <div>
-                    <span className="token-case-study__label">
-                      {text.work.contributionLabel}
+                    <span className="badge-emblem token-case-study__takeaway-icon">
+                      <HexEmblem>
+                        <HexIcon name="puzzle" />
+                      </HexEmblem>
                     </span>
-                    <p>{text.work.contribution}</p>
+                    <div>
+                      <span className="badge-tag badge-tag--ghost">
+                        {text.work.contributionLabel}
+                      </span>
+                      <p>{text.work.contribution}</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1549,7 +1761,7 @@ function App() {
               <div className="countdown-case-study__heading">
                 <div>
                   <p className="token-case-study__index">
-                    02 / REUSABLE COMPONENT
+                    {text.work.countdownIndex}
                   </p>
                   <h3 id="countdown-case-title">
                     {text.work.countdownTitle[0]}
@@ -1557,11 +1769,13 @@ function App() {
                     {text.work.countdownTitle[1]}
                   </h3>
                 </div>
-                <p>
-                  A single module structure adapts to different portal
-                  identities through a small set of color tokens, content and
-                  layout variants.
-                </p>
+                <NoteCard
+                  icon="stopwatch"
+                  label={text.work.countdownNoteLabel}
+                  tab={text.work.countdownNoteTab}
+                >
+                  {text.work.countdownDescription}
+                </NoteCard>
               </div>
 
               <div className="countdown-case-study__controls">
@@ -1654,7 +1868,7 @@ function App() {
               </section>
 
               <div
-                className="countdown-case-study__token-note"
+                className="countdown-case-study__token-note badge-card"
                 data-domain={selectedCountdownDomain}
                 data-theme={selectedCountdownTheme}
                 style={{
@@ -1668,7 +1882,7 @@ function App() {
               >
                 <div className="countdown-case-study__token-note-intro">
                   <div className="countdown-case-study__token-note-heading">
-                    <span>{text.work.titleColorLabel}</span>
+                    <span className="badge-tag">{text.work.titleColorLabel}</span>
                   </div>
                   <p>{text.work.paletteNote}</p>
                   <div
@@ -1706,9 +1920,7 @@ function App() {
                 </div>
                 <div className="countdown-case-study__brand-token">
                   <div className="countdown-case-study__brand-token-heading">
-                    <span className="countdown-case-study__token-mode-label">
-                      {text.work.brandAccentLabel}
-                    </span>
+                    <span className="badge-tag">{text.work.brandAccentLabel}</span>
                   </div>
                   <p className="countdown-case-study__brand-token-note">
                     {text.work.brandAccentNote}
@@ -1767,12 +1979,18 @@ function App() {
                   </p>
                   <h3 id="quality-case-title">{text.quality.title}</h3>
                 </div>
-                <p>{text.quality.description}</p>
+                <NoteCard
+                  icon="cursor"
+                  label={text.quality.noteLabel}
+                  tab={text.quality.noteTab}
+                >
+                  {text.quality.description}
+                </NoteCard>
               </div>
 
               <div className="quality-case-study__grid">
                 <article
-                  className="quality-card"
+                  className="quality-card badge-card"
                   aria-labelledby="quality-cls-title"
                 >
                   <span className="quality-card__number">01</span>
@@ -1799,7 +2017,7 @@ function App() {
                 </article>
 
                 <article
-                  className="quality-card"
+                  className="quality-card badge-card"
                   aria-labelledby="quality-keyboard-title"
                 >
                   <span className="quality-card__number">02</span>
@@ -1823,7 +2041,7 @@ function App() {
                 </article>
 
                 <article
-                  className="quality-card"
+                  className="quality-card badge-card"
                   aria-labelledby="quality-controls-title"
                 >
                   <span className="quality-card__number">03</span>
@@ -1880,7 +2098,7 @@ function App() {
                 </article>
 
                 <article
-                  className="quality-card"
+                  className="quality-card badge-card"
                   aria-labelledby="quality-motion-title"
                 >
                   <span className="quality-card__number">04</span>
@@ -1933,51 +2151,45 @@ function App() {
             id="about"
             aria-labelledby="about-title"
           >
-            <div className="section-wrap about__inner">
+            <div className="section-wrap about__inner badge-card">
               <div
-                className="about__index about-meter"
+                className="about-meter"
                 role="img"
                 aria-label={text.about.meterAria}
               >
-                <div className="about-meter__header" aria-hidden="true">
-                  <span>{text.about.meterTitle}</span>
-                  <span className="about-meter__mark">
-                    <ArrowIcon diagonal />
+                <span className="badge-emblem about-meter__emblem">
+                  <HexEmblem>
+                    <g transform="rotate(-90 84.89 94)">
+                      <circle
+                        className="about-meter__track"
+                        cx="84.89"
+                        cy="94"
+                        r="58"
+                        pathLength="100"
+                      />
+                      <circle
+                        className="about-meter__arc"
+                        cx="84.89"
+                        cy="94"
+                        r="58"
+                        pathLength="100"
+                      />
+                    </g>
+                  </HexEmblem>
+                  <span className="about-meter__value" aria-hidden="true">
+                    <strong>
+                      10<sup>+</sup>
+                    </strong>
+                    <small>{text.about.meterUnit}</small>
                   </span>
-                </div>
-                <div className="about-meter__dial" aria-hidden="true">
-                  <svg viewBox="0 0 120 120" focusable="false">
-                    <circle
-                      className="about-meter__track"
-                      cx="60"
-                      cy="60"
-                      r="51"
-                      pathLength="100"
-                    />
-                    <circle
-                      className="about-meter__arc"
-                      cx="60"
-                      cy="60"
-                      r="51"
-                      pathLength="100"
-                    />
-                  </svg>
-                  <div className="about-meter__center">
-                    <span className="about__big-number">
-                      10<span>+</span>
-                    </span>
-                    <span className="about__caption">
-                      {text.about.meterUnit}
-                    </span>
-                  </div>
-                </div>
-                <div className="about-meter__range" aria-hidden="true">
-                  <span>{text.about.meterStart}</span>
-                  <span className="about-meter__range-track">
-                    <i />
+                  <BadgeCoin variant="star" />
+                </span>
+                <span className="badge-tags about-meter__tags" aria-hidden="true">
+                  <span className="badge-tag">{text.about.meterTitle}</span>
+                  <span className="badge-tag badge-tag--fact">
+                    {text.about.meterStart} — {text.about.meterCurrent}
                   </span>
-                  <span>{text.about.meterCurrent}</span>
-                </div>
+                </span>
               </div>
               <div className="about__copy">
                 <p className="eyebrow">{text.about.eyebrow}</p>
@@ -1996,11 +2208,18 @@ function App() {
                 aria-labelledby="experience-title"
               >
                 <div className="about__experience-heading">
-                  <p className="eyebrow">{text.experience.eyebrow}</p>
-                  <h3 id="experience-title">
-                    {text.experience.title}
-                    <span>.</span>
-                  </h3>
+                  <span className="badge-emblem about__experience-emblem">
+                    <HexEmblem>
+                      <HexIcon name="signpost" />
+                    </HexEmblem>
+                  </span>
+                  <div>
+                    <p className="eyebrow">{text.experience.eyebrow}</p>
+                    <h3 id="experience-title">
+                      {text.experience.title}
+                      <span>.</span>
+                    </h3>
+                  </div>
                 </div>
                 <div
                   className="career-strip"
@@ -2020,9 +2239,13 @@ function App() {
                   ))}
                 </div>
                 <div className="timeline">
-                  {text.experience.entries.map((entry) => (
+                  {text.experience.entries.map((entry, index) => (
                     <article className="timeline-entry" key={entry.date}>
-                      <span className="timeline-entry__date">{entry.date}</span>
+                      <span
+                        className={`badge-tag timeline-entry__date${index === 0 ? "" : " badge-tag--ghost"}`}
+                      >
+                        {entry.date}
+                      </span>
                       <div className="timeline-entry__body">
                         <h4>{entry.role}</h4>
                         <p className="timeline-entry__company">
@@ -2032,10 +2255,6 @@ function App() {
                           {entry.description}
                         </p>
                       </div>
-                      <span
-                        className="timeline-entry__marker"
-                        aria-hidden="true"
-                      />
                     </article>
                   ))}
                 </div>
@@ -2056,48 +2275,48 @@ function App() {
                   <span>.</span>
                 </h2>
               </div>
-              <p className="section-heading__aside">{text.expertise.aside}</p>
+              <NoteCard
+                icon="toolbox"
+                label={text.expertise.noteLabel}
+                tab={`${text.expertise.groups.length} ${text.expertise.areaUnit} · ${text.expertise.groups.reduce((total, group) => total + group.skills.length, 0)} ${text.expertise.skillUnit}`}
+              >
+                {text.expertise.aside}
+              </NoteCard>
             </div>
-            <div className="expertise-board">
+            <div className="expertise-board badge-card">
               <header className="expertise-board__header">
                 <p>{text.expertise.boardLabel}</p>
                 <div
                   className="expertise-board__totals"
                   aria-label={`${text.expertise.groups.length} ${text.expertise.areaUnit}, ${text.expertise.groups.reduce((total, group) => total + group.skills.length, 0)} ${text.expertise.skillUnit}`}
                 >
-                  <span className="expertise-board__total">
-                    <strong>
-                      {String(text.expertise.groups.length).padStart(2, "0")}
-                    </strong>
-                    <small>{text.expertise.areaUnit}</small>
+                  <span className="badge-tag" aria-hidden="true">
+                    {String(text.expertise.groups.length).padStart(2, "0")}{" "}
+                    {text.expertise.areaUnit}
                   </span>
-                  <span
-                    className="expertise-board__divider"
-                    aria-hidden="true"
-                  />
-                  <span className="expertise-board__total">
-                    <strong>
-                      {String(
-                        text.expertise.groups.reduce(
-                          (total, group) => total + group.skills.length,
-                          0,
-                        ),
-                      ).padStart(2, "0")}
-                    </strong>
-                    <small>{text.expertise.skillUnit}</small>
+                  <span className="badge-tag badge-tag--fact" aria-hidden="true">
+                    {String(
+                      text.expertise.groups.reduce(
+                        (total, group) => total + group.skills.length,
+                        0,
+                      ),
+                    ).padStart(2, "0")}{" "}
+                    {text.expertise.skillUnit}
                   </span>
                 </div>
               </header>
               <div className="expertise-grid">
                 {text.expertise.groups.map((group, index) => (
                   <article className="expertise-card" key={group.title}>
-                    <span className="expertise-card__icon">
-                      <ExpertiseIcon name={group.icon} />
+                    <span className="badge-emblem expertise-card__icon">
+                      <HexEmblem>
+                        <HexIcon name={group.icon} />
+                      </HexEmblem>
                     </span>
                     <div className="expertise-card__content">
                       <div className="expertise-card__heading">
                         <h3>{group.title}</h3>
-                        <span className="expertise-card__count">
+                        <span className="badge-tag badge-tag--ghost expertise-card__count">
                           {String(group.skills.length).padStart(2, "0")}
                         </span>
                       </div>
@@ -2122,14 +2341,22 @@ function App() {
             id="contact"
             aria-labelledby="contact-title"
           >
-            <div className="section-wrap contact__inner">
+            <div className="section-wrap contact__inner badge-card">
               <div className="contact__intro">
-                <p className="eyebrow">{text.contact.eyebrow}</p>
-                <h2 id="contact-title">
-                  {text.contact.title[0]}
-                  <br />
-                  <span>{text.contact.title[1]}</span>
-                </h2>
+                <span className="badge-emblem contact__emblem">
+                  <HexEmblem>
+                    <HexIcon name="chat" />
+                  </HexEmblem>
+                  <BadgeCoin />
+                </span>
+                <div className="contact__heading">
+                  <p className="eyebrow">{text.contact.eyebrow}</p>
+                  <h2 id="contact-title">
+                    {text.contact.title[0]}
+                    <br />
+                    <span>{text.contact.title[1]}</span>
+                  </h2>
+                </div>
                 <p className="contact__description">
                   <img
                     className="contact__bubble-art contact__bubble-art--shadow"
@@ -2241,15 +2468,15 @@ function App() {
                       <path
                         d="M32 3C16 3 5 15 5 31c0 18 15 34 23 42 2.4 2.4 5.6 2.4 8 0 8-8 23-24 23-42C59 15 48 3 32 3Z"
                         stroke="currentColor"
-                        stroke-width="6.2"
-                        stroke-linejoin="round"
+                        strokeWidth="6.2"
+                        strokeLinejoin="round"
                       />
                       <circle
                         cx="32"
                         cy="30"
                         r="10"
                         stroke="currentColor"
-                        stroke-width="6.2"
+                        strokeWidth="6.2"
                       />
                     </svg>
 
@@ -2271,16 +2498,18 @@ function App() {
             </div>
           </section>
         </main>
+      </div>
 
-        <footer className="site-footer section-wrap">
-          <a className="wordmark" href="#top" aria-label={text.footer.home}>
+      <footer className="site-footer">
+        <div className="site-footer__inner">
+          <a className="wordmark" href="#page-top" aria-label={text.footer.home}>
             <span className="wordmark__symbol">
               <img src={dpMonogram} alt="" />
             </span>
             <span className="wordmark__name">Daniel Popa</span>
           </a>
           <p>{text.footer.description}</p>
-          <a className="back-to-top" href="#top" aria-label={text.footer.top}>
+          <a className="back-to-top" href="#page-top" aria-label={text.footer.top}>
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
               <path d="M12 2.5c-2.8 2.3-4.1 5.3-4.1 9.3v3.4l4.1 2.6 4.1-2.6v-3.4c0-4-1.3-7-4.1-9.3Z" />
               <circle cx="12" cy="9" r="1.5" />
@@ -2294,8 +2523,8 @@ function App() {
           <span className="site-footer__copyright">
             © {copyrightYear} Daniel Popa
           </span>
-        </footer>
-      </div>
+        </div>
+      </footer>
     </>
   );
 }

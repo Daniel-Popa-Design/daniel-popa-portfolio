@@ -1,0 +1,156 @@
+// Layout — page shell, section rhythm, shared headings and buttons.
+
+// ---------------------------------------------------------------------------
+// Page shell
+// ---------------------------------------------------------------------------
+
+.portfolio-shell {
+  display: flow-root;
+  width: var(--shell-width);
+  margin: 0 auto;
+  overflow: clip;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--sans);
+
+  *::before,
+  *::after {
+    font-family: var(--sans);
+  }
+}
+
+.section-wrap {
+  width: min(100% - var(--gutter) * 2, var(--container));
+  margin-inline: auto;
+}
+
+// Every section uses the same symmetric padding (see --space-* tokens), so
+// the distance from any visible boundary (hero frame or divider) to the
+// next content is always one --space-section.
+.section-space {
+  position: relative;
+  padding: var(--space-section) var(--space-inline);
+}
+
+// Fine divider between consecutive sections, at content width. The first
+// section after the hero has none: the hero frame already separates it.
+.section-space + .section-space::before {
+  position: absolute;
+  top: 0;
+  right: var(--space-inline);
+  left: var(--space-inline);
+  height: 1px;
+  background: var(--line);
+  content: "";
+}
+
+
+// ---------------------------------------------------------------------------
+// Headings — one pattern for section headings (h2) and case-study headings (h3):
+// title first, full-width note card underneath.
+// ---------------------------------------------------------------------------
+
+.section-heading,
+.countdown-case-study__heading,
+.quality-case-study__heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+  margin-bottom: var(--space-heading);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  color: #6d6c65;
+  font-size: 9.9px;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.section-heading h2 {
+  margin: 11px 0 0;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: clamp(35.2px, 4.4vw, 52.8px);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 1;
+
+  span {
+    color: #c6ad3e;
+  }
+}
+
+.countdown-case-study__heading h3,
+.quality-case-study__heading h3 {
+  max-width: 600px;
+  margin: 10px 0 0;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: clamp(29.7px, 3.5vw, 42.9px);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+
+@media (max-width: 700px) {
+  .section-heading h2 {
+    font-size: clamp(35.2px, 9.9vw, 48.4px);
+  }
+
+  .countdown-case-study__heading h3,
+  .quality-case-study__heading h3 {
+    font-size: clamp(30.8px, 9.4vw, 41.8px);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Buttons
+// ---------------------------------------------------------------------------
+
+.button {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 20px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 13.2px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+
+  svg {
+    width: 17px;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    transition: transform 180ms ease;
+  }
+
+  &:hover,
+  &:hover svg {
+    transform: translateY(-2px);
+  }
+}
+
+.button--light {
+  border-color: rgba(245, 244, 238, 0.65);
+  color: var(--paper);
+  background: transparent;
+
+  &:hover {
+    border-color: var(--paper);
+    color: var(--ink);
+    background: var(--paper);
+  }
+}

@@ -1,0 +1,373 @@
+// Site header — wordmark, primary navigation, language switch, mobile menu.
+// Badge style (_badge.scss): pill shapes with a fine border, no shadows.
+
+// Full-width bar; content kept at the page-shell width
+.site-header {
+  position: relative;
+  z-index: 10;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.site-header__inner {
+  display: flex;
+  width: var(--shell-width);
+  min-height: 84px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-inline: auto;
+  // Content spans the hero frame (the widest element below the header)
+  padding-inline: var(--frame-inset);
+}
+
+// ---------------------------------------------------------------------------
+// Wordmark pill (also used in the footer)
+// ---------------------------------------------------------------------------
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 11px 3px 3px;
+  border: 1px solid rgba(52, 52, 52, 0.35);
+  border-radius: 999px;
+  background: #fff;
+  text-decoration: none;
+  transition: border-color 160ms ease;
+
+  &:hover {
+    border-color: var(--badge-ink);
+  }
+}
+
+.wordmark__symbol {
+  display: block;
+  width: 28px;
+  flex: 0 0 28px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--lemon);
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 3px;
+  }
+}
+
+.wordmark .wordmark__name {
+  color: var(--badge-ink);
+  font-family: var(--serif);
+  font-size: 12.1px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Primary navigation — pill group
+// ---------------------------------------------------------------------------
+
+.primary-navigation {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid rgba(52, 52, 52, 0.18);
+  border-radius: 999px;
+  background: #fff;
+
+  a {
+    padding: 9px 13px;
+    border-radius: 999px;
+    color: #353535;
+    font-weight: 550;
+    text-decoration: none;
+    transition:
+      background-color 160ms ease,
+      color 160ms ease;
+
+    &:hover {
+      color: #171717;
+      background: #efeee9;
+    }
+  }
+
+  svg {
+    width: 14px;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    transition: transform 180ms ease;
+  }
+}
+
+.site-header .primary-navigation a {
+  font-size: 12px;
+}
+
+// Current section (first link) — ink pill
+.primary-navigation > a:first-child {
+  color: #fff;
+  background: var(--badge-ink);
+
+  &:hover {
+    color: #fff;
+    background: #4a4a48;
+  }
+}
+
+// Call to action — teal pill
+.primary-navigation .nav-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-left: 4px;
+  color: #fff;
+  background: var(--badge-teal);
+
+  &:hover {
+    color: #fff;
+    background: #2fb898;
+
+    svg {
+      transform: translate(1px, -1px);
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Tools — language switch + menu toggle
+// ---------------------------------------------------------------------------
+
+.site-header__tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.language-switch {
+  display: inline-flex;
+  height: 34px;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid rgba(52, 52, 52, 0.18);
+  border-radius: 999px;
+  background: #fff;
+}
+
+.language-switch__option {
+  display: inline-flex;
+  min-width: 43px;
+  min-height: 26px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0 9px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: #555;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+  }
+
+  &[aria-pressed="true"] {
+    border-color: var(--badge-ink);
+    color: var(--badge-ink);
+    background: var(--surface);
+  }
+
+  &:hover:not([aria-pressed="true"]) {
+    color: var(--ink);
+  }
+}
+
+.menu-toggle {
+  display: none;
+}
+
+// ---------------------------------------------------------------------------
+// Responsive
+// ---------------------------------------------------------------------------
+
+@media (max-width: 1080px) {
+  .primary-navigation a {
+    padding-inline: 9px;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-header__inner {
+    gap: 9px;
+  }
+
+  .primary-navigation {
+    gap: 0;
+  }
+
+  .primary-navigation a {
+    padding-inline: 8px;
+  }
+
+  .site-header .primary-navigation a {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 700px) {
+  .site-header__inner {
+    min-height: 60px;
+    padding-block: 8px;
+  }
+
+  .wordmark {
+    gap: 5px;
+    padding: 3px 9px 3px 3px;
+  }
+
+  .wordmark__symbol {
+    width: 26px;
+    flex-basis: 26px;
+  }
+
+  .wordmark .wordmark__name {
+    font-size: 11px;
+  }
+
+  .site-header__tools {
+    gap: 4px;
+  }
+
+  .language-switch {
+    height: 30px;
+  }
+
+  .language-switch__option {
+    min-width: 31px;
+    min-height: 23px;
+    gap: 3px;
+    padding-inline: 4px;
+
+    svg {
+      width: 12px;
+      height: 12px;
+      flex-basis: 12px;
+    }
+  }
+
+  // Burger — ink coin
+  .menu-toggle {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    width: 30px;
+    height: 30px;
+    align-content: center;
+    justify-items: center;
+    gap: 4px;
+    margin-left: 1px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--badge-ink);
+    cursor: pointer;
+
+    span {
+      width: 12px;
+      height: 1px;
+      background: #fff;
+      transition:
+        transform 180ms ease,
+        width 180ms ease;
+    }
+
+    &.is-open span:first-child {
+      transform: translateY(2.5px) rotate(45deg);
+    }
+
+    &.is-open span:last-child {
+      transform: translateY(-2.5px) rotate(-45deg);
+    }
+  }
+
+  // Drop-down panel — badge-card surface
+  .primary-navigation {
+    position: absolute;
+    top: calc(100% + 1px);
+    right: 0;
+    left: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 14px 14px;
+    border-top: 1px solid var(--line);
+    border-radius: 0 0 14px 14px;
+    background: var(--surface);
+    opacity: 0;
+    transform: translateY(-8px);
+    visibility: hidden;
+    transition:
+      opacity 170ms ease,
+      transform 170ms ease,
+      visibility 170ms ease;
+
+    &.is-open {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+
+    > a {
+      display: flex;
+      min-height: 40px;
+      align-items: center;
+      padding: 10px 4px;
+      border-bottom: 1px solid var(--line);
+      border-radius: 0;
+    }
+
+    > a:first-child,
+    .nav-contact {
+      justify-content: center;
+      border: 0;
+      border-radius: 999px;
+    }
+
+    > a:first-child {
+      margin-bottom: 4px;
+    }
+
+    .nav-contact {
+      min-height: 38px;
+      margin: 10px 0 0;
+      padding: 8px 12px;
+    }
+  }
+
+  .site-header .primary-navigation a {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .wordmark {
+    padding-right: 6px;
+  }
+
+  .wordmark .wordmark__name {
+    font-size: 9.9px;
+  }
+
+  .site-header__tools {
+    gap: 3px;
+  }
+}

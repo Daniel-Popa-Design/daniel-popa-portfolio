@@ -1,0 +1,207 @@
+// Badge primitives — the visual language of the hero experience badge,
+// shared by note cards and the About card.
+//
+//   .badge-card     light card surface with a fine border
+//   .badge-emblem   positioning wrapper for .hex-emblem + .badge-coin
+//   .hex-emblem     grey rounded hexagon (SVG) with ink outline; icons inside
+//   .badge-coin     white coin on the hexagon's lower edge (dots or star)
+//   .badge-tags     column of .badge-tag pills (teal; --fact, --ghost variants)
+//
+// Text selectors are prefixed with `.portfolio-shell` so they outrank the
+// global 13px body-text rule in _overrides.scss.
+
+// ---------------------------------------------------------------------------
+// Card surface
+// ---------------------------------------------------------------------------
+
+.badge-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  isolation: isolate;
+}
+
+// ---------------------------------------------------------------------------
+// Emblem: hexagon + coin
+// ---------------------------------------------------------------------------
+
+.badge-emblem {
+  position: relative;
+  display: block;
+  flex: none;
+  transition: transform 220ms ease;
+}
+
+.hex-emblem {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.hex-emblem__shape {
+  stroke: var(--badge-ink);
+  stroke-width: 1.25px;
+  vector-effect: non-scaling-stroke;
+}
+
+// Icons: white shapes with an ink outline; accents via fill-role classes
+.hex-emblem__icon {
+  :is(rect, circle, path) {
+    fill: #fff;
+    stroke: var(--badge-ink);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.5px;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .is-gold {
+    fill: var(--badge-gold);
+  }
+
+  .is-teal {
+    fill: var(--badge-teal);
+  }
+
+  .is-ink {
+    fill: var(--badge-ink);
+  }
+
+  .is-line {
+    fill: none;
+  }
+}
+
+.badge-coin {
+  position: absolute;
+  bottom: -11px;
+  left: 50%;
+  display: flex;
+  width: 26px;
+  height: 26px;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5px;
+  border: 1.25px solid var(--badge-ink);
+  border-radius: 50%;
+  background: #fff;
+  translate: -50% 0;
+
+  // "Typing" dots
+  i {
+    width: 6px;
+    height: 6px;
+    border: 1px solid var(--badge-ink);
+    border-radius: 50%;
+    background: var(--badge-gold);
+    animation: badge-coin-typing 1.4s ease-in-out infinite;
+
+    &:nth-child(2) {
+      animation-delay: 0.18s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.36s;
+    }
+  }
+
+  // Gold star (achievement)
+  svg {
+    width: 64%;
+    height: 64%;
+    overflow: visible;
+  }
+
+  path {
+    fill: var(--badge-gold);
+    stroke: var(--badge-ink);
+    stroke-linejoin: round;
+    stroke-width: 1.25px;
+    vector-effect: non-scaling-stroke;
+  }
+}
+
+// Stroke-only details inside coin icons (finger lines, motion marks)
+.badge-coin .is-line {
+  fill: none;
+  stroke-linecap: round;
+}
+
+// Waving hand — rotates from the wrist, pauses between waves
+.badge-coin__hand {
+  transform-box: fill-box;
+  transform-origin: 40% 95%;
+  animation: badge-coin-wave 2.8s ease-in-out infinite;
+}
+
+@keyframes badge-coin-wave {
+  0%,
+  55%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  10%,
+  30% {
+    transform: rotate(16deg);
+  }
+
+  20%,
+  40% {
+    transform: rotate(-8deg);
+  }
+}
+
+@keyframes badge-coin-typing {
+  0%,
+  60%,
+  100% {
+    opacity: 0.45;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 1;
+    transform: translateY(-1.5px);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Tags — the hero badge's teal pills
+// ---------------------------------------------------------------------------
+
+.badge-tags {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.portfolio-shell .badge-tag {
+  display: inline-block;
+  max-width: 100%;
+  padding: 2px 8px;
+  border: 1px solid var(--badge-teal);
+  border-radius: 3px;
+  color: #fff;
+  background: var(--badge-teal);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.portfolio-shell .badge-tag--fact {
+  font-weight: 500;
+}
+
+// Outlined variant for secondary / past items
+.portfolio-shell .badge-tag--ghost {
+  border-color: var(--badge-ink);
+  color: var(--badge-ink);
+  background: #fff;
+  font-weight: 500;
+}

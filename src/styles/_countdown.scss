@@ -1,0 +1,1549 @@
+// Countdown case study (02) — portal/theme switcher, countdown module, token notes.
+
+.countdown-case-study__controls {
+  align-items: flex-end;
+}
+
+.countdown-case-study__option {
+  padding: 7px 12px;
+  border: 1px solid #b8beb4;
+}
+
+.CountdownModule[data-domain=afterglow] {
+  --Cc1: #000;
+  --Cc2: #575757;
+  --Cc3: #392d3a;
+  --Cc23: var(--demo-afterglow-accent);
+  --countdown-panel: #f2f2f2;
+}
+
+.CountdownModule .countdownContent {
+  grid-area: content;
+  justify-content: space-between;
+}
+
+.CountdownModule .countdownTitle {
+  display: -webkit-box;
+  font-size: 27.5px;
+  -webkit-line-clamp: 3;
+}
+
+.CountdownModule .countdownTitleGame {
+  margin: 0 0 var(--spacer-2, 0.5rem);
+  padding: var(--spacer-1, 0.25rem) var(--spacer-2, 0.5rem);
+  border: 0.1rem solid color-mix(in srgb, var(--sf16) 20%, transparent);
+  animation: countdownFlip 0.6s 0.2s ease-out both;
+}
+
+.CountdownModule .countdownBottom {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.CountdownModule .countdownExpired,
+.CountdownModule:has(.countdownExpired) .countdownTimer {
+  display: none;
+}
+
+.CountdownModule:has(.countdownExpired) .countdownExpired {
+  display: block;
+}
+
+.CountdownModule .countdownStatus {
+  display: inline-flex;
+  align-items: center;
+  font-size: 23.1px;
+  line-height: 1.3;
+}
+
+.CountdownModule .countdownStatus::before {
+  width: 8px;
+  height: 8px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background: var(--countdown-accent);
+  content: "";
+}
+
+.CountdownModule .countdownStage {
+  grid-area: stage;
+  align-self: stretch;
+}
+
+.CountdownModule .countdownImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.CountdownModule .countdownBadge {
+  align-self: center;
+  margin-left: calc(-1 * var(--spacer-7, 3rem));
+}
+
+.CountdownModule .countdownBadge::after {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: color-mix(in srgb, var(--sf16) 55%, var(--bk));
+}
+
+.CountdownModule .countdownBadge::before {
+  top: 50%;
+  left: -2px;
+  right: -2px;
+  height: 8px;
+  border-right: 4px solid color-mix(in srgb, var(--sf16) 70%, var(--bk));
+  border-left: 4px solid color-mix(in srgb, var(--sf16) 70%, var(--bk));
+  border-radius: 1px;
+  transform: translateY(-50%);
+}
+
+.CountdownModule[data-theme=dark] .countdownTitleGame::before {
+  background: color-mix(in srgb, var(--sf16) 100%, var(--sf12));
+}
+
+.CountdownModule[data-theme=dark] .countdownValue::before {
+  border-right: 0.4rem solid color-mix(in srgb, var(--sf16) 70%, var(--bk));
+  border-left: 0.4rem solid color-mix(in srgb, var(--sf16) 70%, var(--bk));
+}
+
+.CountdownModule[data-theme=dark] .countdownBadge::before {
+  border-right: 0.4rem solid color-mix(in srgb, var(--sf16) 70%, var(--bk));
+  border-left: 0.4rem solid color-mix(in srgb, var(--sf16) 70%, var(--bk));
+  border-radius: 0.1rem;
+}
+
+.CountdownModule[data-theme=dark] .countdownBadge::after {
+  background: color-mix(in srgb, var(--sf16) 55%, var(--bk));
+}
+
+.CountdownModule[data-theme=dark] .countdownBadge {
+  background-image: linear-gradient(color-mix(in srgb, var(--sf12) 8%, transparent) 50%, transparent 50%);
+}
+
+.CountdownModule .countdownBadgeLabel {
+  font-size: 11px;
+}
+
+.CountdownModule .countdownBadgeDate {
+  font-size: 28.6px;
+}
+
+.CountdownModule .countdownBadgeYear {
+  font-size: 14.3px;
+}
+
+.CountdownModule .countdownButton {
+  z-index: 2;
+  gap: 10px;
+  padding: 9px 12px;
+  border: 1px solid var(--Cc3);
+  font-size: 13.2px;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.CountdownModule[data-theme=dark] .countdownButton:focus-visible {
+  background: var(--Cc3);
+  color: #fff;
+}
+
+.CountdownModule .countdownArrow {
+  display: inline-block;
+  font-size: 17.6px;
+  transition: transform 160ms ease;
+}
+
+.CountdownModule .countdownButton:hover .countdownArrow,
+.CountdownModule .countdownButton:focus-visible .countdownArrow {
+  transform: translateX(4px);
+}
+
+.countdown-case-study__controls fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  gap: 10px;
+}
+
+.CountdownModule .countdownTitleGame {
+  font-size: 11px;
+}
+
+.CountdownModule .countdownTitleGame::before {
+  position: absolute;
+  top: 50%;
+  right: -0.3rem;
+  width: 0.3rem;
+  height: 0.8rem;
+  border-radius: 0.1rem;
+  background: color-mix(in srgb, var(--sf16) 35%, var(--sf12));
+  transform: translateY(-50%);
+  content: "";
+  display: none;
+}
+
+.CountdownModule .countdownTitleGame::after {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 0.1rem;
+  background: color-mix(in srgb, var(--sf16) 35%, var(--sf12));
+  content: "";
+  display: none;
+}
+
+.CountdownModule .countdownStage {
+  border-radius: 0;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 22%);
+}
+
+.CountdownModule .countdownBadge {
+  transform: none;
+  border: 4px solid rgba(255, 255, 255, 0.78);
+  color: var(--ink) !important;
+}
+
+.CountdownModule .countdownBadgeLabel {
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+}
+
+.CountdownModule .countdownBadgeDate {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.CountdownModule .countdownBadgeYear {
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.CountdownModule .countdownButton {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  min-height: 42px;
+}
+
+.countdownContent {
+  z-index: 2;
+  grid-column: 1;
+  grid-row: 1;
+  min-height: 390px;
+  justify-content: space-between;
+  padding: clamp(24px, 4vw, 50px) !important;
+}
+
+.countdownTitle {
+  display: grid;
+  gap: 5px;
+}
+
+.countdownTitleGame {
+  color: var(--lemon);
+  font-size: 12.1px;
+  font-weight: 750;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.countdownReleaseTitle {
+  color: #fff;
+  font-size: clamp(25.3px, 3.3vw, 39.6px);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 1.05;
+}
+
+.countdownTimer {
+  justify-content: flex-start;
+  gap: clamp(8px, 1.7vw, 20px);
+  margin-bottom: 22px;
+}
+
+.countdownUnit {
+  min-width: 54px;
+  padding: 12px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.07);
+  text-align: center;
+}
+
+.countdownValue {
+  color: #fff;
+  font-size: clamp(27.5px, 3.5vw, 44px);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+
+.countdownLabel {
+  margin-top: 7px;
+  color: #bcb5c5;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+.countdownButton {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  gap: 20px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 9.9px;
+  text-decoration: none;
+}
+
+.countdownButton:hover {
+  border-color: var(--lemon);
+  color: var(--lemon);
+}
+
+.countdownStage {
+  position: relative;
+  z-index: 1;
+  grid-column: 1/-1;
+  grid-row: 1;
+  min-height: 390px;
+  margin-left: 39%;
+  opacity: 0.84;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 29%);
+}
+
+.countdownImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.countdownBadge {
+  z-index: 3;
+  top: 22px;
+  right: 22px;
+  width: 75px;
+  height: 75px;
+  justify-content: center;
+  border: 5px solid rgba(255, 255, 255, 0.72);
+  border-radius: 50%;
+  color: var(--ink);
+  background: var(--lemon);
+  text-align: center;
+}
+
+.countdownBadgeLabel {
+  font-size: 7.7px;
+  letter-spacing: 0.12em;
+}
+
+.countdownBadgeDate {
+  font-size: 15.4px;
+  line-height: 1.1;
+}
+
+.countdownBadgeYear {
+  font-size: 8.8px;
+}
+
+.CountdownModule .countdownTimer {
+  margin-bottom: 20px;
+}
+
+.CountdownModule[data-domain=afterglow] .countdownValue {
+  color: #292929;
+}
+
+#main .CountdownModule[data-theme=dark] .countdownTitle {
+  color: #fff;
+}
+
+#main .CountdownModule[data-theme=dark] .countdownValue::before {
+  border-right-color: rgba(255, 255, 255, 0.32);
+  border-left-color: rgba(255, 255, 255, 0.32);
+}
+
+#main .CountdownModule[data-theme=dark] .countdownValue::after {
+  background: rgba(255, 255, 255, 0.32);
+}
+
+#main .CountdownModule[data-theme=dark] .countdownLabel {
+  color: #e1e0da;
+}
+
+#main .CountdownModule[data-theme=dark] .countdownBadge::before {
+  border-right-color: rgba(255, 255, 255, 0.32);
+  border-left-color: rgba(255, 255, 255, 0.32);
+}
+
+#main .CountdownModule[data-theme=dark] .countdownBadge::after {
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.CountdownModule[data-theme=light] .countdownValue {
+  border-color: rgba(255, 255, 255, 0.24);
+  color: #fff;
+  background: var(--module-accent);
+}
+
+.CountdownModule[data-theme=light] .countdownValue::before {
+  border-right-color: rgba(255, 255, 255, 0.26);
+  border-left-color: rgba(255, 255, 255, 0.26);
+}
+
+.CountdownModule[data-theme=light] .countdownValue::after {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.CountdownModule[data-theme=light] .countdownBadge {
+  border-radius: 50%;
+  color: #fff !important;
+  background: var(--module-accent);
+}
+
+.CountdownModule[data-theme=light] .countdownBadgeLabel,
+.CountdownModule[data-theme=light] .countdownBadgeDate,
+.CountdownModule[data-theme=light] .countdownBadgeYear {
+  color: #fff !important;
+}
+
+.countdown-case-study__controls legend {
+  margin-bottom: 5px;
+  font-weight: 750;
+  color: #77766f;
+  font-size: 8.8px;
+  letter-spacing: 0.08em;
+}
+
+.countdown-case-study__controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  gap: 16px;
+  margin-block: 16px;
+}
+
+.countdown-case-study__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  border: 1px solid #e3dce8;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 2px;
+  border-color: #dcdad3;
+}
+
+.countdown-case-study__option {
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+  padding-inline: 12px;
+  border-radius: 999px;
+  font-weight: 750;
+  color: #4c4c48;
+  font-size: 8.8px;
+  min-height: 27px;
+}
+
+.countdown-case-study__option[aria-pressed=true] {
+  border-color: var(--ink);
+  color: #fff;
+  background: #292929;
+}
+
+.CountdownModule {
+  --Cc1: #0c2438;
+  --Cc2: #68716c;
+  --Cc3: #123652;
+  --Cc23: var(--brand-northstar);
+  --sf12: #fff;
+  --sf16: var(--Cc3);
+  --bk: #000;
+  --countdown-panel: #f2f2f2;
+  --countdown-page: #fff;
+  --countdown-accent: var(--Cc23);
+  position: relative;
+  min-width: 0;
+  padding: 0;
+  display: grid;
+  overflow: hidden;
+  border: 1px solid #deddd7;
+  color: #fff;
+  background: radial-gradient(circle at 15% 120%, rgba(196, 135, 232, 0.34), transparent 40%), linear-gradient(115deg, #24212c, #302a38 62%, #201e28);
+  --module-accent: #f3d95d;
+  --modTtl: var(--gr80);
+  height: 250px;
+  min-height: 250px;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  grid-template-areas: "content stage";
+  border-radius: 16px;
+}
+
+.CountdownModule[data-domain=northstar] {
+  --module-accent: var(--brand-northstar);
+}
+
+.CountdownModule[data-domain=afterglow] {
+  --module-accent: var(--brand-afterglow);
+}
+
+.CountdownModule[data-domain=northstar][data-theme=dark] {
+  --module-accent: var(--brand-northstar-soft);
+}
+
+.CountdownModule[data-domain=afterglow][data-theme=dark] {
+  --Cc3: #1d171e;
+  --Cc23: var(--brand-afterglow-soft);
+  --countdown-panel: #392d3a;
+  --countdown-page: #1d171e;
+  --module-accent: var(--brand-afterglow-soft);
+}
+
+.countdown-case-study__token-note[data-theme=light] {
+  --modTtl: var(--gr80);
+  --module-bg: var(--gr5);
+}
+
+.CountdownModule[data-theme=light] {
+  --modTtl: var(--gr80);
+  --module-bg: var(--gr5);
+  color: #292929;
+  background: var(--module-bg);
+}
+
+.countdown-case-study__token-note[data-theme=dark] {
+  --module-bg: var(--gr80);
+  --modTtl: var(--gr5);
+}
+
+.CountdownModule[data-theme=dark] {
+  --Cc1: #fff;
+  --Cc2: #c4cbd0;
+  --Cc3: #091c2a;
+  --Cc23: var(--brand-northstar-soft);
+  --sf16: #000;
+  --countdown-panel: #0d304b;
+  --countdown-page: #061a2a;
+  --module-bg: var(--gr80);
+  --modTtl: var(--gr5);
+  color: #fff;
+  background: var(--module-bg);
+}
+
+.CountdownModule .countdownContent {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 2;
+  border-radius: 0;
+  background: transparent;
+  height: 250px;
+  min-height: 0;
+  padding: 18px 22px !important;
+}
+
+.CountdownModule .countdownTitle {
+  margin: 0;
+  overflow: hidden;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+  -webkit-box-orient: vertical;
+  color: #292929;
+}
+
+.CountdownModule .countdownReleaseTitle {
+  display: block;
+  color: var(--modTtl);
+}
+
+.CountdownModule[data-theme=dark] .countdownTitle {
+  color: #fff;
+}
+
+.CountdownModule[data-theme=dark] .countdownReleaseTitle {
+  color: var(--modTtl);
+}
+
+.CountdownModule .countdownTitleGame {
+  position: relative;
+  z-index: 0;
+  display: table;
+  border-radius: 0.4rem;
+  transform-origin: center top;
+  border-color: rgba(255, 255, 255, 0.24);
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  color: #373733;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.CountdownModule[data-theme=dark] .countdownTitleGame {
+  color: var(--module-accent);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.CountdownModule .countdownStage {
+  position: relative;
+  min-width: 0;
+  z-index: 1;
+  background: transparent;
+  height: 250px;
+  min-height: 0;
+  margin: 0;
+  opacity: 0.72;
+}
+
+.CountdownModule[data-theme=light] .countdownStage,
+.CountdownModule[data-theme=dark] .countdownStage {
+  opacity: 1;
+  mask-image: none;
+}
+
+.CountdownModule .countdownImage {
+  position: absolute;
+  inset: 0;
+  border-radius: 0;
+  clip-path: none;
+  filter: none;
+}
+
+.CountdownModule .countdownBadge::before {
+  position: absolute;
+  z-index: 1;
+  content: "";
+  display: block;
+}
+
+.CountdownModule .countdownBadge::after {
+  position: absolute;
+  margin-top: -0.5px;
+  content: "";
+  display: block;
+}
+
+.CountdownModule .countdownButton {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border-radius: 999px;
+  border-color: #d7d5ce;
+  color: #2e2e2b;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.CountdownModule[data-theme=dark] .countdownButton {
+  border-color: rgba(255, 255, 255, 0.28);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.CountdownModule .countdownButton:hover,
+.CountdownModule[data-theme=dark] .countdownButton:hover {
+  border-color: var(--module-accent);
+  color: #fff;
+  background: var(--module-accent);
+}
+
+.countdown-case-study__token-note p {
+  line-height: 1.55;
+  color: #75756e;
+  font-size: 9.9px;
+}
+
+.CountdownModule .countdownTimer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: clamp(9px, 1.4vw, 16px);
+}
+
+.CountdownModule .countdownValue::before {
+  border-right-color: rgba(255, 255, 255, 0.26);
+  border-left-color: rgba(255, 255, 255, 0.26);
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: -2px;
+  left: -2px;
+  display: block;
+  height: 7px;
+  border-right: 4px solid rgba(41, 41, 41, 0.24);
+  border-left: 4px solid rgba(41, 41, 41, 0.24);
+  border-radius: 1px;
+  transform: translateY(-50%);
+  content: "";
+}
+
+.CountdownModule .countdownValue::after {
+  margin-top: -0.5px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  display: block;
+  height: 1px;
+  background: rgba(41, 41, 41, 0.24);
+  content: "";
+}
+
+.CountdownModule .countdownLabel {
+  margin-top: 7px;
+  color: #74736d;
+  font-size: 8.8px;
+  font-weight: 550;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.CountdownModule[data-theme=dark] .countdownValue {
+  border-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--module-accent);
+  background: #454540;
+}
+
+.CountdownModule[data-theme=dark] .countdownValue::before {
+  border-radius: 0.1rem;
+  border-right-color: rgba(20, 20, 20, 0.4);
+  border-left-color: rgba(20, 20, 20, 0.4);
+}
+
+.CountdownModule[data-theme=dark] .countdownValue::after {
+  background: rgba(20, 20, 20, 0.48);
+}
+
+.CountdownModule[data-theme=dark] .countdownLabel {
+  color: #c8c7c0;
+}
+
+#main .CountdownModule[data-theme=dark] .countdownValue {
+  border-color: rgba(255, 255, 255, 0.24);
+  color: #fff;
+  background: #020202;
+}
+
+#main .CountdownModule[data-theme=dark] .countdownReleaseTitle {
+  color: var(--modTtl);
+}
+
+#main .CountdownModule[data-theme=dark] .countdownBadge {
+  border-color: rgba(255, 255, 255, 0.86);
+  color: #fff !important;
+  background: #020202;
+  background-image: none;
+}
+
+#main .CountdownModule[data-theme=dark] .countdownBadgeLabel,
+#main .CountdownModule[data-theme=dark] .countdownBadgeDate,
+#main .CountdownModule[data-theme=dark] .countdownBadgeYear {
+  color: #fff !important;
+}
+
+#main .CountdownModule .countdownReleaseTitle {
+  color: var(--modTtl);
+}
+
+.countdown-case-study__token-note {
+  padding-top: 12px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 14px 20px;
+  margin-top: 14px;
+  padding: 14px;
+}
+
+.countdown-case-study__token-note-intro {
+  display: grid;
+  grid-column: 1/-1;
+  gap: 7px;
+}
+
+.countdown-case-study__token-note-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.countdown-case-study__token-note-heading > span {
+  color: #777771;
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 0.09em;
+}
+
+.countdown-case-study__token-note-intro > p {
+  margin: 0;
+  color: #5b5b55;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.countdown-case-study__token-comparison {
+  display: grid;
+  grid-column: 1/-1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.countdown-case-study__token-mode {
+  display: grid;
+  min-width: 0;
+  gap: 6px;
+  padding: 9px;
+}
+
+.countdown-case-study__token-mode-label {
+  font-weight: 650;
+  letter-spacing: 0.09em;
+  color: #55554f;
+  font-size: 8px;
+}
+
+.countdown-case-study__token-track {
+  display: flex;
+  height: 23px;
+  overflow: hidden;
+  border: 1px solid #d5d4ce;
+  border-radius: 999px;
+  background: #fffefa;
+}
+
+.countdown-case-study__token-fill {
+  width: 42%;
+  flex: 0 0 42%;
+  border-radius: inherit;
+}
+
+.countdown-case-study__token-mode--light .countdown-case-study__token-fill {
+  background: var(--gr80);
+}
+
+.countdown-case-study__token-mode--dark .countdown-case-study__token-fill {
+  background: var(--gr5);
+}
+
+.countdown-case-study__token-hatch {
+  flex: 1;
+  background: repeating-linear-gradient(130deg, transparent 0 4px, rgba(82, 82, 76, 0.18) 4px 5px);
+}
+
+.countdown-case-study__token-mode > code {
+  overflow-wrap: anywhere;
+  color: #3f3f3b;
+  font-size: 9px;
+  line-height: 1.3;
+}
+
+.countdown-case-study__brand-token {
+  display: grid;
+  grid-column: 1/-1;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  gap: 8px;
+  padding-top: 9px;
+  border-top: 1px solid #e0dfd8;
+}
+
+.countdown-case-study__brand-token-modes {
+  display: grid;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.countdown-case-study__brand-token-mode {
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.countdown-case-study__brand-token-mode .countdown-case-study__token-mode-label {
+  grid-column: 1;
+}
+
+.countdown-case-study__brand-token-mode .countdown-case-study__token-track {
+  grid-column: 1;
+  grid-row: auto;
+  width: 100%;
+  min-width: 0;
+}
+
+.countdown-case-study__brand-token-mode > code {
+  grid-column: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: #3f3f3b;
+  font-size: 9px;
+  line-height: 1.3;
+}
+
+.countdown-case-study__brand-token-fill {
+  width: 42%;
+  flex: 0 0 42%;
+  border-radius: inherit;
+}
+
+.countdown-case-study__brand-token-fill--light {
+  background: var(--Cc25);
+}
+
+.countdown-case-study__brand-token-fill--dark {
+  background: #020202;
+}
+
+.countdown-case-study__brand-token-note {
+  margin: 0;
+  color: #5b5b55;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.countdown-case-study {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+#main .CountdownModule[data-theme=dark] .countdownTitleGame {
+  background: var(--module-accent);
+  color: #000 !important;
+}
+
+#main .CountdownModule[data-theme=dark] .countdownButton {
+  border-color: var(--module-accent);
+  background: var(--module-accent);
+  color: #000 !important;
+}
+
+#main .CountdownModule[data-theme=dark] .countdownButton:hover {
+  border-color: color-mix(in srgb, var(--module-accent) 82%, #fff);
+  background: color-mix(in srgb, var(--module-accent) 82%, #fff);
+  color: #000 !important;
+}
+
+#main .CountdownModule[data-theme=dark] .countdownButton:focus-visible,
+#main .CountdownModule[data-theme=dark] .countdownButton .countdownArrow {
+  color: #000 !important;
+}
+
+#main .CountdownModule .countdownButton {
+  font-size: 12px !important;
+}
+
+#main .CountdownModule .countdownBadgeLabel,
+#main .CountdownModule .countdownBadgeYear {
+  font-size: 10px !important;
+}
+
+#main .CountdownModule .countdownBadgeDate {
+  font-size: 17px !important;
+}
+
+@media (min-width: 701px) {
+  .CountdownModule .countdownHead {
+    display: flex;
+    flex: 1;
+  }
+
+  #main .CountdownModule .countdownContent,
+  #main .CountdownModule .countdownStage {
+    height: 200px;
+  }
+
+  #main .CountdownModule {
+    height: 200px;
+    min-height: 200px;
+  }
+
+  .CountdownModule .countdownContent {
+    align-self: stretch;
+    grid-area: content;
+    grid-row: 1;
+    grid-column: 1;
+    justify-content: space-between;
+  }
+
+  .CountdownModule .countdownTitle {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    -webkit-line-clamp: unset;
+    gap: 3px;
+  }
+
+  .CountdownModule .countdownTitleGame {
+    align-self: flex-start;
+    margin-bottom: 4px;
+    padding: 3px 6px;
+    font-size: 8.8px;
+  }
+
+  .CountdownModule .countdownReleaseTitle {
+    margin-block: auto;
+    font-size: clamp(22px, 2.4vw, 29.7px);
+  }
+
+  .CountdownModule .countdownTimer {
+    margin-bottom: 0;
+  }
+
+  .CountdownModule .countdownValue {
+    padding-block: 7px;
+  }
+}
+
+.CountdownModule .countdownValue {
+  text-align: center;
+  border-color: rgba(255, 255, 255, 0.2);
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 8px 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 8px;
+  color: #292929;
+  background: var(--module-accent);
+  font-size: clamp(29.7px, 3.3vw, 39.6px);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+@media (min-width: 701px) {
+  .CountdownModule .countdownBadge {
+    border: 0;
+    color: #292929 !important;
+    transform: none;
+  }
+}
+
+.CountdownModule .countdownBadge {
+  grid-area: stage;
+  display: flex;
+  font-weight: 400;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: absolute;
+  z-index: 3;
+  justify-self: auto;
+  margin: 0;
+  background-image: none;
+  top: 14px;
+  right: 14px;
+  width: 72px;
+  height: 72px;
+  border-color: #fff;
+  border-radius: 50%;
+  background: var(--module-accent);
+}
+
+@media (min-width: 701px) {
+  .CountdownModule .countdownBadge::before {
+    top: 50%;
+    right: -2px;
+    left: -2px;
+    height: 7px;
+    border-right: 4px solid rgba(41, 41, 41, 0.24);
+    border-left: 4px solid rgba(41, 41, 41, 0.24);
+    border-radius: 1px;
+    transform: translateY(-50%);
+  }
+
+  .CountdownModule .countdownBadge::after {
+    top: 50%;
+    right: 0;
+    left: 0;
+    height: 1px;
+    background: rgba(41, 41, 41, 0.24);
+  }
+
+  .CountdownModule[data-theme=dark] .countdownBadge {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--module-accent) !important;
+    background: #454540;
+  }
+
+  .CountdownModule[data-theme=dark] .countdownBadgeLabel,
+  .CountdownModule[data-theme=dark] .countdownBadgeDate,
+  .CountdownModule[data-theme=dark] .countdownBadgeYear {
+    color: var(--module-accent);
+  }
+
+  .CountdownModule[data-theme=dark] .countdownBadge::before {
+    border-right-color: rgba(20, 20, 20, 0.4);
+    border-left-color: rgba(20, 20, 20, 0.4);
+  }
+
+  .CountdownModule[data-theme=dark] .countdownBadge::after {
+    background: rgba(20, 20, 20, 0.48);
+  }
+}
+
+@media (max-width: 700px) {
+
+  .countdown-case-study__controls {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .CountdownModule .countdownTitle {
+    font-size: 27.5px;
+  }
+
+  .CountdownModule .countdownStage {
+    align-self: stretch;
+  }
+}
+
+@media (min-width: 701px) {
+  .CountdownModule .countdownStage {
+    align-self: stretch;
+    grid-area: stage;
+    grid-row: 1;
+    grid-column: 2;
+    mask-image: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .CountdownModule .countdownBottom {
+    gap: 18px;
+  }
+}
+
+@media (min-width: 701px) {
+  .CountdownModule .countdownBottom {
+    position: static;
+    width: auto;
+    align-items: flex-start;
+    gap: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .CountdownModule .countdownImage {
+    object-position: center 45%;
+  }
+}
+
+@media (min-width: 701px) {
+  .CountdownModule .countdownImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+@media (max-width: 700px) {
+  .CountdownModule .countdownBadgeDate {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 701px) {
+  .CountdownModule .countdownBadgeDate {
+    font-size: 20.9px;
+    font-weight: 550;
+    line-height: 1;
+  }
+}
+
+@media (max-width: 700px) {
+  .CountdownModule .countdownBadgeLabel {
+    font-size: 8.8px;
+  }
+}
+
+@media (min-width: 701px) {
+  .CountdownModule .countdownBadgeLabel {
+    font-size: 6.6px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (max-width: 700px) {
+  .CountdownModule .countdownBadgeYear {
+    font-size: 12.1px;
+  }
+}
+
+@media (min-width: 701px) {
+  .CountdownModule .countdownBadgeYear {
+    font-size: 8.8px;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 700px) {
+  .CountdownModule .countdownButton {
+    padding-inline: 12px;
+  }
+}
+
+@media (max-width: 700px) {
+  .countdownTitle {
+    position: relative;
+    z-index: 2;
+  }
+
+  .countdownBottom {
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
+  }
+
+  .countdownUnit {
+    min-width: 0;
+    flex: 1;
+    padding: 10px 6px;
+  }
+
+  .countdownBadge {
+    top: 17px;
+    right: 17px;
+    width: 66px;
+    height: 66px;
+  }
+
+  .countdownContent {
+    min-height: 440px;
+    padding: 20px !important;
+  }
+
+  .countdownStage {
+    grid-column: 1;
+    min-height: 240px;
+    margin: 0;
+    opacity: 0.64;
+    mask-image: linear-gradient(180deg, #000 0%, transparent 92%);
+  }
+
+  .countdownTimer {
+    gap: 6px;
+  }
+
+  .CountdownModule .countdownTimer {
+    gap: 7px;
+  }
+
+  .CountdownModule .countdownValue {
+    padding-block: 8px;
+    font-size: clamp(27.5px, 8.8vw, 36.3px);
+  }
+
+  .CountdownModule {
+    height: auto;
+    min-height: 0;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    grid-template-areas: "stage" "content";
+  }
+
+  .CountdownModule .countdownStage {
+    border-radius: 0;
+    grid-area: stage;
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 2/1;
+    margin: 0;
+    opacity: 1;
+    mask-image: none;
+  }
+
+  .CountdownModule .countdownContent {
+    padding: 20px !important;
+    grid-area: content;
+    grid-column: 1;
+    grid-row: 2;
+    height: auto;
+    min-height: 0;
+    align-self: stretch;
+  }
+
+  .CountdownModule .countdownBadge {
+    width: 62px;
+    height: 62px;
+    position: relative;
+    grid-area: stage;
+    grid-column: 1;
+    grid-row: 1;
+    top: auto;
+    right: auto;
+    align-self: end;
+    justify-self: end;
+    margin: 0 12px 0 0;
+    transform: translateY(45%) rotate(-8deg);
+  }
+
+  .CountdownModule .countdownBottom {
+    position: static;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .CountdownModule .countdownTimer {
+    width: 100%;
+    flex-wrap: nowrap;
+    margin-bottom: 0;
+  }
+
+  .countdown-case-study__token-note {
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .countdown-case-study__token-comparison,
+  .countdown-case-study__brand-token-modes {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .countdown-case-study__brand-token-mode {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .countdown-case-study__token-mode {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .countdown-case-study__token-mode .countdown-case-study__token-track,
+  .countdown-case-study__brand-token-mode .countdown-case-study__token-track {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .countdown-case-study__token-mode > code,
+  .countdown-case-study__brand-token-mode > code {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 620px) {
+  .countdown-case-study__token-note {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 420px) {
+  .countdownValue {
+    font-size: 27.5px;
+  }
+
+  .countdownLabel {
+    font-size: 7.7px;
+  }
+
+  .countdownTimer {
+    gap: 4px;
+  }
+
+  .CountdownModule .countdownUnit {
+    padding-inline: 3px;
+  }
+}
+
+.CountdownModule .countdownUnit {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: clamp(58px, 6vw, 70px);
+  min-width: 0;
+  flex: 0 1 auto;
+  align-items: stretch;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+@media (max-width: 420px) {
+  .CountdownModule .countdownTimer {
+    gap: 5px;
+  }
+
+  .CountdownModule .countdownUnit {
+    flex-basis: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .CountdownModule .countdownUnit {
+    width: auto;
+    min-width: 0;
+    flex: 1 1 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .CountdownModule .countdownValue {
+    font-size: 26.4px;
+  }
+
+  .countdown-case-study__brand-token-mode {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .countdown-case-study__brand-token-mode .countdown-case-study__token-mode-label,
+  .countdown-case-study__brand-token-mode .countdown-case-study__token-track,
+  .countdown-case-study__brand-token-mode > code {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 370px) {
+  .CountdownModule .countdownContent {
+    padding-inline: 20px;
+  }
+
+  .CountdownModule .countdownButton {
+    gap: 6px;
+    padding-inline: 8px;
+    font-size: 8.8px;
+  }
+}
+
+@media (min-width: 701px) {
+  .CountdownModule .countdownButton {
+    position: absolute;
+    z-index: 4;
+    right: 16px;
+    bottom: 15px;
+    min-height: 34px;
+    gap: 9px;
+    padding: 0 12px;
+    font-size: 8.8px;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 700px) {
+  .CountdownModule .countdownButton {
+    position: static;
+    width: 100%;
+    max-width: none;
+    align-self: stretch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .CountdownModule .countdownTitleGame {
+    animation: none;
+  }
+
+  .CountdownModule .countdownButton,
+  .CountdownModule .countdownArrow {
+    transition: none;
+  }
+}
+
+
+@keyframes countdownFlip {
+from {
+transform: perspective(400px) rotateX(-90deg);
+}
+to {
+transform: perspective(400px) rotateX(0);
+}
+}
+
+// Spacing (shared rhythm, see --space-* tokens)
+.countdown-case-study {
+  margin-top: var(--space-stack);
+  padding: var(--space-card);
+}
+
+// ---------------------------------------------------------------------------
+// Badge skin (see _badge.scss) — token note
+// The note is a .badge-card; light/dark modes are open columns
+// separated by a fine divider.
+// ---------------------------------------------------------------------------
+
+.countdown-case-study__token-note {
+  padding: clamp(16px, 2vw, 24px);
+}
+
+.countdown-case-study__token-note-heading {
+  justify-content: flex-start;
+  gap: 14px;
+}
+
+.countdown-case-study__token-comparison,
+.countdown-case-study__brand-token-modes {
+  gap: 0;
+}
+
+.countdown-case-study__token-mode {
+  padding: 4px 16px;
+
+  &:first-child {
+    padding-left: 0;
+  }
+
+  &:last-child {
+    padding-right: 0;
+  }
+
+  & + & {
+    border-left: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 700px) {
+  .countdown-case-study__token-mode,
+  .countdown-case-study__token-mode:first-child,
+  .countdown-case-study__token-mode:last-child {
+    padding: 10px 0;
+  }
+
+  .countdown-case-study__token-mode + .countdown-case-study__token-mode {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+}

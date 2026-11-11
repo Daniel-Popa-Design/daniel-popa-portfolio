@@ -1,0 +1,78 @@
+// Design tokens — the single source for colours, type and spacing.
+// Section partials read these; nothing else should define global custom properties.
+
+:root {
+  // Type
+  --sans: Montserrat, "Segoe UI", Arial, sans-serif;
+  --serif: var(--sans);
+
+  // Neutrals
+  --page: #e5e5e5;
+  --paper: #fff;
+  --surface: #fffefa;
+  --ink: #262626;
+  --ink-soft: #535353;
+  --ink-muted: #666b70;
+  --muted: #73736f;
+  --line: #deddd7;
+  --dark: #292929;
+
+  // Accents
+  --lemon: #f3d95d;
+  --lemon-pale: #f7edb9;
+  --accent-warm: #e87955;
+
+  // Badge style (hero experience badge + note cards)
+  --badge-teal: #27a589;
+  --badge-gold: #dfb306;
+  --badge-gray: #d1d1d1;
+  --badge-ink: #343434;
+
+  // Portal brand primitives (case-study demos)
+  --brand-northstar: #285b78;
+  --brand-afterglow: #70486d;
+  --brand-northstar-soft: #a9ccdc;
+  --brand-afterglow-soft: #c9adc5;
+  --demo-afterglow-accent: var(--brand-afterglow);
+  --gr5: #f2f2f2;
+  --gr80: #333333;
+
+  // Layout
+  --shell-width: min(100% - 56px, 1360px); // page shell + header/footer content width
+  --frame-inset: clamp(8px, 1.2vw, 16px); // hero frame inset; header/footer content aligns to it
+  --container: 1280px;
+  --gutter: clamp(22px, 6vw, 84px);
+
+  // Spacing scale — one rhythm for every section, symmetric top/bottom,
+  // shrinking fluidly so mobile never gets more space than desktop.
+  --space-inline: clamp(18px, 4.8vw, 68px); // side padding: header, hero, sections, footer
+  --space-section: clamp(44px, 5.5vw, 80px); // top = bottom padding of every section
+  --space-stack: clamp(44px, 5.5vw, 80px); // gap between stacked case studies
+  --space-heading: clamp(20px, 2.4vw, 32px); // heading block → content
+  --space-card: clamp(12px, 1.4vw, 20px); // inner padding of section cards
+}
+
+@media (max-width: 900px) {
+  :root {
+    --shell-width: min(100% - 28px, 1360px);
+  }
+}
+
+@media (max-width: 700px) {
+  :root {
+    --gutter: 22px;
+    --shell-width: calc(100% - 16px);
+  }
+}
+
+@media (max-width: 420px) {
+  :root {
+    --shell-width: calc(100% - 10px);
+  }
+}
+
+@media (max-width: 370px) {
+  :root {
+    --gutter: 17px;
+  }
+}

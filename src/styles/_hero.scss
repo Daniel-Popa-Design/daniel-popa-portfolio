@@ -1,0 +1,450 @@
+// Hero — intro copy, CTAs, portrait art and experience badge.
+
+.hero {
+  // Portrait geometry. Only --avatar-size changes per breakpoint.
+  --avatar-size: min(330px, 30vw);
+  --portrait-x: calc(var(--avatar-size) * 0.3152); // image offset left  (104px @ 330)
+  --portrait-y: calc(var(--avatar-size) * 0.5242); // image offset top   (173px @ 330)
+  --head-overlap: calc(var(--avatar-size) * 0.1061); // head drawn over the ring (35px @ 330)
+  --head-rise: calc(var(--avatar-size) * 0.1212); // head pokes above the circle (40px @ 330)
+  --head-clearance: 24px; // free space between the CTAs and the top of the head
+
+  // Artboard frame: inset from the shell by --frame-inset (tokens), padding
+  // reduced by the same amount so the hero text lines up with the sections.
+  --hero-inset: var(--frame-inset);
+
+  display: grid;
+  width: auto;
+  max-width: none;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: clamp(28px, 6vw, 90px);
+  margin: var(--hero-inset) var(--hero-inset) 0;
+  padding: var(--space-section) calc(var(--space-inline) - var(--hero-inset) - 5px);
+  border: 5px solid #cfcfcf;
+  border-radius: 20px;
+  background:
+    // fade the dot grid out on the text side
+    linear-gradient(90deg, var(--surface) 0%, var(--surface) 30%, transparent 70%),
+    // soft lemon glow behind the portrait
+    radial-gradient(circle at 76% 52%, rgba(243, 217, 93, 0.22), transparent 38%),
+    // design-canvas dot grid
+    radial-gradient(circle, #d6d5ce 1px, transparent 1.4px) 0 0 / 22px 22px,
+    var(--surface);
+}
+
+// ---------------------------------------------------------------------------
+// Copy
+// ---------------------------------------------------------------------------
+
+.hero__copy {
+  position: relative;
+  z-index: 2;
+  padding: 0;
+}
+
+// Greeting — speech bubble in the hero-badge style (Hero-Badge.svg):
+// light-grey gradient + ink outline, white Barlow italic with an ink outline,
+// and a waving-hand coin pinned to the top-right corner.
+.hero__greeting {
+  --bubble-top: #f7f7f7;
+  --bubble-bottom: #e6e6e6;
+  position: relative;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  margin: 0 0 22px 4px;
+  padding: 6px 22px 7px 16px;
+  border: 1.25px solid var(--badge-ink);
+  border-radius: 14px;
+  background: linear-gradient(180deg, var(--bubble-top), var(--bubble-bottom));
+  line-height: 1;
+
+  // Tail — a rotated square sharing the bubble's bottom colour and outline
+  &::before {
+    position: absolute;
+    bottom: -7px;
+    left: 22px;
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-right: 1.25px solid var(--badge-ink);
+    border-bottom: 1.25px solid var(--badge-ink);
+    border-radius: 0 0 3px;
+    background: var(--bubble-bottom);
+    content: "";
+    transform: rotate(45deg);
+  }
+
+  // Waving-hand coin pinned to the top-right corner (see .badge-coin)
+  .badge-coin {
+    top: -12px;
+    right: -12px;
+    bottom: auto;
+    left: auto;
+    width: 28px;
+    height: 28px;
+    translate: none;
+  }
+}
+
+// White letters with an ink outline, like the "10" in the badge
+.portfolio-shell .hero__greeting-text {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  font-family: Barlow, var(--sans);
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-shadow:
+    -1px -1px 0 var(--badge-ink),
+    1px -1px 0 var(--badge-ink),
+    -1px 1px 0 var(--badge-ink),
+    1px 1px 0 var(--badge-ink),
+    0 -1px 0 var(--badge-ink),
+    0 1px 0 var(--badge-ink),
+    -1px 0 0 var(--badge-ink),
+    1px 0 0 var(--badge-ink);
+  white-space: nowrap;
+}
+
+.hero h1 {
+  margin: 0 0 10px;
+  color: #262626;
+  font-family: var(--serif);
+  font-size: clamp(46px, 6.6vw, 83.6px);
+  font-weight: 500;
+  letter-spacing: -0.075em;
+  line-height: 0.98;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  span {
+    color: #5a5a55;
+    font-weight: 400;
+  }
+}
+
+.hero .hero__role {
+  margin: 0;
+  color: #4e4e4a;
+  font-family: var(--serif);
+  font-weight: 450;
+  letter-spacing: -0.055em;
+  line-height: 1.08;
+
+  &,
+  span {
+    font-size: 24px;
+  }
+
+  span {
+    display: block;
+  }
+}
+
+.hero__rule {
+  width: 64px;
+  height: 3px;
+  margin: 17px 0 13px;
+  border-radius: 99px;
+  background: var(--lemon);
+}
+
+.hero__bottom {
+  max-width: 470px;
+  padding: 0;
+}
+
+.hero .hero__intro {
+  max-width: 400px;
+  margin: 0;
+  color: #666660;
+  font-size: 24px;
+  line-height: 1.6;
+}
+
+// ---------------------------------------------------------------------------
+// Calls to action — stacked: primary first, CV download below.
+// ---------------------------------------------------------------------------
+
+.hero__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  margin-top: 15px;
+
+  > a:hover,
+  > a:hover svg {
+    transform: none;
+  }
+}
+
+.hero .button--blue,
+.hero-cv {
+  min-width: 0;
+  height: 36px;
+  min-height: 36px;
+  padding-inline: 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 400;
+  font-variant: small-caps;
+}
+
+.hero .button--blue {
+  justify-content: space-between;
+  gap: 14px;
+  border: 0;
+  color: #fff;
+  background: var(--dark);
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+
+  &:hover {
+    border: 0;
+    background: #41413f;
+  }
+
+  svg {
+    width: 19px;
+  }
+}
+
+.hero-cv {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid #d7d6cf;
+  color: #343432;
+  background: #fffefa;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease;
+
+  &:hover {
+    border-color: #c1c0b9;
+    background: var(--lemon);
+  }
+
+  span {
+    font-size: inherit;
+    font-weight: inherit;
+    font-variant: inherit;
+  }
+
+  svg {
+    width: 14px;
+    height: 14px;
+    flex: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.5;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Portrait art + experience badge
+// ---------------------------------------------------------------------------
+
+.hero-art {
+  position: relative;
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(14px, 2.5vw, 28px);
+  padding: 0;
+  overflow: visible;
+  isolation: isolate;
+}
+
+.hero-art__profile {
+  position: relative;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  isolation: isolate;
+}
+
+.hero-art__portrait__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border: 2px solid var(--lemon);
+  border-radius: 50%;
+  background: var(--page);
+}
+
+// The cut-out portrait is rendered twice: clipped to the circle, and once more
+// above it so the head can break out of the frame. Every offset is a ratio of
+// --avatar-size (tuned at 330px), so the whole composition scales as one.
+.hero-art__portrait {
+  position: absolute;
+  top: calc(var(--portrait-y) * -1);
+  left: calc(var(--portrait-x) * -1);
+  width: 160%;
+  max-width: none;
+  height: 160%;
+  object-fit: contain;
+}
+
+.hero-art__portrait--inside {
+  z-index: 1;
+  clip-path: circle(
+    calc(var(--avatar-size) / 2) at calc(var(--portrait-x) + var(--avatar-size) / 2)
+      calc(var(--portrait-y) + var(--avatar-size) / 2)
+  );
+}
+
+.hero-art__portrait--outside {
+  z-index: 2;
+  clip-path: inset(0 0 calc(100% - var(--portrait-y) - var(--head-overlap)) 0);
+}
+
+.hero-art__badge__wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+}
+
+.hero-art__badge {
+  z-index: 100;
+  width: 100px;
+  height: 100px;
+}
+
+.hero-art__badge__text {
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  margin-top: -7px;
+
+  > span {
+    display: inline-block;
+    width: fit-content;
+    padding: 3px 8px;
+    border-radius: 3px;
+    color: #fff;
+    background: var(--badge-teal);
+    line-height: 1.3;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Responsive
+// ---------------------------------------------------------------------------
+
+// Desktop: lift both portrait layers 2px so the photo sits inside the ring
+// instead of covering its bottom border
+@media (min-width: 901px) {
+  .hero-art__portrait {
+    margin-top: -2px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    --avatar-size: min(330px, 34vw); // fits the narrower art column
+    min-height: 0;
+    grid-template-columns: minmax(0, 1.1fr) minmax(230px, 0.9fr);
+    gap: 22px;
+  }
+}
+
+@media (min-width: 421px) and (max-width: 900px) {
+  .hero-art {
+    height: fit-content;
+    align-self: center;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: max-content max-content;
+    align-content: center;
+    gap: 9px;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    // Full-width circle minus the page gutters; never larger than on desktop.
+    --avatar-size: min(330px, 100vw - 72px);
+    grid-template-columns: minmax(0, 1fr);
+    // Single column: the row gap sits between the CTAs and the portrait and
+    // leaves room for the head that rises above the circle.
+    gap: calc(var(--head-rise) + var(--head-clearance));
+    border-radius: 16px;
+    background:
+      linear-gradient(180deg, var(--surface) 0%, var(--surface) 45%, transparent 75%),
+      radial-gradient(circle at 50% 78%, rgba(243, 217, 93, 0.22), transparent 45%),
+      radial-gradient(circle, #d6d5ce 1px, transparent 1.4px) 0 0 / 20px 20px,
+      var(--surface);
+  }
+
+  .hero__greeting {
+    min-height: 38px;
+    margin: 0 0 18px 3px;
+    padding: 5px 18px 6px 13px;
+  }
+
+  .portfolio-shell .hero__greeting-text {
+    font-size: 19px;
+  }
+
+  .hero h1 {
+    margin-bottom: 7px;
+    // Uppercase name is ~6.4em wide (+ margin): size it to the available width
+    font-size: min(70.4px, (100vw - 52px) / 6.6);
+  }
+
+  .hero .hero__role {
+    max-width: 100%;
+  }
+
+  .hero__rule {
+    width: 52px;
+    margin: 13px 0 9px;
+  }
+
+  .hero .hero__intro {
+    max-width: 490px;
+    line-height: 1.5;
+  }
+
+  // Both CTAs full width, CV download directly below the primary button.
+  .hero__actions {
+    align-items: stretch;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .hero .button--blue,
+  .hero-cv {
+    width: 100%;
+    height: 44px;
+    min-height: 44px;
+    padding-inline: 16px;
+  }
+
+  .hero-cv {
+    justify-content: space-between;
+  }
+
+  .hero-art {
+    width: min(100%, 360px);
+    margin: 0 auto;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+  }
+}
+

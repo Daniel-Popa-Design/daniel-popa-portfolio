@@ -1,0 +1,291 @@
+// Contact — badge-style card: emblem + heading + speech bubble, then the
+// channel pills. Shared look comes from _badge.scss.
+
+.contact {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact__inner {
+  display: grid;
+  width: 100%;
+  max-width: none;
+  gap: 20px;
+  padding: clamp(20px, 2.5vw, 32px);
+}
+
+// ---------------------------------------------------------------------------
+// Intro — emblem | heading | speech bubble
+// ---------------------------------------------------------------------------
+
+.contact__intro {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) minmax(180px, auto);
+  grid-template-areas: "emblem heading description";
+  align-items: center;
+  gap: 16px clamp(16px, 2.5vw, 28px);
+}
+
+.contact__emblem {
+  width: 80px;
+  margin-bottom: 10px; // the coin hangs below the hexagon
+  grid-area: emblem;
+}
+
+.contact__inner:hover .contact__emblem {
+  transform: translateY(-2px) rotate(-4deg);
+}
+
+.contact__heading {
+  min-width: 0;
+  grid-area: heading;
+
+  .eyebrow {
+    margin: 0 0 8px;
+    color: #55554f;
+    font-size: 8.8px;
+    letter-spacing: 0.1em;
+  }
+
+  h2 {
+    margin: 0;
+    color: var(--badge-ink);
+    font-size: clamp(31.9px, 4.4vw, 44px);
+    font-weight: 500;
+    letter-spacing: -0.07em;
+    line-height: 0.98;
+
+    span {
+      color: #b8a13e;
+    }
+  }
+}
+
+// Speech bubble — shape from BubbleTalk.svg, drawn twice (offset shadow + face)
+.portfolio-shell .contact__description {
+  position: relative;
+  width: min(100%, 180px);
+  justify-self: end;
+  grid-area: description;
+  margin: 0;
+  padding: 22px 20px 40px;
+  color: #fffefa;
+  font-size: 13px;
+  font-style: italic;
+  font-synthesis: style;
+  font-weight: 300;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.contact__bubble-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.contact__bubble-art--shadow {
+  filter: brightness(0) invert(0.62);
+  transform: translate(3px, 3px);
+}
+
+.contact__bubble-art--face {
+  z-index: 1;
+  filter: brightness(0) invert(0.2); // ≈ --badge-ink
+}
+
+.contact__description-text {
+  position: relative;
+  z-index: 2;
+  display: block;
+  overflow-wrap: break-word;
+}
+
+// ---------------------------------------------------------------------------
+// Channels — pills in the badge palette, outlined with a fine border
+// ---------------------------------------------------------------------------
+
+.contact__channels {
+  display: grid;
+  // Widths follow the content: e-mail is the longest label
+  grid-template-columns:
+    minmax(0, 1.75fr) minmax(0, 1.2fr) minmax(0, 1.3fr) minmax(0, 1.35fr)
+    minmax(0, 1.2fr);
+  gap: 8px;
+}
+
+.contact-channel {
+  display: grid;
+  min-width: 0;
+  grid-template-rows: auto minmax(40px, auto);
+  gap: 6px;
+  color: var(--badge-ink);
+  text-decoration: none;
+
+  &:focus-visible {
+    border-radius: 8px;
+    outline: 3px solid rgba(41, 41, 41, 0.45);
+    outline-offset: 3px;
+  }
+}
+
+.portfolio-shell .contact-channel__label {
+  overflow: hidden;
+  padding-left: 12px;
+  color: #5e5e58;
+  font-size: 11px;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.portfolio-shell .contact-channel__value {
+  display: flex;
+  min-width: 0;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 12px;
+  overflow: hidden;
+  border: 1px solid var(--badge-ink);
+  border-radius: 999px;
+  color: #fff;
+  background: var(--badge-ink);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease;
+
+  > span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.5;
+  }
+}
+
+a.contact-channel:hover .contact-channel__value,
+.contact-channel__action:hover {
+  transform: translateY(-1px);
+}
+
+.contact-channel--email:hover .contact-channel__value {
+  background: #4a4a48;
+}
+
+.portfolio-shell .contact-channel--linkedin .contact-channel__value {
+  border-color: var(--badge-teal);
+  background: var(--badge-teal);
+}
+
+.contact-channel--linkedin:hover .contact-channel__value {
+  background: #2fb898;
+}
+
+.portfolio-shell .contact-channel--phone .contact-channel__value {
+  color: var(--badge-ink);
+  background:
+    repeating-linear-gradient(130deg, rgba(255, 255, 255, 0.75) 0 3px, transparent 3px 7px),
+    linear-gradient(180deg, #e8e8e8, #d1d1d1);
+  font-weight: 550;
+}
+
+.portfolio-shell .contact-channel--location .contact-channel__value {
+  color: var(--badge-ink);
+  background: #fff;
+  font-weight: 550;
+}
+
+.portfolio-shell .contact-channel--status .contact-channel__action {
+  min-height: 40px;
+  padding-inline: 14px;
+  border: 1px solid var(--badge-ink);
+  color: var(--badge-ink);
+  background: var(--badge-gold);
+  font-size: 13px;
+  font-weight: 600;
+
+  &:hover {
+    color: var(--badge-ink);
+    background: #ecc21a;
+  }
+
+  svg {
+    width: 16px;
+    flex-basis: 16px;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Responsive
+// ---------------------------------------------------------------------------
+
+@media (max-width: 900px) {
+  .contact__channels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contact-channel--status {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 700px) {
+  .contact__inner {
+    padding: 18px;
+  }
+
+  .contact__intro {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "emblem      heading"
+      "description description";
+  }
+
+  .contact__emblem {
+    width: 64px;
+  }
+
+  .contact__heading h2 {
+    font-size: clamp(31.9px, 8.8vw, 39.6px);
+  }
+
+  .portfolio-shell .contact__description {
+    justify-self: start;
+    min-height: 150px;
+    padding: 32px 20px 42px;
+  }
+
+  .contact__channels {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .portfolio-shell .contact-channel__value {
+    min-height: 44px;
+    justify-content: flex-start;
+  }
+
+  .portfolio-shell .contact-channel--status .contact-channel__action {
+    justify-content: space-between;
+  }
+}

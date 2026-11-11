@@ -1,0 +1,51 @@
+// Note card — the summary card under every section and case-study heading.
+// Look comes from the badge primitives (_badge.scss); this file is layout only.
+
+.note-card {
+  display: grid;
+  // Desktop/tablet: emblem + tags | text. Phones: stacked (see below).
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 18px clamp(20px, 3vw, 40px);
+  width: 100%;
+  margin: 0;
+  padding: 20px 22px 22px;
+}
+
+.note-card__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.note-card__emblem {
+  width: 80px;
+  margin-bottom: 10px; // the coin hangs below the hexagon
+}
+
+.note-card:hover .note-card__emblem {
+  transform: translateY(-2px) rotate(-4deg);
+}
+
+.portfolio-shell .note-card__text {
+  max-width: 72ch;
+  margin: 0;
+  padding-left: clamp(20px, 3vw, 40px);
+  border-left: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+@media (max-width: 700px) {
+  .note-card {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 18px 18px 20px;
+  }
+
+  .portfolio-shell .note-card__text {
+    padding: 16px 0 0;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+}

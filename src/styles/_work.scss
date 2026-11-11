@@ -1,0 +1,387 @@
+// Work — feature grid and the design-token story card (case study 01).
+//
+// Story card layout (one vertical rhythm, 24px between blocks):
+//   index pill → title → lead
+//   token flow panel   brand colour  →  reusable role
+//   three layers       open columns with fine dividers, example as a note card
+//   takeaways          compact rows: hexagon icon | pill label + text
+//
+// Text selectors are prefixed with `.portfolio-shell` so they outrank the
+// global 13px body-text rule in _overrides.scss.
+
+.work.section-wrap {
+  width: 100%;
+  max-width: none;
+}
+
+.work__feature-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(310px, 0.88fr);
+  align-items: start;
+  gap: clamp(16px, 2.3vw, 28px);
+}
+
+.work__poll-column {
+  min-width: 0;
+  border: 1px solid #e6e9ea;
+  border-radius: 5px;
+  background: #f6fbfc;
+}
+
+// Eyebrow-style index — also used by the countdown and quality headings
+.token-case-study__index {
+  margin: 0;
+  color: #6d6c65;
+  font-size: 9.9px;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+}
+
+// ---------------------------------------------------------------------------
+// Story card
+// ---------------------------------------------------------------------------
+
+.work__story-column {
+  display: grid;
+  min-width: 0;
+  gap: 24px;
+  padding: clamp(20px, 2.4vw, 28px);
+}
+
+.token-case-study {
+  display: block;
+  min-width: 0;
+}
+
+// Shared small text roles inside the card
+.portfolio-shell .work__story-column {
+  .token-case-study__label {
+    display: block;
+    color: #6d6c65;
+    font-size: 9.9px;
+    font-weight: 750;
+    letter-spacing: 0.12em;
+  }
+
+  p {
+    color: #5e5e58;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  code {
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 700;
+  }
+}
+
+// Header — index pill, title, lead
+.portfolio-shell .work__story-column .token-case-study__index {
+  display: inline-block;
+  margin: 0 0 16px;
+  padding: 2px 8px;
+  border: 1px solid var(--badge-teal);
+  border-radius: 3px;
+  color: #fff;
+  background: var(--badge-teal);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.token-case-study__story h3 {
+  margin: 0 0 10px;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: clamp(25.3px, 2.8vw, 34.1px);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1.02;
+}
+
+.portfolio-shell .work__story-column .token-case-study__lead {
+  max-width: 60ch;
+  margin: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Token flow — brand colour → reusable role
+// ---------------------------------------------------------------------------
+
+.token-case-study__shift {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: start;
+  gap: 20px;
+  margin-top: 24px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+
+  > div {
+    display: grid;
+    min-width: 0;
+    align-content: start;
+    justify-items: start;
+    gap: 10px;
+  }
+}
+
+.portfolio-shell .token-case-study__shift p {
+  margin: 0;
+}
+
+.token-case-study__brand-values {
+  display: grid;
+  gap: 10px;
+}
+
+.token-case-study__brand-value {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+
+  // Name and code on one line
+  > span:last-child {
+    display: flex;
+    min-width: 0;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px 8px;
+  }
+}
+
+.token-case-study__brand-swatch {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  border: 1px solid rgba(25, 34, 46, 0.15);
+  border-radius: 50%;
+}
+
+.portfolio-shell .token-case-study__brand-value strong {
+  color: var(--badge-ink);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+// Arrow — badge coin
+.token-case-study__arrow {
+  display: grid;
+  align-self: center;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 1.25px solid var(--badge-ink);
+  border-radius: 50%;
+  color: var(--badge-ink);
+  background: #fff;
+  font-size: 15px;
+  line-height: 1;
+}
+
+// Reusable role — ink pill
+.portfolio-shell .token-case-study__shift > div:last-child > code {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--badge-ink);
+}
+
+// ---------------------------------------------------------------------------
+// Three layers — open columns with fine dividers, example note below
+// ---------------------------------------------------------------------------
+
+.token-case-study__role-example {
+  margin-top: 24px;
+}
+
+.token-case-study__layers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 12px;
+
+  // Swatch + code on one line, description full width below
+  > div {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: 22px minmax(0, 1fr);
+    align-content: start;
+    align-items: center;
+    gap: 8px 10px;
+    padding: 2px 16px;
+  }
+
+  > div:first-child {
+    padding-left: 0;
+  }
+
+  > div:last-child {
+    padding-right: 0;
+  }
+
+  > div + div {
+    border-left: 1px solid var(--line);
+  }
+
+  > div > div {
+    display: contents;
+  }
+
+  code {
+    display: block;
+    overflow-wrap: anywhere;
+  }
+}
+
+.portfolio-shell .token-case-study__layers > div > div > span {
+  display: block;
+  grid-column: 1 / -1;
+  color: #5e5e58;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.token-case-study__swatch {
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+}
+
+.token-case-study__swatch--neutral {
+  background: var(--gr5);
+}
+
+.token-case-study__swatch--brand {
+  background: var(--brand-northstar);
+}
+
+.token-case-study__swatch--semantic {
+  background: var(--ink);
+}
+
+// Example — a note card (see _note-card.scss), stacked inside the story card:
+// emblem + tags on top, text full width under a fine divider
+.token-case-study__role-example > .note-card {
+  grid-template-columns: minmax(0, 1fr);
+  margin-top: 20px;
+}
+
+.portfolio-shell .token-case-study__role-example .note-card__text {
+  max-width: none;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--line);
+  border-left: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Takeaways — compact rows: small hexagon icon | pill label + text
+// ---------------------------------------------------------------------------
+
+.token-case-study__takeaways {
+  display: grid;
+  border-top: 1px solid var(--line);
+
+  > div {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: 38px minmax(0, 1fr);
+    align-items: start;
+    gap: 14px;
+    padding: 12px 0;
+  }
+
+  > div:last-child {
+    padding-bottom: 0;
+  }
+
+  > div + div {
+    border-top: 1px solid var(--line);
+  }
+
+  > div > div {
+    display: grid;
+    min-width: 0;
+    justify-items: start;
+    gap: 6px;
+  }
+}
+
+.token-case-study__takeaway-icon {
+  width: 38px;
+}
+
+.portfolio-shell .token-case-study__takeaways p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.portfolio-shell .token-case-study__takeaways .badge-tag {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+// ---------------------------------------------------------------------------
+// Responsive
+// ---------------------------------------------------------------------------
+
+@media (max-width: 1080px) {
+  .work__feature-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .work__poll-column {
+    max-width: 720px;
+  }
+}
+
+@media (max-width: 700px) {
+  .work__feature-grid {
+    gap: 14px;
+  }
+
+  .work__story-column {
+    padding: 18px;
+  }
+
+  // Token flow stacks; the arrow points down
+  .token-case-study__shift {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .token-case-study__arrow {
+    justify-self: center;
+    transform: rotate(90deg);
+  }
+
+  // Columns stack; dividers turn horizontal
+  .token-case-study__layers {
+    grid-template-columns: minmax(0, 1fr);
+
+    > div,
+    > div:first-child,
+    > div:last-child {
+      padding: 12px 0;
+    }
+
+    > div:first-child {
+      padding-top: 0;
+    }
+
+    > div:last-child {
+      padding-bottom: 0;
+    }
+
+    > div + div {
+      border-top: 1px solid var(--line);
+      border-left: 0;
+    }
+  }
+}

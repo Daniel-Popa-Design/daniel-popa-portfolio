@@ -1,0 +1,141 @@
+// Footer — full-width dark bar (inverted), content kept at the page-shell
+// width, plus the floating back-to-top coin. Wordmark base styles live in
+// _header.scss; the footer inverts them.
+
+.site-footer {
+  margin: 0;
+  color: #d8d8d3;
+  background: var(--dark);
+}
+
+.site-footer__inner {
+  display: flex;
+  width: var(--shell-width);
+  min-height: 72px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-inline: auto;
+  // Same edges as the section content above
+  padding: 18px var(--space-inline);
+}
+
+// Inverted wordmark pill
+.site-footer .wordmark {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: transparent;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .wordmark__name {
+    color: #fff;
+  }
+}
+
+// Credit line with a small gold hexagon
+.site-footer .site-footer__inner > p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: #c9c9c3;
+  font-size: 12px;
+
+  &::before {
+    width: 9px;
+    height: 10px;
+    flex: 0 0 9px;
+    background: var(--badge-gold);
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    content: "";
+  }
+}
+
+.site-footer .site-footer__copyright {
+  color: #a3a39c;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+// ---------------------------------------------------------------------------
+// Back to top — floating badge coin (white, ink ring)
+// ---------------------------------------------------------------------------
+
+.back-to-top {
+  position: fixed;
+  right: max(24px, (100vw - 1440px) / 2 + 24px);
+  bottom: 24px;
+  z-index: 20;
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  padding: 0;
+  border: 1.25px solid var(--badge-ink);
+  border-radius: 50%;
+  color: var(--badge-ink);
+  background: #fff;
+  text-decoration: none;
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+
+  svg {
+    width: 25px;
+    height: 25px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+    transition: transform 180ms ease;
+  }
+
+  &:hover {
+    background: var(--surface);
+    transform: translateY(-2px);
+
+    svg {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.back-to-top__flame {
+  stroke: var(--badge-gold);
+  opacity: 0;
+  transition: opacity 160ms ease;
+
+  .back-to-top:hover &,
+  .back-to-top:focus-visible & {
+    opacity: 1;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Responsive
+// ---------------------------------------------------------------------------
+
+@media (max-width: 700px) {
+  .site-footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding-block: 18px 20px;
+    padding-right: 80px; // keep text clear of the floating coin
+  }
+
+  .site-footer .site-footer__copyright {
+    width: 100%;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .back-to-top {
+    right: 16px;
+    bottom: 16px;
+  }
+}
