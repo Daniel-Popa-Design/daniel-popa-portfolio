@@ -1,5 +1,4 @@
 import { useEffect, useId, useState } from "react";
-import { useEffect, useId, useState } from "react";
 import portrait from "./assets/daniel-popa-cutout.png";
 import siteLogo from "./assets/code-brackets-logo.svg";
 import bubbleTalk from "./assets/BubbleTalk.svg";
