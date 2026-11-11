@@ -67,8 +67,10 @@
     border-bottom: 0;
   }
 
+  // Hover: shrink by 2px (52 → 50), scaled from the centre
   &:hover .expertise-card__icon {
-    transform: translateY(-2px) rotate(-4deg);
+    transform-origin: center;
+    transform: scale(calc(50 / 52));
   }
 }
 

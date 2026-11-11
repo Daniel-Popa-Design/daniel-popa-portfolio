@@ -23,8 +23,10 @@
   margin-bottom: 10px; // the coin hangs below the hexagon
 }
 
+// Hover: shrink by 2px (80 → 78), scaled from the centre
 .note-card:hover .note-card__emblem {
-  transform: translateY(-2px) rotate(-4deg);
+  transform-origin: center;
+  transform: scale(calc(78 / 80));
 }
 
 .portfolio-shell .note-card__text {

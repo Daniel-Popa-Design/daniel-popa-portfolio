@@ -30,37 +30,28 @@
   align-items: center;
   gap: 7px;
   padding: 3px 11px 3px 3px;
-  border: 1px solid rgba(52, 52, 52, 0.35);
   border-radius: 999px;
   background: #fff;
   text-decoration: none;
-  transition: border-color 160ms ease;
-
-  &:hover {
-    border-color: var(--badge-ink);
-  }
 }
 
+// Pixel code-brackets logo (770 × 413, ~1.86:1): shown bare at header height.
 .wordmark__symbol {
   display: block;
-  width: 28px;
-  flex: 0 0 28px;
-  overflow: hidden;
-  border-radius: 50%;
-  background: var(--lemon);
+  width: 90px;
+  flex: 0 0 90px;
 
   img {
     display: block;
     width: 100%;
     height: auto;
-    padding: 3px;
   }
 }
 
 .wordmark .wordmark__name {
   color: var(--badge-ink);
   font-family: var(--serif);
-  font-size: 12.1px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0;
 }
@@ -235,8 +226,8 @@
   }
 
   .wordmark__symbol {
-    width: 26px;
-    flex-basis: 26px;
+    width: 38px;
+    flex-basis: 38px;
   }
 
   .wordmark .wordmark__name {

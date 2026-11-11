@@ -31,8 +31,10 @@
   width: 150px;
 }
 
+// Hover: shrink by 2px (150 → 148), scaled from the centre
 .about:hover .about-meter__emblem {
-  transform: translateY(-2px) rotate(-3deg);
+  transform-origin: center;
+  transform: scale(calc(148 / 150));
 }
 
 .about-meter__track {
@@ -80,13 +82,14 @@
 }
 
 .portfolio-shell .about-meter__value small {
-  margin-top: 4px;
+  margin-top: 1px;
   color: #5e5e58;
   font-size: 8.8px;
   font-weight: 700;
   letter-spacing: 0.12em;
   line-height: 1.2;
   text-transform: uppercase;
+  max-width: 50px;
 }
 
 .about-meter__tags {
@@ -180,7 +183,10 @@
 // Career strip — badge-coloured pills
 .career-strip {
   display: grid;
-  grid-template-columns: minmax(104px, 1fr) minmax(104px, 1fr) minmax(240px, 4fr) minmax(98px, 0.9fr);
+  grid-template-columns: minmax(104px, 1fr) minmax(104px, 1fr) minmax(
+      240px,
+      4fr
+    ) minmax(98px, 0.9fr);
   gap: 6px;
   margin-bottom: 14px;
 }
@@ -228,7 +234,11 @@
   justify-content: center;
   color: var(--badge-ink);
   background:
-    repeating-linear-gradient(130deg, rgba(255, 255, 255, 0.75) 0 3px, transparent 3px 7px),
+    repeating-linear-gradient(
+      130deg,
+      rgba(255, 255, 255, 0.75) 0 3px,
+      transparent 3px 7px
+    ),
     linear-gradient(180deg, #e8e8e8, #d1d1d1);
   font-weight: 500;
 }
@@ -300,7 +310,6 @@
   .about-meter__emblem {
     width: 130px;
   }
-
 }
 
 @media (max-width: 700px) {

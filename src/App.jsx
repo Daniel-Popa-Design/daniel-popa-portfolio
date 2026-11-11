@@ -1,6 +1,7 @@
 import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import portrait from "./assets/daniel-popa-cutout.png";
-import dpMonogram from "./assets/dp-monogram.svg";
+import siteLogo from "./assets/code-brackets-logo.svg";
 import bubbleTalk from "./assets/BubbleTalk.svg";
 import heroBadge from "./assets/Hero-Badge.svg";
 
@@ -1191,10 +1192,29 @@ const noteIcons = {
   // Fanned colour swatches — design tokens
   swatches: (
     <>
-      <rect x="17.5" y="7" width="13" height="31" rx="3" transform="rotate(-24 24 38)" />
+      <rect
+        x="17.5"
+        y="7"
+        width="13"
+        height="31"
+        rx="3"
+        transform="rotate(-24 24 38)"
+      />
       <rect className="is-teal" x="17.5" y="7" width="13" height="31" rx="3" />
-      <rect className="is-gold" x="17.5" y="7" width="13" height="31" rx="3" transform="rotate(24 24 38)" />
-      <path className="is-line" d="M21 12.5h6M21 16.5h6" transform="rotate(24 24 38)" />
+      <rect
+        className="is-gold"
+        x="17.5"
+        y="7"
+        width="13"
+        height="31"
+        rx="3"
+        transform="rotate(24 24 38)"
+      />
+      <path
+        className="is-line"
+        d="M21 12.5h6M21 16.5h6"
+        transform="rotate(24 24 38)"
+      />
       <circle cx="24" cy="38" r="2.6" />
     </>
   ),
@@ -1205,7 +1225,10 @@ const noteIcons = {
       <path className="is-line" d="M24 8.5v3.5M35.4 13.6l2.4-2.4" />
       <circle cx="24" cy="28" r="15" />
       <path className="is-gold" d="M24 28V17a11 11 0 0 1 9.5 16.5Z" />
-      <path className="is-line" d="M24 15.5v1.6M36.5 28h-1.6M24 40.5v-1.6M11.5 28h1.6" />
+      <path
+        className="is-line"
+        d="M24 15.5v1.6M36.5 28h-1.6M24 40.5v-1.6M11.5 28h1.6"
+      />
       <circle className="is-ink" cx="24" cy="28" r="2.1" />
     </>
   ),
@@ -1215,13 +1238,19 @@ const noteIcons = {
       <rect className="is-teal" x="5" y="11" width="27" height="17" rx="5" />
       <path className="is-line" d="M10.5 19.5h9" />
       <path d="M24.5 21.5 39 27.4l-6.4 2.3-2.5 6.6Z" />
-      <path className="is-gold" d="m40.5 5 1.3 3.5 3.5 1.3-3.5 1.3-1.3 3.5-1.3-3.5-3.5-1.3 3.5-1.3Z" />
+      <path
+        className="is-gold"
+        d="m40.5 5 1.3 3.5 3.5 1.3-3.5 1.3-1.3 3.5-1.3-3.5-3.5-1.3 3.5-1.3Z"
+      />
     </>
   ),
   // Toolbox with a gold latch — skill set
   toolbox: (
     <>
-      <path className="is-line" d="M18 15v-4.5a2.5 2.5 0 0 1 2.5-2.5h7a2.5 2.5 0 0 1 2.5 2.5V15" />
+      <path
+        className="is-line"
+        d="M18 15v-4.5a2.5 2.5 0 0 1 2.5-2.5h7a2.5 2.5 0 0 1 2.5 2.5V15"
+      />
       <rect x="5" y="15" width="38" height="24" rx="4" />
       <path className="is-line" d="M5 25h38M12 15v24M36 15v24" />
       <rect className="is-gold" x="19.5" y="21.5" width="9" height="8" rx="2" />
@@ -1241,7 +1270,11 @@ const noteIcons = {
   systems: (
     <>
       <path d="M24 26 6 18l18-8 18 8Z" transform="translate(0 12)" />
-      <path className="is-teal" d="M24 26 6 18l18-8 18 8Z" transform="translate(0 6)" />
+      <path
+        className="is-teal"
+        d="M24 26 6 18l18-8 18 8Z"
+        transform="translate(0 6)"
+      />
       <path className="is-gold" d="M24 26 6 18l18-8 18 8Z" />
     </>
   ),
@@ -1252,14 +1285,20 @@ const noteIcons = {
       <path className="is-line" d="M4 15h40" />
       <circle className="is-gold" cx="9.5" cy="11.5" r="1.4" />
       <circle className="is-teal" cx="14" cy="11.5" r="1.4" />
-      <path className="is-line" d="m17 22-5 5.5 5 5.5M31 22l5 5.5-5 5.5M26.5 20.5l-5 14" />
+      <path
+        className="is-line"
+        d="m17 22-5 5.5 5 5.5M31 22l5 5.5-5 5.5M26.5 20.5l-5 14"
+      />
     </>
   ),
   // Shield with a check — quality & accessibility
   quality: (
     <>
       <path d="M24 4 40 10v11c0 10-6.8 17.3-16 21-9.2-3.7-16-11-16-21V10Z" />
-      <path className="is-teal" d="M24 9.5 35 13.7v7.5c0 7.3-4.7 12.6-11 15.4-6.3-2.8-11-8.1-11-15.4v-7.5Z" />
+      <path
+        className="is-teal"
+        d="M24 9.5 35 13.7v7.5c0 7.3-4.7 12.6-11 15.4-6.3-2.8-11-8.1-11-15.4v-7.5Z"
+      />
       <path className="is-line" d="m18.5 23 4 4 7.5-8" />
       <circle className="is-gold" cx="38" cy="38" r="4" />
     </>
@@ -1269,7 +1308,10 @@ const noteIcons = {
     <>
       <path d="M5 10a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v11a4 4 0 0 1-4 4H16l-7 5v-5.4A4 4 0 0 1 5 21Z" />
       <path className="is-line" d="M11 13h16M11 18h10" />
-      <path className="is-teal" d="M43 23a4 4 0 0 0-4-4H25a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8l6 4.5V35a4 4 0 0 0 4-4Z" />
+      <path
+        className="is-teal"
+        d="M43 23a4 4 0 0 0-4-4H25a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8l6 4.5V35a4 4 0 0 0 4-4Z"
+      />
       <circle className="is-gold" cx="27.5" cy="27" r="1.6" />
       <circle className="is-gold" cx="32" cy="27" r="1.6" />
       <circle className="is-gold" cx="36.5" cy="27" r="1.6" />
@@ -1290,7 +1332,10 @@ const noteIcons = {
       <path d="M24 7a12 12 0 0 0-7 21.7c1.3 1 2 2.5 2 4.1V35h10v-2.2c0-1.6.7-3.1 2-4.1A12 12 0 0 0 24 7Z" />
       <path className="is-line" d="m20 22 4 4 4-4M24 26v8" />
       <rect className="is-gold" x="18.5" y="37" width="11" height="5" rx="2" />
-      <path className="is-line" d="M5 19h3.5M39.5 19H43M9.5 6.5l2.5 2.5M38.5 6.5 36 9" />
+      <path
+        className="is-line"
+        d="M5 19h3.5M39.5 19H43M9.5 6.5l2.5 2.5M38.5 6.5 36 9"
+      />
     </>
   ),
   // Puzzle piece — my contribution
@@ -1350,7 +1395,10 @@ function HexEmblem({ children }) {
 // One of the 48-unit icons, centred in the hexagon.
 function HexIcon({ name }) {
   return (
-    <g className="hex-emblem__icon" transform="translate(33.3 42.4) scale(2.15)">
+    <g
+      className="hex-emblem__icon"
+      transform="translate(33.3 42.4) scale(2.15)"
+    >
       {noteIcons[name]}
     </g>
   );
@@ -1368,9 +1416,15 @@ function BadgeCoin({ variant = "dots" }) {
         <svg viewBox="0 0 24 24">
           <g className="badge-coin__hand">
             <path d="M9 21.5C6.6 20.6 4.9 18.4 4.4 15.9l-.9-4.3A1.3 1.3 0 0 1 6 11l1.3 3.2V5.2a1.4 1.4 0 0 1 2.8 0V3.6a1.4 1.4 0 0 1 2.8 0v1a1.4 1.4 0 0 1 2.8 0v2.6a1.4 1.4 0 0 1 2.8 0v7.4c0 3.8-2.9 7-6.7 7.2-1 .1-1.9 0-2.8-.3Z" />
-            <path className="is-line" d="M10.1 5.2v6.3M12.9 4.6v6.9M15.7 7.2v4.8" />
+            <path
+              className="is-line"
+              d="M10.1 5.2v6.3M12.9 4.6v6.9M15.7 7.2v4.8"
+            />
           </g>
-          <path className="is-line" d="M19.6 2.6c1.2.6 2 1.6 2.3 2.9M2.3 5.2c.3-1.3 1.1-2.3 2.3-2.9" />
+          <path
+            className="is-line"
+            d="M19.6 2.6c1.2.6 2 1.6 2.3 2.9M2.3 5.2c.3-1.3 1.1-2.3 2.3-2.9"
+          />
         </svg>
       ) : (
         <>
@@ -1444,7 +1498,7 @@ function App() {
             onClick={closeMenu}
           >
             <span className="wordmark__symbol">
-              <img src={dpMonogram} alt="" />
+              <img src={siteLogo} alt="" />
             </span>
             <span className="wordmark__name">Daniel Popa</span>
           </a>
@@ -1537,12 +1591,8 @@ function App() {
                   <img className="hero-art__badge" src={heroBadge} alt="" />
 
                   <div className="hero-art__badge__text">
-                    <span>
-                      {text.heroBadge.exp1}
-                    </span>
-                    <span>
-                      {text.heroBadge.exp2}
-                    </span>
+                    <span>{text.heroBadge.exp1}</span>
+                    <span>{text.heroBadge.exp2}</span>
                   </div>
                 </div>
                 <div className="hero-art__portrait__background" />
@@ -1882,7 +1932,9 @@ function App() {
               >
                 <div className="countdown-case-study__token-note-intro">
                   <div className="countdown-case-study__token-note-heading">
-                    <span className="badge-tag">{text.work.titleColorLabel}</span>
+                    <span className="badge-tag">
+                      {text.work.titleColorLabel}
+                    </span>
                   </div>
                   <p>{text.work.paletteNote}</p>
                   <div
@@ -1920,7 +1972,9 @@ function App() {
                 </div>
                 <div className="countdown-case-study__brand-token">
                   <div className="countdown-case-study__brand-token-heading">
-                    <span className="badge-tag">{text.work.brandAccentLabel}</span>
+                    <span className="badge-tag">
+                      {text.work.brandAccentLabel}
+                    </span>
                   </div>
                   <p className="countdown-case-study__brand-token-note">
                     {text.work.brandAccentNote}
@@ -2184,7 +2238,10 @@ function App() {
                   </span>
                   <BadgeCoin variant="star" />
                 </span>
-                <span className="badge-tags about-meter__tags" aria-hidden="true">
+                <span
+                  className="badge-tags about-meter__tags"
+                  aria-hidden="true"
+                >
                   <span className="badge-tag">{text.about.meterTitle}</span>
                   <span className="badge-tag badge-tag--fact">
                     {text.about.meterStart} — {text.about.meterCurrent}
@@ -2294,7 +2351,10 @@ function App() {
                     {String(text.expertise.groups.length).padStart(2, "0")}{" "}
                     {text.expertise.areaUnit}
                   </span>
-                  <span className="badge-tag badge-tag--fact" aria-hidden="true">
+                  <span
+                    className="badge-tag badge-tag--fact"
+                    aria-hidden="true"
+                  >
                     {String(
                       text.expertise.groups.reduce(
                         (total, group) => total + group.skills.length,
@@ -2502,22 +2562,71 @@ function App() {
 
       <footer className="site-footer">
         <div className="site-footer__inner">
-          <a className="wordmark" href="#page-top" aria-label={text.footer.home}>
+          <a
+            className="wordmark"
+            href="#page-top"
+            aria-label={text.footer.home}
+          >
             <span className="wordmark__symbol">
-              <img src={dpMonogram} alt="" />
+              <img src={siteLogo} alt="" />
             </span>
             <span className="wordmark__name">Daniel Popa</span>
           </a>
           <p>{text.footer.description}</p>
-          <a className="back-to-top" href="#page-top" aria-label={text.footer.top}>
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2.5c-2.8 2.3-4.1 5.3-4.1 9.3v3.4l4.1 2.6 4.1-2.6v-3.4c0-4-1.3-7-4.1-9.3Z" />
-              <circle cx="12" cy="9" r="1.5" />
-              <path d="m8 12.5-3 2.3v3.4l4-1.1m7-4.6 3 2.3v3.4l-4-1.1" />
-              <path
-                className="back-to-top__flame"
-                d="M10 17.8c.2 1.4-.2 2.2-.8 3.2m4.8-3.2c-.2 1.4.2 2.2.8 3.2M12 18.1c.1 1.8-.4 2.7 0 3.9"
-              />
+          <a
+            className="back-to-top"
+            href="#page-top"
+            aria-label={text.footer.top}
+          >
+            <svg aria-hidden="true" viewBox="0 1 32 32">
+              {/* Flame (behind the nozzle) — hidden until hover/focus */}
+              <g className="back-to-top__flame">
+                <path
+                  className="back-to-top__flame-outer"
+                  d="M13.4 23.2c0 3.4 1.2 5.4 2.6 7.6 1.4-2.2 2.6-4.2 2.6-7.6Z"
+                />
+                <path
+                  className="back-to-top__flame-inner"
+                  d="M14.9 23.2c0 1.9.5 3 1.1 4.2.6-1.2 1.1-2.3 1.1-4.2Z"
+                />
+                <path
+                  className="back-to-top__spark"
+                  d="M11.6 25.4l-.9 1.8M20.4 25.4l.9 1.8"
+                />
+              </g>
+              {/* Ship */}
+              <g className="back-to-top__ship">
+                <path
+                  className="back-to-top__fin"
+                  d="M10.2 15.6 6.4 19.4v4.4l3.8-2.2Z"
+                />
+                <path
+                  className="back-to-top__fin"
+                  d="M21.8 15.6l3.8 3.8v4.4l-3.8-2.2Z"
+                />
+                <path
+                  className="back-to-top__body"
+                  d="M16 2.6c-4 3-5.8 7.4-5.8 12.6v6.4h11.6v-6.4c0-5.2-1.8-9.6-5.8-12.6Z"
+                />
+                <path
+                  className="back-to-top__nose"
+                  d="M16 2.6c-2.1 1.6-3.5 3.6-4.4 5.9h8.8c-.9-2.3-2.3-4.3-4.4-5.9Z"
+                />
+                <path
+                  className="back-to-top__nozzle"
+                  d="M13.2 21.6h5.6l-.8 1.9h-4Z"
+                />
+                <circle
+                  className="back-to-top__window"
+                  cx="16"
+                  cy="13.6"
+                  r="2.7"
+                />
+                <path
+                  className="back-to-top__glint"
+                  d="M14.7 12.9a1.5 1.5 0 0 1 1.2-1"
+                />
+              </g>
             </svg>
           </a>
           <span className="site-footer__copyright">
