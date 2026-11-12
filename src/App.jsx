@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import portrait from "./assets/daniel-popa-cutout.png";
 import siteLogo from "./assets/code-brackets-logo.svg";
 import bubbleTalk from "./assets/BubbleTalk.svg";
@@ -72,8 +72,6 @@ const copy = {
         "Wie eine flexible Farbpalette und klare semantische Rollen gemeinsame Komponenten in einem Multi-Brand-Publishing-System unterstützen.",
       noteLabel: "Kontext",
       noteTab: "3 Fallstudien",
-      exampleLabel: "Beispiel",
-      exampleTab: "2 Portale · 1 Gelb",
       tokenIndex: "01 / DESIGN-SYSTEM",
       tokenTitle: ["Flexible Farben.", "Klare Rollen."],
       tokenLead:
@@ -82,21 +80,25 @@ const copy = {
       brandDescription: "Ein Markenwert definiert die Primärfarbe.",
       reusableRole: "WIEDERVERWENDBARE ROLLE",
       roleDescription: "Das Link-Token ordnet dem Zweck die Markenfarbe zu.",
-      layers: "DREI EBENEN, EINE STRATEGIE",
+      layers: "VIER EBENEN, EINE STRATEGIE",
       neutral: "Globaler neutraler Basiswert",
       primary: "Primärer Marken-Basiswert",
       semantic: "Semantische Rollen verweisen auf den passenden Basiswert",
-      tokenExample:
-        "NORTHSTAR erhält ein tiefes Blau (#285b78), AFTERGLOW ein dunkles Pflaume (#70486d). Beide Primärfarben harmonieren mit dem gemeinsamen warmen Gelb (#f3d95d); gemeinsame Komponenten nutzen dieselben semantischen Rollen.",
+      unsemantic: "Unsemantischer Palettenwert für Hell- und Dunkelmodus",
       approachLabel: "DER ANSATZ",
       approach:
         "Palettenwerte kontextunabhängig wiederverwenden; etablierte Rollen wie Links und Artikeltitel über semantische Aliase abbilden.",
       mattersLabel: "WARUM DAS WICHTIG IST",
       matters:
-        "Teams erhalten ausdrucksstarke Farben ohne eine ausufernde Sammlung einzelner semantischer Variablen. Globale Rollen bleiben leicht konsistent gestaltbar.",
+        "Ein Komponenten-Stylesheet bedient alle acht Marken: Ein Rebranding ändert nur die lokale Farbdatei, der Dark Mode belegt lediglich Variablen unter [data-theme=\"dark\"] neu, und rund 4.800 Grau-Referenzen bleiben überall konsistent – ohne ausufernde Sammlung einzelner semantischer Namen.",
       contributionLabel: "MEIN BEITRAG",
       contribution:
-        "Die globale neutrale Ebene erstellt und zum Rollout über die Marken hinweg beigetragen.",
+        "Eine Farbstrategie in vier Ebenen: eine globale Graustufen-Skala (--gr5 bis --gr93, benannt nach % Schwarz) für alle Marken, Marken-Basiswerte je Portal (--PrCl, --AcCl), wenige semantische Rollen für Text, Titel, Links, Hintergründe und Buttons sowie nummerierte Hell/Dunkel-Paare wie --Cc25 für alles Übrige – Marke für Marke ausgerollt.",
+      unsemanticLabel: "UNSEMANTISCHE FARBEN",
+      takeawayMore: "Mehr lesen",
+      takeawayLess: "Weniger anzeigen",
+      unsemanticText:
+        "--Cc25 benennt eine Farbe, keine Rolle. Er hält je einen Wert für Hell- und Dunkelmodus und wird direkt in Komponenten wie dem Countdown eingesetzt – überall dort, wo die Markenfarbe ohne globale Bedeutung gebraucht wird, ganz ohne neues semantisches Alias.",
       pollQuestion: "Welche Artikel der Ausgabe 07/2023 haben dir zugesagt?",
       pollTitle: "Leserlieblinge",
       pollLabel: "Umfrageergebnisse",
@@ -308,39 +310,39 @@ const copy = {
       title: "Berufserfahrung",
       careerStrip: {
         labels: [
-          "World of Cruise",
+          "Computec Media · UI/UX · Frontend · WordPress",
           "Ausbildung",
-          "Computec Media",
-          "Web-Erfahrung",
+          "World of Cruise",
         ],
-        values: [
-          "2011 — 2014",
-          "2014 — 2016",
-          "UI/UX · Frontend · WordPress",
-          "seit 2011",
-        ],
+        values: ["2016 — heute", "2014 — 2016", "2011 — 2014"],
       },
       entries: [
         {
           date: "2016 — heute",
+          // career-strip segment this entry belongs to (shared pill colour)
+          segment: 1,
           role: "UI/UX Designer & Frontend Developer",
           company: "Computec Media GmbH · Fürth, Deutschland",
           description:
-            "Gestaltung und Entwicklung responsiver Websites, Landingpages und digitaler Anwendungen. Erstellung von WordPress-Themes und Frontend-Komponenten sowie enge Zusammenarbeit mit Design-, Marketing- und Backend-Teams.",
+            "Konzeption und Umsetzung responsiver Websites, Landingpages und digitaler Anwendungen für unterschiedliche Marken und Zielgruppen. Entwicklung und Weiterentwicklung individueller WordPress-Themes und Frontends mit HTML5, CSS3/SCSS und JavaScript. Optimierung von Performance, Core Web Vitals, Accessibility (WCAG 2.2), SEO und technischer Qualität. Entwicklung von Wireframes, User Flows und Prototypen sowie enge Zusammenarbeit mit Marketing, Backend und Stakeholdern. Qualitätssicherung durch Testing, Debugging und kontinuierliche Optimierung bestehender Weblösungen.",
         },
         {
           date: "2014 — 2016",
+          // career-strip segment this entry belongs to (shared pill colour)
+          segment: 2,
           role: "Ausbildung: UI/UX Design & Frontend Development",
           company: "Computec Media GmbH · Fürth, Deutschland",
           description:
-            "Grundlagen in Wireframes, Prototypen, WordPress, Frontend-Komponenten und HTML-E-Mail-Vorlagen – ergänzt durch Testing und Verbesserungen der Benutzerfreundlichkeit.",
+            "Mitarbeit bei Konzeption, Design und Umsetzung moderner Websites und Landingpages sowie Erstellung von Wireframes, Mockups und Prototypen. Entwicklung und Pflege von WordPress-Themes, Frontend-Komponenten und HTML-E-Mail-Templates in enger Zusammenarbeit mit Design-, Marketing- und Entwicklungsteams. Durchführung von Tests, Fehleranalyse sowie Optimierung von Performance, Benutzerfreundlichkeit und Codequalität unter Anwendung aktueller Webstandards und UI/UX-Prinzipien.",
         },
         {
           date: "2011 — 2014",
+          // career-strip segment this entry belongs to (shared pill colour)
+          segment: 3,
           role: "Mediengestalter · Freiberuflich",
           company: "World of Cruise S.R.L. · Hermannstadt, Rumänien",
           description:
-            "Websites, digitale Kommunikation und Printmedien gestaltet – von Interface-Konzepten und Layouts bis zur Umsetzung.",
+            "Konzeption und Gestaltung moderner Websites sowie Umsetzung von Frontends mit HTML, CSS, JavaScript und jQuery. Entwicklung digitaler und gedruckter Kommunikationsmittel, einschließlich Landingpages, Werbemittel, Logos und Corporate-Design-Materialien, sowie Beratung von Kunden zur visuellen Markenkommunikation.",
         },
       ],
     },
@@ -420,8 +422,6 @@ const copy = {
         "How a flexible color palette and a few clear semantic roles support shared components across a multi-brand publishing system.",
       noteLabel: "Context",
       noteTab: "3 case studies",
-      exampleLabel: "Example",
-      exampleTab: "2 portals · 1 yellow",
       tokenIndex: "01 / DESIGN SYSTEM",
       tokenTitle: ["Flexible colors.", "Clear roles."],
       tokenLead:
@@ -430,21 +430,25 @@ const copy = {
       brandDescription: "A brand primitive that defines the primary color.",
       reusableRole: "REUSABLE ROLE",
       roleDescription: "The link token maps the purpose to the brand color.",
-      layers: "THREE LAYERS, ONE STRATEGY",
+      layers: "FOUR LAYERS, ONE STRATEGY",
       neutral: "Global neutral primitive",
       primary: "Brand primary primitive",
       semantic: "Semantic roles point to the right primitive",
-      tokenExample:
-        "NORTHSTAR uses a deep blue (#285b78), while AFTERGLOW uses a dark plum (#70486d). Both primaries pair with the shared warm yellow (#f3d95d), and shared components keep the same semantic roles.",
+      unsemantic: "Unsemantic palette value with light and dark modes",
       approachLabel: "THE APPROACH",
       approach:
         "Keep palette values reusable for any context; use semantic aliases for established roles such as links and article titles.",
       mattersLabel: "WHY IT MATTERS",
       matters:
-        "Teams get expressive colors without a sprawling catalog of one-off semantic variables, while global roles remain easy to theme consistently.",
+        "One component stylesheet serves all eight brands: a rebrand only touches the local color file, dark mode just remaps variables under [data-theme=\"dark\"], and about 4,800 gray references stay consistent everywhere—without a sprawling catalog of one-off semantic names.",
       contributionLabel: "MY CONTRIBUTION",
       contribution:
-        "Created the global neutral layer and contributed to the brand-by-brand rollout.",
+        "A four-layer color strategy: a global grayscale (--gr5 to --gr93, named by % black) shared by every brand, brand primitives per portal (--PrCl, --AcCl), a few semantic roles for text, titles, links, backgrounds and buttons, and numbered light/dark pairs like --Cc25 for everything else—rolled out brand by brand.",
+      unsemanticLabel: "UNSEMANTIC COLORS",
+      takeawayMore: "Read more",
+      takeawayLess: "Show less",
+      unsemanticText:
+        "--Cc25 names a color, not a role. It holds one value for light mode and one for dark mode, and components like the countdown use it directly wherever they need the brand color without a global meaning—no new semantic alias required.",
       pollQuestion: "Which articles from the July 2023 issue did you enjoy?",
       pollTitle: "Readers’ favorites",
       pollLabel: "Poll results",
@@ -651,39 +655,39 @@ const copy = {
       title: "Experience",
       careerStrip: {
         labels: [
-          "World of Cruise",
+          "Computec Media · UI/UX · Frontend · WordPress",
           "Traineeship",
-          "Computec Media",
-          "Web experience",
+          "World of Cruise",
         ],
-        values: [
-          "2011 — 2014",
-          "2014 — 2016",
-          "UI/UX · Frontend · WordPress",
-          "since 2011",
-        ],
+        values: ["2016 — Now", "2014 — 2016", "2011 — 2014"],
       },
       entries: [
         {
           date: "2016 — Now",
+          // career-strip segment this entry belongs to (shared pill colour)
+          segment: 1,
           role: "UI/UX Designer & Frontend Developer",
           company: "Computec Media GmbH · Fürth, Germany",
           description:
-            "Designing and developing responsive websites, landing pages and digital applications. Creating WordPress themes and frontend components, and working closely with design, marketing and backend teams.",
+            "Concept and delivery of responsive websites, landing pages and digital applications for a range of brands and audiences. Building and evolving custom WordPress themes and frontends with HTML5, CSS3/SCSS and JavaScript. Optimizing performance, Core Web Vitals, accessibility (WCAG 2.2), SEO and technical quality. Creating wireframes, user flows and prototypes, working closely with marketing, backend and stakeholders. Quality assurance through testing, debugging and continuous improvement of existing web solutions.",
         },
         {
           date: "2014 — 2016",
+          // career-strip segment this entry belongs to (shared pill colour)
+          segment: 2,
           role: "Trainee, UI/UX Design & Frontend Development",
           company: "Computec Media GmbH · Fürth, Germany",
           description:
-            "Building a foundation in wireframes, prototypes, WordPress, frontend components and HTML email templates, alongside testing and usability improvements.",
+            "Contributed to the concept, design and build of modern websites and landing pages, and created wireframes, mockups and prototypes. Developed and maintained WordPress themes, frontend components and HTML email templates in close collaboration with design, marketing and development teams. Ran tests and bug analysis, and improved performance, usability and code quality using current web standards and UI/UX principles.",
         },
         {
           date: "2011 — 2014",
+          // career-strip segment this entry belongs to (shared pill colour)
+          segment: 3,
           role: "Media Designer · Freelance",
           company: "World of Cruise S.R.L. · Sibiu, Romania",
           description:
-            "Creating websites, digital communication and print materials, from interface concepts and layouts through to implementation.",
+            "Concept and design of modern websites, with frontends built in HTML, CSS, JavaScript and jQuery. Created digital and print communication, including landing pages, ad materials, logos and corporate design assets, and advised clients on visual brand communication.",
         },
       ],
     },
@@ -1191,29 +1195,10 @@ const noteIcons = {
   // Fanned colour swatches — design tokens
   swatches: (
     <>
-      <rect
-        x="17.5"
-        y="7"
-        width="13"
-        height="31"
-        rx="3"
-        transform="rotate(-24 24 38)"
-      />
+      <rect x="17.5" y="7" width="13" height="31" rx="3" transform="rotate(-24 24 38)" />
       <rect className="is-teal" x="17.5" y="7" width="13" height="31" rx="3" />
-      <rect
-        className="is-gold"
-        x="17.5"
-        y="7"
-        width="13"
-        height="31"
-        rx="3"
-        transform="rotate(24 24 38)"
-      />
-      <path
-        className="is-line"
-        d="M21 12.5h6M21 16.5h6"
-        transform="rotate(24 24 38)"
-      />
+      <rect className="is-gold" x="17.5" y="7" width="13" height="31" rx="3" transform="rotate(24 24 38)" />
+      <path className="is-line" d="M21 12.5h6M21 16.5h6" transform="rotate(24 24 38)" />
       <circle cx="24" cy="38" r="2.6" />
     </>
   ),
@@ -1224,10 +1209,7 @@ const noteIcons = {
       <path className="is-line" d="M24 8.5v3.5M35.4 13.6l2.4-2.4" />
       <circle cx="24" cy="28" r="15" />
       <path className="is-gold" d="M24 28V17a11 11 0 0 1 9.5 16.5Z" />
-      <path
-        className="is-line"
-        d="M24 15.5v1.6M36.5 28h-1.6M24 40.5v-1.6M11.5 28h1.6"
-      />
+      <path className="is-line" d="M24 15.5v1.6M36.5 28h-1.6M24 40.5v-1.6M11.5 28h1.6" />
       <circle className="is-ink" cx="24" cy="28" r="2.1" />
     </>
   ),
@@ -1237,19 +1219,13 @@ const noteIcons = {
       <rect className="is-teal" x="5" y="11" width="27" height="17" rx="5" />
       <path className="is-line" d="M10.5 19.5h9" />
       <path d="M24.5 21.5 39 27.4l-6.4 2.3-2.5 6.6Z" />
-      <path
-        className="is-gold"
-        d="m40.5 5 1.3 3.5 3.5 1.3-3.5 1.3-1.3 3.5-1.3-3.5-3.5-1.3 3.5-1.3Z"
-      />
+      <path className="is-gold" d="m40.5 5 1.3 3.5 3.5 1.3-3.5 1.3-1.3 3.5-1.3-3.5-3.5-1.3 3.5-1.3Z" />
     </>
   ),
   // Toolbox with a gold latch — skill set
   toolbox: (
     <>
-      <path
-        className="is-line"
-        d="M18 15v-4.5a2.5 2.5 0 0 1 2.5-2.5h7a2.5 2.5 0 0 1 2.5 2.5V15"
-      />
+      <path className="is-line" d="M18 15v-4.5a2.5 2.5 0 0 1 2.5-2.5h7a2.5 2.5 0 0 1 2.5 2.5V15" />
       <rect x="5" y="15" width="38" height="24" rx="4" />
       <path className="is-line" d="M5 25h38M12 15v24M36 15v24" />
       <rect className="is-gold" x="19.5" y="21.5" width="9" height="8" rx="2" />
@@ -1269,11 +1245,7 @@ const noteIcons = {
   systems: (
     <>
       <path d="M24 26 6 18l18-8 18 8Z" transform="translate(0 12)" />
-      <path
-        className="is-teal"
-        d="M24 26 6 18l18-8 18 8Z"
-        transform="translate(0 6)"
-      />
+      <path className="is-teal" d="M24 26 6 18l18-8 18 8Z" transform="translate(0 6)" />
       <path className="is-gold" d="M24 26 6 18l18-8 18 8Z" />
     </>
   ),
@@ -1284,20 +1256,14 @@ const noteIcons = {
       <path className="is-line" d="M4 15h40" />
       <circle className="is-gold" cx="9.5" cy="11.5" r="1.4" />
       <circle className="is-teal" cx="14" cy="11.5" r="1.4" />
-      <path
-        className="is-line"
-        d="m17 22-5 5.5 5 5.5M31 22l5 5.5-5 5.5M26.5 20.5l-5 14"
-      />
+      <path className="is-line" d="m17 22-5 5.5 5 5.5M31 22l5 5.5-5 5.5M26.5 20.5l-5 14" />
     </>
   ),
   // Shield with a check — quality & accessibility
   quality: (
     <>
       <path d="M24 4 40 10v11c0 10-6.8 17.3-16 21-9.2-3.7-16-11-16-21V10Z" />
-      <path
-        className="is-teal"
-        d="M24 9.5 35 13.7v7.5c0 7.3-4.7 12.6-11 15.4-6.3-2.8-11-8.1-11-15.4v-7.5Z"
-      />
+      <path className="is-teal" d="M24 9.5 35 13.7v7.5c0 7.3-4.7 12.6-11 15.4-6.3-2.8-11-8.1-11-15.4v-7.5Z" />
       <path className="is-line" d="m18.5 23 4 4 7.5-8" />
       <circle className="is-gold" cx="38" cy="38" r="4" />
     </>
@@ -1307,10 +1273,7 @@ const noteIcons = {
     <>
       <path d="M5 10a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v11a4 4 0 0 1-4 4H16l-7 5v-5.4A4 4 0 0 1 5 21Z" />
       <path className="is-line" d="M11 13h16M11 18h10" />
-      <path
-        className="is-teal"
-        d="M43 23a4 4 0 0 0-4-4H25a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8l6 4.5V35a4 4 0 0 0 4-4Z"
-      />
+      <path className="is-teal" d="M43 23a4 4 0 0 0-4-4H25a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8l6 4.5V35a4 4 0 0 0 4-4Z" />
       <circle className="is-gold" cx="27.5" cy="27" r="1.6" />
       <circle className="is-gold" cx="32" cy="27" r="1.6" />
       <circle className="is-gold" cx="36.5" cy="27" r="1.6" />
@@ -1331,10 +1294,7 @@ const noteIcons = {
       <path d="M24 7a12 12 0 0 0-7 21.7c1.3 1 2 2.5 2 4.1V35h10v-2.2c0-1.6.7-3.1 2-4.1A12 12 0 0 0 24 7Z" />
       <path className="is-line" d="m20 22 4 4 4-4M24 26v8" />
       <rect className="is-gold" x="18.5" y="37" width="11" height="5" rx="2" />
-      <path
-        className="is-line"
-        d="M5 19h3.5M39.5 19H43M9.5 6.5l2.5 2.5M38.5 6.5 36 9"
-      />
+      <path className="is-line" d="M5 19h3.5M39.5 19H43M9.5 6.5l2.5 2.5M38.5 6.5 36 9" />
     </>
   ),
   // Puzzle piece — my contribution
@@ -1345,6 +1305,16 @@ const noteIcons = {
         d="M8 14h9a4.5 4.5 0 1 1 9 0h9v9a4.5 4.5 0 1 1 0 9v9h-9a4.5 4.5 0 1 0-9 0H8v-9a4.5 4.5 0 1 0 0-9Z"
       />
       <circle className="is-gold" cx="40" cy="9" r="4" />
+    </>
+  ),
+  // Unlabelled colour drop with a blank, dashed name tag — unsemantic token
+  unsemantic: (
+    <>
+      <path className="is-teal" d="M17 5c-6.5 9-11 15.3-11 21.5a11 11 0 0 0 22 0C28 20.3 23.5 14 17 5Z" />
+      <path className="is-line" d="M11.5 27.5a5.5 5.5 0 0 0 5.5 5.5" />
+      <path d="M30 23h9.5l5 6-5 6H30a2.5 2.5 0 0 1-2.5-2.5v-7A2.5 2.5 0 0 1 30 23Z" />
+      <path className="is-line" d="M31.5 29h5" strokeDasharray="1.6 1.8" />
+      <circle className="is-gold" cx="40" cy="29" r="1.6" />
     </>
   ),
   // Signpost — career path
@@ -1394,10 +1364,7 @@ function HexEmblem({ children }) {
 // One of the 48-unit icons, centred in the hexagon.
 function HexIcon({ name }) {
   return (
-    <g
-      className="hex-emblem__icon"
-      transform="translate(33.3 42.4) scale(2.15)"
-    >
+    <g className="hex-emblem__icon" transform="translate(33.3 42.4) scale(2.15)">
       {noteIcons[name]}
     </g>
   );
@@ -1415,15 +1382,9 @@ function BadgeCoin({ variant = "dots" }) {
         <svg viewBox="0 0 24 24">
           <g className="badge-coin__hand">
             <path d="M9 21.5C6.6 20.6 4.9 18.4 4.4 15.9l-.9-4.3A1.3 1.3 0 0 1 6 11l1.3 3.2V5.2a1.4 1.4 0 0 1 2.8 0V3.6a1.4 1.4 0 0 1 2.8 0v1a1.4 1.4 0 0 1 2.8 0v2.6a1.4 1.4 0 0 1 2.8 0v7.4c0 3.8-2.9 7-6.7 7.2-1 .1-1.9 0-2.8-.3Z" />
-            <path
-              className="is-line"
-              d="M10.1 5.2v6.3M12.9 4.6v6.9M15.7 7.2v4.8"
-            />
+            <path className="is-line" d="M10.1 5.2v6.3M12.9 4.6v6.9M15.7 7.2v4.8" />
           </g>
-          <path
-            className="is-line"
-            d="M19.6 2.6c1.2.6 2 1.6 2.3 2.9M2.3 5.2c.3-1.3 1.1-2.3 2.3-2.9"
-          />
+          <path className="is-line" d="M19.6 2.6c1.2.6 2 1.6 2.3 2.9M2.3 5.2c.3-1.3 1.1-2.3 2.3-2.9" />
         </svg>
       ) : (
         <>
@@ -1452,6 +1413,150 @@ function NoteCard({ icon, label, tab, children }) {
         </span>
       </div>
       <p className="note-card__text">{children}</p>
+    </div>
+  );
+}
+
+// Text clamped to `lines` lines; a Read more / Show less toggle appears only
+// when the full text is longer. Re-measured on resize (ResizeObserver).
+function ClampedText({ text, lines = 4, className = "", moreLabel, lessLabel }) {
+  const textRef = useRef(null);
+  const [overflows, setOverflows] = useState(false);
+  const [open, setOpen] = useState(false);
+  const id = useId();
+
+  useEffect(() => {
+    const el = textRef.current;
+    if (!el) return undefined;
+    const measure = () => {
+      // While open the text is unclamped; keep the toggle so it can collapse
+      if (el.classList.contains("is-clamped")) {
+        setOverflows(el.scrollHeight > el.clientHeight + 1);
+      }
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [text]);
+
+  return (
+    <>
+      <p
+        ref={textRef}
+        id={id}
+        className={`${className} clamped-text${open ? "" : " is-clamped"}`}
+        style={{ "--clamp-lines": lines }}
+      >
+        {text}
+      </p>
+      {overflows && (
+        <button
+          type="button"
+          className="clamped-text__toggle"
+          aria-expanded={open}
+          aria-controls={id}
+          onClick={() => setOpen((value) => !value)}
+        >
+          {open ? lessLabel : moreLabel}
+        </button>
+      )}
+    </>
+  );
+}
+
+// Takeaway cards: on desktop (4 columns) every text is clamped to the line
+// count of the shortest text, so all cards share its height. Cards whose text
+// is cut get a "Read more" toggle; below 1081px the full text always shows.
+const TAKEAWAY_DESKTOP = "(min-width: 1081px)";
+
+function Takeaways({ items, moreLabel, lessLabel }) {
+  const listRef = useRef(null);
+  const [lines, setLines] = useState(0);
+  const [cut, setCut] = useState([]);
+  const [open, setOpen] = useState([]);
+  const baseId = useId();
+  // Re-measure when the texts change (language switch), not on every render
+  const textKey = items.map((item) => item.text).join("|");
+
+  useEffect(() => {
+    const list = listRef.current;
+    if (!list) return undefined;
+    const desktop = window.matchMedia(TAKEAWAY_DESKTOP);
+
+    const measure = () => {
+      if (!desktop.matches) {
+        setLines(0);
+        setCut([]);
+        return;
+      }
+      const texts = [...list.querySelectorAll(".token-case-study__takeaway-text")];
+      if (!texts.length) return;
+      const lineHeight = parseFloat(getComputedStyle(texts[0]).lineHeight);
+      // scrollHeight is the full text height, also while the text is clamped
+      const counts = texts.map((p) => Math.round(p.scrollHeight / lineHeight));
+      const min = Math.min(...counts);
+      setLines(min);
+      const next = counts.map((count) => count > min);
+      setCut((prev) => (prev.join() === next.join() ? prev : next));
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(list);
+    desktop.addEventListener("change", measure);
+    return () => {
+      observer.disconnect();
+      desktop.removeEventListener("change", measure);
+    };
+  }, [textKey]);
+
+  const toggle = (index) =>
+    setOpen((prev) => {
+      const next = [...prev];
+      next[index] = !next[index];
+      return next;
+    });
+
+  return (
+    <div
+      ref={listRef}
+      className="token-case-study__takeaways"
+      style={lines ? { "--takeaway-lines": lines } : undefined}
+    >
+      {items.map((item, index) => {
+        const textId = `${baseId}-takeaway-${index}`;
+        const clamped = lines > 0 && cut[index] && !open[index];
+        return (
+          <div className="token-case-study__takeaway badge-card" key={item.icon}>
+            <span className="badge-emblem token-case-study__takeaway-icon">
+              <HexEmblem>
+                <HexIcon name={item.icon} />
+              </HexEmblem>
+            </span>
+            <div>
+              <span className="badge-tag badge-tag--ghost">{item.label}</span>
+              <p
+                id={textId}
+                className={`token-case-study__takeaway-text${clamped ? " is-clamped" : ""}`}
+              >
+                {item.text}
+              </p>
+              {lines > 0 && cut[index] && (
+                <button
+                  type="button"
+                  className="token-case-study__takeaway-more"
+                  aria-expanded={Boolean(open[index])}
+                  aria-controls={textId}
+                  onClick={() => toggle(index)}
+                >
+                  {open[index] ? lessLabel : moreLabel}
+                </button>
+              )}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -1590,8 +1695,12 @@ function App() {
                   <img className="hero-art__badge" src={heroBadge} alt="" />
 
                   <div className="hero-art__badge__text">
-                    <span>{text.heroBadge.exp1}</span>
-                    <span>{text.heroBadge.exp2}</span>
+                    <span>
+                      {text.heroBadge.exp1}
+                    </span>
+                    <span>
+                      {text.heroBadge.exp2}
+                    </span>
                   </div>
                 </div>
                 <div className="hero-art__portrait__background" />
@@ -1651,53 +1760,56 @@ function App() {
                       {text.work.tokenLead}
                     </p>
 
-                    <div className="token-case-study__shift">
-                      <div>
+                    {/* Token list — three groups, one shared column grid:
+                        swatch | token | description */}
+                    <div className="token-case-study__tokens">
+                      <div className="token-case-study__group">
                         <span className="token-case-study__label">
                           {text.work.brandColor}
                         </span>
-                        <div className="token-case-study__brand-values">
+                        <p>{text.work.brandDescription}</p>
+                        <div className="token-case-study__layers">
                           {Object.entries(countdownDomains).map(
                             ([domainKey, domain]) => (
-                              <div
-                                className="token-case-study__brand-value"
-                                key={domainKey}
-                              >
+                              <div key={domainKey}>
                                 <span
-                                  aria-hidden="true"
-                                  className="token-case-study__brand-swatch"
+                                  className="token-case-study__swatch"
                                   style={{ backgroundColor: domain.cc25 }}
+                                  aria-hidden="true"
                                 />
-                                <span>
-                                  <strong>{domain.name}</strong>
+                                <div>
                                   <code>--PrCl1 · {domain.cc25}</code>
-                                </span>
+                                  <span>{domain.name}</span>
+                                </div>
                               </div>
                             ),
                           )}
                         </div>
-                        <p>{text.work.brandDescription}</p>
                       </div>
-                      <span
-                        className="token-case-study__arrow"
-                        aria-hidden="true"
-                      >
-                        →
-                      </span>
-                      <div>
+
+                      <div className="token-case-study__group">
                         <span className="token-case-study__label">
                           {text.work.reusableRole}
                         </span>
-                        <code>--lk → --PrCl1</code>
-                        <p>{text.work.roleDescription}</p>
+                        <div className="token-case-study__layers">
+                        <div>
+                          <span
+                            className="token-case-study__swatch token-case-study__swatch--role"
+                            aria-hidden="true"
+                          />
+                          <div>
+                            <code>--lk → --PrCl1</code>
+                            <span>{text.work.roleDescription}</span>
+                          </div>
+                        </div>
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="token-case-study__role-example">
-                      <span className="token-case-study__label">
-                        {text.work.layers}
-                      </span>
-                      <div className="token-case-study__layers">
+                      <div className="token-case-study__group">
+                        <span className="token-case-study__label">
+                          {text.work.layers}
+                        </span>
+                        <div className="token-case-study__layers">
                         <div>
                           <span
                             className="token-case-study__swatch token-case-study__swatch--neutral"
@@ -1714,9 +1826,7 @@ function App() {
                             aria-hidden="true"
                           />
                           <div>
-                            <code>
-                              --PrCl1 · {countdownDomains.northstar.cc25}
-                            </code>
+                            <code>--PrCl1 · {countdownDomains.northstar.cc25}</code>
                             <span>{text.work.primary}</span>
                           </div>
                         </div>
@@ -1730,77 +1840,37 @@ function App() {
                             <span>{text.work.semantic}</span>
                           </div>
                         </div>
+                        <div>
+                          <span
+                            className="token-case-study__swatch token-case-study__swatch--unsemantic"
+                            aria-hidden="true"
+                          />
+                          <div>
+                            <code>--Cc25 · {countdownDomains.northstar.cc25}</code>
+                            <span>{text.work.unsemantic}</span>
+                          </div>
+                        </div>
+                        </div>
                       </div>
-                      <NoteCard
-                        icon="swatches"
-                        label={text.work.exampleLabel}
-                        tab={text.work.exampleTab}
-                      >
-                        {text.work.tokenExample
-                          .split(/(<[^>]+>)/)
-                          .map((part, index) => {
-                            const tokenNames = {
-                              "<lk>": "--lk",
-                              "<bg>": "--bgMd",
-                              "<primary>": "--PrCl1",
-                            };
-                            return tokenNames[part] ? (
-                              <code key={index}>{tokenNames[part]}</code>
-                            ) : (
-                              part
-                            );
-                          })}
-                      </NoteCard>
                     </div>
                   </div>
                 </article>
-
-                <div className="token-case-study__takeaways">
-                  <div>
-                    <span className="badge-emblem token-case-study__takeaway-icon">
-                      <HexEmblem>
-                        <HexIcon name="target" />
-                      </HexEmblem>
-                    </span>
-                    <div>
-                      <span className="badge-tag badge-tag--ghost">
-                        {text.work.approachLabel}
-                      </span>
-                      <p>{text.work.approach}</p>
-                    </div>
-                  </div>
-                  <div>
-                    <span className="badge-emblem token-case-study__takeaway-icon">
-                      <HexEmblem>
-                        <HexIcon name="bulb" />
-                      </HexEmblem>
-                    </span>
-                    <div>
-                      <span className="badge-tag badge-tag--ghost">
-                        {text.work.mattersLabel}
-                      </span>
-                      <p>{text.work.matters}</p>
-                    </div>
-                  </div>
-                  <div>
-                    <span className="badge-emblem token-case-study__takeaway-icon">
-                      <HexEmblem>
-                        <HexIcon name="puzzle" />
-                      </HexEmblem>
-                    </span>
-                    <div>
-                      <span className="badge-tag badge-tag--ghost">
-                        {text.work.contributionLabel}
-                      </span>
-                      <p>{text.work.contribution}</p>
-                    </div>
-                  </div>
-                </div>
               </div>
 
               <div className="work__poll-column">
                 <PollModule text={text.work} />
               </div>
+
+              <Takeaways
+                moreLabel={text.work.takeawayMore}
+                lessLabel={text.work.takeawayLess}
+                items={[
+                  { icon: "target", label: text.work.approachLabel, text: text.work.approach },
+                  { icon: "bulb", label: text.work.mattersLabel, text: text.work.matters },
+                  { icon: "puzzle", label: text.work.contributionLabel, text: text.work.contribution },
+                  { icon: "unsemantic", label: text.work.unsemanticLabel, text: text.work.unsemanticText },
+                ]}
+              />
             </div>
 
             <article
@@ -1929,92 +1999,79 @@ function App() {
                       : countdownDomain.cc25,
                 }}
               >
-                <div className="countdown-case-study__token-note-intro">
-                  <div className="countdown-case-study__token-note-heading">
-                    <span className="badge-tag">
+                {/* Same token list as case study 01: group label, note,
+                    rows of swatch | token | mode */}
+                <div className="token-case-study__tokens">
+                  <div className="token-case-study__group">
+                    <span className="token-case-study__label">
                       {text.work.titleColorLabel}
                     </span>
-                  </div>
-                  <p>{text.work.paletteNote}</p>
-                  <div
-                    className="countdown-case-study__token-comparison"
-                    role="group"
-                    aria-label={text.work.titleColorComparison}
-                  >
-                    <div className="countdown-case-study__token-mode countdown-case-study__token-mode--light">
-                      <span className="countdown-case-study__token-mode-label">
-                        {text.work.lightMode}
-                      </span>
-                      <div
-                        className="countdown-case-study__token-track"
+                    <p>{text.work.paletteNote}</p>
+                    <div
+                      className="token-case-study__layers"
+                      role="group"
+                      aria-label={text.work.titleColorComparison}
+                    >
+                    <div>
+                      <span
+                        className="token-case-study__swatch countdown-case-study__swatch countdown-case-study__swatch--title-light"
                         aria-hidden="true"
-                      >
-                        <span className="countdown-case-study__token-fill" />
-                        <span className="countdown-case-study__token-hatch" />
+                      />
+                      <div>
+                        <code>{text.work.titleColorLightToken}</code>
+                        <span>{text.work.lightMode}</span>
                       </div>
-                      <code>{text.work.titleColorLightToken}</code>
                     </div>
-                    <div className="countdown-case-study__token-mode countdown-case-study__token-mode--dark">
-                      <span className="countdown-case-study__token-mode-label">
-                        {text.work.darkMode}
-                      </span>
-                      <div
-                        className="countdown-case-study__token-track"
+                    <div>
+                      <span
+                        className="token-case-study__swatch countdown-case-study__swatch countdown-case-study__swatch--title-dark"
                         aria-hidden="true"
-                      >
-                        <span className="countdown-case-study__token-fill" />
-                        <span className="countdown-case-study__token-hatch" />
+                      />
+                      <div>
+                        <code>{text.work.titleColorDarkToken}</code>
+                        <span>{text.work.darkMode}</span>
                       </div>
-                      <code>{text.work.titleColorDarkToken}</code>
+                    </div>
                     </div>
                   </div>
-                </div>
-                <div className="countdown-case-study__brand-token">
-                  <div className="countdown-case-study__brand-token-heading">
-                    <span className="badge-tag">
+
+                  <div className="token-case-study__group">
+                    <span className="token-case-study__label">
                       {text.work.brandAccentLabel}
                     </span>
-                  </div>
-                  <p className="countdown-case-study__brand-token-note">
-                    {text.work.brandAccentNote}
-                  </p>
-                  <div
-                    className="countdown-case-study__brand-token-modes"
-                    role="group"
-                    aria-label={text.work.brandAccentComparison}
-                  >
-                    <div className="countdown-case-study__token-mode countdown-case-study__token-mode--light countdown-case-study__brand-token-mode">
-                      <span className="countdown-case-study__token-mode-label">
-                        {text.work.lightMode}
-                      </span>
-                      <div
-                        className="countdown-case-study__token-track"
+                    <p>{text.work.brandAccentNote}</p>
+                    <div
+                      className="token-case-study__layers"
+                      role="group"
+                      aria-label={text.work.brandAccentComparison}
+                    >
+                    <div>
+                      <span
+                        className="token-case-study__swatch countdown-case-study__swatch countdown-case-study__swatch--accent-light"
                         aria-hidden="true"
-                      >
-                        <span className="countdown-case-study__brand-token-fill countdown-case-study__brand-token-fill--light" />
-                        <span className="countdown-case-study__token-hatch" />
+                      />
+                      <div>
+                        <code>
+                          {text.work.brandAccentLightToken} {countdownDomain.cc25}
+                        </code>
+                        <span>{text.work.lightMode}</span>
                       </div>
-                      <code>
-                        {text.work.brandAccentLightToken} {countdownDomain.cc25}
-                      </code>
                     </div>
-                    <div className="countdown-case-study__token-mode countdown-case-study__token-mode--dark countdown-case-study__brand-token-mode">
-                      <span className="countdown-case-study__token-mode-label">
-                        {text.work.darkMode}
-                      </span>
-                      <div
-                        className="countdown-case-study__token-track"
+                    <div>
+                      <span
+                        className="token-case-study__swatch countdown-case-study__swatch countdown-case-study__swatch--accent-dark"
                         aria-hidden="true"
-                      >
-                        <span className="countdown-case-study__brand-token-fill countdown-case-study__brand-token-fill--dark" />
-                        <span className="countdown-case-study__token-hatch" />
+                      />
+                      <div>
+                        <code>
+                          {text.work.brandAccentDarkToken}{" "}
+                          {selectedCountdownTheme === "dark"
+                            ? "#020202"
+                            : countdownDomain.cc25Dark}
+                        </code>
+                        <span>{text.work.darkMode}</span>
                       </div>
-                      <code>
-                        {text.work.brandAccentDarkToken}{" "}
-                        {selectedCountdownTheme === "dark"
-                          ? "#020202"
-                          : countdownDomain.cc25Dark}
-                      </code>
+                    </div>
                     </div>
                   </div>
                 </div>
@@ -2237,10 +2294,7 @@ function App() {
                   </span>
                   <BadgeCoin variant="star" />
                 </span>
-                <span
-                  className="badge-tags about-meter__tags"
-                  aria-hidden="true"
-                >
+                <span className="badge-tags about-meter__tags" aria-hidden="true">
                   <span className="badge-tag">{text.about.meterTitle}</span>
                   <span className="badge-tag badge-tag--fact">
                     {text.about.meterStart} — {text.about.meterCurrent}
@@ -2297,19 +2351,28 @@ function App() {
                 <div className="timeline">
                   {text.experience.entries.map((entry, index) => (
                     <article className="timeline-entry" key={entry.date}>
-                      <span
-                        className={`badge-tag timeline-entry__date${index === 0 ? "" : " badge-tag--ghost"}`}
-                      >
-                        {entry.date}
-                      </span>
                       <div className="timeline-entry__body">
-                        <h4>{entry.role}</h4>
+                        {/* Swatch in the entry's strip colour, left of the role */}
+                        <div className="timeline-entry__title">
+                          <span
+                            className={`career-strip__value timeline-entry__date timeline-entry__date--${entry.segment}`}
+                          >
+                            <span className="timeline-entry__date-text">
+                              {entry.date}
+                            </span>
+                          </span>
+                          <h4>{entry.role}</h4>
+                        </div>
                         <p className="timeline-entry__company">
                           {entry.company}
                         </p>
-                        <p className="timeline-entry__description">
-                          {entry.description}
-                        </p>
+                        <ClampedText
+                          className="timeline-entry__description"
+                          text={entry.description}
+                          lines={4}
+                          moreLabel={text.work.takeawayMore}
+                          lessLabel={text.work.takeawayLess}
+                        />
                       </div>
                     </article>
                   ))}
@@ -2350,10 +2413,7 @@ function App() {
                     {String(text.expertise.groups.length).padStart(2, "0")}{" "}
                     {text.expertise.areaUnit}
                   </span>
-                  <span
-                    className="badge-tag badge-tag--fact"
-                    aria-hidden="true"
-                  >
+                  <span className="badge-tag badge-tag--fact" aria-hidden="true">
                     {String(
                       text.expertise.groups.reduce(
                         (total, group) => total + group.skills.length,
@@ -2561,22 +2621,14 @@ function App() {
 
       <footer className="site-footer">
         <div className="site-footer__inner">
-          <a
-            className="wordmark"
-            href="#page-top"
-            aria-label={text.footer.home}
-          >
+          <a className="wordmark" href="#page-top" aria-label={text.footer.home}>
             <span className="wordmark__symbol">
               <img src={siteLogo} alt="" />
             </span>
             <span className="wordmark__name">Daniel Popa</span>
           </a>
           <p>{text.footer.description}</p>
-          <a
-            className="back-to-top"
-            href="#page-top"
-            aria-label={text.footer.top}
-          >
+          <a className="back-to-top" href="#page-top" aria-label={text.footer.top}>
             <svg aria-hidden="true" viewBox="0 1 32 32">
               {/* Flame (behind the nozzle) — hidden until hover/focus */}
               <g className="back-to-top__flame">
@@ -2588,21 +2640,12 @@ function App() {
                   className="back-to-top__flame-inner"
                   d="M14.9 23.2c0 1.9.5 3 1.1 4.2.6-1.2 1.1-2.3 1.1-4.2Z"
                 />
-                <path
-                  className="back-to-top__spark"
-                  d="M11.6 25.4l-.9 1.8M20.4 25.4l.9 1.8"
-                />
+                <path className="back-to-top__spark" d="M11.6 25.4l-.9 1.8M20.4 25.4l.9 1.8" />
               </g>
               {/* Ship */}
               <g className="back-to-top__ship">
-                <path
-                  className="back-to-top__fin"
-                  d="M10.2 15.6 6.4 19.4v4.4l3.8-2.2Z"
-                />
-                <path
-                  className="back-to-top__fin"
-                  d="M21.8 15.6l3.8 3.8v4.4l-3.8-2.2Z"
-                />
+                <path className="back-to-top__fin" d="M10.2 15.6 6.4 19.4v4.4l3.8-2.2Z" />
+                <path className="back-to-top__fin" d="M21.8 15.6l3.8 3.8v4.4l-3.8-2.2Z" />
                 <path
                   className="back-to-top__body"
                   d="M16 2.6c-4 3-5.8 7.4-5.8 12.6v6.4h11.6v-6.4c0-5.2-1.8-9.6-5.8-12.6Z"
@@ -2611,20 +2654,9 @@ function App() {
                   className="back-to-top__nose"
                   d="M16 2.6c-2.1 1.6-3.5 3.6-4.4 5.9h8.8c-.9-2.3-2.3-4.3-4.4-5.9Z"
                 />
-                <path
-                  className="back-to-top__nozzle"
-                  d="M13.2 21.6h5.6l-.8 1.9h-4Z"
-                />
-                <circle
-                  className="back-to-top__window"
-                  cx="16"
-                  cy="13.6"
-                  r="2.7"
-                />
-                <path
-                  className="back-to-top__glint"
-                  d="M14.7 12.9a1.5 1.5 0 0 1 1.2-1"
-                />
+                <path className="back-to-top__nozzle" d="M13.2 21.6h5.6l-.8 1.9h-4Z" />
+                <circle className="back-to-top__window" cx="16" cy="13.6" r="2.7" />
+                <path className="back-to-top__glint" d="M14.7 12.9a1.5 1.5 0 0 1 1.2-1" />
               </g>
             </svg>
           </a>

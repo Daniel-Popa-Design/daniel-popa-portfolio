@@ -101,25 +101,12 @@
 }
 
 // Rocket — badge palette: ink outline, white hull, gold nose, teal fins + window
-.back-to-top__body {
-  fill: #fff;
-}
-.back-to-top__nose {
-  fill: var(--badge-gold);
-}
-.back-to-top__fin {
-  fill: var(--badge-teal);
-}
-.back-to-top__nozzle {
-  fill: var(--badge-ink);
-}
-.back-to-top__window {
-  fill: var(--badge-teal);
-}
-.back-to-top__glint {
-  stroke: #fff;
-  stroke-width: 1;
-}
+.back-to-top__body { fill: #fff; }
+.back-to-top__nose { fill: var(--badge-gold); }
+.back-to-top__fin { fill: var(--badge-teal); }
+.back-to-top__nozzle { fill: var(--badge-ink); }
+.back-to-top__window { fill: var(--badge-teal); }
+.back-to-top__glint { stroke: #fff; stroke-width: 1; }
 
 // Flame — hidden at rest, lights up (and flickers) on hover/focus
 .back-to-top__flame {
@@ -139,18 +126,9 @@
   }
 }
 
-.back-to-top__flame-outer {
-  fill: var(--badge-gold);
-  stroke-width: 1.2;
-}
-.back-to-top__flame-inner {
-  fill: var(--accent-warm);
-  stroke: none;
-}
-.back-to-top__spark {
-  stroke: var(--badge-gold);
-  stroke-width: 1.3;
-}
+.back-to-top__flame-outer { fill: var(--badge-gold); stroke-width: 1.2; }
+.back-to-top__flame-inner { fill: var(--accent-warm); stroke: none; }
+.back-to-top__spark { stroke: var(--badge-gold); stroke-width: 1.3; }
 
 // Engine rumble — a tiny shake of the ship while the flame burns
 .back-to-top__ship {
@@ -161,28 +139,15 @@
 }
 
 @keyframes back-to-top-flicker {
-  from {
-    transform: scaleY(0.88) scaleX(1.04);
-  }
-  to {
-    transform: scaleY(1.08) scaleX(0.94);
-  }
+  from { transform: scaleY(0.88) scaleX(1.04); }
+  to { transform: scaleY(1.08) scaleX(0.94); }
 }
 
 @keyframes back-to-top-rumble {
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(-0.3px, 0.2px);
-  }
-  50% {
-    transform: translate(0.3px, 0);
-  }
-  75% {
-    transform: translate(0, -0.2px);
-  }
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-0.3px, 0.2px); }
+  50% { transform: translate(0.3px, 0); }
+  75% { transform: translate(0, -0.2px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

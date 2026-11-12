@@ -662,12 +662,6 @@
   background: var(--module-accent);
 }
 
-.countdown-case-study__token-note p {
-  line-height: 1.55;
-  color: #75756e;
-  font-size: 9.9px;
-}
-
 .CountdownModule .countdownTimer {
   display: flex;
   flex-wrap: wrap;
@@ -761,168 +755,6 @@
 
 #main .CountdownModule .countdownReleaseTitle {
   color: var(--modTtl);
-}
-
-.countdown-case-study__token-note {
-  padding-top: 12px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  align-items: center;
-  gap: 14px 20px;
-  margin-top: 14px;
-  padding: 14px;
-}
-
-.countdown-case-study__token-note-intro {
-  display: grid;
-  grid-column: 1/-1;
-  gap: 7px;
-}
-
-.countdown-case-study__token-note-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.countdown-case-study__token-note-heading > span {
-  color: #777771;
-  font-size: 9px;
-  font-weight: 650;
-  letter-spacing: 0.09em;
-}
-
-.countdown-case-study__token-note-intro > p {
-  margin: 0;
-  color: #5b5b55;
-  font-size: 11px;
-  line-height: 1.55;
-}
-
-.countdown-case-study__token-comparison {
-  display: grid;
-  grid-column: 1/-1;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-}
-
-.countdown-case-study__token-mode {
-  display: grid;
-  min-width: 0;
-  gap: 6px;
-  padding: 9px;
-}
-
-.countdown-case-study__token-mode-label {
-  font-weight: 650;
-  letter-spacing: 0.09em;
-  color: #55554f;
-  font-size: 8px;
-}
-
-.countdown-case-study__token-track {
-  display: flex;
-  height: 23px;
-  overflow: hidden;
-  border: 1px solid #d5d4ce;
-  border-radius: 999px;
-  background: #fffefa;
-}
-
-.countdown-case-study__token-fill {
-  width: 42%;
-  flex: 0 0 42%;
-  border-radius: inherit;
-}
-
-.countdown-case-study__token-mode--light .countdown-case-study__token-fill {
-  background: var(--gr80);
-}
-
-.countdown-case-study__token-mode--dark .countdown-case-study__token-fill {
-  background: var(--gr5);
-}
-
-.countdown-case-study__token-hatch {
-  flex: 1;
-  background: repeating-linear-gradient(130deg, transparent 0 4px, rgba(82, 82, 76, 0.18) 4px 5px);
-}
-
-.countdown-case-study__token-mode > code {
-  overflow-wrap: anywhere;
-  color: #3f3f3b;
-  font-size: 9px;
-  line-height: 1.3;
-}
-
-.countdown-case-study__brand-token {
-  display: grid;
-  grid-column: 1/-1;
-  grid-template-columns: minmax(0, 1fr);
-  min-width: 0;
-  gap: 8px;
-  padding-top: 9px;
-  border-top: 1px solid #e0dfd8;
-}
-
-.countdown-case-study__brand-token-modes {
-  display: grid;
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-}
-
-.countdown-case-study__brand-token-mode {
-  grid-template-columns: minmax(0, 1fr);
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-}
-
-.countdown-case-study__brand-token-mode .countdown-case-study__token-mode-label {
-  grid-column: 1;
-}
-
-.countdown-case-study__brand-token-mode .countdown-case-study__token-track {
-  grid-column: 1;
-  grid-row: auto;
-  width: 100%;
-  min-width: 0;
-}
-
-.countdown-case-study__brand-token-mode > code {
-  grid-column: 1;
-  min-width: 0;
-  overflow-wrap: anywhere;
-  color: #3f3f3b;
-  font-size: 9px;
-  line-height: 1.3;
-}
-
-.countdown-case-study__brand-token-fill {
-  width: 42%;
-  flex: 0 0 42%;
-  border-radius: inherit;
-}
-
-.countdown-case-study__brand-token-fill--light {
-  background: var(--Cc25);
-}
-
-.countdown-case-study__brand-token-fill--dark {
-  background: #020202;
-}
-
-.countdown-case-study__brand-token-note {
-  margin: 0;
-  color: #5b5b55;
-  font-size: 11px;
-  line-height: 1.5;
 }
 
 .countdown-case-study {
@@ -1321,53 +1153,6 @@
     flex-wrap: nowrap;
     margin-bottom: 0;
   }
-
-  .countdown-case-study__token-note {
-    flex-direction: column;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .countdown-case-study__token-comparison,
-  .countdown-case-study__brand-token-modes {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .countdown-case-study__brand-token-mode {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-  }
-
-  .countdown-case-study__token-mode {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-  }
-
-  .countdown-case-study__token-mode .countdown-case-study__token-track,
-  .countdown-case-study__brand-token-mode .countdown-case-study__token-track {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .countdown-case-study__token-mode > code,
-  .countdown-case-study__brand-token-mode > code {
-    min-width: 0;
-    overflow-wrap: anywhere;
-  }
-}
-
-@media (max-width: 620px) {
-  .countdown-case-study__token-note {
-    grid-template-columns: minmax(0, 1fr);
-  }
 }
 
 @media (max-width: 420px) {
@@ -1424,17 +1209,6 @@
   .CountdownModule .countdownValue {
     font-size: 26.4px;
   }
-
-  .countdown-case-study__brand-token-mode {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .countdown-case-study__brand-token-mode .countdown-case-study__token-mode-label,
-  .countdown-case-study__brand-token-mode .countdown-case-study__token-track,
-  .countdown-case-study__brand-token-mode > code {
-    grid-column: 1;
-    grid-row: auto;
-  }
 }
 
 @media (max-width: 370px) {
@@ -1483,7 +1257,6 @@
   }
 }
 
-
 @keyframes countdownFlip {
 from {
 transform: perspective(400px) rotateX(-90deg);
@@ -1500,50 +1273,44 @@ transform: perspective(400px) rotateX(0);
 }
 
 // ---------------------------------------------------------------------------
-// Badge skin (see _badge.scss) — token note
-// The note is a .badge-card; light/dark modes are open columns
-// separated by a fine divider.
+// Token note — a .badge-card holding the shared token list (see _work.scss,
+// .token-case-study__tokens). Swatch column = the fill + hatch track.
 // ---------------------------------------------------------------------------
 
 .countdown-case-study__token-note {
-  padding: clamp(16px, 2vw, 24px);
+  margin-top: 14px;
+  padding: var(--space-card);
 }
 
-.countdown-case-study__token-note-heading {
-  justify-content: flex-start;
-  gap: 14px;
+// First group needs no top rule
+.countdown-case-study__token-note .token-case-study__tokens {
+  margin-top: 0;
 }
 
-.countdown-case-study__token-comparison,
-.countdown-case-study__brand-token-modes {
-  gap: 0;
+.countdown-case-study__token-note .token-case-study__group:first-child {
+  padding-top: 0;
+  border-top: 0;
 }
 
-.countdown-case-study__token-mode {
-  padding: 4px 16px;
-
-  &:first-child {
-    padding-left: 0;
-  }
-
-  &:last-child {
-    padding-right: 0;
-  }
-
-  & + & {
-    border-left: 1px solid var(--line);
-  }
+// Swatches — round, like the design-system token list:
+// --modTtl is a named semantic role (solid ring), --Cc25 is unsemantic
+// (dashed ring, as .token-case-study__swatch--unsemantic)
+.countdown-case-study__swatch--title-light {
+  background: var(--gr80);
 }
 
-@media (max-width: 700px) {
-  .countdown-case-study__token-mode,
-  .countdown-case-study__token-mode:first-child,
-  .countdown-case-study__token-mode:last-child {
-    padding: 10px 0;
-  }
+.countdown-case-study__swatch--title-dark {
+  background: var(--gr5);
+}
 
-  .countdown-case-study__token-mode + .countdown-case-study__token-mode {
-    border-top: 1px solid var(--line);
-    border-left: 0;
-  }
+.token-case-study__swatch:is(.countdown-case-study__swatch--accent-light, .countdown-case-study__swatch--accent-dark) {
+  border: 1px dashed var(--ink);
+}
+
+.countdown-case-study__swatch--accent-light {
+  background: var(--Cc25);
+}
+
+.countdown-case-study__swatch--accent-dark {
+  background: #020202;
 }

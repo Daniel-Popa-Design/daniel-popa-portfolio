@@ -183,10 +183,8 @@
 // Career strip — badge-coloured pills
 .career-strip {
   display: grid;
-  grid-template-columns: minmax(104px, 1fr) minmax(104px, 1fr) minmax(
-      240px,
-      4fr
-    ) minmax(98px, 0.9fr);
+  // Three phases in timeline order (newest → oldest)
+  grid-template-columns: minmax(240px, 4fr) minmax(104px, 1fr) minmax(104px, 1fr);
   gap: 6px;
   margin-bottom: 14px;
 }
@@ -225,29 +223,39 @@
   white-space: nowrap;
 }
 
-.career-strip__segment--2 .career-strip__value {
+// Segment colours — shared with the matching timeline date pill
+// (.timeline-entry__date--N), so each entry reads as part of the strip
+// 2 = traineeship, 3 = World of Cruise: light tinted pills with a coloured
+// outline, so the striped current role (1) stays the strongest element
+.portfolio-shell :is(.career-strip__segment--2 .career-strip__value, .timeline-entry__date--2) {
   border-color: var(--badge-teal);
-  background: var(--badge-teal);
+  color: #1d7d68; // darker badge teal, AA on the light tint
+  background: color-mix(in srgb, var(--badge-teal) 10%, #fff);
 }
 
-.portfolio-shell .career-strip__segment--3 .career-strip__value {
-  justify-content: center;
+.portfolio-shell :is(.career-strip__segment--3 .career-strip__value, .timeline-entry__date--3) {
+  color: var(--badge-ink);
+  background: color-mix(in srgb, var(--badge-ink) 6%, #fff);
+}
+
+// 1 = Computec (current role): the earlier hatched pill, stripes in badge gold
+.portfolio-shell :is(.career-strip__segment--1 .career-strip__value, .timeline-entry__date--1) {
+  border-color: var(--badge-gold);
   color: var(--badge-ink);
   background:
     repeating-linear-gradient(
       130deg,
-      rgba(255, 255, 255, 0.75) 0 3px,
+      color-mix(in srgb, var(--badge-gold) 45%, transparent) 0 3px,
       transparent 3px 7px
     ),
-    linear-gradient(180deg, #e8e8e8, #d1d1d1);
-  font-weight: 500;
+    color-mix(in srgb, var(--badge-gold) 12%, #fff);
+  font-weight: 600;
 }
 
-.portfolio-shell .career-strip__segment--4 .career-strip__value {
+.portfolio-shell .career-strip__segment--1 .career-strip__value {
   justify-content: center;
-  color: var(--badge-ink);
-  background: #fff;
 }
+
 
 // Timeline — open columns separated by fine vertical dividers
 .timeline {
@@ -277,6 +285,34 @@
   }
 }
 
+// Title row — round swatch in the entry's segment colour, then the role
+.timeline-entry__title {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+}
+
+// Swatch (base: .career-strip__value); the date text is for screen readers only
+.portfolio-shell .timeline-entry .timeline-entry__date {
+  display: block;
+  width: 16px;
+  height: 16px;
+  min-height: 0;
+  margin-top: 0.5px; // centred on the first line of the role
+  padding: 0;
+  border-radius: 50%;
+}
+
+.timeline-entry__date-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 .timeline-entry__body h4 {
   margin: 0;
   font-size: 13.2px;
@@ -289,6 +325,10 @@
   margin: 4px 0 6px;
   color: #1d7d68; // darker badge teal, AA on the light card
   font-weight: 650;
+}
+
+.portfolio-shell .timeline-entry__body .clamped-text__toggle {
+  margin-top: 6px;
 }
 
 .timeline-entry__description {
@@ -310,6 +350,7 @@
   .about-meter__emblem {
     width: 130px;
   }
+
 }
 
 @media (max-width: 700px) {
@@ -408,7 +449,7 @@
     white-space: normal;
   }
 
-  .portfolio-shell .career-strip__segment--3 .career-strip__value {
+  .portfolio-shell .career-strip__segment--1 .career-strip__value {
     text-align: center;
     overflow-wrap: anywhere;
   }

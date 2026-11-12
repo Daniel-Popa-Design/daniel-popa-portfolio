@@ -238,11 +238,9 @@
   font-size: 11px;
 }
 
-.pollModuleShell[data-domain=northstar] .pollModule__bar {
-  background: #6b9bbc;
-}
-
-.pollModuleShell[data-domain=afterglow] .pollModule__bar {
+// Light mode: both portals use the shared warm yellow for the result bars
+// (dark mode switches to each brand’s soft colour, see [data-theme=dark])
+.pollModuleShell:is([data-domain=northstar], [data-domain=afterglow]) .pollModule__bar {
   background: var(--lemon);
 }
 
