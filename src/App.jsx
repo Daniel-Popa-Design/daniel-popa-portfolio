@@ -391,6 +391,44 @@ const copy = {
       locationValue: "Nürnberg · Remote oder hybrid",
       statusLabel: "Kontakt",
     },
+    game: {
+      eyebrow: "Ein kleines Extra",
+      title: "Token-Memory",
+      noteLabel: "Pause",
+      noteTab: "8 Paare · 5 Maskottchen",
+      aside:
+        "Ein kleines Frontend-Experiment mit echten Farb-Tokens aus einem Publishing-System: Primär- und Akzentfarben, ein Badge-Grün mit geprüftem Kontrast und ein abstrahierter Werbemodul-Token. Das Ziel: Sammle alle 5 Maskottchen – jedes gewonnene Spiel schaltet ein neues frei.",
+      boardLabel: "Memory-Spielfeld",
+      moves: "Züge",
+      pairs: "Paare",
+      restart: "Neu mischen",
+      hidden: (n) => `Karte ${n}, verdeckt`,
+      found: (token) => `Paar gefunden: ${token}`,
+      miss: "Kein Paar – die Karten werden wieder verdeckt.",
+      won: (moves) => `Geschafft! Alle Paare in ${moves} Zügen gefunden.`,
+      wonTitle: "Alle Paare gefunden!",
+      mascotCount: "Maskottchen",
+      collectionLabel: "Deine Maskottchen-Sammlung",
+      collectionHint: "Gewinne eine Runde, um das nächste freizuschalten.",
+      locked: "Noch nicht entdeckt",
+      newMascot: (name) => `Neu freigeschaltet: ${name}`,
+      collectionDone:
+        "Alle 5 Maskottchen gesammelt – du bist offiziell Token-Legende!",
+      mascotNames: {
+        knight: "Sir Klickalot",
+        dragon: "Drachi",
+        frog: "König Quak",
+        owl: "Eulrich der Weise",
+        goblin: "Gobbo der Narr",
+      },
+      mascots: {
+        knight: "Sir Klickalot schlägt dich zum Ritter der Tokens!",
+        dragon: "Drachi ist beeindruckt – und nur ein kleines bisschen neidisch.",
+        frog: "König Quak ernennt dich zum Hofdesigner.",
+        owl: "Eulrich der Weise nickt anerkennend. Sehr anerkennend.",
+        goblin: "Gobbo der Narr hatte die ganze Zeit auf dich gewettet!",
+      },
+    },
     footer: {
       description:
         "Selbst gestaltet und entwickelt in Nürnberg – mit React, Vite und SCSS.",
@@ -764,6 +802,43 @@ const copy = {
       locationLabel: "Location",
       locationValue: "Nuremberg · Remote or hybrid",
       statusLabel: "Contact",
+    },
+    game: {
+      eyebrow: "A little extra",
+      title: "Token memory",
+      noteLabel: "Break",
+      noteTab: "8 pairs · 5 mascots",
+      aside:
+        "A small frontend experiment with real colour tokens from a publishing system: primary and accent colours, a badge green with checked contrast and an abstracted ad-module token. The goal: collect all 5 mascots – every won game unlocks a new one.",
+      boardLabel: "Memory board",
+      moves: "Moves",
+      pairs: "Pairs",
+      restart: "Shuffle again",
+      hidden: (n) => `Card ${n}, face down`,
+      found: (token) => `Pair found: ${token}`,
+      miss: "No match – the cards turn back over.",
+      won: (moves) => `Done! All pairs found in ${moves} moves.`,
+      wonTitle: "All pairs found!",
+      mascotCount: "Mascots",
+      collectionLabel: "Your mascot collection",
+      collectionHint: "Win a round to unlock the next one.",
+      locked: "Not discovered yet",
+      newMascot: (name) => `New unlock: ${name}`,
+      collectionDone: "All 5 mascots collected – you are officially a token legend!",
+      mascotNames: {
+        knight: "Sir Clickalot",
+        dragon: "Drago",
+        frog: "King Croak",
+        owl: "Owlbert the Wise",
+        goblin: "Gobbo the Jester",
+      },
+      mascots: {
+        knight: "Sir Clickalot dubs you Knight of the Tokens!",
+        dragon: "Drago is impressed – and only slightly jealous.",
+        frog: "King Croak names you royal designer.",
+        owl: "Owlbert the Wise nods approvingly. Very approvingly.",
+        goblin: "Gobbo the jester had his money on you all along!",
+      },
     },
     footer: {
       description:
@@ -1339,6 +1414,16 @@ const noteIcons = {
       <path className="is-gold" d="m40.5 5 1.3 3.5 3.5 1.3-3.5 1.3-1.3 3.5-1.3-3.5-3.5-1.3 3.5-1.3Z" />
     </g>
   ),
+  // Game controller: d-pad, start/select, gold + teal buttons — the extra game
+  gamepad: (
+    <>
+      <path d="M14.5 14h19c5.4 0 8.5 3.5 9.6 8.8l1.7 8.9c.8 4.3-3.9 6.8-7.1 3.7L33.4 30H14.6l-4.3 5.4c-3.2 3.1-7.9.6-7.1-3.7l1.7-8.9C6 17.5 9.1 14 14.5 14Z" />
+      <path className="is-line" d="M14.5 19v8M10.5 23h8" />
+      <path className="is-line" d="M21.5 20h5" />
+      <circle className="is-gold" cx="32.5" cy="20.8" r="2.3" />
+      <circle className="is-teal" cx="37" cy="25.2" r="2.3" />
+    </>
+  ),
   // Toolbox with a gold latch — skill set
   toolbox: (
     <>
@@ -1503,6 +1588,398 @@ function BadgeCoin({ variant = "dots" }) {
         </>
       )}
     </span>
+  );
+}
+
+// Win mascots — medieval characters in the icon style (white faces, ink
+// outline, teal/gold accents, gold offset via CSS). One is picked at random
+// for every won game; the caption comes from text.game.mascots[key].
+const WIN_MASCOTS = {
+  // Knight helmet: googly eyes peek through the visor slit, gold plume
+  knight: (
+    <>
+      <path className="is-gold" d="M32 12c1.5-6.5 8-10 15-8.6-3.2 1.8-4.3 4.9-4 8.3-3.6-2.3-7.6-2.2-11 .3Z" />
+      <path d="M15 56V30c0-11 7.6-18.5 17-18.5S49 19 49 30v26Z" />
+      <path className="is-line" d="M32 12v14" />
+      <rect className="is-ink" x="18" y="28" width="28" height="10" rx="5" />
+      <circle cx="26" cy="33" r="4" />
+      <circle cx="38" cy="33" r="4" />
+      <circle className="is-ink" cx="27.4" cy="34" r="1.8" />
+      <circle className="is-ink" cx="36.7" cy="31.9" r="1.8" />
+      <circle className="is-ink" cx="26" cy="44" r="1.2" />
+      <circle className="is-ink" cx="32" cy="44" r="1.2" />
+      <circle className="is-ink" cx="38" cy="44" r="1.2" />
+      <path className="is-teal" d="M15 50h34v6H15Z" />
+    </>
+  ),
+  // Little dragon: curved gold horns, back spikes, nostrils, two fangs, smoke
+  dragon: (
+    <>
+      <path className="is-gold" d="M18 27c-3.5-5-3.8-11.5.4-16 0 4.4 2.2 7.6 5.6 9.6Z" />
+      <path className="is-gold" d="M46 27c3.5-5 3.8-11.5-.4-16 0 4.4-2.2 7.6-5.6 9.6Z" />
+      <path className="is-gold" d="m25.5 22 3-7.5 3 7.5Zm7 0 3-7.5 3 7.5Z" />
+      <path className="is-teal" d="M9 38c0-10.5 10.3-18.5 23-18.5S55 27.5 55 38c0 9.5-7.5 16-23 16S9 47.5 9 38Z" />
+      <path className="is-line" d="M18 26.5 27 29M46 26.5 37 29" />
+      <circle cx="23" cy="33" r="5.2" />
+      <circle cx="41" cy="33" r="5.2" />
+      <circle className="is-ink" cx="24.3" cy="32.2" r="2.2" />
+      <circle className="is-ink" cx="42.3" cy="32.2" r="2.2" />
+      <circle className="is-ink" cx="28.5" cy="41.5" r="1.3" />
+      <circle className="is-ink" cx="35.5" cy="41.5" r="1.3" />
+      <path className="is-line" d="M20 46.5c7.5 4.5 16.5 4.5 24 0" />
+      <path d="m24 47.6 1.8 4.2 1.8-3.4Z" />
+      <path d="m36.4 48.4 1.8 3.4 1.8-4.2Z" />
+      <circle cx="53" cy="23" r="3" />
+      <circle cx="57.5" cy="16.5" r="2.2" />
+      <circle cx="60.5" cy="11" r="1.5" />
+    </>
+  ),
+  // Frog king: crown between the eye bumps, rosy cheeks, huge grin
+  frog: (
+    <>
+      <circle className="is-teal" cx="20" cy="28" r="9" />
+      <circle className="is-teal" cx="44" cy="28" r="9" />
+      <ellipse className="is-teal" cx="32" cy="42" rx="24" ry="15" />
+      <circle cx="20" cy="27" r="5.5" />
+      <circle cx="44" cy="27" r="5.5" />
+      <circle className="is-ink" cx="21" cy="28" r="2.4" />
+      <circle className="is-ink" cx="43" cy="28" r="2.4" />
+      <path className="is-gold" d="M24.5 22V10l4.2 4.6L32 7.5l3.3 7.1 4.2-4.6v12Z" />
+      <circle className="is-gold" cx="15" cy="45" r="3" />
+      <circle className="is-gold" cx="49" cy="45" r="3" />
+      <path className="is-line" d="M17 40c7.5 9 22.5 9 30 0" />
+    </>
+  ),
+  // Wise owl in a starry wizard hat
+  owl: (
+    <>
+      <circle cx="32" cy="41" r="19" />
+      <path className="is-teal" d="M17 27 32 2l15 25Z" />
+      <circle className="is-gold" cx="29" cy="15" r="1.6" />
+      <circle className="is-gold" cx="35" cy="21" r="1.3" />
+      <ellipse className="is-teal" cx="32" cy="27.5" rx="21" ry="3.6" />
+      <path className="is-line" d="M17.5 32.5 25 35M46.5 32.5 39 35" />
+      <circle cx="24.5" cy="40" r="6.5" />
+      <circle cx="39.5" cy="40" r="6.5" />
+      <circle className="is-gold" cx="24.5" cy="40" r="3.6" />
+      <circle className="is-gold" cx="39.5" cy="40" r="3.6" />
+      <circle className="is-ink" cx="24.5" cy="40" r="1.7" />
+      <circle className="is-ink" cx="39.5" cy="40" r="1.7" />
+      <path className="is-gold" d="m29 47 3 5.5 3-5.5Z" />
+    </>
+  ),
+  // Goblin jester: pointy ears, two-tip hat with bells, odd eyes, one tooth
+  goblin: (
+    <>
+      <path className="is-teal" d="M19 37 3 28l14 15Z" />
+      <path className="is-teal" d="m45 37 16-9-14 15Z" />
+      <ellipse className="is-teal" cx="32" cy="40" rx="15" ry="16" />
+      <path d="M16.5 30c2-9.5 8.5-15 15.5-15s13.5 5.5 15.5 15Z" />
+      <path className="is-gold" d="M19 27 9 11l12 7Z" />
+      <path className="is-gold" d="m45 27 10-16-12 7Z" />
+      <circle className="is-gold" cx="9" cy="11" r="2.4" />
+      <circle className="is-gold" cx="55" cy="11" r="2.4" />
+      <circle cx="26" cy="37" r="5" />
+      <circle cx="39" cy="38" r="3.4" />
+      <circle className="is-ink" cx="26.8" cy="37.8" r="2.1" />
+      <circle className="is-ink" cx="38.6" cy="38.4" r="1.4" />
+      <ellipse className="is-teal" cx="32.5" cy="43" rx="3" ry="2.4" />
+      <path className="is-line" d="M24 48c5 4 11 4 16 0" />
+      <path d="M30.5 49.6h3v3.2h-3Z" />
+    </>
+  ),
+};
+
+const WIN_MASCOT_KEYS = Object.keys(WIN_MASCOTS);
+
+// Card-back emblem: a kite shield — metal rim with rivets, corner
+// brackets, two-tone blue face split down the middle, scratch marks — with a
+// griffin emblem in the centre (src/assets/GriffinIcon.svg) in deep shield
+// blue with a darker outer border.
+function ShieldEmblem() {
+  // Griffin (src/assets/GriffinIcon.svg, 284.69 × 267.77) scaled into the
+  // shield face; rendered twice below: dark outline layer + blue fill layer
+  const griffin = (
+    <g transform="translate(18.6 21.6) scale(.094)">
+      <path d="M50.69,258.61c9.9-3.26,15.8-15.53,14.18-25.51-1.94-11.98-11.71-17.45-20.04-24.76-15.76-13.83-29.62-29.75-30.29-51.93-.69-23.15,12.74-36.06,27.48-51.43,9.71-10.12,27.32-22.98,18.21-39.07-7.49-13.22-26.68-11.83-33.77,1.11-3.6,6.56-3.08,13.98-.47,20.79-11.91.07-21.76-7.31-24.82-18.83C-4.72,46.79,12.32,24.65,35.02,23.92h66.57c.06,4.46-.08,8.93-.01,13.38.29,18.39.2,36.82.25,55.24.03,10.45,1.02,22.2-.27,32.54-2.8,22.29-28.19,33.99-47.06,21.79,2.27,19.16,22.12,28.56,39.11,19.9,14.03-7.15,19.02-23.07,19.68-37.85.58-12.95-.19-26.25-.26-39.19-.04-7.22-.38-14.75,1.11-21.82,5.8-27.5,35.57-46.02,62.4-47.31,25.02-1.2,51,.91,76.13.02,9.94-1.01,17.26-8.14,22.05-16.38.74-1.27,1.65-2.86,2-4.24,2.84,4.11,5.05,9.5,6.34,14.4,9.74,37.03-25.99,76.3-61.66,51.99-6.67-4.55-11.74-11.77-20.4-12.43-14.69-1.13-23.88,15.17-15.62,27.32,7.99,11.76,26.05,10.4,36.33,2.57,1.23-.94,2.5-2.52,3.61-3.27.28-.19.52-.55.86-.14,1.08,1.26,2.94,7.05,3.36,8.86,6.81,29.11-24.31,51.88-48.91,32.88-3.53-2.73-6.87-7.15-10.9-8.95-12.16-5.44-23.34,6.77-18.7,18.7,4.24,10.9,17.81,13.17,27.68,8.96,3.5-1.49,6.33-4.04,9.16-6.49,12.87,24.46-14.57,49.21-37.39,31.92-5.23-3.96-8.77-8.74-16.37-6.39-11.28,3.48-9.56,20.2,2.48,21.3h87.5c9.57,18.05,29.55,31.94,50.24,22.45l7.46-4.37c-2.98,19.16-18.23,36.64-37.62,40.13-21.6,3.9-38.24-8.13-48.87-25.8-3.59-5.96-5.9-13.9-12.96-16.56-13.59-5.12-21.86,12.79-10.32,19.49.83.48,3.42,1.58,4.28,1.58h9.29l.13,49.63h-32.96v-9.67c10.04-4.23,14.95-16.57,11.74-26.83-.26-.37-7.84-.07-9.06-.15-4.85-.31-10.48-2.02-14.72-4.37-.54-.3-3.14-2.34-3.48-1.99l.13,43.02h-34.11l-.38-.38v-8.91c3.75-1.96,6.85-4.27,9.27-7.79,6.37-9.25,6.01-21.57,3.18-32.02l-15.33-.04c-6.06,12.2-11.86,24.58-17.09,37.18-1.65,3.96-3.04,8.1-4.84,11.96h-27.36v-9.16ZM87.85,34.62h-40.73c7.16,15.26,27.46,17.62,38.17,4.45.44-.54,2.97-4.04,2.55-4.45Z" />
+      <path d="M51.2,222.47c-4.08,8.87-8.82,17.5-12.95,26.38-2.9,6.25-5.46,12.65-8.31,18.93H2.45l-.38-.38v-9.29c13.04-6.36,19.51-21.66,15.27-35.64h33.85Z" />
+    </g>
+  );
+  return (
+    <svg className="win-mascot token-memory__mascot" viewBox="0 0 64 72" aria-hidden="true">
+      {/* metal rim */}
+      <path className="shield__rim" d="M32 3 54 9.5q4 1.5 4 6L57 40q-2 14-25 29Q9 54 7 40L6 15.5q0-4.5 4-6Z" />
+      {/* two-tone face */}
+      <path className="shield__dark" d="M32 7.4 51.6 13q2.4 1 2.4 3.8l-.8 22.6Q51.4 51.4 32 64.6 12.6 51.4 10.8 39.4L10 16.8q0-2.8 2.4-3.8Z" />
+      <path className="shield__light" d="M32 7.4 12.4 13q-2.4 1-2.4 3.8l.8 22.6Q12.6 51.4 32 64.6Z" />
+      <path className="is-line" d="M32 7.4v57.2" />
+      {/* scratch marks */}
+      <path className="is-line shield__scratch" d="m15.4 24 2.6-.6M14.2 30.6l2.2-.4M47 26.4l2.6-.4M45.6 50l2.4-1.2M18.6 52l1.8 1.4M41.6 15.4l2.4.4" />
+      {/* corner brackets */}
+      <path className="shield__rim" d="M10 16.8q0-2.8 2.4-3.8l5-1.4v2.8l-2.8.8v4.2l-4.5.2Z" />
+      <path className="shield__rim" d="M54 16.8q0-2.8-2.4-3.8l-5-1.4v2.8l2.8.8v4.2l4.5.2Z" />
+      <path className="shield__rim" d="m11.2 41.6 4.4-.8.2 4.2 3.2 1.8-1.6 2.6q-4.6-3.2-6.2-7.8Z" />
+      <path className="shield__rim" d="m52.8 41.6-4.4-.8-.2 4.2-3.2 1.8 1.6 2.6q4.6-3.2 6.2-7.8Z" />
+      <path className="shield__rim" d="M28.8 61.8 32 59.6l3.2 2.2-3.2 2.8Z" />
+      {/* rivets */}
+      <g className="shield__rivet">
+        <circle cx="32" cy="5.2" r="1" />
+        <circle cx="20.4" cy="7.6" r="1" />
+        <circle cx="43.6" cy="7.6" r="1" />
+        <circle cx="8" cy="23" r="1" />
+        <circle cx="56" cy="23" r="1" />
+        <circle cx="8.4" cy="35" r="1" />
+        <circle cx="55.6" cy="35" r="1" />
+        <circle cx="14.6" cy="53.4" r="1" />
+        <circle cx="49.4" cy="53.4" r="1" />
+        <circle cx="32" cy="66.4" r="1" />
+        <circle cx="12.8" cy="16" r=".9" />
+        <circle cx="51.2" cy="16" r=".9" />
+        <circle cx="13.6" cy="44.2" r=".9" />
+        <circle cx="50.4" cy="44.2" r=".9" />
+      </g>
+      {/* stylised griffin, drawn twice: a dark wider copy underneath gives one
+          outer border around the white silhouette */}
+      <g className="griffin__outline">{griffin}</g>
+      <g className="griffin__fill">{griffin}</g>
+    </svg>
+  );
+}
+
+function WinMascot({ name }) {
+  return (
+    <svg className="win-mascot" viewBox="0 0 64 64" aria-hidden="true">
+      {WIN_MASCOTS[name]}
+    </svg>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Token memory — small extra game (styles: _game.scss). Real colour tokens
+// from a publishing system; the ad-module tokens (--obEnd…) are abstracted
+// to a generic --adSrc. No saving: state lives only in this component.
+// ---------------------------------------------------------------------------
+
+const MEMORY_TOKENS = [
+  { token: "--PrCl1", hex: "#134b7d", role: { de: "Primär · Dunkelblau", en: "Primary · dark blue" } },
+  { token: "--PrCl2", hex: "#1f79c9", role: { de: "Primär · Blau", en: "Primary · blue" } },
+  { token: "--PrCl4", hex: "#071a2a", role: { de: "Primär · Navy", en: "Primary · navy" } },
+  { token: "--AcCl1", hex: "#ffdd00", role: { de: "Akzent · Gelb", en: "Accent · yellow" } },
+  { token: "--AcCl2", hex: "#e90000", role: { de: "Akzent · Rot", en: "Accent · red" } },
+  { token: "--AcCl5", hex: "#ff8d11", role: { de: "Akzent · Orange", en: "Accent · orange" } },
+  { token: "--badgePltBg", hex: "#2b8701", role: { de: "Badge · 4,5:1", en: "Badge · 4.5:1" } },
+  { token: "--adSrc", hex: "#575757", role: { de: "Werbemodul · Quelle", en: "Ad module · source" } },
+];
+
+function shuffleDeck() {
+  const deck = MEMORY_TOKENS.flatMap((card, pair) => [
+    { ...card, pair, id: `${pair}a` },
+    { ...card, pair, id: `${pair}b` },
+  ]);
+  for (let i = deck.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [deck[i], deck[j]] = [deck[j], deck[i]];
+  }
+  return deck;
+}
+
+function TokenMemory({ text, language }) {
+  const [deck, setDeck] = useState(shuffleDeck);
+  const [open, setOpen] = useState([]); // ids of the face-up, unmatched cards (max. 2)
+  const [matched, setMatched] = useState([]); // matched pair indexes
+  const [moves, setMoves] = useState(0);
+  const [status, setStatus] = useState("");
+  // Mascot for the current round + collection of unlocked mascots (no saving)
+  const [mascot, setMascot] = useState(
+    () => WIN_MASCOT_KEYS[Math.floor(Math.random() * WIN_MASCOT_KEYS.length)],
+  );
+  const [discovered, setDiscovered] = useState([]);
+  const busy = open.length === 2;
+  const won = matched.length === MEMORY_TOKENS.length;
+
+  // Second card turned: keep the pair, otherwise turn both back after a moment
+  useEffect(() => {
+    if (open.length !== 2) return undefined;
+    const [a, b] = open.map((id) => deck.find((card) => card.id === id));
+    if (a.pair === b.pair) {
+      const next = [...matched, a.pair];
+      setMatched(next);
+      setOpen([]);
+      if (next.length === MEMORY_TOKENS.length) {
+        setDiscovered((current) =>
+          current.includes(mascot) ? current : [...current, mascot],
+        );
+        setStatus(text.won(moves));
+      } else {
+        setStatus(text.found(a.token));
+      }
+      return undefined;
+    }
+    setStatus(text.miss);
+    const timerId = window.setTimeout(() => setOpen([]), 900);
+    return () => window.clearTimeout(timerId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
+
+  const turn = (card) => {
+    if (busy || open.includes(card.id) || matched.includes(card.pair)) return;
+    if (open.length === 1) setMoves((current) => current + 1);
+    setOpen((current) => [...current, card.id]);
+  };
+
+  const restart = () => {
+    setDeck(shuffleDeck());
+    setOpen([]);
+    setMatched([]);
+    setMoves(0);
+    setStatus("");
+    setMascot((current) => {
+      const locked = WIN_MASCOT_KEYS.filter((key) => !discovered.includes(key));
+      const pool = locked.length
+        ? locked
+        : WIN_MASCOT_KEYS.filter((key) => key !== current);
+      return pool[Math.floor(Math.random() * pool.length)];
+    });
+  };
+
+  return (
+    <div className="token-memory badge-card">
+      <div className="token-memory__bar">
+        <div className="token-memory__stats">
+          <span className="token-memory__stat">
+            <NumberMark shape="circle" className="token-memory__count" hidden>
+              {String(moves).padStart(2, "0")}
+            </NumberMark>
+            {text.moves}
+          </span>
+          <span className="token-memory__stat">
+            <NumberMark shape="circle" className="token-memory__count" hidden>
+              {matched.length}/{MEMORY_TOKENS.length}
+            </NumberMark>
+            {text.pairs}
+          </span>
+          <span className="token-memory__stat">
+            <NumberMark shape="circle" className="token-memory__count" hidden>
+              {discovered.length}/{WIN_MASCOT_KEYS.length}
+            </NumberMark>
+            {text.mascotCount}
+          </span>
+        </div>
+        <button className="token-memory__restart" onClick={restart} type="button">
+          {text.restart}
+        </button>
+      </div>
+
+      <div className="token-memory__board" role="group" aria-label={text.boardLabel}>
+        {deck.map((card, index) => {
+          const isMatched = matched.includes(card.pair);
+          const isUp = isMatched || open.includes(card.id);
+          return (
+            <button
+              aria-label={isUp ? `${card.token}, ${card.hex}` : text.hidden(index + 1)}
+              aria-pressed={isUp}
+              className={`token-memory__card${isUp ? " is-up" : ""}${isMatched ? " is-matched" : ""}`}
+              disabled={isMatched}
+              key={card.id}
+              onClick={() => turn(card)}
+              type="button"
+            >
+              <span className="token-memory__inner" aria-hidden="true">
+                <span className="token-memory__face token-memory__face--back">
+                  <ShieldEmblem />
+                </span>
+                <span className="token-memory__face token-memory__face--front">
+                  <span className="token-memory__swatch" style={{ "--swatch": card.hex }} />
+                  <code>{card.token}</code>
+                  <small>{card.role[language]}</small>
+                  <small className="token-memory__hex">{card.hex}</small>
+                </span>
+              </span>
+            </button>
+          );
+        })}
+
+        {won && (
+          <div className="token-memory__win">
+            <div className="token-memory__win-card">
+              <WinMascot name={mascot} />
+              <p className="token-memory__win-title">{text.wonTitle}</p>
+              <p className="token-memory__win-text">{text.mascots[mascot]}</p>
+              {discovered[discovered.length - 1] === mascot && (
+                <p className="token-memory__win-unlock">
+                  {discovered.length === WIN_MASCOT_KEYS.length
+                    ? text.collectionDone
+                    : text.newMascot(text.mascotNames[mascot])}
+                </p>
+              )}
+              <button className="token-memory__restart" onClick={restart} type="button">
+                {text.restart}
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <p className="token-memory__status" aria-live="polite" role="status">
+        {status}
+      </p>
+
+      <section className="token-memory__collection" aria-label={text.collectionLabel}>
+        <div className="token-memory__collection-head">
+          <p className="token-memory__collection-label">{text.collectionLabel}</p>
+          <p className="token-memory__collection-hint">
+            {discovered.length === WIN_MASCOT_KEYS.length
+              ? text.collectionDone
+              : text.collectionHint}
+          </p>
+        </div>
+        <ul className="token-memory__collection-list">
+          {WIN_MASCOT_KEYS.map((key) => {
+            const found = discovered.includes(key);
+            return (
+              <li
+                className={`token-memory__slot${found ? " is-found" : ""}`}
+                key={key}
+              >
+                <span className="token-memory__slot-art">
+                  {found ? (
+                    <WinMascot name={key} />
+                  ) : (
+                    // Locked: a square lock drawn exactly like the shield — metal
+                    // rim, two-tone blue face, corner brackets, rivets, white
+                    // keyhole emblem — muted, no hint at the mascot
+                    <svg className="win-mascot token-memory__lock" viewBox="0 0 64 64" aria-hidden="true">
+                      <path className="lock__rim" d="M21 31V21a11 11 0 0 1 22 0v10h-4.4V21a6.6 6.6 0 0 0-13.2 0v10Z" />
+                      <path className="lock__rim" d="M13 30h38a2 2 0 0 1 2 2v25a2 2 0 0 1-2 2H13a2 2 0 0 1-2-2V32a2 2 0 0 1 2-2Z" />
+                      <path className="lock__dark" d="M15.4 33.4h33.2v22.2H15.4Z" />
+                      <path className="lock__light" d="M15.4 33.4H32v22.2H15.4Z" />
+                      <path className="is-line" d="M32 33.4v22.2" />
+                      <path className="is-line lock__scratch" d="m18 41 2.4-.5M44 50.2l2.2-.8M42.6 37l2.2.4" />
+                      <path className="lock__rim" d="M15.4 33.4h5v2.2h-2.8v2.8h-2.2Z" />
+                      <path className="lock__rim" d="M48.6 33.4h-5v2.2h2.8v2.8h2.2Z" />
+                      <path className="lock__rim" d="M15.4 55.6h5v-2.2h-2.8v-2.8h-2.2Z" />
+                      <path className="lock__rim" d="M48.6 55.6h-5v-2.2h2.8v-2.8h2.2Z" />
+                      <g className="lock__rivet">
+                        <circle cx="13.2" cy="31.8" r=".9" />
+                        <circle cx="32" cy="31.8" r=".9" />
+                        <circle cx="50.8" cy="31.8" r=".9" />
+                        <circle cx="13.2" cy="57.2" r=".9" />
+                        <circle cx="32" cy="57.2" r=".9" />
+                        <circle cx="50.8" cy="57.2" r=".9" />
+                      </g>
+                      <path className="lock__key" d="M32 38.4a3.2 3.2 0 0 1 1.8 5.8l1.1 5.6h-5.8l1.1-5.6a3.2 3.2 0 0 1 1.8-5.8Z" />
+                    </svg>
+                  )}
+                </span>
+                <span className="token-memory__slot-name">
+                  {found ? text.mascotNames[key] : text.locked}
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    </div>
   );
 }
 
@@ -2696,6 +3173,30 @@ function App() {
                 ))}
               </div>
             </div>
+          </section>
+
+          <section
+            className="game section-wrap section-space"
+            id="game"
+            aria-labelledby="game-title"
+          >
+            <div className="section-heading">
+              <div>
+                <p className="eyebrow">{text.game.eyebrow}</p>
+                <h2 id="game-title">
+                  {text.game.title}
+                  <span>.</span>
+                </h2>
+              </div>
+              <NoteCard
+                icon="gamepad"
+                label={text.game.noteLabel}
+                tab={text.game.noteTab}
+              >
+                {text.game.aside}
+              </NoteCard>
+            </div>
+            <TokenMemory text={text.game} language={language} />
           </section>
 
           <section
