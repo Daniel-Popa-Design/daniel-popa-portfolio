@@ -1,7 +1,6 @@
 import { useEffect, useId, useRef, useState } from "react";
 import portrait from "./assets/daniel-popa-cutout.png";
 import siteLogo from "./assets/code-brackets-logo.svg";
-import bubbleTalk from "./assets/BubbleTalk.svg";
 import heroBadge from "./assets/Hero-Badge.svg";
 
 const countdownDomains = {
@@ -1165,9 +1164,7 @@ function PollModule({ text }) {
         </header>
 
         <div className="pollModule__question">
-          <span className="pollModule__question-mark" aria-hidden="true">
-            ?
-          </span>
+          <PollMark type="question" className="pollModule__question-mark" />
           <h5>{text.pollQuestion}</h5>
         </div>
 
@@ -1193,9 +1190,7 @@ function PollModule({ text }) {
 
         <footer className="pollModule__footer">
           <p className="pollModule__meta">
-            <span className="pollModule__info-mark" aria-hidden="true">
-              i
-            </span>
+            <PollMark type="exclamation" className="pollModule__info-mark" />
             <span>
               <strong>
                 {participants} {text.participants}
@@ -1223,14 +1218,7 @@ function PollModule({ text }) {
             >
               <span>{text.comment}</span>
               <span aria-hidden="true">·</span>
-              <svg aria-hidden="true" viewBox="0 0 40 36" fill="none">
-                <path
-                  d="M5 5.5C5 3.6 6.6 2 8.5 2h23C33.4 2 35 3.6 35 5.5v20c0 1.9-1.6 3.5-3.5 3.5H14l-9 6V5.5Z"
-                  stroke="currentColor"
-                  strokeLinejoin="round"
-                  strokeWidth="4"
-                />
-              </svg>
+              <PollMark type="comment" className="pollModule__comment-mark" />
               <span>87</span>
             </a>
           </div>
@@ -1343,12 +1331,13 @@ const noteIcons = {
   ),
   // Cursor clicking a button, with a sparkle — UX details
   cursor: (
-    <>
+    // Scaled 1.15× and re-centred: the drawing (x 5–45, y 5–36) sat small and high
+    <g transform="translate(24 24) scale(1.15) translate(-25 -20.6)">
       <rect className="is-teal" x="5" y="11" width="27" height="17" rx="5" />
       <path className="is-line" d="M10.5 19.5h9" />
       <path d="M24.5 21.5 39 27.4l-6.4 2.3-2.5 6.6Z" />
       <path className="is-gold" d="m40.5 5 1.3 3.5 3.5 1.3-3.5 1.3-1.3 3.5-1.3-3.5-3.5-1.3 3.5-1.3Z" />
-    </>
+    </g>
   ),
   // Toolbox with a gold latch — skill set
   toolbox: (
@@ -1468,22 +1457,14 @@ const STAR_PATH =
 // Badge primitives (styles: _badge.scss) — shared by note cards and About.
 // ---------------------------------------------------------------------------
 
-// Grey rounded hexagon; children are drawn in its 170×188 coordinate space.
+// Rounded hexagon in the offset-print style (as <NumberMark>): gold copy
+// shifted down-right, white face, ink outline. Children are drawn in its
+// 170×188 coordinate space. Shift size: --hex-shift (_badge.scss).
 function HexEmblem({ children }) {
-  const gradientId = `hex-${useId().replace(/:/g, "")}`;
   return (
     <svg className="hex-emblem" viewBox="-2 -2 173.78 192" aria-hidden="true">
-      <defs>
-        <linearGradient id={gradientId} x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#e8e8e8" />
-          <stop offset="1" stopColor="#c8c8c8" />
-        </linearGradient>
-      </defs>
-      <path
-        className="hex-emblem__shape"
-        d={HEX_PATH}
-        fill={`url(#${gradientId})`}
-      />
+      <path className="hex-emblem__tint" d={HEX_PATH} />
+      <path className="hex-emblem__shape" d={HEX_PATH} />
       {children}
     </svg>
   );
@@ -1521,6 +1502,127 @@ function BadgeCoin({ variant = "dots" }) {
           <i />
         </>
       )}
+    </span>
+  );
+}
+
+// Number in a mark, poll-mark style: gold copy offset down-right, white face,
+// thin ink outline. "bubble" points left (towards the text it belongs to,
+// tail vertically centred); "circle" is a plain disc.
+const NUMBER_MARK_SHAPES = {
+  bubble: {
+    viewBox: "0 0 28 24",
+    d: "M8.5 3h15A2.5 2.5 0 0 1 26 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 6 18.5v-4L1.6 12 6 9.5v-4A2.5 2.5 0 0 1 8.5 3Z",
+  },
+  circle: {
+    viewBox: "0 0 24 24",
+    d: "M12 2.6a9.4 9.4 0 1 1 0 18.8 9.4 9.4 0 0 1 0-18.8Z",
+  },
+};
+
+function NumberMark({ shape, className = "", hidden = false, children }) {
+  const { viewBox, d } = NUMBER_MARK_SHAPES[shape];
+  return (
+    <span
+      className={`number-mark number-mark--${shape} ${className}`}
+      aria-hidden={hidden || undefined}
+    >
+      <svg viewBox={viewBox} fill="none" aria-hidden="true">
+        <path className="number-mark__tint" d={d} transform="translate(1.6 1.4)" />
+        <path className="number-mark__face" d={d} />
+      </svg>
+      <span className="number-mark__text">{children}</span>
+    </span>
+  );
+}
+
+// Contact speech bubble — the BubbleTalk.svg outline traced in the poll-mark
+// style: tinted copy offset down-right, paper face with a thin outline.
+// The SVG stretches to the text box; non-scaling strokes keep the line thin.
+const BUBBLE_PATH =
+  "M83.96 156.59c49.25.34 64.02-.85 82.87-5.43 18.85-4.58 32.6-22.58 33.62-53.83 1.02-31.25-1.53-46.36-3.57-59.09C194.85 25.49 188.56-.83 101.45.02 19.28 0 0 16.14 0 67.45c.3 61.71 10.68 81 44.5 85.45 0 15.72.06 22.88.23 26.61s.25 4.67 1.53 5.43c1.13.58 2.72-.08 6.62-3.06 3.91-2.97 31.08-25.3 31.08-25.3Z";
+
+function ContactBubble() {
+  return (
+    <svg
+      className="contact__bubble-art"
+      viewBox="-2 -2 211 194"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <path className="contact__bubble-tint" d={BUBBLE_PATH} transform="translate(3.6 3.4)" />
+      <path className="contact__bubble-face" d={BUBBLE_PATH} vectorEffect="non-scaling-stroke" />
+    </svg>
+  );
+}
+
+// Poll marks (? and !) — offset-print look: a tinted fill shifted down-right,
+// a thin outline on top (same idea as the contact speech bubble). The glyph
+// sits inside a circle drawn the same way. The ? is a stroked curve, so its
+// outline is cut out with a mask (wide stroke minus narrow stroke).
+function PollMark({ type, className }) {
+  const maskId = useId();
+  const curve = "M8.4 8.3a3.7 3.7 0 1 1 6 2.9c-1.3 1-2.4 1.8-2.4 3.5v.5";
+  const bar =
+    "M9.4 2.4h5.2c.8 0 1.3.6 1.2 1.4l-1.7 10.4c-.1.6-.5.9-1.1.9h-2c-.6 0-1-.3-1.1-.9L8.2 3.8c-.1-.8.4-1.4 1.2-1.4Z";
+
+  if (type === "comment") {
+    const bubble =
+      "M5 3.8h14a2.5 2.5 0 0 1 2.5 2.5v9.2a2.5 2.5 0 0 1-2.5 2.5h-8.3l-5.2 3.6v-3.6H5a2.5 2.5 0 0 1-2.5-2.5V6.3A2.5 2.5 0 0 1 5 3.8Z";
+    return (
+      <span className={className} aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path className="poll-mark__fill" d={bubble} transform="translate(1.1 1)" />
+          <path className="poll-mark__outline poll-mark__disc" d={bubble} />
+          <g className="poll-mark__dots">
+            <circle cx="8" cy="10.9" r="1.15" />
+            <circle cx="12" cy="10.9" r="1.15" />
+            <circle cx="16" cy="10.9" r="1.15" />
+          </g>
+        </svg>
+      </span>
+    );
+  }
+
+  return (
+    <span className={className} aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        {/* Circle */}
+        <circle className="poll-mark__fill" cx="12.9" cy="12.8" r="10.4" />
+        <circle className="poll-mark__outline poll-mark__disc" cx="12" cy="12" r="10.4" />
+
+        {/* Glyph, scaled into the circle */}
+        <g
+          className="poll-mark__glyph"
+          transform="translate(12 12.2) scale(.56) translate(-12 -12.6)"
+        >
+          {type === "question" ? (
+            <>
+              <defs>
+                <mask id={maskId} maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                  <path d={curve} stroke="#fff" strokeWidth="4.6" strokeLinecap="round" />
+                  <path d={curve} stroke="#000" strokeWidth="2.2" strokeLinecap="round" />
+                </mask>
+              </defs>
+              <g className="poll-mark__fill" transform="translate(1.4 1.2)">
+                <path d={curve} strokeWidth="4.6" strokeLinecap="round" />
+                <circle cx="12" cy="19.6" r="2.2" />
+              </g>
+              <rect className="poll-mark__outline-fill" width="24" height="24" mask={`url(#${maskId})`} />
+              <circle className="poll-mark__outline" cx="12" cy="19.6" r="2.2" />
+            </>
+          ) : (
+            <>
+              <g className="poll-mark__fill" transform="translate(1.4 1.2)">
+                <path d={bar} />
+                <circle cx="12" cy="19.6" r="2.2" />
+              </g>
+              <path className="poll-mark__outline" d={bar} />
+              <circle className="poll-mark__outline" cx="12" cy="19.6" r="2.2" />
+            </>
+          )}
+        </g>
+      </svg>
     </span>
   );
 }
@@ -1784,6 +1886,7 @@ function App() {
           >
             <div className="hero__copy">
               <p className="hero__greeting">
+                <span className="hero__greeting-tint" aria-hidden="true" />
                 <span className="hero__greeting-text">
                   {text.hero.greeting}
                 </span>
@@ -2231,7 +2334,9 @@ function App() {
                   className="quality-card badge-card"
                   aria-labelledby="quality-cls-title"
                 >
-                  <span className="quality-card__number">01</span>
+                  <NumberMark shape="circle" className="quality-card__number" hidden>
+                    01
+                  </NumberMark>
                   <div className="quality-card__copy">
                     <h4 id="quality-cls-title">
                       {text.quality.cards[0].title}
@@ -2250,7 +2355,9 @@ function App() {
                   className="quality-card badge-card"
                   aria-labelledby="quality-keyboard-title"
                 >
-                  <span className="quality-card__number">02</span>
+                  <NumberMark shape="circle" className="quality-card__number" hidden>
+                    02
+                  </NumberMark>
                   <div className="quality-card__copy">
                     <h4 id="quality-keyboard-title">
                       {text.quality.cards[1].title}
@@ -2269,7 +2376,9 @@ function App() {
                   className="quality-card badge-card"
                   aria-labelledby="quality-controls-title"
                 >
-                  <span className="quality-card__number">03</span>
+                  <NumberMark shape="circle" className="quality-card__number" hidden>
+                    03
+                  </NumberMark>
                   <div className="quality-card__copy">
                     <h4 id="quality-controls-title">
                       {text.quality.cards[2].title}
@@ -2321,7 +2430,9 @@ function App() {
                   className="quality-card badge-card"
                   aria-labelledby="quality-motion-title"
                 >
-                  <span className="quality-card__number">04</span>
+                  <NumberMark shape="circle" className="quality-card__number" hidden>
+                    04
+                  </NumberMark>
                   <div className="quality-card__copy">
                     <h4 id="quality-motion-title">
                       {text.quality.cards[3].title}
@@ -2555,9 +2666,9 @@ function App() {
                     <div className="expertise-card__content">
                       <div className="expertise-card__heading">
                         <h3>{group.title}</h3>
-                        <span className="badge-tag badge-tag--ghost expertise-card__count">
+                        <NumberMark shape="bubble" className="expertise-card__count">
                           {String(group.skills.length).padStart(2, "0")}
-                        </span>
+                        </NumberMark>
                       </div>
                       <p>{group.description}</p>
                     </div>
@@ -2578,9 +2689,9 @@ function App() {
                         );
                       })}
                     </ul>
-                    <span className="expertise-card__index" aria-hidden="true">
+                    <NumberMark shape="circle" className="expertise-card__index" hidden>
                       {String(index + 1).padStart(2, "0")}
-                    </span>
+                    </NumberMark>
                   </article>
                 ))}
               </div>
@@ -2609,18 +2720,7 @@ function App() {
                   </h2>
                 </div>
                 <p className="contact__description">
-                  <img
-                    className="contact__bubble-art contact__bubble-art--shadow"
-                    src={bubbleTalk}
-                    alt=""
-                    aria-hidden="true"
-                  />
-                  <img
-                    className="contact__bubble-art contact__bubble-art--face"
-                    src={bubbleTalk}
-                    alt=""
-                    aria-hidden="true"
-                  />
+                  <ContactBubble />
                   <span className="contact__description-text">
                     {text.contact.description}
                   </span>

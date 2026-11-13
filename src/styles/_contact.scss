@@ -58,24 +58,25 @@
     line-height: 0.98;
 
     span {
-      color: #b8a13e;
+      color: var(--accent-text);
     }
   }
 }
 
-// Speech bubble — shape from BubbleTalk.svg, drawn twice (offset shadow + face)
+// Speech bubble — BubbleTalk.svg outline in the poll-mark style (<ContactBubble>):
+// gold copy offset ≈3px down-right, paper face, thin ink outline
 .portfolio-shell .contact__description {
   position: relative;
   width: min(100%, 180px);
   justify-self: end;
   grid-area: description;
   margin: 0;
-  padding: 22px 20px 40px;
-  color: #fffefa;
+  padding: 15px 20px 40px;
+  color: var(--badge-ink);
   font-size: 13px;
   font-style: italic;
   font-synthesis: style;
-  font-weight: 300;
+  font-weight: 600;
   line-height: 1.55;
   text-align: center;
 }
@@ -89,14 +90,19 @@
   pointer-events: none;
 }
 
-.contact__bubble-art--shadow {
-  filter: brightness(0) invert(0.62);
-  transform: translate(3px, 3px);
+.contact__bubble-art {
+  overflow: visible;
 }
 
-.contact__bubble-art--face {
-  z-index: 1;
-  filter: brightness(0) invert(0.2); // ≈ --badge-ink
+.contact__bubble-tint {
+  fill: color-mix(in srgb, var(--badge-gold) 70%, #fff); // same gold offset as hexagons + number marks
+}
+
+.contact__bubble-face {
+  fill: var(--surface);
+  stroke: var(--badge-ink);
+  stroke-width: 1.2px;
+  stroke-linejoin: round;
 }
 
 .contact__description-text {
@@ -279,7 +285,7 @@ a.contact-channel:hover .contact-channel__value,
   .portfolio-shell .contact__description {
     justify-self: start;
     min-height: 150px;
-    padding: 32px 20px 42px;
+    padding: 21px 20px 42px;
   }
 
   .contact__channels {

@@ -21,6 +21,9 @@
   --lemon: #f3d95d;
   --lemon-pale: #f7edb9;
   --accent-warm: #e87955;
+  // Gold for text (highlighted heading words, heading dots, "+") — darker
+  // than --badge-gold so it reaches 4.68:1 on white (WCAG AA)
+  --accent-text: #8f7000;
 
   // Badge style (hero experience badge + note cards)
   --badge-teal: #27a589;

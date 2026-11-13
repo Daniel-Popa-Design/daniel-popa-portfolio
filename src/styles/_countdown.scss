@@ -1314,3 +1314,121 @@ transform: perspective(400px) rotateX(0);
 .countdown-case-study__swatch--accent-dark {
   background: #020202;
 }
+
+// ---------------------------------------------------------------------------
+// Poll-style skin — same visual language as the poll module (_poll.scss):
+// flat 4px corners, thin outlines, paper faces and the offset-print tint
+// (a copy of the shape shifted down-right, see <PollMark>). Only colours,
+// borders, corners, shadows and type change; every element keeps its
+// position and size. Token logic is unchanged: digit tiles use --Cc25
+// (#285b78 / #70486d light, #020202 dark), the title uses --modTtl.
+// ---------------------------------------------------------------------------
+
+#main #work .CountdownModule {
+  --cd-line: var(--module-accent); // outlines + offset tint
+  --cd-paper: #fff; // faces of tags, badge, secondary surfaces
+  --cd-tint: color-mix(in srgb, var(--cd-line) 30%, transparent);
+  --cd-tile: var(--module-accent); // --Cc25 light
+  --cd-action: var(--module-accent);
+  border-color: #deddd7;
+  border-radius: 10px;
+}
+
+#main #work .CountdownModule[data-theme="dark"] {
+  --cd-line: #e4e3dc;
+  --cd-paper: #262624;
+  --cd-tile: #020202; // --Cc25 dark
+  --cd-action: var(--module-accent);
+  border-color: #454540;
+}
+
+// "SHADOWSTONE:" — paper tag with outline + offset tint
+#main #work .CountdownModule .countdownTitleGame {
+  border: 1px solid var(--cd-line);
+  border-radius: 4px;
+  color: var(--cd-line) !important;
+  background: var(--cd-paper);
+  box-shadow: 2px 2px 0 var(--cd-tint);
+  animation: none;
+}
+
+// Digit tiles — flat --Cc25 face, thin outline, offset tint; no flip hinge
+#main #work .CountdownModule .countdownValue {
+  border: 1px solid var(--cd-line);
+  border-radius: 4px;
+  color: #fff;
+  background: var(--cd-tile);
+  box-shadow: 3px 3px 0 var(--cd-tint);
+}
+
+#main #work .CountdownModule .countdownValue::before,
+#main #work .CountdownModule .countdownValue::after,
+#main #work .CountdownModule .countdownBadge::before,
+#main #work .CountdownModule .countdownBadge::after {
+  display: none;
+}
+
+// Unit labels — like the poll meta line
+#main #work .CountdownModule .countdownLabel {
+  color: #6d6c65;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+#main #work .CountdownModule[data-theme="dark"] .countdownLabel {
+  color: #c8c7c0;
+}
+
+// Release badge — offset-print disc: paper face, outline, tint crescent
+#main #work .CountdownModule .countdownBadge {
+  border: 1px solid var(--cd-line);
+  color: var(--cd-line) !important;
+  background: var(--cd-paper);
+  box-shadow: 4px 4px 0 var(--cd-tint);
+}
+
+#main #work .CountdownModule .countdownBadge :is(.countdownBadgeLabel, .countdownBadgeDate, .countdownBadgeYear) {
+  color: var(--cd-line) !important;
+}
+
+// CTA — the poll's filled action button: 4px corners, sentence case
+#main #work .CountdownModule .countdownButton {
+  border: 1px solid var(--cd-action);
+  border-radius: 4px;
+  color: #fff !important;
+  background: var(--cd-action);
+  box-shadow: 3px 3px 0 color-mix(in srgb, var(--cd-action) 30%, transparent);
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+#main #work .CountdownModule .countdownButton .countdownArrow {
+  color: inherit !important;
+}
+
+#main #work .CountdownModule .countdownButton:hover {
+  border-color: color-mix(in srgb, var(--cd-action) 85%, #000);
+  color: #fff !important;
+  background: color-mix(in srgb, var(--cd-action) 85%, #000);
+}
+
+// Dark: soft brand action with dark text (as the poll's dark accents)
+#main #work .CountdownModule[data-theme="dark"] .countdownButton,
+#main #work .CountdownModule[data-theme="dark"] .countdownButton .countdownArrow {
+  color: #000 !important;
+}
+
+#main #work .CountdownModule[data-theme="dark"] .countdownButton:hover {
+  border-color: color-mix(in srgb, var(--cd-action) 82%, #fff);
+  background: color-mix(in srgb, var(--cd-action) 82%, #fff);
+}
+
+#main #work .CountdownModule .countdownButton:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--cd-action) 35%, transparent);
+  outline-offset: 2px;
+}
+
+// "Der Release-Countdown" — semi-bold title (colour stays --modTtl)
+#main #work .CountdownModule .countdownReleaseTitle {
+  font-weight: 600;
+}

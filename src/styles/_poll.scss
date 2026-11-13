@@ -741,3 +741,100 @@
     transition: none;
   }
 }
+
+// ---------------------------------------------------------------------------
+// Poll marks (? and !) — offset-print look, see <PollMark> in App.jsx.
+// Tinted fill shifted down-right + thin outline, both in the portal action
+// colour, so they follow Northstar/Afterglow and light/dark automatically.
+// (Overrides the earlier text-glyph circle styles above.)
+// ---------------------------------------------------------------------------
+
+#main .pollModuleShell :is(.pollModule__question-mark, .pollModule__info-mark, .pollModule__comment-mark) {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  place-items: center;
+  border: 0;
+  color: var(--poll-action);
+  background: none;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .poll-mark__fill {
+    fill: color-mix(in srgb, currentColor 30%, transparent);
+  }
+
+  // The ? body is a stroked curve, not a filled shape
+  .poll-mark__fill path[stroke-width] {
+    fill: none;
+    stroke: color-mix(in srgb, currentColor 30%, transparent);
+  }
+
+  .poll-mark__outline {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 0.8;
+    stroke-linejoin: round;
+  }
+
+  .poll-mark__outline-fill {
+    fill: currentColor;
+  }
+
+  // Circle face is paper-coloured, so its tint only shows as the offset
+  // crescent and the glyph sits on a clean background
+  .poll-mark__disc {
+    fill: var(--poll-mark-paper, #fff);
+  }
+
+  // Glyph is drawn at 0.56 scale inside the circle: thicker outline so it
+  // renders as thin as the circle's, stronger tint so it reads on the circle tint
+  .poll-mark__glyph .poll-mark__outline {
+    stroke-width: 1.4;
+  }
+
+  .poll-mark__glyph .poll-mark__fill {
+    fill: color-mix(in srgb, currentColor 45%, transparent);
+  }
+
+  .poll-mark__glyph .poll-mark__fill path[stroke-width] {
+    stroke: color-mix(in srgb, currentColor 45%, transparent);
+  }
+
+  // Comment bubble: three solid dots
+  .poll-mark__dots {
+    fill: currentColor;
+  }
+}
+
+#main .pollModuleShell .pollModule__info-mark {
+  width: 30px;
+  height: 30px;
+  flex-basis: 30px;
+}
+
+// Comment button: icon sized to the button text
+#main .pollModuleShell .pollModule__comment .pollModule__comment-mark {
+  width: 26px;
+  height: 26px;
+  flex-basis: 26px;
+  padding: 0;
+  background: none;
+}
+
+#main .pollModuleShell[data-theme="dark"] :is(.pollModule__question-mark, .pollModule__info-mark, .pollModule__comment-mark) {
+  --poll-mark-paper: #262624;
+  color: #e4e3dc;
+}
+
+// The older `.pollModule__comment svg` rules (19 × 18px) must not shrink the mark
+#main .pollModuleShell .pollModule__comment .pollModule__comment-mark svg,
+#main .pollModuleShell[data-theme="dark"] .pollModule__comment .pollModule__comment-mark svg {
+  width: 100%;
+  height: 100%;
+}

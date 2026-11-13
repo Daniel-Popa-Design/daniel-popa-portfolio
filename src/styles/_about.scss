@@ -75,7 +75,7 @@
 
   sup {
     margin-left: 1px;
-    color: #b69e33;
+    color: var(--accent-text);
     font-size: 0.5em;
     vertical-align: top;
   }
@@ -118,7 +118,7 @@
     line-height: 1;
 
     span {
-      color: #b8a13e;
+      color: var(--accent-text);
       font-family: var(--serif);
       font-weight: 400;
     }
@@ -171,7 +171,7 @@
     letter-spacing: -0.05em;
 
     span {
-      color: #b8a13e;
+      color: var(--accent-text);
     }
   }
 }

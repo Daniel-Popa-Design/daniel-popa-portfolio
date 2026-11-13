@@ -43,12 +43,14 @@
   padding: 0;
 }
 
-// Greeting — speech bubble in the hero-badge style (Hero-Badge.svg):
-// light-grey gradient + ink outline, white Barlow italic with an ink outline,
-// and a waving-hand coin pinned to the top-right corner.
+// Greeting — speech bubble in the offset-print style (as the hexagons and
+// <NumberMark>): white face + ink outline, a gold copy of the bubble shifted
+// down-right (.hero__greeting-tint), white Barlow italic with an ink
+// outline, and a waving-hand coin pinned to the top-right corner.
 .hero__greeting {
-  --bubble-top: #f7f7f7;
-  --bubble-bottom: #e6e6e6;
+  --bubble-top: #fff;
+  --bubble-bottom: #fff;
+  --bubble-tint: color-mix(in srgb, var(--badge-gold) 70%, #fff);
   position: relative;
   display: inline-flex;
   min-height: 44px;
@@ -74,6 +76,30 @@
     background: var(--bubble-bottom);
     content: "";
     transform: rotate(45deg);
+  }
+
+  // Gold copy of the bubble (body + tail), 3px down-right, behind the face
+  .hero__greeting-tint {
+    position: absolute;
+    z-index: -1;
+    inset: -1.25px;
+    border-radius: 15px;
+    background: var(--bubble-tint);
+    transform: translate(3px, 3px);
+    pointer-events: none;
+
+    &::before {
+      position: absolute;
+      bottom: -8px;
+      left: 23px;
+      display: block;
+      width: 13px;
+      height: 13px;
+      border-radius: 0 0 4px;
+      background: var(--bubble-tint);
+      content: "";
+      transform: rotate(45deg);
+    }
   }
 
   // Waving-hand coin pinned to the top-right corner (see .badge-coin)
@@ -383,6 +409,8 @@
     // Single column: the row gap sits between the CTAs and the portrait and
     // leaves room for the head that rises above the circle.
     gap: calc(var(--head-rise) + var(--head-clearance));
+    // Tighter vertical padding inside the frame on mobile
+    padding-block: 20px;
     border-radius: 16px;
     background:
       linear-gradient(180deg, var(--surface) 0%, var(--surface) 45%, transparent 75%),

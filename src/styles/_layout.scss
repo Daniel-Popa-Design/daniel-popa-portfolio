@@ -44,6 +44,24 @@
   content: "";
 }
 
+// Mobile: section cards span the same width as the hero frame (shell minus
+// --frame-inset); headings outside the cards keep the --space-inline edge, so
+// their text still lines up with the hero text.
+@media (max-width: 700px) {
+  .section-space {
+    padding-inline: var(--frame-inset);
+  }
+
+  .section-space + .section-space::before {
+    right: var(--frame-inset);
+    left: var(--frame-inset);
+  }
+
+  // Only the eyebrow + title wrapper; the note card below spans full width
+  .section-space > .section-heading > div:first-child {
+    padding-inline: calc(var(--space-inline) - var(--frame-inset));
+  }
+}
 
 // ---------------------------------------------------------------------------
 // Headings — one pattern for section headings (h2) and case-study headings (h3):
@@ -82,7 +100,7 @@
   line-height: 1;
 
   span {
-    color: #c6ad3e;
+    color: var(--accent-text);
   }
 }
 

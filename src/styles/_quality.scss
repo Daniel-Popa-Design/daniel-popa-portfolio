@@ -801,16 +801,17 @@ transform: rotate(360deg);
 // before/after panels are open columns with a fine divider.
 // ---------------------------------------------------------------------------
 
+// Card number — <NumberMark shape="circle">, same as the expertise index
 .portfolio-shell .quality-card__number {
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   padding: 0;
+  border: 0;
+  border-radius: 0;
   color: var(--badge-ink);
-  background: var(--badge-gold);
-  border: 1px solid var(--badge-ink);
-  border-radius: 50%;
+  background: none;
   font-size: 11px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
 }
 
 .quality-compare,
