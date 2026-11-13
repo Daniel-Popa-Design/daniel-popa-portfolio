@@ -19,9 +19,9 @@ const countdownDomains = {
 
 const copy = {
   de: {
-    documentTitle: "Daniel Popa — Webdesigner & Frontend-Entwickler",
+    documentTitle: "Daniel Popa — Senior Webdesigner & Frontend-Entwickler",
     metaDescription:
-      "Daniel Popa ist Webdesigner und Frontend-Entwickler mit über 10 Jahren Erfahrung in UI/UX, WordPress, Barrierefreiheit und Webentwicklung.",
+      "Daniel Popa ist Senior Webdesigner und Frontend-Entwickler aus Nürnberg mit über 10 Jahren Erfahrung in UI/UX, CSS/SCSS, WordPress, Webperformance und Barrierefreiheit.",
     socialDescription:
       "Durchdachtes Design, das funktioniert. Entdecke die Arbeit und Erfahrung von Daniel Popa.",
     language: "Sprache auswählen",
@@ -49,17 +49,17 @@ const copy = {
     },
     hero: {
       greeting: "Hallo, ich bin",
-      role: ["Webdesigner &", "Frontend-Entwickler"],
+      role: ["Senior Webdesigner &", "Frontend-Entwickler"],
       intro:
         "Mit über 10 Jahren Erfahrung verwandle ich komplexe Ideen in klare, durchdachte digitale Erlebnisse.",
       work: "Meine Arbeiten ansehen",
       downloadCv: "Lebenslauf herunterladen",
       about: "Über mich",
-      art: "Porträt von Daniel Popa. Ich lebe in Nürnberg, Deutschland und bin weltweit verfügbar.",
+      art: "Porträt von Daniel Popa. Ich lebe in Nürnberg, Deutschland, und arbeite remote oder hybrid im Raum Nürnberg/Fürth.",
       location: "Standort",
       country: "Nürnberg, Deutschland",
       available: "VERFÜGBAR",
-      worldwide: "Weltweit",
+      worldwide: "Remote · Hybrid",
     },
     heroBadge: {
       exp1: "Jahre Erfahrung",
@@ -69,7 +69,7 @@ const copy = {
       eyebrow: "Ausgewählte Verbesserungen",
       title: "Was hinter der Oberfläche steckt",
       aside:
-        "Wie eine flexible Farbpalette und klare semantische Rollen gemeinsame Komponenten in einem Multi-Brand-Publishing-System unterstützen.",
+        "Wie eine flexible Farbpalette und klare semantische Rollen gemeinsame Komponenten in einem Multi-Brand-Publishing-System unterstützen. Portal- und Inhaltsnamen sind fiktiv – Struktur, Tokens und Farblogik stammen aus dem echten System.",
       noteLabel: "Kontext",
       noteTab: "3 Fallstudien",
       tokenIndex: "01 / DESIGN-SYSTEM",
@@ -152,7 +152,7 @@ const copy = {
       index: "03 / UX & FRONTEND IN DER PRAXIS",
       title: "Kleine Details, bessere Erlebnisse.",
       description:
-        "Vier kurze Beispiele zeigen, wie ich Layout-Verschiebungen reduziere, Tastaturbedienung verbessere, Touch-Ziele vergrößere und unnötige Bewegung vermeide. Konzeptbeispiele, keine gemessenen Projektergebnisse.",
+        "Vier Muster aus meiner täglichen Arbeit an Core Web Vitals und Barrierefreiheit nach WCAG 2.2: Layout-Verschiebungen reduzieren, Tastaturbedienung verbessern, Touch-Ziele vergrößern und unnötige Bewegung vermeiden. Die Demos sind nachgebaute Konzeptbeispiele, keine gemessenen Projektergebnisse.",
       noteLabel: "Praxis",
       noteTab: "4 Beispiele",
       beforeState: "Vorher · Werbefläche nicht reserviert",
@@ -164,19 +164,18 @@ const copy = {
             "Der Vergleich zeigt: Wird Werbung nachträglich eingefügt, rutscht der Artikel weiter. Reservierter Platz hält ihn stabil.",
           metric:
             "CLS-Ziel: ≤ 0,1 am 75. Perzentil; für dieses Konzept nicht gemessen.",
-          source: "web.dev: CLS-Leitfaden",
         },
         {
           title: "Tastaturfokus sichtbar machen",
           description:
             "Der Vergleich zeigt einen schwer erkennbaren Fokus neben einem klaren Fokuszustand und einem Direktlink zum Artikel.",
-          source: "WCAG: Fokus sichtbar",
+          criterion: "WCAG 2.4.7 · Fokus sichtbar · AA",
         },
         {
           title: "Touch-Ziele leichter treffen",
           description:
             "Der Vergleich zeigt ein kleines, unbeschriftetes Ziel neben einem deutlich beschrifteten, größeren Bedienelement.",
-          source: "WCAG: Mindestgröße von Zielen",
+          criterion: "WCAG 2.5.8 · Mindestgröße von Zielen · AA",
         },
         {
           title: "Status ohne Bewegung klar anzeigen",
@@ -198,9 +197,6 @@ const copy = {
       motionNote: "Gleiche Statusmeldung – nur die Animation ändert sich.",
       reducedMotionCode:
         "Diese Medienabfrage deaktiviert Animationen für Personen, die reduzierte Bewegung bevorzugen:",
-      clsGuidance: "web.dev: CLS-Leitfaden",
-      focusGuidance: "WCAG: Fokus sichtbar",
-      sizeGuidance: "WCAG: Mindestgröße von Zielen",
     },
     demo: {
       layoutLabel: "Beispiel für Layout-Verschiebungen",
@@ -246,9 +242,9 @@ const copy = {
       meterCurrent: "heute",
       meterAria: "Mehr als zehn Jahre Erfahrung im Web, seit 2011.",
       title: ["Design im Kopf.", "Entwicklung im Fokus."],
-      lead: "Aus meiner Basis in Grafik- und Mediendesign ist ein Arbeitsstil gewachsen, der Gestaltung und Frontend verbindet – von der ersten Idee bis zum fertigen Web-Erlebnis.",
+      lead: "Aus meiner Basis in Grafik- und Mediengestaltung seit 2008 ist ein Arbeitsstil gewachsen, der Gestaltung und Frontend verbindet – von der ersten Idee bis zum fertigen Web-Erlebnis.",
       first:
-        "Seit 2014 gestalte und entwickle ich bei Computec Media responsive Websites, Landingpages und WordPress-Frontends. Gemeinsam mit Design, Marketing und Entwicklung begleite ich Projekte von Wireframes und Prototypen bis zu Umsetzung, Testing und Optimierung.",
+        "Seit 2014 bin ich bei Computec Media – zunächst als Trainee, seit 2016 als UI/UX Designer & Frontend Developer. Ich gestalte und entwickle responsive Websites, Landingpages und WordPress-Frontends für verschiedene Medienmarken und begleite Projekte gemeinsam mit Backend, Marketing und weiteren Teams von UI-Konzepten, Wireframes und Prototypen bis zu Umsetzung, Testing und Optimierung.",
       second:
         "Mein Fokus: UI/UX, Webperformance, Core Web Vitals und Barrierefreiheit nach WCAG 2.2. ChatGPT und Claude nutze ich für Ideen, UI-Konzepte und als Unterstützung bei PHP-Templates, React-Komponenten und bestehenden Projekten. Konzept, Entscheidungen und Qualität verantworte ich selbst.",
     },
@@ -267,14 +263,20 @@ const copy = {
           title: "UI/UX-Design",
           description:
             "Nutzerorientierte Interfaces – von der ersten Idee bis zum getesteten Prototyp.",
-          skills: ["Nutzerflüsse", "Wireframes", "Prototyping"],
+          skills: ["UI-Konzepte", "Wireframes", "Prototyping", "Mobile First"],
         },
         {
           icon: "systems",
           title: "Visuelles Design & Designsysteme",
           description:
             "Klare Gestaltung und konsistente Komponenten für digitale Markenauftritte.",
-          skills: ["Visuelles Design", "Designsysteme", "UI/UX-Design"],
+          skills: [
+            "Designsysteme",
+            "Figma",
+            "Photoshop",
+            "Illustrator",
+            "Logos & Corporate Design",
+          ],
         },
         {
           icon: "development",
@@ -284,9 +286,14 @@ const copy = {
           skills: [
             "HTML5",
             "CSS / SCSS",
-            "JavaScript",
+            { name: "JavaScript", level: "Grundkenntnisse" },
+            { name: "React", level: "erste Praxiserfahrung" },
             "WordPress",
+            { name: "PHP-Templates", level: "praktische Erfahrung" },
+            "HTML-E-Mail-Entwicklung",
+            "Responsive E-Mail-Templates",
             "CSS Grid / Flexbox",
+            "Git / Vite",
           ],
         },
         {
@@ -311,38 +318,61 @@ const copy = {
       careerStrip: {
         labels: [
           "Computec Media · UI/UX · Frontend · WordPress",
-          "Ausbildung",
+          "Trainee",
           "World of Cruise",
+          "Grafik & Print",
         ],
-        values: ["2016 — heute", "2014 — 2016", "2011 — 2014"],
+        values: ["2016 — heute", "2014 — 2016", "2011 — 2014", "2008 — 2011"],
       },
+      // Descriptions follow the CV (public/Lebenslauf_Daniel_Popa.pdf) — keep both in sync
       entries: [
         {
-          date: "2016 — heute",
+          date: "Juli 2016 — heute",
           // career-strip segment this entry belongs to (shared pill colour)
           segment: 1,
           role: "UI/UX Designer & Frontend Developer",
           company: "Computec Media GmbH · Fürth, Deutschland",
           description:
-            "Konzeption und Umsetzung responsiver Websites, Landingpages und digitaler Anwendungen für unterschiedliche Marken und Zielgruppen. Entwicklung und Weiterentwicklung individueller WordPress-Themes und Frontends mit HTML5, CSS3/SCSS und JavaScript. Optimierung von Performance, Core Web Vitals, Accessibility (WCAG 2.2), SEO und technischer Qualität. Entwicklung von Wireframes, User Flows und Prototypen sowie enge Zusammenarbeit mit Marketing, Backend und Stakeholdern. Qualitätssicherung durch Testing, Debugging und kontinuierliche Optimierung bestehender Weblösungen.",
+            "Konzeption, Neugestaltung und kontinuierliche Optimierung responsiver Websites und digitaler Anwendungen für verschiedene Medienmarken. Entwicklung eines zentralen CSS-Farbsystems mit semantischen und wiederverwendbaren Variablen für konsistente UI-Gestaltung im Light- und Dark-Mode (siehe Fallstudie 01). Entwicklung und Pflege von Frontend-Komponenten, WordPress-Themes und PHP-Templates mit HTML, CSS/SCSS und JavaScript. Optimierung von Webperformance, Core Web Vitals, Accessibility und SEO. Erstellung von UI-Konzepten, Wireframes und Prototypen in Zusammenarbeit mit Backend, Marketing und weiteren Teams sowie gezielter Einsatz von KI-Tools.",
         },
         {
-          date: "2014 — 2016",
+          date: "Juni 2014 — Juli 2016",
           // career-strip segment this entry belongs to (shared pill colour)
           segment: 2,
-          role: "Ausbildung: UI/UX Design & Frontend Development",
+          role: "Trainee UI/UX Design & Frontend Development",
           company: "Computec Media GmbH · Fürth, Deutschland",
           description:
-            "Mitarbeit bei Konzeption, Design und Umsetzung moderner Websites und Landingpages sowie Erstellung von Wireframes, Mockups und Prototypen. Entwicklung und Pflege von WordPress-Themes, Frontend-Komponenten und HTML-E-Mail-Templates in enger Zusammenarbeit mit Design-, Marketing- und Entwicklungsteams. Durchführung von Tests, Fehleranalyse sowie Optimierung von Performance, Benutzerfreundlichkeit und Codequalität unter Anwendung aktueller Webstandards und UI/UX-Prinzipien.",
+            "Mitarbeit bei Konzeption, Design und Entwicklung von Websites, Landingpages und UI-Prototypen. Entwicklung von WordPress-Themes und Frontend-Komponenten sowie Testing und Performance-Optimierung.",
         },
         {
-          date: "2011 — 2014",
+          date: "Oktober 2011 — Juli 2014",
           // career-strip segment this entry belongs to (shared pill colour)
           segment: 3,
-          role: "Mediengestalter · Freiberuflich",
-          company: "World of Cruise S.R.L. · Hermannstadt, Rumänien",
+          role: "Mediengestalter · Freelancer",
+          company: "World of Cruise SRL · Hermannstadt, Rumänien",
           description:
-            "Konzeption und Gestaltung moderner Websites sowie Umsetzung von Frontends mit HTML, CSS, JavaScript und jQuery. Entwicklung digitaler und gedruckter Kommunikationsmittel, einschließlich Landingpages, Werbemittel, Logos und Corporate-Design-Materialien, sowie Beratung von Kunden zur visuellen Markenkommunikation.",
+            "Gestaltung und Entwicklung von Websites und Frontends mit HTML, CSS, JavaScript und jQuery. Erstellung von Print- und Digitalmedien, Logos und Corporate Designs sowie Kundenberatung.",
+        },
+        {
+          date: "März 2008 — August 2011",
+          // career-strip segment this entry belongs to (shared pill colour)
+          segment: 4,
+          role: "Grafik- & Mediengestalter Digital & Print",
+          description:
+            "Gestaltung digitaler und gedruckter Medien, Logos und Corporate Designs sowie Entwicklung visueller Konzepte.",
+        },
+      ],
+      // Education and languages — one compact row below the timeline
+      facts: [
+        {
+          label: "Studium",
+          value:
+            "Fachhochschule für Informatik „Consoft-Computers“ · Hermannstadt · 2005 — 2008",
+        },
+        {
+          label: "Sprachen",
+          value:
+            "Deutsch & Englisch verhandlungssicher · Rumänisch Muttersprache",
         },
       ],
     },
@@ -359,19 +389,20 @@ const copy = {
       phoneLabel: "Telefon",
       phoneValue: "+49 152 556 546 20",
       locationLabel: "Standort",
-      locationValue: "Nürnberg, Deutschland",
+      locationValue: "Nürnberg · Remote oder hybrid",
       statusLabel: "Kontakt",
     },
     footer: {
-      description: "Mit Sorgfalt gestaltet in Nürnberg, Deutschland.",
+      description:
+        "Selbst gestaltet und entwickelt in Nürnberg – mit React, Vite und SCSS.",
       top: "Nach oben",
       home: "Daniel Popa, zurück nach oben",
     },
   },
   en: {
-    documentTitle: "Daniel Popa — Web Designer & Frontend Developer",
+    documentTitle: "Daniel Popa — Senior Web Designer & Frontend Developer",
     metaDescription:
-      "Daniel Popa is a Web Designer and Frontend Developer with 10+ years of experience in UI/UX, WordPress, accessibility and the web.",
+      "Daniel Popa is a Senior Web Designer and Frontend Developer based in Nuremberg with 10+ years of experience in UI/UX, CSS/SCSS, WordPress, web performance and accessibility.",
     socialDescription:
       "Thoughtful design, made to work. Explore the practice and experience of Daniel Popa.",
     language: "Choose language",
@@ -399,17 +430,17 @@ const copy = {
     },
     hero: {
       greeting: "Hello, I’m",
-      role: ["Web designer &", "Frontend developer"],
+      role: ["Senior web designer &", "Frontend developer"],
       intro:
         "With over 10 years of experience, I turn complex ideas into clear, thoughtful digital experiences.",
       work: "Explore my work",
       downloadCv: "Download my CV",
       about: "About me",
-      art: "Portrait of Daniel Popa. I live in Nuremberg, Germany, and am available worldwide.",
+      art: "Portrait of Daniel Popa. I live in Nuremberg, Germany, and work remotely or hybrid in the Nuremberg/Fürth area.",
       location: "Location",
       country: "Nuremberg, Germany",
       available: "AVAILABLE",
-      worldwide: "Worldwide",
+      worldwide: "Remote · Hybrid",
     },
     heroBadge: {
       exp1: "Years of Experience",
@@ -419,7 +450,7 @@ const copy = {
       eyebrow: "Selected engineering improvements",
       title: "Behind the interface",
       aside:
-        "How a flexible color palette and a few clear semantic roles support shared components across a multi-brand publishing system.",
+        "How a flexible color palette and a few clear semantic roles support shared components across a multi-brand publishing system. Portal and content names are fictional—the structure, tokens and color logic come from the real system.",
       noteLabel: "Context",
       noteTab: "3 case studies",
       tokenIndex: "01 / DESIGN SYSTEM",
@@ -501,7 +532,7 @@ const copy = {
       index: "03 / UX & FRONTEND IN PRACTICE",
       title: "Small details, better experiences.",
       description:
-        "Four quick examples show how I reduce layout shifts, improve keyboard access, make touch targets easier to hit, and avoid unnecessary motion. These are concept examples, not measured project results.",
+        "Four patterns from my day-to-day work on Core Web Vitals and WCAG 2.2 accessibility: reducing layout shifts, improving keyboard access, making touch targets easier to hit and avoiding unnecessary motion. The demos are rebuilt concept examples, not measured project results.",
       noteLabel: "In practice",
       noteTab: "4 examples",
       beforeState: "Before · ad space not reserved",
@@ -513,19 +544,18 @@ const copy = {
             "The comparison shows an article shifting when an ad appears late, then staying put when space is reserved.",
           metric:
             "CLS target: ≤ 0.1 at the 75th percentile; not measured for this concept.",
-          source: "web.dev CLS guidance",
         },
         {
           title: "Make keyboard focus clear",
           description:
             "The comparison shows hard-to-see focus next to a clear focus state and a skip link to the article.",
-          source: "WCAG Focus Visible",
+          criterion: "WCAG 2.4.7 · Focus Visible · AA",
         },
         {
           title: "Make touch targets easier to hit",
           description:
             "The comparison shows a tiny, unlabeled target next to a larger control with a clear label.",
-          source: "WCAG Target Size",
+          criterion: "WCAG 2.5.8 · Target Size (Minimum) · AA",
         },
         {
           title: "Keep status clear without motion",
@@ -547,9 +577,6 @@ const copy = {
       motionNote: "Same status message—the animation is the only difference.",
       reducedMotionCode:
         "This media query disables animation for visitors who prefer reduced motion:",
-      clsGuidance: "web.dev CLS guidance",
-      focusGuidance: "WCAG Focus Visible",
-      sizeGuidance: "WCAG Target Size",
     },
     demo: {
       layoutLabel: "Layout shift example",
@@ -591,9 +618,9 @@ const copy = {
       meterCurrent: "today",
       meterAria: "More than ten years of web experience, since 2011.",
       title: ["Design-minded.", "Build-focused."],
-      lead: "My foundation in graphic and media design shaped an approach that brings visual craft and frontend together, from the first idea to the finished web experience.",
+      lead: "My foundation in graphic and media design, going back to 2008, shaped an approach that brings visual craft and frontend together, from the first idea to the finished web experience.",
       first:
-        "Since 2014, I’ve designed and built responsive websites, landing pages and WordPress frontends at Computec Media. With design, marketing and development teams, I take projects from wireframes and prototypes through implementation, testing and refinement.",
+        "I’ve been at Computec Media since 2014—first as a trainee, and since 2016 as a UI/UX Designer & Frontend Developer. I design and build responsive websites, landing pages and WordPress frontends for a range of media brands, and work with backend, marketing and other teams to take projects from UI concepts, wireframes and prototypes through implementation, testing and refinement.",
       second:
         "My focus: UI/UX, web performance, Core Web Vitals and accessibility (WCAG 2.2). I use ChatGPT and Claude for ideation, UI concepts and support with PHP templates, React components and existing projects. I own the concepts, decisions and quality checks.",
     },
@@ -612,14 +639,20 @@ const copy = {
           title: "UI/UX Design",
           description:
             "User-focused interfaces, from the first idea through to a tested prototype.",
-          skills: ["User flows", "Wireframes", "Prototyping"],
+          skills: ["UI concepts", "Wireframes", "Prototyping", "Mobile first"],
         },
         {
           icon: "systems",
           title: "Visual Design & Systems",
           description:
             "Clear visual direction and consistent components for digital brands.",
-          skills: ["Visual design", "Design systems", "UI/UX design"],
+          skills: [
+            "Design systems",
+            "Figma",
+            "Photoshop",
+            "Illustrator",
+            "Logos & corporate design",
+          ],
         },
         {
           icon: "development",
@@ -629,9 +662,14 @@ const copy = {
           skills: [
             "HTML5",
             "CSS / SCSS",
-            "JavaScript",
+            { name: "JavaScript", level: "basic knowledge" },
+            { name: "React", level: "first hands-on experience" },
             "WordPress",
+            { name: "PHP templates", level: "hands-on experience" },
+            "HTML email development",
+            "Responsive email templates",
             "CSS Grid / Flexbox",
+            "Git / Vite",
           ],
         },
         {
@@ -656,38 +694,60 @@ const copy = {
       careerStrip: {
         labels: [
           "Computec Media · UI/UX · Frontend · WordPress",
-          "Traineeship",
+          "Trainee",
           "World of Cruise",
+          "Graphic & print",
         ],
-        values: ["2016 — Now", "2014 — 2016", "2011 — 2014"],
+        values: ["2016 — Now", "2014 — 2016", "2011 — 2014", "2008 — 2011"],
       },
+      // Descriptions follow the CV (public/Lebenslauf_Daniel_Popa.pdf) — keep both in sync
       entries: [
         {
-          date: "2016 — Now",
+          date: "July 2016 — Now",
           // career-strip segment this entry belongs to (shared pill colour)
           segment: 1,
           role: "UI/UX Designer & Frontend Developer",
           company: "Computec Media GmbH · Fürth, Germany",
           description:
-            "Concept and delivery of responsive websites, landing pages and digital applications for a range of brands and audiences. Building and evolving custom WordPress themes and frontends with HTML5, CSS3/SCSS and JavaScript. Optimizing performance, Core Web Vitals, accessibility (WCAG 2.2), SEO and technical quality. Creating wireframes, user flows and prototypes, working closely with marketing, backend and stakeholders. Quality assurance through testing, debugging and continuous improvement of existing web solutions.",
+            "Concept, redesign and continuous optimization of responsive websites and digital applications for a range of media brands. Built a central CSS color system with semantic and reusable variables for consistent UI in light and dark mode (see case study 01). Development and maintenance of frontend components, WordPress themes and PHP templates with HTML, CSS/SCSS and JavaScript. Optimization of web performance, Core Web Vitals, accessibility and SEO. UI concepts, wireframes and prototypes in collaboration with backend, marketing and other teams, with targeted use of AI tools.",
         },
         {
-          date: "2014 — 2016",
+          date: "June 2014 — July 2016",
           // career-strip segment this entry belongs to (shared pill colour)
           segment: 2,
-          role: "Trainee, UI/UX Design & Frontend Development",
+          role: "Trainee UI/UX Design & Frontend Development",
           company: "Computec Media GmbH · Fürth, Germany",
           description:
-            "Contributed to the concept, design and build of modern websites and landing pages, and created wireframes, mockups and prototypes. Developed and maintained WordPress themes, frontend components and HTML email templates in close collaboration with design, marketing and development teams. Ran tests and bug analysis, and improved performance, usability and code quality using current web standards and UI/UX principles.",
+            "Contributed to the concept, design and development of websites, landing pages and UI prototypes. Developed WordPress themes and frontend components, plus testing and performance optimization.",
         },
         {
-          date: "2011 — 2014",
+          date: "October 2011 — July 2014",
           // career-strip segment this entry belongs to (shared pill colour)
           segment: 3,
-          role: "Media Designer · Freelance",
-          company: "World of Cruise S.R.L. · Sibiu, Romania",
+          role: "Media Designer · Freelancer",
+          company: "World of Cruise SRL · Sibiu, Romania",
           description:
-            "Concept and design of modern websites, with frontends built in HTML, CSS, JavaScript and jQuery. Created digital and print communication, including landing pages, ad materials, logos and corporate design assets, and advised clients on visual brand communication.",
+            "Design and development of websites and frontends with HTML, CSS, JavaScript and jQuery. Print and digital media, logos and corporate designs, plus client consulting.",
+        },
+        {
+          date: "March 2008 — August 2011",
+          // career-strip segment this entry belongs to (shared pill colour)
+          segment: 4,
+          role: "Graphic & Media Designer, Digital & Print",
+          description:
+            "Design of digital and print media, logos and corporate designs, and development of visual concepts.",
+        },
+      ],
+      // Education and languages — one compact row below the timeline
+      facts: [
+        {
+          label: "Education",
+          value:
+            "College of Computer Science “Consoft-Computers” · Sibiu · 2005 — 2008",
+        },
+        {
+          label: "Languages",
+          value: "German & English (business fluent) · Romanian (native)",
         },
       ],
     },
@@ -703,11 +763,12 @@ const copy = {
       phoneLabel: "Mobile",
       phoneValue: "+49 152 556 546 20",
       locationLabel: "Location",
-      locationValue: "Nuremberg, Germany",
+      locationValue: "Nuremberg · Remote or hybrid",
       statusLabel: "Contact",
     },
     footer: {
-      description: "Thoughtfully designed in Nuremberg, Germany.",
+      description:
+        "Designed and built in Nuremberg, with React, Vite and SCSS.",
       top: "Back to top",
       home: "Daniel Popa, back to top",
     },
@@ -835,43 +896,103 @@ function LayoutShiftDemo({ text, language }) {
       ? text.loadedBefore
       : text.loadedAfter;
 
+  // Dummy ad — magazine promo in the badge palette (ink, gold, teal)
   const promo = (
     <svg
       aria-label={text.adImage}
       className="quality-mobile-demo__promo-art"
       role="img"
       viewBox="0 0 320 92"
+      preserveAspectRatio="xMidYMid slice"
     >
       <defs>
-        <linearGradient id="quality-promo-gradient" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stopColor="#292929" />
-          <stop offset="1" stopColor="#777771" />
+        <linearGradient id="quality-promo-bg" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stopColor="#232321" />
+          <stop offset="1" stopColor="#3a3a36" />
         </linearGradient>
       </defs>
-      <rect width="320" height="92" fill="url(#quality-promo-gradient)" />
-      <circle cx="266" cy="18" r="44" fill="#f3d95d" opacity=".8" />
-      <path d="M170 92 235 36l85 56Z" fill="#363633" opacity=".85" />
-      <path d="m224 92 42-39 54 39Z" fill="#a5a49b" opacity=".9" />
-      <text
-        x="16"
-        y="34"
-        fill="#fff"
-        fontFamily="Arial, sans-serif"
-        fontSize="11"
-        fontWeight="700"
-      >
+      <rect width="320" height="92" fill="url(#quality-promo-bg)" />
+      {/* soft glow + fine dot grid */}
+      <circle cx="262" cy="46" r="62" fill="#f3d95d" opacity=".12" />
+      <g fill="#fff" opacity=".08">
+        {Array.from({ length: 40 }, (_, i) => (
+          <circle key={i} cx={176 + (i % 10) * 14} cy={10 + Math.floor(i / 10) * 24} r="1" />
+        ))}
+      </g>
+      {/* stacked magazine covers */}
+      <g transform="rotate(-8 252 50)">
+        <rect x="222" y="16" width="52" height="68" rx="3" fill="#2c9c84" />
+        <rect x="228" y="23" width="28" height="4" rx="2" fill="#fff" opacity=".85" />
+        <circle cx="250" cy="56" r="13" fill="#f3d95d" />
+      </g>
+      <g transform="rotate(6 280 50)">
+        <rect x="250" y="12" width="56" height="72" rx="3" fill="#f6f4ec" />
+        <rect x="256" y="19" width="30" height="4" rx="2" fill="#232321" />
+        <rect x="256" y="27" width="20" height="3" rx="1.5" fill="#99978d" />
+        <path d="M256 78 275 50l12 16 7-9 8 21Z" fill="#2c9c84" />
+        <circle cx="292" cy="40" r="6" fill="#d9b43c" />
+      </g>
+      {/* copy */}
+      <rect x="16" y="13" width="44" height="13" rx="6.5" fill="none" stroke="#f3d95d" strokeWidth="1" />
+      <text x="38" y="22.5" fill="#f3d95d" fontFamily="Arial, sans-serif" fontSize="7" fontWeight="700" letterSpacing=".08em" textAnchor="middle">
+        {language === "de" ? "ANZEIGE" : "AD"}
+      </text>
+      <text x="16" y="42" fill="#c9c7bd" fontFamily="Arial, sans-serif" fontSize="8" fontWeight="700" letterSpacing=".1em">
         {language === "de" ? "NORTHSTAR · MAGAZIN" : "NORTHSTAR · MAGAZINE"}
       </text>
-      <text
-        x="16"
-        y="58"
-        fill="#fff"
-        fontFamily="Arial, sans-serif"
-        fontSize="17"
-        fontWeight="700"
-      >
+      <text x="16" y="61" fill="#fff" fontFamily="Arial, sans-serif" fontSize="17" fontWeight="700">
         {text.discover}
       </text>
+      <rect x="16" y="69" width="18" height="12" rx="6" fill="#f3d95d" />
+      <path d="M21.5 75h7m-2.5-2.5 2.5 2.5-2.5 2.5" stroke="#232321" strokeWidth="1.3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+
+  // Dummy article hero — "the future of gaming": dusk sky, sun, hills, perspective grid
+  const articleArt = (
+    <svg
+      className="quality-mobile-demo__image"
+      aria-hidden="true"
+      viewBox="0 0 320 100"
+      preserveAspectRatio="xMidYMid slice"
+    >
+      <defs>
+        <linearGradient id="quality-article-sky" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stopColor="#1f3440" />
+          <stop offset=".7" stopColor="#3f6f72" />
+          <stop offset="1" stopColor="#e6d7a0" />
+        </linearGradient>
+        <linearGradient id="quality-article-sun" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stopColor="#f6e08a" />
+          <stop offset="1" stopColor="#d9b43c" />
+        </linearGradient>
+      </defs>
+      <rect width="320" height="100" fill="url(#quality-article-sky)" />
+      <g fill="#fff">
+        <circle cx="34" cy="14" r=".9" opacity=".7" />
+        <circle cx="78" cy="26" r=".7" opacity=".5" />
+        <circle cx="122" cy="10" r="1" opacity=".6" />
+        <circle cx="168" cy="22" r=".7" opacity=".5" />
+        <circle cx="292" cy="12" r=".9" opacity=".6" />
+      </g>
+      {/* rising sun behind the hills */}
+      <circle cx="214" cy="62" r="30" fill="url(#quality-article-sun)" />
+      {/* hills */}
+      <path d="M0 74 46 50l34 18 40-30 52 36H0Z" fill="#2a4a50" />
+      <path d="M150 76 214 46l58 22 48-14v22Z" fill="#244147" />
+      {/* ground with perspective grid */}
+      <rect y="74" width="320" height="26" fill="#1b2b30" />
+      <g stroke="#2c9c84" strokeWidth=".8" opacity=".75">
+        <path d="M0 80h320M0 87h320M0 96h320" />
+        <path d="M160 74 40 100M160 74 100 100M160 74v26M160 74l60 26M160 74l120 26M160 74 -40 100M160 74l200 26" />
+      </g>
+      {/* controller silhouette */}
+      <g transform="translate(60 78)">
+        <path d="M6 0h20c5 0 8 4 9 9l1 5c.5 3-2.5 4.5-4.5 2.5L28 13H4l-3.5 3.5C-1.5 18.5-4.5 17-4 14l1-5C-2 4 1 0 6 0Z" fill="#f6f4ec" />
+        <path d="M5 5v5M2.5 7.5h5" stroke="#232321" strokeWidth="1.4" strokeLinecap="round" />
+        <circle cx="25" cy="6" r="1.4" fill="#d9b43c" />
+        <circle cx="28.5" cy="9" r="1.4" fill="#2c9c84" />
+      </g>
     </svg>
   );
 
@@ -913,7 +1034,7 @@ function LayoutShiftDemo({ text, language }) {
           <span>NORTHSTAR</span>
           <span aria-hidden="true">☰</span>
         </div>
-        <div className="quality-mobile-demo__image" aria-hidden="true" />
+        {articleArt}
         <p className="quality-mobile-demo__eyebrow">{text.topbar}</p>
         <h5>{text.articleTitle}</h5>
         <p className="quality-mobile-demo__intro">{text.intro}</p>
@@ -923,7 +1044,14 @@ function LayoutShiftDemo({ text, language }) {
             className="quality-mobile-demo__reserved"
             aria-label={text.reserved}
           >
-            {promoLoaded ? promo : <span>{text.reservedText}</span>}
+            {promoLoaded ? (
+              promo
+            ) : (
+              <span className="quality-mobile-demo__reserved-label">
+                {text.reservedText}
+                <small>320 × 92</small>
+              </span>
+            )}
           </div>
         )}
         {mode === "before" && promoLoaded && (
@@ -2115,14 +2243,6 @@ function App() {
                     <p className="quality-card__metric">
                       {text.quality.cards[0].metric}
                     </p>
-                    <a
-                      className="quality-card__source"
-                      href="https://web.dev/articles/optimize-cls"
-                      rel="noreferrer"
-                      target="_blank"
-                    >
-                      {text.quality.cards[0].source} <ArrowIcon diagonal />
-                    </a>
                   </div>
                 </article>
 
@@ -2139,14 +2259,9 @@ function App() {
                   </div>
                   <div className="quality-card__detail">
                     <KeyboardFocusDemo text={text.demo} />
-                    <a
-                      className="quality-card__source"
-                      href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html"
-                      rel="noreferrer"
-                      target="_blank"
-                    >
-                      {text.quality.cards[1].source} <ArrowIcon diagonal />
-                    </a>
+                    <span className="badge-tag badge-tag--ghost quality-card__criterion">
+                      {text.quality.cards[1].criterion}
+                    </span>
                   </div>
                 </article>
 
@@ -2196,14 +2311,9 @@ function App() {
                         </div>
                       </div>
                     </div>
-                    <a
-                      className="quality-card__source"
-                      href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html"
-                      rel="noreferrer"
-                      target="_blank"
-                    >
-                      {text.quality.cards[2].source} <ArrowIcon diagonal />
-                    </a>
+                    <span className="badge-tag badge-tag--ghost quality-card__criterion">
+                      {text.quality.cards[2].criterion}
+                    </span>
                   </div>
                 </article>
 
@@ -2363,9 +2473,11 @@ function App() {
                           </span>
                           <h4>{entry.role}</h4>
                         </div>
-                        <p className="timeline-entry__company">
-                          {entry.company}
-                        </p>
+                        {entry.company && (
+                          <p className="timeline-entry__company">
+                            {entry.company}
+                          </p>
+                        )}
                         <ClampedText
                           className="timeline-entry__description"
                           text={entry.description}
@@ -2377,6 +2489,14 @@ function App() {
                     </article>
                   ))}
                 </div>
+                <dl className="about__facts">
+                  {text.experience.facts.map((fact) => (
+                    <div key={fact.label}>
+                      <dt>{fact.label}</dt>
+                      <dd>{fact.value}</dd>
+                    </div>
+                  ))}
+                </dl>
               </div>
             </div>
           </section>
@@ -2442,9 +2562,21 @@ function App() {
                       <p>{group.description}</p>
                     </div>
                     <ul aria-label={group.title}>
-                      {group.skills.map((skill) => (
-                        <li key={skill}>{skill}</li>
-                      ))}
+                      {group.skills.map((skill) => {
+                        // Plain string, or { name, level } with the level from the CV
+                        const { name, level } =
+                          typeof skill === "string" ? { name: skill } : skill;
+                        return (
+                          <li key={name}>
+                            {name}
+                            {level && (
+                              <span className="expertise-card__level">
+                                ({level})
+                              </span>
+                            )}
+                          </li>
+                        );
+                      })}
                     </ul>
                     <span className="expertise-card__index" aria-hidden="true">
                       {String(index + 1).padStart(2, "0")}

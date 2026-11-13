@@ -146,6 +146,13 @@
   }
 }
 
+// Skill level from the CV, e.g. "React (erste Praxiserfahrung)" — quieter than the name
+.portfolio-shell .expertise-card__level {
+  margin-left: -2px; // tighten the 6px pill gap to a word space
+  color: #6d6c65;
+  font-size: 0.92em;
+}
+
 .portfolio-shell .expertise-card__index {
   grid-area: index;
   align-self: center;

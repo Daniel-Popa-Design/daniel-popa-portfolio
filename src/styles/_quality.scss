@@ -12,20 +12,6 @@
   margin-top: 0;
 }
 
-.quality-card__source svg {
-  width: 12px;
-  height: 12px;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.5;
-}
-
-.quality-card__source:focus-visible {
-  outline: 2px solid #427124;
-  outline-offset: 3px;
-}
-
 .quality-focus-demo__instruction {
   margin: 0 0 6px;
 }
@@ -81,7 +67,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 8.8px;
+  font-size: 11px;
   font-weight: 750;
   letter-spacing: 0.1em;
 }
@@ -99,7 +85,7 @@
 
 .quality-mobile-demo__below > span {
   color: #6d786e;
-  font-size: 6.6px;
+  font-size: 9.5px;
   font-weight: 750;
   letter-spacing: 0.08em;
 }
@@ -232,79 +218,92 @@
 }
 
 .quality-mobile-demo {
-  margin: 4px auto 0;
+  margin: 8px 0 0;
 }
 
+// Article hero — full-width SVG illustration (16:5)
 .quality-mobile-demo__image {
-  border-radius: 4px;
-  background: radial-gradient(ellipse at 75% 30%, #e5d7a5 0 8%, transparent 9%), linear-gradient(145deg, transparent 56%, #496147 57% 72%, transparent 73%), linear-gradient(160deg, #9eafba, #e0d9c4 58%, #b4a57f);
-  aspect-ratio: 16/5;
-  height: 34px;
-  margin-top: 4px;
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 6px;
+  aspect-ratio: 16 / 5;
 }
 
 .quality-mobile-demo__eyebrow {
-  margin: 8px 0 4px;
+  margin: 12px 0 4px;
   color: #6d786e;
+  font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  margin-block: 4px 2px;
-  font-size: 6.6px;
 }
 
 .quality-mobile-demo h5 {
   margin: 0;
-  font-weight: 650;
-  letter-spacing: -0.035em;
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  font-size: 9.9px;
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: -0.035em;
   line-height: 1.25;
 }
 
 .quality-mobile-demo__intro {
-  margin: 5px 0 0;
-  color: #59645d;
+  margin: 4px 0 0;
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  margin-top: 3px;
-  font-size: 7.7px;
-  line-height: 1.35;
+  color: #59645d;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+// Ad slot — same 320:92 box whether reserved (striped placeholder) or loaded
+.quality-mobile-demo__reserved,
+.quality-mobile-demo__loaded-promo {
+  width: 100%;
+  margin-block: 10px;
+  overflow: hidden;
+  border-radius: 6px;
+  aspect-ratio: 320 / 92;
 }
 
 .quality-mobile-demo__reserved {
-  width: 100%;
-  margin: 9px 0;
-  overflow: hidden;
   display: grid;
   place-items: center;
   border: 1px dashed #aeb8ac;
-  background: #f5f6f1;
   color: #69746b;
-  font-size: 7.7px;
-  aspect-ratio: auto;
-  height: 29px;
-  margin-block: 4px;
+  background:
+    repeating-linear-gradient(135deg, rgba(174, 184, 172, 0.22) 0 6px, transparent 6px 12px),
+    #f5f6f1;
+  font-size: 11px;
 }
 
-.quality-mobile-demo__loaded-promo {
-  width: 100%;
-  margin: 9px 0;
-  overflow: hidden;
-  border-radius: 4px;
-  aspect-ratio: auto;
-  height: 29px;
-  margin-block: 4px;
+.quality-mobile-demo__reserved-label {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #fff;
+  font-weight: 650;
+
+  small {
+    color: #8c8c84;
+    font-size: 9px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
 }
 
 .quality-mobile-demo__below {
   border-top: 1px solid #e3e7df;
-  padding-top: 4px;
-  font-size: 7.7px;
+  padding-top: 8px;
+  font-size: 9.5px;
 }
 
 .quality-mobile-demo__below p {
@@ -375,16 +374,10 @@
   line-height: 1.5;
 }
 
-.quality-card__source {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-weight: 650;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  min-height: 20px;
-  margin-top: 3px;
-  color: #4c5c37;
+// WCAG criterion the demo follows — plain tag, no external link
+.portfolio-shell .quality-card__criterion {
+  justify-self: start;
+  margin-top: 10px;
   font-size: 11px;
 }
 
@@ -431,8 +424,8 @@
   overflow: hidden;
   border: 1px solid var(--line);
   color: #18221e;
-  width: min(100%, 260px);
-  padding: 9px;
+  width: 100%;
+  padding: 12px;
   border-color: #deddd6;
   border-radius: 10px;
   background: #fff;
@@ -705,26 +698,6 @@
     width: 100%;
     max-width: none;
     margin: 0;
-  }
-
-  .quality-mobile-demo__image {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16/5;
-  }
-
-  .quality-mobile-demo__reserved,
-  .quality-mobile-demo__loaded-promo {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 320/92;
-  }
-
-  .quality-mobile-demo__promo-art {
-    display: block;
-    width: 100%;
-    height: 100%;
   }
 
   .quality-mobile-demo__intro {

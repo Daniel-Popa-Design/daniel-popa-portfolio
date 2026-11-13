@@ -183,8 +183,8 @@
 // Career strip — badge-coloured pills
 .career-strip {
   display: grid;
-  // Three phases in timeline order (newest → oldest)
-  grid-template-columns: minmax(240px, 4fr) minmax(104px, 1fr) minmax(104px, 1fr);
+  // Four phases in timeline order (newest → oldest)
+  grid-template-columns: minmax(240px, 4fr) repeat(3, minmax(96px, 1fr));
   gap: 6px;
   margin-bottom: 14px;
 }
@@ -238,6 +238,14 @@
   background: color-mix(in srgb, var(--badge-ink) 6%, #fff);
 }
 
+// 4 = graphic & print (pre-web roots): quietest pill, dashed outline
+.portfolio-shell :is(.career-strip__segment--4 .career-strip__value, .timeline-entry__date--4) {
+  border-style: dashed;
+  border-color: #99978d;
+  color: #65655e;
+  background: #fff;
+}
+
 // 1 = Computec (current role): the earlier hatched pill, stripes in badge gold
 .portfolio-shell :is(.career-strip__segment--1 .career-strip__value, .timeline-entry__date--1) {
   border-color: var(--badge-gold);
@@ -260,7 +268,7 @@
 // Timeline — open columns separated by fine vertical dividers
 .timeline {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   padding-top: 4px;
 }
 
@@ -338,6 +346,36 @@
   line-height: 1.5;
 }
 
+// Education + languages — compact label/value row below the timeline
+.about__facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px clamp(16px, 2vw, 24px);
+  margin: 18px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+
+  > div {
+    min-width: 0;
+  }
+
+  dt {
+    margin-bottom: 3px;
+    color: #6d6c65;
+    font-size: 9.9px;
+    font-weight: 750;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  dd {
+    margin: 0;
+    color: var(--ink);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Responsive
 // ---------------------------------------------------------------------------
@@ -350,7 +388,23 @@
   .about-meter__emblem {
     width: 130px;
   }
+}
 
+// Four entries: 2 × 2 on tablets (dividers between the columns only)
+@media (min-width: 701px) and (max-width: 1080px) {
+  .timeline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 24px;
+  }
+
+  .timeline-entry:nth-child(odd) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .timeline-entry:nth-child(even) {
+    padding-right: 0;
+  }
 }
 
 @media (max-width: 700px) {
@@ -393,7 +447,8 @@
   }
 
   // Stacked: dividers turn horizontal
-  .timeline {
+  .timeline,
+  .about__facts {
     grid-template-columns: minmax(0, 1fr);
   }
 
