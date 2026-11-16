@@ -1,42 +1,13 @@
-// Expertise — toolkit board in the badge style (_badge.scss):
-// board card → header with teal totals → white panel of skill areas.
+// Expertise — toolkit in the badge style (_badge.scss): a white panel of
+// skill areas under the section heading.
 
 .expertise.section-wrap {
   width: 100%;
   max-width: none;
 }
 
-.expertise-board {
-  padding: var(--space-card);
-}
-
-// ---------------------------------------------------------------------------
-// Header — label + totals as badge tags
-// ---------------------------------------------------------------------------
-
-.expertise-board__header {
-  display: flex;
-  min-height: 48px;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px 14px;
-  padding: 2px 4px 14px;
-}
-
-.portfolio-shell .expertise-board__header > p {
-  margin: 0;
-  color: var(--badge-ink);
-  font-size: 13px;
-  font-weight: 650;
-  letter-spacing: 0.015em;
-}
-
-.expertise-board__totals {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
+// Board: no box of its own — the white skill-area panel is the only frame
+// (the totals live in the section's note card tab)
 
 // ---------------------------------------------------------------------------
 // Skill areas
@@ -54,10 +25,10 @@
 .expertise-card {
   display: grid;
   min-width: 0;
-  grid-template-columns: 52px minmax(0, 1fr) auto;
+  grid-template-columns: 52px minmax(0, 1fr);
   grid-template-areas:
-    "icon content index"
-    "icon skills  index";
+    "icon content"
+    "icon skills";
   align-items: center;
   gap: 8px 16px;
   padding: 16px 0;
@@ -84,10 +55,10 @@
   grid-area: content;
 }
 
-.expertise-card__heading {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+// The count sits inside the title, glued to the last word (no break between
+// them), so a long title wraps onto two rows with the count after it
+.expertise-card__title-end {
+  white-space: nowrap;
 }
 
 .expertise-card h3 {
@@ -174,36 +145,43 @@
   }
 }
 
-.number-mark__tint {
-  fill: color-mix(in srgb, var(--badge-gold) 75%, transparent);
-}
-
+// Yellow face, ink outline and number (ink on lemon ≈ 12:1 contrast);
+// the flat bubble labels below keep their own grey fill
 .number-mark__face {
-  fill: #fff;
-  stroke: var(--badge-ink);
+  fill: var(--lemon);
+  stroke: #959595; // lighter outline, as the badge emblems
   stroke-width: 0.8;
   stroke-linejoin: round;
 }
 
-// Bubble: centre the number in the body (x 6–26 of 28), right of the tail
+// Bubble: centre the number in the body (x 6–32 of 34), right of the tail
 .portfolio-shell .number-mark--bubble .number-mark__text {
-  padding-left: 15%;
+  padding-left: 12%;
   padding-bottom: 1px;
+}
+
+// Bubble label: same shape, flat — no gold offset, no outline, light grey
+// fill; ink text on it ≈ 10:1 contrast (WCAG AA needs 4.5:1)
+.number-mark--bubble {
+  .number-mark__face {
+    fill: #ebeae5;
+    stroke: none;
+  }
+}
+
+.portfolio-shell .number-mark--bubble {
+  color: var(--badge-ink);
 }
 
 // Skill count — bubble pointing left at the card title
 .portfolio-shell .expertise-card__count {
-  width: 34px;
+  display: inline-grid;
+  width: 41px; // 34 × 24 shape at 29px height
   height: 29px;
+  // Negative block margins: the 29px bubble must not stretch the title line
+  margin: -6px 0 -6px 8px;
   font-size: 10px;
-}
-
-// Index — circle at the card's right edge
-.portfolio-shell .expertise-card__index {
-  width: 34px;
-  height: 34px;
-  grid-area: index;
-  align-self: center;
+  vertical-align: middle;
 }
 
 // ---------------------------------------------------------------------------
@@ -222,10 +200,6 @@
 
   .expertise-card__icon {
     width: 44px;
-  }
-
-  .portfolio-shell .expertise-card__index {
-    display: none;
   }
 
   .portfolio-shell .expertise-card li {

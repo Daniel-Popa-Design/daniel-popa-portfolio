@@ -1,10 +1,6 @@
-// Work — feature grid and the design-token story card (case study 01).
-//
-// Feature grid:
-//   story card (index → title → lead → token list: brand colour, reusable role, four layers) | poll
-//   takeaways: four equal-height cards across the full width; on desktop the
-//              texts are clamped to the shortest one, with a read-more toggle
-//              (4 columns → 2 columns ≤1080px → 1 column ≤560px)
+// Work — section wrapper, case 01 design-system sketch and the live preview
+// window (real poll + countdown, switched by portal and mode).
+// Case-study cards, story rows and the other demos live in _quality.scss.
 //
 // Text selectors are prefixed with `.portfolio-shell` so they outrank the
 // global 13px body-text rule in _overrides.scss.
@@ -14,296 +10,1309 @@
   max-width: none;
 }
 
-.work__feature-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(310px, 0.88fr);
-  align-items: start;
-  gap: clamp(16px, 2.3vw, 28px);
-}
-
-.work__poll-column {
-  min-width: 0;
-  border: 1px solid #e6e9ea;
-  border-radius: 5px;
-  background: #f6fbfc;
-}
-
-// Eyebrow-style index — used by the token, countdown and quality headings
-.token-case-study__index {
-  margin: 0;
-  color: #6d6c65;
-  font-size: 9.9px;
-  font-weight: 750;
-  letter-spacing: 0.12em;
-}
-
 // ---------------------------------------------------------------------------
-// Story card
+// Takeaways — one wide box under the heading; four open columns divided by
+// 1px lines (emblem, label, text clamped to 3 lines + "Mehr lesen").
+// 4 columns → 2 × 2 on tablets → stacked on phones.
 // ---------------------------------------------------------------------------
 
-.work__story-column {
+// Wrapper: only a light grey border and rounded corners — no background
+.takeaways {
   display: grid;
-  min-width: 0;
-  gap: 24px;
-  padding: var(--space-card);
-}
-
-.token-case-study {
-  display: block;
-  min-width: 0;
-}
-
-// Shared small text roles inside the card and every token list
-// (also used by the countdown token note)
-.portfolio-shell :is(.work__story-column, .token-case-study__tokens) {
-  .token-case-study__label {
-    display: block;
-    color: #6d6c65;
-    font-size: 9.9px;
-    font-weight: 750;
-    letter-spacing: 0.12em;
-  }
-
-  p {
-    color: #5e5e58;
-    font-size: 13px;
-    line-height: 1.6;
-  }
-
-  code {
-    color: var(--ink);
-    font-size: 12px;
-    font-weight: 700;
-  }
-}
-
-// Header — index eyebrow, title, lead
-// Undo the card paragraph colour/leading so it matches the 02/03 eyebrows
-.portfolio-shell .work__story-column .token-case-study__index {
-  margin: 0 0 10px;
-  color: #6d6c65;
-  line-height: normal;
-}
-
-.token-case-study__story h3 {
-  margin: 0 0 10px;
-  color: var(--ink);
-  font-family: var(--serif);
-  font-size: clamp(25.3px, 2.8vw, 34.1px);
-  font-weight: 500;
-  letter-spacing: -0.055em;
-  line-height: 1.02;
-}
-
-.portfolio-shell .work__story-column .token-case-study__lead {
-  max-width: 60ch;
-  margin: 0;
-}
-
-// ---------------------------------------------------------------------------
-// Token list — three groups (brand colour, reusable role, four layers).
-// All groups and rows share one column grid via subgrid, so swatches,
-// tokens and descriptions line up across the whole list:
-//   swatch | token | description
-// ---------------------------------------------------------------------------
-
-.token-case-study__tokens {
-  display: grid;
-  grid-template-columns: 18px max-content minmax(0, 1fr);
-  column-gap: 12px;
-  row-gap: 14px;
-  margin-top: 20px;
-}
-
-.token-case-study__group {
-  display: grid;
-  grid-column: 1 / -1;
-  grid-template-columns: subgrid;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-
-  > .token-case-study__label,
-  > p {
-    grid-column: 1 / -1;
-  }
-}
-
-.portfolio-shell .token-case-study__group > p {
-  margin: 6px 0 0;
-}
-
-.token-case-study__layers {
-  display: grid;
-  grid-column: 1 / -1;
-  grid-template-columns: subgrid;
-  margin-top: 6px;
-
-  > div {
-    display: grid;
-    grid-column: 1 / -1;
-    grid-template-columns: subgrid;
-    align-items: center;
-    row-gap: 4px;
-    min-width: 0;
-    padding: 7px 0;
-  }
-
-  > div:first-child {
-    padding-top: 0;
-  }
-
-  > div:last-child {
-    padding-bottom: 0;
-  }
-
-  > div + div {
-    border-top: 1px solid var(--line);
-  }
-
-  > div > div {
-    display: contents;
-  }
-
-  code {
-    display: block;
-    overflow-wrap: anywhere;
-  }
-}
-
-.portfolio-shell .token-case-study__layers > div > div > span {
-  display: block;
-  color: #5e5e58;
-  font-size: 13px;
-  line-height: 1.45;
-}
-
-.token-case-study__swatch {
-  width: 18px;
-  height: 18px;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-}
-
-.token-case-study__swatch--neutral {
-  background: var(--gr5);
-}
-
-.token-case-study__swatch--brand {
-  background: var(--brand-northstar);
-}
-
-.token-case-study__swatch--semantic {
-  background: var(--ink);
-}
-
-// Reusable role (--lk): light-mode / dark-mode halves, solid ring = named role
-.token-case-study__swatch--role {
-  border: 1px solid var(--ink);
-  background: linear-gradient(135deg, #285b78 50%, #fff 50%);
-}
-
-// Unsemantic palette value: light-mode / dark-mode halves, dashed ring = no role name
-.token-case-study__swatch--unsemantic {
-  border: 1px dashed var(--ink);
-  background: linear-gradient(135deg, #285b78 50%, #020202 50%);
-}
-
-// ---------------------------------------------------------------------------
-// Takeaways — four equal-height cards: hexagon icon on top, pill label, text
-// ---------------------------------------------------------------------------
-
-.token-case-study__takeaways {
-  display: grid;
-  grid-column: 1 / -1;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: stretch;
-  gap: clamp(14px, 1.8vw, 20px);
+  margin-bottom: clamp(28px, 3.5vw, 44px);
+  padding: 24px 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
 }
 
-.token-case-study__takeaway {
+.takeaway {
   display: grid;
-  min-width: 0;
-  // Content stays at the top when a card grows (read more / taller sibling)
-  grid-template-rows: auto auto;
+  justify-items: center;
   align-content: start;
-  gap: 16px;
-  padding: clamp(18px, 2vw, 24px);
-
-  > div {
-    display: grid;
-    min-width: 0;
-    align-content: start;
-    justify-items: start;
-    gap: 8px;
-  }
+  gap: 12px;
+  min-width: 0;
+  padding: 4px clamp(14px, 1.8vw, 24px);
+  text-align: center;
 }
 
-.token-case-study__takeaway-icon {
+// Divider between neighbouring columns
+.takeaway + .takeaway {
+  background: var(--divider-y);
+}
+
+.takeaway__icon {
   width: 44px;
 }
 
-.portfolio-shell .token-case-study__takeaways p {
+.portfolio-shell .takeaway__text {
+  max-width: 30ch;
   margin: 0;
-  color: #5e5e58;
-  font-size: 13px;
-  line-height: 1.55;
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  line-height: 1.6;
 }
 
-.portfolio-shell .token-case-study__takeaways .badge-tag {
-  font-size: 11px;
-  letter-spacing: 0.04em;
+// The toggle sits right under the text, centred with it
+.takeaway .clamped-text__toggle {
+  margin-top: -4px;
 }
 
-// Desktop: <Takeaways> clamps every text to the line count of the shortest one
-// (--takeaway-lines), so all four cards share its height; cut texts get a toggle.
-.token-case-study__takeaway-text.is-clamped {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: var(--takeaway-lines);
-  line-clamp: var(--takeaway-lines);
-}
+@media (max-width: 1080px) {
+  .takeaways {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 20px;
+  }
 
-// Generic clamp (<ClampedText>) — same toggle look as the takeaway cards
-.clamped-text.is-clamped {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: var(--clamp-lines);
-  line-clamp: var(--clamp-lines);
-}
+  // 2 × 2: vertical line only between the two columns, line above row 2
+  .takeaway:nth-child(odd) {
+    background: none;
+  }
 
-.portfolio-shell :is(.token-case-study__takeaway-more, .clamped-text__toggle) {
-  margin: 0;
-  padding: 2px 0;
-  border: 0;
-  color: var(--badge-ink);
-  background: none;
-  font: inherit;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  cursor: pointer;
+  .takeaway:nth-child(3) {
+    padding-top: 20px;
+    background: var(--divider-x);
+  }
 
-  &:hover {
-    text-decoration-thickness: 2px;
+  .takeaway:nth-child(4) {
+    padding-top: 20px;
+    background: var(--divider-x), var(--divider-y);
   }
 }
 
-@media (min-width: 1081px) {
-  // Icon, label, text and toggle centered horizontally, top-aligned so the
-  // icons and labels of all four cards line up
-  .token-case-study__takeaway {
-    grid-template-rows: auto auto;
-    align-content: start;
-    justify-items: center;
-    text-align: center;
+@media (max-width: 560px) {
+  .takeaways {
+    grid-template-columns: minmax(0, 1fr);
+    padding-block: 8px;
+    row-gap: 0;
+  }
 
-    > div {
-      justify-items: center;
+  // Stacked: line between the items instead of beside them
+  .takeaway,
+  .takeaway:nth-child(n + 3) {
+    padding-block: 18px;
+  }
+
+  .takeaway + .takeaway,
+  .takeaway:nth-child(4) {
+    background: var(--divider-x);
+  }
+}
+
+// ---------------------------------------------------------------------------
+
+.takeaways {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
+  gap: 14px;
+  margin-bottom: clamp(28px, 3.5vw, 44px);
+}
+
+.takeaway.badge-card {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 12px;
+  padding: 22px 18px 20px;
+  text-align: center;
+}
+
+.takeaway__icon {
+  width: 44px;
+}
+
+.portfolio-shell .takeaway__text {
+  max-width: 30ch;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+// The toggle sits right under the text, centred with it
+.takeaway .clamped-text__toggle {
+  margin-top: -4px;
+}
+
+@media (max-width: 1080px) {
+  .takeaways {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .takeaways {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Case 01 sketch — "Four layers" (token cascade) | "One module, four variants".
+// Panels, titles and captions reuse .cls-demo from _quality.scss.
+// ---------------------------------------------------------------------------
+
+// Both panels share the row height; captions sit on the same baseline
+.cls-demo.ds-demo {
+  display: flex;
+  flex-direction: column;
+
+  figcaption {
+    margin-top: auto;
+    padding-top: 14px;
+  }
+}
+
+// Token cascade: numbered rows joined by a thin rail; rows share the
+// panel height so the cascade lines up with the module variants
+.ds-layers {
+  display: grid;
+  gap: 14px;
+  margin-block: auto; // centre the list in the panel; caption stays at the bottom
+  padding: 0;
+  list-style: none;
+  counter-reset: layer;
+
+  > li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 20px 84px minmax(0, 1fr);
+    align-items: center;
+    gap: 6px 10px;
+    counter-increment: layer;
+
+    // Step number
+    &::before {
+      display: grid;
+      width: 20px;
+      height: 20px;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--badge-ink);
+      background: var(--lemon);
+      font-size: 9.5px;
+      font-weight: 700;
+      content: counter(layer);
     }
+
+    // Rail from this number down to the next one
+    &:not(:last-child)::after {
+      position: absolute;
+      top: 24px;
+      bottom: -12px;
+      left: 9.5px;
+      width: 1px;
+      background: #c9c8c2;
+      content: "";
+    }
+
+    > code,
+    > .ds-layers__chips,
+    > .ds-layers__pills {
+      grid-column: 3;
+    }
+
+    > code {
+      grid-row: 1;
+      justify-self: end;
+    }
+
+    > .ds-layers__chips {
+      grid-row: 1;
+    }
+  }
+
+  code {
+    color: var(--ink-soft);
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 10.5px;
+  }
+}
+
+// One-line explanation under each layer (spans name + content columns)
+.portfolio-shell .ds-layers__note {
+  grid-column: 2 / -1;
+  grid-row: 2;
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.portfolio-shell .ds-layers__name {
+  color: var(--badge-ink);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ds-layers__chips {
+  display: flex;
+  gap: 4px;
+
+  i {
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 50%;
+  }
+}
+
+// One token, two values: light | dark
+.ds-layers__chips .ds-layers__split {
+  width: 30px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--split-a) 50%, var(--split-b) 50%);
+}
+
+.ds-layers__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 9px;
+    border: 1px solid #e3e2dc;
+    border-radius: 999px;
+    color: var(--ink-soft);
+    background: var(--surface);
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 10.5px;
+  }
+
+  i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+}
+
+// Countdown wireframes — phone screens in the monochrome line style of the
+// wireframe set: light grey screens, thin dark outlines, grey image blocks,
+// outlined circles, solid pill button, connectors between screens.
+// Only the digit tiles (--Cc25) and the button (brand accent) take colour;
+// the dark screens swap the surface (--gr80) and the title (--modTtl → --gr5).
+//
+// Fixed internal geometry (200px screen) so the connectors hit their parts.
+
+.cls-demo.ds-demo {
+  container-type: inline-size;
+}
+
+.ds-variants {
+  --screen-gap: 14px;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px var(--screen-gap);
+}
+
+.ds-mini {
+  --m-bg: #eef0f1;
+  --m-line: #2b2b2b; // screen outline
+  --m-inner: #2b2b2b; // outlines inside the screen
+  --m-fill: #d9dcdf; // grey image block
+  --m-text: #b4b8bb; // placeholder copy
+  --m-title: #2b2b2b; // --modTtl (light → --gr80)
+  --m-tile: var(--brand-northstar); // --Cc25 light
+  --m-tile-line: transparent;
+  --m-accent: var(--brand-northstar);
+  --m-badge: #fff;
+  --m-link: #2b2b2b;
+
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+
+  &[data-domain="afterglow"] {
+    --m-tile: var(--brand-afterglow);
+    --m-accent: var(--brand-afterglow);
+  }
+
+  &[data-theme="dark"] {
+    --m-bg: #333; // --gr80
+    --m-inner: #8a8a85;
+    --m-fill: #4a4a47;
+    --m-text: #66665f;
+    --m-title: #f2f2f2; // --modTtl → --gr5
+    --m-tile: #020202; // --Cc25 dark
+    --m-tile-line: #f2f2f2;
+    --m-accent: var(--brand-northstar-soft);
+    --m-badge: #262626;
+  }
+
+  &[data-theme="dark"][data-domain="afterglow"] {
+    --m-accent: var(--brand-afterglow-soft);
+  }
+}
+
+.portfolio-shell .ds-mini__label {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Phone screen
+.ds-cd {
+  position: relative;
+  display: flex;
+  height: 200px;
+  flex-direction: column;
+  padding: 9px 9px 12px;
+  border: 1.5px solid var(--m-line);
+  border-radius: 16px;
+  background: var(--m-bg);
+}
+
+// Image block + round release badge on its lower edge
+.ds-cd__image {
+  position: relative;
+  height: 72px;
+  flex: 0 0 auto;
+  border-radius: 9px;
+  background: var(--m-fill);
+}
+
+.ds-cd__badge {
+  position: absolute;
+  right: 7px;
+  bottom: -10px;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--m-inner);
+  border-radius: 50%;
+  background: var(--m-badge);
+}
+
+// "SHADOWSTONE:" tag — outlined pill
+.ds-cd__tag {
+  width: 46%;
+  height: 8px;
+  flex: 0 0 auto;
+  margin-top: 16px;
+  border: 1.5px solid var(--m-inner);
+  border-radius: 999px;
+}
+
+// Release title — two text lines
+.ds-cd__title {
+  display: grid;
+  flex: 0 0 auto;
+  gap: 4px;
+  margin-top: 8px;
+
+  b {
+    display: block;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--m-title);
+
+    &:first-child {
+      width: 90%;
+    }
+
+    &:last-child {
+      width: 58%;
+    }
+  }
+}
+
+// Digit tiles (--Cc25) with small label lines
+.ds-cd__tiles {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 4px;
+  margin-top: 12px;
+
+  > span {
+    display: grid;
+    flex: 1 1 0;
+    justify-items: center;
+    gap: 3px;
+  }
+
+  i {
+    width: 100%;
+    max-width: 20px;
+    aspect-ratio: 1;
+    border: 1px solid var(--m-tile-line);
+    border-radius: 4px;
+    background: var(--m-tile);
+  }
+
+  b {
+    display: block;
+    width: 60%;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--m-text);
+  }
+}
+
+// Solid pill button (brand accent)
+.ds-cd__button {
+  height: 14px;
+  flex: 0 0 auto;
+  margin-top: auto;
+  border-radius: 999px;
+  background: var(--m-accent);
+}
+
+// Connector to the same part on the next screen: dot → line → arrowhead.
+// Starts inside this screen, crosses the gap, ends where the part begins.
+.ds-link {
+  position: absolute;
+  z-index: 2;
+  left: calc(100% - 20px);
+  width: calc(20px + var(--screen-gap) + 12px);
+  height: 8px;
+  background:
+    radial-gradient(circle, var(--m-link) 2.5px, transparent 3px) left center / 8px 8px no-repeat,
+    linear-gradient(var(--m-link), var(--m-link)) 4px center / calc(100% - 6px) 1.5px no-repeat;
+  pointer-events: none;
+  // Thin white halo: the connector stays visible on light and dark screens
+  filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff);
+
+  // Arrowhead
+  &::after {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 5px;
+    height: 5px;
+    border-top: 1.5px solid var(--m-link);
+    border-right: 1.5px solid var(--m-link);
+    transform: rotate(45deg);
+    content: "";
+  }
+
+  // Vertical centre of each part in the 200px screen
+  &[data-link="title"] {
+    top: 118px;
+  }
+
+  &[data-link="tiles"] {
+    top: 146px;
+  }
+
+  &[data-link="button"] {
+    top: 175px;
+  }
+}
+
+// Narrow panels: 2 × 2 screens; the connector that would jump rows is hidden
+@container (max-width: 520px) {
+  .ds-variants {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ds-mini:nth-child(2) .ds-link {
+    display: none;
+  }
+}
+
+// Call to action under the sketch
+.ds-demo__cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+
+#main .ds-demo__preview {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 10px 18px;
+  border: 1px solid var(--dark);
+  border-radius: 999px;
+  color: #fff;
+  background: var(--dark);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease;
+
+  &:hover {
+    color: var(--dark);
+    background: var(--lemon);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #596e3d;
+    outline-offset: 3px;
+  }
+}
+
+.portfolio-shell .ds-demo__cta > span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+// ---------------------------------------------------------------------------
+// Live preview window (<dialog>)
+// ---------------------------------------------------------------------------
+
+.module-preview {
+  width: min(800px, 100vw - 32px);
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  overflow: auto;
+  border: 0;
+  border-radius: 16px;
+  color: var(--ink);
+  background: var(--surface);
+
+  &[open] {
+    animation: module-preview-in 0.22s ease-out;
+  }
+
+  &::backdrop {
+    background: rgba(20, 20, 20, 0.55);
+    backdrop-filter: blur(3px);
+  }
+}
+
+.module-preview__inner {
+  display: grid;
+  gap: 18px;
+  padding: clamp(16px, 2.4vw, 28px);
+}
+
+.module-preview__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+
+  h4 {
+    margin: 0;
+    color: var(--ink);
+    font-size: clamp(19px, 2vw, 24px);
+    font-weight: 550;
+    letter-spacing: -0.04em;
+  }
+}
+
+.portfolio-shell .module-preview__header p {
+  max-width: 62ch;
+  margin: 4px 0 0;
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+#main .module-preview__close {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink);
+  background: var(--paper);
+  cursor: pointer;
+
+  svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-width: 1.8;
+  }
+
+  &:hover {
+    border-color: var(--dark);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #596e3d;
+    outline-offset: 2px;
+  }
+}
+
+.module-preview__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px 18px;
+}
+
+.module-preview__switcher {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  legend {
+    margin-bottom: 5px;
+    padding: 0;
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  > div {
+    display: inline-flex;
+    gap: 2px;
+    padding: 2px;
+    border: 1px solid #dcdad3;
+    border-radius: 999px;
+    background: var(--paper);
+  }
+}
+
+#main .module-preview__switcher button {
+  min-height: 30px;
+  padding: 6px 14px;
+  border: 0;
+  border-radius: 999px;
+  color: #4c4c48;
+  background: transparent;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease;
+
+  &[aria-pressed="true"] {
+    color: #fff;
+    background: var(--dark);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #596e3d;
+    outline-offset: 2px;
+  }
+}
+
+// Stage: one column, full width, no frame of its own —
+//   countdown → poll → active tokens
+// The token panel follows the mode via --panel-* variables.
+.module-preview__stage {
+  --panel-bg: var(--paper);
+  --panel-line: var(--line);
+  --panel-ink: var(--ink);
+  --panel-muted: var(--muted);
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+
+  &[data-theme="dark"] {
+    --panel-bg: #262626;
+    --panel-line: #3a3a3a;
+    --panel-ink: #f2f2f2;
+    --panel-muted: #b5b4ad;
+  }
+
+  > * {
+    min-width: 0;
+  }
+}
+
+// Active tokens — what changes when portal or mode switches
+.module-preview__tokens {
+  padding: 18px 20px;
+  border: 1px solid var(--panel-line);
+  border-radius: 12px;
+  color: var(--panel-ink);
+  background: var(--panel-bg);
+  transition: background-color 200ms ease, color 200ms ease;
+
+  h5 {
+    margin: 0 0 12px;
+    color: var(--panel-muted);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  dl {
+    display: grid;
+    margin: 0;
+  }
+
+  dl > div {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    padding-block: 12px;
+    border-top: 1px solid var(--panel-line);
+  }
+
+  i {
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(128, 128, 128, 0.35);
+    border-radius: 50%;
+    transition: background-color 200ms ease;
+  }
+
+  dt {
+    display: grid;
+    gap: 2px;
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  code {
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 11.5px;
+  }
+
+  dd code {
+    color: var(--panel-muted);
+  }
+}
+
+.portfolio-shell .module-preview__tokens dt span,
+.portfolio-shell .module-preview__tokens > p {
+  color: var(--panel-muted);
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+
+.portfolio-shell .module-preview__tokens > p {
+  margin: 4px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--panel-line);
+}
+
+// Focus: "after" — unmistakable ring;
+
+// ---------------------------------------------------------------------------
+// Keyboard live demo (case 03) — the Vorher/Nachher sketch made playable.
+// Poll design language: white cards, thin rules, 4px inner corners, brand
+// colours per portal and mode, offset-print tint on badges.
+// Each panel: mini page → key path → checklist (the three "Umsetzung" points).
+//   before: small targets, faint dotted focus, endlessly pulsing badge
+//   after:  skip link, larger targets, 3px focus ring, still badge
+// ---------------------------------------------------------------------------
+
+.kbdRace {
+  --k-card: #fff;
+  --k-page: #f6f8f9;
+  --k-rule: #dce4e9;
+  --k-ink: #123652;
+  --k-muted: #526b7e;
+  --k-accent: var(--brand-northstar);
+  --k-accent-text: #fff;
+  --k-bad: #c4472a;
+  --k-good: #1f7a5c;
+
+  display: grid;
+  gap: 14px;
+
+  &[data-domain="afterglow"] {
+    --k-ink: var(--brand-afterglow);
+    --k-accent: var(--brand-afterglow);
+  }
+
+  &[data-theme="dark"] {
+    --k-card: #292929;
+    --k-page: #333330;
+    --k-rule: #55554f;
+    --k-ink: #f7f6f0;
+    --k-muted: #d3d2cb;
+    --k-accent: var(--brand-northstar-soft);
+    --k-accent-text: #0b2d4a;
+    --k-bad: #f08a6c;
+    --k-good: #7fd1b2;
+  }
+
+  &[data-theme="dark"][data-domain="afterglow"] {
+    --k-accent: var(--brand-afterglow-soft);
+    --k-accent-text: #1d171e;
+  }
+}
+
+.kbdRace__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+
+.portfolio-shell .kbdRace__controls > span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.kbdRace__panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.kbdRace__panel {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--k-rule);
+  border-radius: 12px;
+  color: var(--k-ink);
+  background: var(--k-card);
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+.kbdRace__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+
+  h5 {
+    margin: 0;
+    color: var(--k-ink);
+    font-size: 15px;
+    font-weight: 600;
+  }
+}
+
+.portfolio-shell .kbdRace__count {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  margin: 0;
+
+  strong {
+    color: var(--k-accent);
+    font-size: 26px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  span {
+    color: var(--k-muted);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+}
+
+// Mini page — the browser window of the sketch
+.kbdRace__page {
+  position: relative;
+  display: flex;
+  height: 256px;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 12px 14px;
+  border: 1px solid var(--k-rule);
+  border-radius: 8px;
+  background: var(--k-page);
+
+  // The panel draws its own focus states (data-current), so the native ring
+  // is replaced, not removed: the drawn state always follows real focus.
+  a,
+  article {
+    outline: none;
+  }
+}
+
+.kbdRace__start {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  outline: none;
+}
+
+.kbdRace__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--k-rule);
+
+  b {
+    color: var(--k-ink);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+  }
+}
+
+// "Live" badge: pulses forever before, stands still after
+.portfolio-shell .kbdRace__live {
+  padding: 2px 7px;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--k-bad);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.kbdRace__panel[data-variant="before"] .kbdRace__live {
+  animation: kbd-pulse 0.7s ease-in-out infinite alternate;
+}
+
+#main .kbdRace__skip {
+  align-self: flex-start;
+  padding: 6px 13px;
+  border-radius: 999px;
+  color: var(--k-accent-text);
+  background: var(--k-accent);
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  outline: 3px solid transparent;
+  outline-offset: 3px;
+  transition: outline-color 0.15s ease;
+
+  &[data-current="true"] {
+    outline-color: var(--k-accent);
+  }
+}
+
+// Main navigation — the same eight labelled links in both versions.
+// before: small targets, faint dotted focus; after: larger targets, clear ring.
+// After the skip-link jump the whole menu fades: it was skipped, not removed.
+.kbdRace__nav {
+  transition: opacity 0.2s ease;
+
+  &[data-skipped="true"] {
+    opacity: 0.4;
+  }
+}
+
+.kbdRace__menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#main .kbdRace__menu a {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--k-rule);
+  border-radius: 4px;
+  color: var(--k-ink);
+  background: var(--k-card);
+  font-weight: 600;
+  text-decoration: none;
+  transition: outline-color 0.15s ease, background-color 0.15s ease;
+}
+
+#main .kbdRace__panel[data-variant="before"] .kbdRace__menu a {
+  height: 18px;
+  padding: 0 6px;
+  font-size: 8.5px;
+
+  // Barely visible focus — the problem this case fixes
+  &[data-current="true"] {
+    outline: 1px dotted color-mix(in srgb, var(--k-ink) 35%, transparent);
+    outline-offset: 1px;
+  }
+}
+
+#main .kbdRace__panel[data-variant="after"] .kbdRace__menu a {
+  height: 24px;
+  padding: 0 9px;
+  font-size: 10px;
+
+  &[data-current="true"] {
+    outline: 3px solid var(--k-accent);
+    outline-offset: 2px;
+    background: color-mix(in srgb, var(--k-accent) 12%, var(--k-card));
+  }
+}
+
+.portfolio-shell .kbdRace__skipped {
+  margin-top: -4px;
+  color: var(--k-accent);
+  font-size: 10px;
+  font-weight: 700;
+  animation: cls-demo-fade 0.3s ease both;
+}
+
+// Article teaser — the target of both paths
+.kbdRace__article {
+  position: relative;
+  display: grid;
+  gap: 6px;
+  margin-top: auto;
+  padding: 11px 12px 12px;
+  border: 1px solid var(--k-rule);
+  border-radius: 4px;
+  background: var(--k-card);
+  transition: outline-color 0.15s ease;
+
+  strong {
+    color: var(--k-ink);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  i {
+    display: block;
+    height: 3px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--k-ink) 16%, transparent);
+
+    &:last-child {
+      width: 62%;
+    }
+  }
+}
+
+.kbdRace__panel[data-variant="before"] .kbdRace__article[data-current="true"] {
+  outline: 1px dotted color-mix(in srgb, var(--k-ink) 35%, transparent);
+  outline-offset: 1px;
+}
+
+.kbdRace__panel[data-variant="after"] .kbdRace__article[data-current="true"] {
+  outline: 3px solid var(--k-accent);
+  outline-offset: 2px;
+}
+
+// Key-press count landing on the article (offset-print tint, as the poll marks)
+.kbdRace__badge {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--k-accent-text);
+  background: var(--k-accent);
+  font-size: 10px;
+  font-weight: 700;
+  animation: cls-demo-tap 0.3s ease both;
+}
+
+// Key path — one slot per key press, filled as the path plays
+.kbdRace__path {
+  display: grid;
+  gap: 6px;
+
+  > span {
+    color: var(--k-muted);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    min-height: 22px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    gap: 1px;
+    padding: 3px 6px 4px;
+    border: 1px solid var(--k-rule);
+    border-radius: 4px;
+    color: var(--k-muted);
+    background: var(--k-card);
+    line-height: 1.2;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+    b {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 9.5px;
+      font-weight: 700;
+    }
+
+    span {
+      white-space: nowrap;
+    }
+
+    &[data-filled="true"] {
+      border-color: var(--k-accent);
+      color: var(--k-accent-text);
+      background: var(--k-accent);
+    }
+  }
+}
+
+// Where each press lands — prefixed to set the size over the global span rule
+.portfolio-shell .kbdRace__path li span {
+  font-size: 11px;
+}
+
+// Checklist — the three "Umsetzung" points, ✕ before / ✓ after
+.kbdRace__checks {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 10px 0 0;
+  border-top: 1px solid var(--k-rule);
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    color: var(--k-ink);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  span {
+    display: grid;
+    width: 13px;
+    height: 13px;
+    flex: 0 0 auto;
+    place-items: center;
+    margin-top: 2px; // centre on the first text line
+    border-radius: 50%;
+    color: #fff;
+    background: var(--k-bad);
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  li[data-ok="true"] span {
+    color: var(--k-card);
+    background: var(--k-good);
+  }
+}
+
+// ✕ / ✓ icons — stroked SVG, centred in the circle
+.kbdRace__checks svg {
+  display: block;
+  width: 9px;
+  height: 9px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.4;
+}
+
+.kbdRace__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+}
+
+.portfolio-shell .kbdRace__foot p {
+  margin: 0;
+  color: var(--k-muted);
+  font-size: 11px;
+}
+
+#main .kbdRace__foot button {
+  min-height: 32px;
+  padding: 6px 12px;
+  border: 1px solid var(--k-accent);
+  border-radius: 4px;
+  color: var(--k-accent);
+  background: transparent;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:hover {
+    background: color-mix(in srgb, var(--k-accent) 12%, transparent);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--k-accent);
+    outline-offset: 2px;
+  }
+}
+
+// Summary — the punchline under both panels
+.kbdRace__summary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  border: 1px solid var(--k-rule);
+  border-radius: 12px;
+  background: var(--k-card);
+}
+
+.portfolio-shell .kbdRace__summary strong {
+  flex: 0 0 auto;
+  color: var(--k-accent);
+  font-size: 26px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.portfolio-shell .kbdRace__summary p {
+  margin: 0;
+  color: var(--k-ink);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+@keyframes kbd-pulse {
+  to {
+    opacity: 0.35;
+    transform: scale(0.92);
+  }
+}
+
+@media (max-width: 640px) {
+  .kbdRace__panels {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .kbdRace__summary {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kbdRace__panel[data-variant="before"] .kbdRace__live,
+  .kbdRace__badge,
+  .portfolio-shell .kbdRace__skipped {
+    animation: none;
+  }
+}
+
+@keyframes module-preview-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
   }
 }
 
@@ -311,37 +1320,31 @@
 // Responsive
 // ---------------------------------------------------------------------------
 
-@media (max-width: 1080px) {
-  .work__feature-grid {
-    grid-template-columns: minmax(0, 1fr);
+@media (max-width: 420px) {
+  .ds-layers > li {
+    grid-template-columns: 20px minmax(0, 1fr);
+
+    > code,
+    > .ds-layers__chips,
+    > .ds-layers__pills {
+      grid-row: auto;
+      grid-column: 2;
+      justify-self: start;
+    }
   }
 
-  .work__poll-column {
-    max-width: 720px;
+  .portfolio-shell .ds-layers__note {
+    grid-row: auto;
+    grid-column: 2;
   }
 
-  .token-case-study__takeaways {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 700px) {
-  .work__feature-grid {
-    gap: 14px;
-  }
-
-  // Rows: swatch + token on one line, description full width below
-  .token-case-study__tokens {
-    grid-template-columns: 18px minmax(0, 1fr);
-  }
-
-  .portfolio-shell .token-case-study__layers > div > div > span {
-    grid-column: 1 / -1;
+  .ds-variants {
+    gap: 10px 8px;
   }
 }
 
-@media (max-width: 560px) {
-  .token-case-study__takeaways {
-    grid-template-columns: minmax(0, 1fr);
+@media (prefers-reduced-motion: reduce) {
+  .module-preview[open] {
+    animation: none;
   }
 }

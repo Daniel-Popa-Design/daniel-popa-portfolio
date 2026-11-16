@@ -1,511 +1,256 @@
-// About — one badge-style card: experience emblem | bio, then career history.
-// Shared look (card, hexagon, coin, pills) comes from _badge.scss.
+// About — the same open layout as the work section:
+//   heading (eyebrow, title, note card with the experience emblem)
+//   career timeline: oldest → today along one line that ends in an arrow,
+//   year range above each dot, role details below, fine dividers between.
+// Shared look (emblem, coin, tags, note card) comes from _badge.scss and
+// _note-card.scss. Text selectors are prefixed with `.portfolio-shell` so they
+// outrank the global 13px body-text rule in _overrides.scss.
 
-.about {
-  overflow: hidden;
-  background: transparent;
-}
-
-.about__inner {
-  display: grid;
+.about.section-wrap {
   width: 100%;
   max-width: none;
-  grid-template-columns: 200px minmax(0, 1fr);
-  align-items: center;
-  gap: clamp(20px, 2.5vw, 32px) clamp(20px, 3vw, 40px);
-  padding: clamp(20px, 2.5vw, 32px);
 }
 
 // ---------------------------------------------------------------------------
-// Experience emblem — hexagon with progress ring, "10+", star coin, tags
+// Career timeline
 // ---------------------------------------------------------------------------
 
-.about-meter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 22px;
-}
+.career {
+  --career-accent: #c4472a; // warm red, as the case-study labels (≥ 4.5:1 on white)
+  --career-gap: clamp(28px, 4vw, 56px);
+  --career-line-y: 38px; // centre of the dots: range (20) + gap (12) + half dot (6)
 
-.about-meter__emblem {
-  width: 150px;
-}
-
-// Hover: shrink by 2px (150 → 148), scaled from the centre
-.about:hover .about-meter__emblem {
-  transform-origin: center;
-  transform: scale(calc(148 / 150));
-}
-
-.about-meter__track {
-  fill: none;
-  stroke: var(--badge-ink);
-  stroke-dasharray: 0.5 2.5;
-  stroke-linecap: round;
-  stroke-width: 5;
-}
-
-.about-meter__arc {
-  fill: none;
-  stroke: var(--badge-gold);
-  stroke-dasharray: 78 100;
-  stroke-linecap: round;
-  stroke-width: 7;
-}
-
-// Number sits over the hexagon's centre (viewBox centre = 50% / 50%)
-.about-meter__value {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.portfolio-shell .about-meter__value {
-  strong {
-    color: var(--badge-ink);
-    font-size: 40px;
-    font-weight: 600;
-    letter-spacing: -0.06em;
-    line-height: 1;
-  }
-
-  sup {
-    margin-left: 1px;
-    color: var(--accent-text);
-    font-size: 0.5em;
-    vertical-align: top;
-  }
-}
-
-.portfolio-shell .about-meter__value small {
-  margin-top: 1px;
-  color: #5e5e58;
-  font-size: 8.8px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  line-height: 1.2;
-  text-transform: uppercase;
-  max-width: 50px;
-}
-
-.about-meter__tags {
-  align-items: center;
-}
-
-// ---------------------------------------------------------------------------
-// Bio
-// ---------------------------------------------------------------------------
-
-.about__copy {
-  padding-left: clamp(20px, 3vw, 40px);
-  border-left: 1px solid var(--line);
-
-  > .eyebrow {
-    margin: 2px 0 7px;
-    font-size: 8.8px;
-  }
-
-  h2 {
-    margin: 0 0 8px;
-    color: #282826;
-    font-size: clamp(28.6px, 3.3vw, 39.6px);
-    font-weight: 500;
-    letter-spacing: -0.08em;
-    line-height: 1;
-
-    span {
-      color: var(--accent-text);
-      font-family: var(--serif);
-      font-weight: 400;
-    }
-  }
-
-  > p {
-    margin: 0 0 6px;
-    color: #5e5e58;
-    line-height: 1.45;
-  }
-
-  .about__lead {
-    margin-bottom: 7px;
-    color: #343431;
-    font-family: var(--serif);
-    font-size: 12.1px;
-    font-weight: 550;
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Career history
-// ---------------------------------------------------------------------------
-
-.about__experience {
-  grid-column: 1 / -1;
-  min-width: 0;
-  padding: var(--space-card);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: #fff;
-}
-
-.about__experience-heading {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 16px;
-
-  .eyebrow {
-    margin: 0 0 4px;
-    font-size: 8.8px;
-  }
+  padding-top: clamp(28px, 3.5vw, 44px);
+  border-top: 1px solid var(--line); // main-section divider, as between the cases
 
   h3 {
-    margin: 0;
+    margin: 0 0 clamp(20px, 2.5vw, 32px);
     color: var(--ink);
-    font-size: 22px;
+    font-size: clamp(20px, 2.3vw, 28px);
     font-weight: 500;
-    letter-spacing: -0.05em;
-
-    span {
-      color: var(--accent-text);
-    }
+    letter-spacing: -0.04em;
+    line-height: 1.2;
   }
 }
 
-.about__experience-emblem {
-  width: 46px;
-}
-
-// Career strip — badge-coloured pills
-.career-strip {
-  display: grid;
-  // Four phases in timeline order (newest → oldest)
-  grid-template-columns: minmax(240px, 4fr) repeat(3, minmax(96px, 1fr));
-  gap: 6px;
-  margin-bottom: 14px;
-}
-
-.career-strip__segment {
-  display: grid;
-  min-width: 0;
-  grid-template-rows: auto 32px;
-  gap: 5px;
-}
-
-.portfolio-shell .career-strip__label {
-  overflow: hidden;
-  color: #65655e;
-  font-size: 11px;
-  font-weight: 500;
-  line-height: 1.2;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.portfolio-shell .career-strip__value {
-  display: flex;
-  min-width: 0;
-  align-items: center;
-  padding: 0 14px;
-  overflow: hidden;
-  border: 1px solid var(--badge-ink);
-  border-radius: 999px;
-  color: #fff;
-  background: var(--badge-ink);
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-// Segment colours — shared with the matching timeline date pill
-// (.timeline-entry__date--N), so each entry reads as part of the strip
-// 2 = traineeship, 3 = World of Cruise: light tinted pills with a coloured
-// outline, so the striped current role (1) stays the strongest element
-.portfolio-shell :is(.career-strip__segment--2 .career-strip__value, .timeline-entry__date--2) {
-  border-color: var(--badge-teal);
-  color: #1d7d68; // darker badge teal, AA on the light tint
-  background: color-mix(in srgb, var(--badge-teal) 10%, #fff);
-}
-
-.portfolio-shell :is(.career-strip__segment--3 .career-strip__value, .timeline-entry__date--3) {
-  color: var(--badge-ink);
-  background: color-mix(in srgb, var(--badge-ink) 6%, #fff);
-}
-
-// 4 = graphic & print (pre-web roots): quietest pill, dashed outline
-.portfolio-shell :is(.career-strip__segment--4 .career-strip__value, .timeline-entry__date--4) {
-  border-style: dashed;
-  border-color: #99978d;
-  color: #65655e;
-  background: #fff;
-}
-
-// 1 = Computec (current role): the earlier hatched pill, stripes in badge gold
-.portfolio-shell :is(.career-strip__segment--1 .career-strip__value, .timeline-entry__date--1) {
-  border-color: var(--badge-gold);
-  color: var(--badge-ink);
-  background:
-    repeating-linear-gradient(
-      130deg,
-      color-mix(in srgb, var(--badge-gold) 45%, transparent) 0 3px,
-      transparent 3px 7px
-    ),
-    color-mix(in srgb, var(--badge-gold) 12%, #fff);
-  font-weight: 600;
-}
-
-.portfolio-shell .career-strip__segment--1 .career-strip__value {
-  justify-content: center;
-}
-
-
-// Timeline — open columns separated by fine vertical dividers
-.timeline {
+.career__list {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  padding-top: 4px;
+  gap: 0 var(--career-gap);
+  margin: 0;
+  padding: 0 14px 0 0; // room for the arrowhead
+  list-style: none;
+
+  // The line under all dots …
+  &::before {
+    position: absolute;
+    top: calc(var(--career-line-y) - 0.75px);
+    right: 2px;
+    left: 0;
+    height: 1.5px;
+    background: var(--career-accent);
+    content: "";
+  }
+
+  // … ending in an arrow towards "today"
+  &::after {
+    position: absolute;
+    top: calc(var(--career-line-y) - 6px);
+    right: 0;
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 12px solid var(--career-accent);
+    content: "";
+  }
 }
 
-.timeline-entry {
-  display: grid;
+.career__item {
+  position: relative;
   min-width: 0;
-  align-content: start;
-  justify-items: start;
-  gap: 10px;
-  padding-inline: clamp(16px, 2vw, 24px);
-
-  &:first-child {
-    padding-left: 0;
-  }
-
-  &:last-child {
-    padding-right: 0;
-  }
-
-  & + & {
-    border-left: 1px solid var(--line);
-  }
 }
 
-// Title row — round swatch in the entry's segment colour, then the role
-.timeline-entry__title {
-  display: grid;
-  grid-template-columns: 16px minmax(0, 1fr);
-  align-items: start;
-  gap: 10px;
-}
-
-// Swatch (base: .career-strip__value); the date text is for screen readers only
-.portfolio-shell .timeline-entry .timeline-entry__date {
-  display: block;
-  width: 16px;
-  height: 16px;
-  min-height: 0;
-  margin-top: 0.5px; // centred on the first line of the role
-  padding: 0;
-  border-radius: 50%;
-}
-
-.timeline-entry__date-text {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
+.portfolio-shell .career__range {
+  height: 20px;
+  margin: 0;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 20px;
   white-space: nowrap;
 }
 
-.timeline-entry__body h4 {
-  margin: 0;
-  font-size: 13.2px;
-  font-weight: 620;
-  letter-spacing: -0.035em;
+.career__dot {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin-top: 12px;
+  border-radius: 50%;
+  background: var(--career-accent);
+}
+
+// Today: the current role's dot carries a soft halo
+.career__item:last-child .career__dot {
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--career-accent) 18%, transparent);
+}
+
+.career__body {
+  position: relative;
+  margin-top: 18px;
+}
+
+// Fine divider between the columns (below the line only)
+.career__item + .career__item .career__body::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--career-gap) / -2);
+  width: 1px;
+  background: var(--line);
+  content: "";
+}
+
+.portfolio-shell .career__duration {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.career__body h4 {
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-size: clamp(16px, 1.5vw, 19px);
+  font-weight: 550;
+  letter-spacing: -0.03em;
   line-height: 1.3;
 }
 
-.portfolio-shell .timeline-entry__company {
-  margin: 4px 0 6px;
-  color: #1d7d68; // darker badge teal, AA on the light card
-  font-weight: 650;
+.portfolio-shell .career__company {
+  margin: 0 0 10px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 500;
 }
 
-.portfolio-shell .timeline-entry__body .clamped-text__toggle {
-  margin-top: 6px;
-}
-
-.timeline-entry__description {
-  max-width: 550px;
+.portfolio-shell .career__summary {
+  max-width: 40ch;
   margin: 0;
-  color: var(--ink-muted);
-  line-height: 1.5;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.55;
 }
 
-// Education + languages — compact label/value row below the timeline
-.about__facts {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px clamp(16px, 2vw, 24px);
-  margin: 18px 0 0;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
+// Full CV text, clamped to 4 lines with a "Mehr lesen" toggle (<ClampedText>)
+.clamped-text.is-clamped {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--clamp-lines);
+  line-clamp: var(--clamp-lines);
+}
 
-  > div {
-    min-width: 0;
+// Toggle — small, fine underline, in the timeline red (sets it apart from the
+// grey description text); the chevron shows the state
+.portfolio-shell .clamped-text__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 8px 0 0;
+  padding: 2px 0;
+  border: 0;
+  color: var(--career-accent, #c4472a);
+  background: none;
+  font: inherit;
+  // !important: _base.scss forces `button { font-size: 13px !important }`;
+  // this more specific rule wins between the two
+  font-size: 10.5px !important;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color 0.15s ease;
+
+  svg {
+    width: 11px;
+    height: 11px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.4;
+    transition: transform 0.2s ease;
   }
 
-  dt {
-    margin-bottom: 3px;
-    color: #6d6c65;
-    font-size: 9.9px;
-    font-weight: 750;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+  // Open: chevron points up
+  &[aria-expanded="true"] svg {
+    transform: rotate(180deg);
   }
 
-  dd {
-    margin: 0;
-    color: var(--ink);
-    font-size: 13px;
-    line-height: 1.45;
+  &:hover {
+    color: color-mix(in srgb, var(--career-accent, #c4472a) 80%, #000);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #596e3d;
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-shell .clamped-text__toggle svg {
+    transition: none;
   }
 }
 
 // ---------------------------------------------------------------------------
-// Responsive
+// Narrow screens: the timeline turns vertical — line on the left, arrow down
 // ---------------------------------------------------------------------------
 
 @media (max-width: 900px) {
-  .about__inner {
-    grid-template-columns: 170px minmax(0, 1fr);
-  }
-
-  .about-meter__emblem {
-    width: 130px;
-  }
-}
-
-// Four entries: 2 × 2 on tablets (dividers between the columns only)
-@media (min-width: 701px) and (max-width: 1080px) {
-  .timeline {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: 24px;
-  }
-
-  .timeline-entry:nth-child(odd) {
-    padding-left: 0;
-    border-left: 0;
-  }
-
-  .timeline-entry:nth-child(even) {
-    padding-right: 0;
-  }
-}
-
-@media (max-width: 700px) {
-  .about__inner {
+  .career__list {
     grid-template-columns: minmax(0, 1fr);
-    padding: 18px;
-  }
+    gap: 28px;
+    padding: 0 0 18px 28px;
 
-  // Emblem left, tags right — like the note-card head
-  .about-meter {
-    flex-direction: row;
-    gap: 16px;
-  }
-
-  .about-meter__emblem {
-    width: 112px;
-    margin-bottom: 10px;
-  }
-
-  .portfolio-shell .about-meter__value strong {
-    font-size: 30px;
-  }
-
-  .portfolio-shell .about-meter__value small {
-    font-size: 7.7px;
-  }
-
-  .about-meter__tags {
-    align-items: flex-start;
-  }
-
-  .about__copy {
-    padding: 18px 0 0;
-    border-top: 1px solid var(--line);
-    border-left: 0;
-  }
-
-  .about__experience-heading {
-    gap: 12px;
-  }
-
-  // Stacked: dividers turn horizontal
-  .timeline,
-  .about__facts {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .timeline-entry {
-    padding: 16px 0;
-
-    &:first-child {
-      padding-top: 0;
+    &::before {
+      top: 10px;
+      right: auto;
+      bottom: 12px;
+      left: 5.25px;
+      width: 1.5px;
+      height: auto;
     }
 
-    &:last-child {
-      padding-bottom: 0;
-    }
-
-    & + & {
-      border-top: 1px solid var(--line);
-      border-left: 0;
+    &::after {
+      top: auto;
+      right: auto;
+      bottom: 0;
+      left: 0;
+      border-top: 12px solid var(--career-accent);
+      border-right: 6px solid transparent;
+      border-bottom: 0;
+      border-left: 6px solid transparent;
     }
   }
 
-  .timeline-entry > * {
-    min-width: 0;
-    overflow-wrap: anywhere;
-  }
-
-  // Career strip becomes a vertical path with chevrons between steps
-  .career-strip {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 20px;
-  }
-
-  .career-strip__segment {
-    position: relative;
-    grid-template-rows: auto minmax(38px, auto);
-  }
-
-  .career-strip__segment:not(:last-child)::after {
+  .career__dot {
     position: absolute;
-    bottom: -16px;
-    left: 50%;
-    width: 10px;
-    height: 10px;
-    border-right: 1.5px solid #99978d;
-    border-bottom: 1.5px solid #99978d;
-    content: "";
-    transform: translateX(-50%) rotate(45deg);
+    top: 4px;
+    left: -28px;
+    margin: 0;
   }
 
-  .portfolio-shell .career-strip__value {
-    min-height: 38px;
-    padding-inline: 14px;
-    line-height: 1.35;
-    white-space: normal;
+  .career__body {
+    margin-top: 6px;
   }
 
-  .portfolio-shell .career-strip__segment--1 .career-strip__value {
-    text-align: center;
-    overflow-wrap: anywhere;
+  .career__item + .career__item .career__body::before {
+    display: none;
   }
 }

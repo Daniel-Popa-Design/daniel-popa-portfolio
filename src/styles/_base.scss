@@ -16,6 +16,7 @@
 }
 
 html {
+  overflow-x: clip; // no sideways scrolling from full-bleed / decorative elements
   scroll-behavior: smooth;
   scroll-padding-top: 24px;
 }

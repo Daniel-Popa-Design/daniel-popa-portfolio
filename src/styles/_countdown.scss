@@ -1,13 +1,5 @@
-// Countdown case study (02) — portal/theme switcher, countdown module, token notes.
+// Countdown module — shown in the live preview window of case study 01 (see _work.scss).
 
-.countdown-case-study__controls {
-  align-items: flex-end;
-}
-
-.countdown-case-study__option {
-  padding: 7px 12px;
-  border: 1px solid #b8beb4;
-}
 
 .CountdownModule[data-domain=afterglow] {
   --Cc1: #000;
@@ -162,14 +154,6 @@
 .CountdownModule .countdownButton:hover .countdownArrow,
 .CountdownModule .countdownButton:focus-visible .countdownArrow {
   transform: translateX(4px);
-}
-
-.countdown-case-study__controls fieldset {
-  min-width: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  gap: 10px;
 }
 
 .CountdownModule .countdownTitleGame {
@@ -420,51 +404,6 @@
   color: #fff !important;
 }
 
-.countdown-case-study__controls legend {
-  margin-bottom: 5px;
-  font-weight: 750;
-  color: #77766f;
-  font-size: 8.8px;
-  letter-spacing: 0.08em;
-}
-
-.countdown-case-study__controls {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 12px;
-  gap: 16px;
-  margin-block: 16px;
-}
-
-.countdown-case-study__options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  border: 1px solid #e3dce8;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.75);
-  padding: 2px;
-  border-color: #dcdad3;
-}
-
-.countdown-case-study__option {
-  background: transparent;
-  cursor: pointer;
-  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
-  padding-inline: 12px;
-  border-radius: 999px;
-  font-weight: 750;
-  color: #4c4c48;
-  font-size: 8.8px;
-  min-height: 27px;
-}
-
-.countdown-case-study__option[aria-pressed=true] {
-  border-color: var(--ink);
-  color: #fff;
-  background: #292929;
-}
-
 .CountdownModule {
   --Cc1: #0c2438;
   --Cc2: #68716c;
@@ -513,21 +452,11 @@
   --module-accent: var(--brand-afterglow-soft);
 }
 
-.countdown-case-study__token-note[data-theme=light] {
-  --modTtl: var(--gr80);
-  --module-bg: var(--gr5);
-}
-
 .CountdownModule[data-theme=light] {
   --modTtl: var(--gr80);
   --module-bg: var(--gr5);
   color: #292929;
   background: var(--module-bg);
-}
-
-.countdown-case-study__token-note[data-theme=dark] {
-  --module-bg: var(--gr80);
-  --modTtl: var(--gr5);
 }
 
 .CountdownModule[data-theme=dark] {
@@ -757,11 +686,6 @@
   color: var(--modTtl);
 }
 
-.countdown-case-study {
-  border: 1px solid var(--line);
-  border-radius: 10px;
-}
-
 #main .CountdownModule[data-theme=dark] .countdownTitleGame {
   background: var(--module-accent);
   color: #000 !important;
@@ -942,11 +866,6 @@
 }
 
 @media (max-width: 700px) {
-
-  .countdown-case-study__controls {
-    align-items: flex-start;
-    flex-direction: column;
-  }
 
   .CountdownModule .countdownTitle {
     font-size: 27.5px;
@@ -1266,55 +1185,6 @@ transform: perspective(400px) rotateX(0);
 }
 }
 
-// Spacing (shared rhythm, see --space-* tokens)
-.countdown-case-study {
-  margin-top: var(--space-stack);
-  padding: var(--space-card);
-}
-
-// ---------------------------------------------------------------------------
-// Token note — a .badge-card holding the shared token list (see _work.scss,
-// .token-case-study__tokens). Swatch column = the fill + hatch track.
-// ---------------------------------------------------------------------------
-
-.countdown-case-study__token-note {
-  margin-top: 14px;
-  padding: var(--space-card);
-}
-
-// First group needs no top rule
-.countdown-case-study__token-note .token-case-study__tokens {
-  margin-top: 0;
-}
-
-.countdown-case-study__token-note .token-case-study__group:first-child {
-  padding-top: 0;
-  border-top: 0;
-}
-
-// Swatches — round, like the design-system token list:
-// --modTtl is a named semantic role (solid ring), --Cc25 is unsemantic
-// (dashed ring, as .token-case-study__swatch--unsemantic)
-.countdown-case-study__swatch--title-light {
-  background: var(--gr80);
-}
-
-.countdown-case-study__swatch--title-dark {
-  background: var(--gr5);
-}
-
-.token-case-study__swatch:is(.countdown-case-study__swatch--accent-light, .countdown-case-study__swatch--accent-dark) {
-  border: 1px dashed var(--ink);
-}
-
-.countdown-case-study__swatch--accent-light {
-  background: var(--Cc25);
-}
-
-.countdown-case-study__swatch--accent-dark {
-  background: #020202;
-}
-
 // ---------------------------------------------------------------------------
 // Poll-style skin — same visual language as the poll module (_poll.scss):
 // flat 4px corners, thin outlines, paper faces and the offset-print tint
@@ -1327,7 +1197,6 @@ transform: perspective(400px) rotateX(0);
 #main #work .CountdownModule {
   --cd-line: var(--module-accent); // outlines + offset tint
   --cd-paper: #fff; // faces of tags, badge, secondary surfaces
-  --cd-tint: color-mix(in srgb, var(--cd-line) 30%, transparent);
   --cd-tile: var(--module-accent); // --Cc25 light
   --cd-action: var(--module-accent);
   border-color: #deddd7;
@@ -1348,7 +1217,6 @@ transform: perspective(400px) rotateX(0);
   border-radius: 4px;
   color: var(--cd-line) !important;
   background: var(--cd-paper);
-  box-shadow: 2px 2px 0 var(--cd-tint);
   animation: none;
 }
 
@@ -1358,7 +1226,6 @@ transform: perspective(400px) rotateX(0);
   border-radius: 4px;
   color: #fff;
   background: var(--cd-tile);
-  box-shadow: 3px 3px 0 var(--cd-tint);
 }
 
 #main #work .CountdownModule .countdownValue::before,
@@ -1384,7 +1251,6 @@ transform: perspective(400px) rotateX(0);
   border: 1px solid var(--cd-line);
   color: var(--cd-line) !important;
   background: var(--cd-paper);
-  box-shadow: 4px 4px 0 var(--cd-tint);
 }
 
 #main #work .CountdownModule .countdownBadge :is(.countdownBadgeLabel, .countdownBadgeDate, .countdownBadgeYear) {
@@ -1397,7 +1263,6 @@ transform: perspective(400px) rotateX(0);
   border-radius: 4px;
   color: #fff !important;
   background: var(--cd-action);
-  box-shadow: 3px 3px 0 color-mix(in srgb, var(--cd-action) 30%, transparent);
   letter-spacing: 0.01em;
   text-transform: none;
 }

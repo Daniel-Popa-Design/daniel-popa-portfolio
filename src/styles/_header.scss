@@ -31,7 +31,6 @@
   gap: 7px;
   padding: 3px 11px 3px 3px;
   border-radius: 999px;
-  background: #fff;
   text-decoration: none;
 }
 
@@ -115,11 +114,13 @@
   gap: 7px;
   margin-left: 4px;
   color: #fff;
-  background: var(--badge-teal);
+  // Rest: deeper shade of the accent; hover: the accent itself — lighter on
+  // hover like every other button, white text ≥ 4.5:1 in both states
+  background: color-mix(in srgb, var(--badge-teal) 82%, #000);
 
   &:hover {
     color: #fff;
-    background: #2fb898;
+    background: var(--badge-teal);
 
     svg {
       transform: translate(1px, -1px);
@@ -137,48 +138,72 @@
   gap: 6px;
 }
 
+// Language switch — plain "DE / EN". Active: ink text + short accent
+// underline (not just bold); inactive: muted, darkens on hover.
 .language-switch {
   display: inline-flex;
-  height: 34px;
   align-items: center;
   gap: 2px;
-  padding: 2px;
-  border: 1px solid rgba(52, 52, 52, 0.18);
-  border-radius: 999px;
-  background: #fff;
+}
+
+// Scoped to the header (outside .portfolio-shell) to beat the global span size
+.site-header .language-switch__divider {
+  color: #b3b2ab;
+  font-size: 12px;
 }
 
 .language-switch__option {
-  display: inline-flex;
-  min-width: 43px;
-  min-height: 26px;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  padding: 0 9px;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  color: #555;
-  background: transparent;
+  position: relative;
+  display: inline-grid;
+  min-width: 32px;
+  min-height: 32px; // comfortable tap target
+  place-items: center;
+  padding: 0 6px;
+  border: 0;
+  color: #8a8983;
+  background: none;
+  font-size: 12px !important; // beats the global button size (_base.scss)
+  font-weight: 600;
+  letter-spacing: 0.06em;
   cursor: pointer;
-  transition:
-    background-color 160ms ease,
-    color 160ms ease;
+  transition: color 160ms ease;
 
-  svg {
-    width: 16px;
-    height: 16px;
-    flex: 0 0 16px;
+  // Underline marker — grows in under the active language
+  &::after {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    width: 14px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--story-accent, #c4472a);
+    transform: translateX(-50%) scaleX(0);
+    transition: transform 200ms ease;
+    content: "";
   }
 
   &[aria-pressed="true"] {
-    border-color: var(--badge-ink);
-    color: var(--badge-ink);
-    background: var(--surface);
+    color: var(--ink);
+
+    &::after {
+      transform: translateX(-50%) scaleX(1);
+    }
   }
 
   &:hover:not([aria-pressed="true"]) {
     color: var(--ink);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 1px;
+    border-radius: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .language-switch__option::after {
+    transition: none;
   }
 }
 
@@ -238,21 +263,9 @@
     gap: 4px;
   }
 
-  .language-switch {
-    height: 30px;
-  }
-
   .language-switch__option {
-    min-width: 31px;
-    min-height: 23px;
-    gap: 3px;
+    min-width: 28px;
     padding-inline: 4px;
-
-    svg {
-      width: 12px;
-      height: 12px;
-      flex-basis: 12px;
-    }
   }
 
   // Burger — ink coin

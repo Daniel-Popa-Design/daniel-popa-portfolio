@@ -4,12 +4,22 @@
 .note-card {
   display: grid;
   // Desktop/tablet: emblem + tags | text. Phones: stacked (see below).
-  grid-template-columns: auto minmax(0, 1fr);
+  // Fixed head column (grows only if the tags need more) so the text starts
+  // at the same spot in every section
+  grid-template-columns: minmax(max-content, 320px) minmax(0, 1fr);
   align-items: center;
   gap: 18px clamp(20px, 3vw, 40px);
   width: 100%;
   margin: 0;
-  padding: 20px 22px 22px;
+}
+
+// Open layout: drop the badge-card box (border, corners, background, padding)
+.note-card.badge-card {
+  overflow: visible;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
 }
 
 .note-card__head {
@@ -32,8 +42,6 @@
 .portfolio-shell .note-card__text {
   max-width: 72ch;
   margin: 0;
-  padding-left: clamp(20px, 3vw, 40px);
-  border-left: 1px solid var(--line);
   color: var(--ink-soft);
   font-size: 13px;
   line-height: 1.65;
@@ -42,12 +50,5 @@
 @media (max-width: 700px) {
   .note-card {
     grid-template-columns: minmax(0, 1fr);
-    padding: 18px 18px 20px;
-  }
-
-  .portfolio-shell .note-card__text {
-    padding: 16px 0 0;
-    border-top: 1px solid var(--line);
-    border-left: 0;
   }
 }

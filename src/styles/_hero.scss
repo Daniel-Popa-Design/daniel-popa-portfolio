@@ -9,8 +9,8 @@
   --head-rise: calc(var(--avatar-size) * 0.1212); // head pokes above the circle (40px @ 330)
   --head-clearance: 24px; // free space between the CTAs and the top of the head
 
-  // Artboard frame: inset from the shell by --frame-inset (tokens), padding
-  // reduced by the same amount so the hero text lines up with the sections.
+  // Inset from the shell by --frame-inset (tokens), padding reduced by the
+  // same amount so the hero text lines up with the sections.
   --hero-inset: var(--frame-inset);
 
   display: grid;
@@ -19,18 +19,23 @@
   grid-template-columns: 1.2fr 0.8fr;
   align-items: center;
   gap: clamp(28px, 6vw, 90px);
+  position: relative;
   margin: var(--hero-inset) var(--hero-inset) 0;
-  padding: var(--space-section) calc(var(--space-inline) - var(--hero-inset) - 5px);
-  border: 5px solid #cfcfcf;
-  border-radius: 20px;
-  background:
-    // fade the dot grid out on the text side
-    linear-gradient(90deg, var(--surface) 0%, var(--surface) 30%, transparent 70%),
-    // soft lemon glow behind the portrait
-    radial-gradient(circle at 76% 52%, rgba(243, 217, 93, 0.22), transparent 38%),
-    // design-canvas dot grid
-    radial-gradient(circle, #d6d5ce 1px, transparent 1.4px) 0 0 / 22px 22px,
-    var(--surface);
+  padding: var(--space-section) calc(var(--space-inline) - var(--hero-inset));
+  background: var(--paper); // plain white, no frame
+
+  // Divider under the hero across the full viewport width — separates it from
+  // the next section. The shell doesn't clip (see _layout.scss); html clips
+  // the overflow, so this never causes sideways scrolling.
+  &::after {
+    position: absolute;
+    right: calc(50% - 50vw);
+    bottom: 0;
+    left: calc(50% - 50vw);
+    height: 2px;
+    background: var(--badge-teal);
+    content: "";
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -43,165 +48,56 @@
   padding: 0;
 }
 
-// Greeting — speech bubble in the offset-print style (as the hexagons and
-// <NumberMark>): white face + ink outline, a gold copy of the bubble shifted
-// down-right (.hero__greeting-tint), white Barlow italic with an ink
-// outline, and a waving-hand coin pinned to the top-right corner.
-.hero__greeting {
-  --bubble-top: #fff;
-  --bubble-bottom: #fff;
-  --bubble-tint: color-mix(in srgb, var(--badge-gold) 70%, #fff);
-  position: relative;
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  margin: 0 0 22px 4px;
-  padding: 6px 22px 7px 16px;
-  border: 1.25px solid var(--badge-ink);
-  border-radius: 14px;
-  background: linear-gradient(180deg, var(--bubble-top), var(--bubble-bottom));
-  line-height: 1;
-
-  // Tail — a rotated square sharing the bubble's bottom colour and outline
-  &::before {
-    position: absolute;
-    bottom: -7px;
-    left: 22px;
-    display: block;
-    width: 12px;
-    height: 12px;
-    border-right: 1.25px solid var(--badge-ink);
-    border-bottom: 1.25px solid var(--badge-ink);
-    border-radius: 0 0 3px;
-    background: var(--bubble-bottom);
-    content: "";
-    transform: rotate(45deg);
-  }
-
-  // Gold copy of the bubble (body + tail), 3px down-right, behind the face
-  .hero__greeting-tint {
-    position: absolute;
-    z-index: -1;
-    inset: -1.25px;
-    border-radius: 15px;
-    background: var(--bubble-tint);
-    transform: translate(3px, 3px);
-    pointer-events: none;
-
-    &::before {
-      position: absolute;
-      bottom: -8px;
-      left: 23px;
-      display: block;
-      width: 13px;
-      height: 13px;
-      border-radius: 0 0 4px;
-      background: var(--bubble-tint);
-      content: "";
-      transform: rotate(45deg);
-    }
-  }
-
-  // Waving-hand coin pinned to the top-right corner (see .badge-coin)
-  .badge-coin {
-    top: -12px;
-    right: -12px;
-    bottom: auto;
-    left: auto;
-    width: 28px;
-    height: 28px;
-    translate: none;
-  }
-}
-
-// White letters with an ink outline, like the "10" in the badge
-.portfolio-shell .hero__greeting-text {
-  position: relative;
-  z-index: 1;
-  color: #fff;
-  font-family: Barlow, var(--sans);
-  font-size: 22px;
-  font-style: italic;
-  font-weight: 800;
-  letter-spacing: 0.01em;
-  text-shadow:
-    -1px -1px 0 var(--badge-ink),
-    1px -1px 0 var(--badge-ink),
-    -1px 1px 0 var(--badge-ink),
-    1px 1px 0 var(--badge-ink),
-    0 -1px 0 var(--badge-ink),
-    0 1px 0 var(--badge-ink),
-    -1px 0 0 var(--badge-ink),
-    1px 0 0 var(--badge-ink);
-  white-space: nowrap;
-}
-
+// Name in the main red, title case; role in ink on one line; calm intro
 .hero h1 {
-  margin: 0 0 10px;
-  color: #262626;
+  margin: 0 0 14px;
+  color: var(--accent-red);
   font-family: var(--serif);
-  font-size: clamp(46px, 6.6vw, 83.6px);
+  font-size: clamp(48px, 6.4vw, 88px);
   font-weight: 500;
-  letter-spacing: -0.075em;
-  line-height: 0.98;
-  text-transform: uppercase;
+  letter-spacing: -0.055em;
+  line-height: 1;
   white-space: nowrap;
-
-  span {
-    color: #5a5a55;
-    font-weight: 400;
-  }
 }
 
 .hero .hero__role {
   margin: 0;
-  color: #4e4e4a;
+  color: var(--ink);
   font-family: var(--serif);
-  font-weight: 450;
-  letter-spacing: -0.055em;
-  line-height: 1.08;
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.25;
 
-  &,
+  // The two parts stay on one line (desktop) or stack after "&" (phones)
   span {
-    font-size: 24px;
+    font-size: inherit;
   }
-
-  span {
-    display: block;
-  }
-}
-
-.hero__rule {
-  width: 64px;
-  height: 3px;
-  margin: 17px 0 13px;
-  border-radius: 99px;
-  background: var(--lemon);
 }
 
 .hero__bottom {
-  max-width: 470px;
+  max-width: 560px;
   padding: 0;
 }
 
 .hero .hero__intro {
-  max-width: 400px;
-  margin: 0;
-  color: #666660;
-  font-size: 24px;
+  max-width: 540px;
+  margin: clamp(28px, 3.5vw, 44px) 0 0;
+  color: var(--ink-soft);
+  font-size: clamp(16px, 1.4vw, 19px);
   line-height: 1.6;
 }
 
 // ---------------------------------------------------------------------------
-// Calls to action — stacked: primary first, CV download below.
+// Calls to action — primary button, then the CV download as a text link
 // ---------------------------------------------------------------------------
 
 .hero__actions {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 7px;
-  margin-top: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 28px;
+  margin-top: clamp(28px, 3.5vw, 40px);
 
   > a:hover,
   > a:hover svg {
@@ -209,30 +105,25 @@
   }
 }
 
-.hero .button--blue,
-.hero-cv {
-  min-width: 0;
-  height: 36px;
-  min-height: 36px;
-  padding-inline: 12px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 400;
-  font-variant: small-caps;
-}
-
+// Primary: same pill as before; deep ink at rest, the main red on hover
 .hero .button--blue {
+  min-width: 0;
+  height: 44px;
+  min-height: 44px;
   justify-content: space-between;
   gap: 14px;
+  padding-inline: 18px;
   border: 0;
+  border-radius: 999px;
   color: #fff;
-  background: var(--dark);
-  letter-spacing: 0.035em;
-  text-transform: uppercase;
+  background: #1d1d1b;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background-color 180ms ease;
 
   &:hover {
     border: 0;
-    background: #41413f;
+    background: var(--accent-red);
   }
 
   svg {
@@ -240,34 +131,39 @@
   }
 }
 
+// CV download: plain underlined text link + download icon
 .hero-cv {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
-  border: 1px solid #d7d6cf;
-  color: #343432;
-  background: #fffefa;
-  text-decoration: none;
+  padding: 6px 0;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
   white-space: nowrap;
-  transition:
-    background-color 160ms ease,
-    border-color 160ms ease;
+  transition: color 160ms ease;
 
   &:hover {
-    border-color: #c1c0b9;
-    background: var(--lemon);
+    color: var(--accent-red);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent-red);
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 
   span {
     font-size: inherit;
     font-weight: inherit;
-    font-variant: inherit;
   }
 
   svg {
-    width: 14px;
-    height: 14px;
+    width: 18px;
+    height: 18px;
     flex: none;
     stroke: currentColor;
     stroke-linecap: round;
@@ -305,9 +201,10 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  border: 2px solid var(--lemon);
+  // Ring: a light shade of the main red (echoes the red name, stays quiet)
+  border: 2px solid color-mix(in srgb, var(--accent-red) 45%, #fff);
   border-radius: 50%;
-  background: var(--page);
+  background: #f2f2f2;
 }
 
 // The cut-out portrait is rendered twice: clipped to the circle, and once more
@@ -411,37 +308,20 @@
     gap: calc(var(--head-rise) + var(--head-clearance));
     // Tighter vertical padding inside the frame on mobile
     padding-block: 20px;
-    border-radius: 16px;
-    background:
-      linear-gradient(180deg, var(--surface) 0%, var(--surface) 45%, transparent 75%),
-      radial-gradient(circle at 50% 78%, rgba(243, 217, 93, 0.22), transparent 45%),
-      radial-gradient(circle, #d6d5ce 1px, transparent 1.4px) 0 0 / 20px 20px,
-      var(--surface);
-  }
-
-  .hero__greeting {
-    min-height: 38px;
-    margin: 0 0 18px 3px;
-    padding: 5px 18px 6px 13px;
-  }
-
-  .portfolio-shell .hero__greeting-text {
-    font-size: 19px;
   }
 
   .hero h1 {
-    margin-bottom: 7px;
-    // Uppercase name is ~6.4em wide (+ margin): size it to the available width
-    font-size: min(70.4px, (100vw - 52px) / 6.6);
+    margin-bottom: 10px;
+    // Name is ~5.3em wide: size it to the available width
+    font-size: min(64px, (100vw - 48px) / 5.4);
   }
 
   .hero .hero__role {
     max-width: 100%;
-  }
 
-  .hero__rule {
-    width: 52px;
-    margin: 13px 0 9px;
+    span {
+      display: block;
+    }
   }
 
   .hero .hero__intro {
@@ -449,23 +329,15 @@
     line-height: 1.5;
   }
 
-  // Both CTAs full width, CV download directly below the primary button.
+  // Primary button full width; the CV link sits below it
   .hero__actions {
-    align-items: stretch;
-    gap: 8px;
-    margin-top: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
 
-  .hero .button--blue,
-  .hero-cv {
+  .hero .button--blue {
     width: 100%;
-    height: 44px;
-    min-height: 44px;
-    padding-inline: 16px;
-  }
-
-  .hero-cv {
-    justify-content: space-between;
   }
 
   .hero-art {

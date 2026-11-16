@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from "react";
+import { Fragment, useEffect, useId, useRef, useState } from "react";
 import portrait from "./assets/daniel-popa-cutout.png";
 import siteLogo from "./assets/code-brackets-logo.svg";
 import heroBadge from "./assets/Hero-Badge.svg";
@@ -47,7 +47,6 @@ const copy = {
       close: "Navigation schließen",
     },
     hero: {
-      greeting: "Hallo, ich bin",
       role: ["Senior Webdesigner &", "Frontend-Entwickler"],
       intro:
         "Mit über 10 Jahren Erfahrung verwandle ich komplexe Ideen in klare, durchdachte digitale Erlebnisse.",
@@ -65,43 +64,75 @@ const copy = {
       exp2: "im Webdesign",
     },
     work: {
-      eyebrow: "Ausgewählte Verbesserungen",
-      title: "Was hinter der Oberfläche steckt",
+      eyebrow: "Was hinter der Oberfläche steckt",
+      title: "Kleine Details, bessere Erlebnisse",
       aside:
-        "Wie eine flexible Farbpalette und klare semantische Rollen gemeinsame Komponenten in einem Multi-Brand-Publishing-System unterstützen. Portal- und Inhaltsnamen sind fiktiv – Struktur, Tokens und Farblogik stammen aus dem echten System.",
+        "Drei Fallstudien aus einem Multi-Brand-Publishing-System: ein Farbsystem, das alle Marken trägt, eine Seite, die beim Laden nicht springt, und ein Portal, das ohne Maus funktioniert. Portal- und Inhaltsnamen sind fiktiv – Struktur, Tokens und Farblogik stammen aus dem echten System. Die Skizzen sind nachgebaute Konzeptbeispiele, keine gemessenen Projektergebnisse.",
       noteLabel: "Kontext",
       noteTab: "3 Fallstudien",
-      tokenIndex: "01 / DESIGN-SYSTEM",
-      tokenTitle: ["Flexible Farben.", "Klare Rollen."],
-      tokenLead:
-        "Nicht jede Farbanwendung braucht ein eigenes semantisches Token. Ziel war es, wiederverwendbare Farbwerte flexibel zu halten und wiederkehrenden globalen Rollen – etwa Links oder Artikeltiteln – klare Namen zu geben.",
-      brandColor: "MARKENFARBE",
-      brandDescription: "Ein Markenwert definiert die Primärfarbe.",
-      reusableRole: "WIEDERVERWENDBARE ROLLE",
-      roleDescription: "Das Link-Token ordnet dem Zweck die Markenfarbe zu.",
-      layers: "VIER EBENEN, EINE STRATEGIE",
-      neutral: "Globaler neutraler Basiswert",
-      primary: "Primärer Marken-Basiswert",
-      semantic: "Semantische Rollen verweisen auf den passenden Basiswert",
-      unsemantic: "Unsemantischer Palettenwert für Hell- und Dunkelmodus",
-      approachLabel: "DER ANSATZ",
-      approach:
-        "Palettenwerte kontextunabhängig wiederverwenden; etablierte Rollen wie Links und Artikeltitel über semantische Aliase abbilden.",
-      mattersLabel: "WARUM DAS WICHTIG IST",
-      matters:
-        "Ein Komponenten-Stylesheet bedient alle acht Marken: Ein Rebranding ändert nur die lokale Farbdatei, der Dark Mode belegt lediglich Variablen unter [data-theme=\"dark\"] neu, und rund 4.800 Grau-Referenzen bleiben überall konsistent – ohne ausufernde Sammlung einzelner semantischer Namen.",
-      contributionLabel: "MEIN BEITRAG",
-      contribution:
-        "Eine Farbstrategie in vier Ebenen: eine globale Graustufen-Skala (--gr5 bis --gr93, benannt nach % Schwarz) für alle Marken, Marken-Basiswerte je Portal (--PrCl, --AcCl), wenige semantische Rollen für Text, Titel, Links, Hintergründe und Buttons sowie nummerierte Hell/Dunkel-Paare wie --Cc25 für alles Übrige – Marke für Marke ausgerollt.",
-      unsemanticLabel: "UNSEMANTISCHE FARBEN",
-      takeawayMore: "Mehr lesen",
-      takeawayLess: "Weniger anzeigen",
-      unsemanticText:
-        "--Cc25 benennt eine Farbe, keine Rolle. Er hält je einen Wert für Hell- und Dunkelmodus und wird direkt in Komponenten wie dem Countdown eingesetzt – überall dort, wo die Markenfarbe ohne globale Bedeutung gebraucht wird, ganz ohne neues semantisches Alias.",
+      // Four takeaways under the heading (icon, label, text clamped to 3 lines)
+      takeaways: [
+        {
+          icon: "target",
+          label: "DER ANSATZ",
+          text:
+            "Palettenwerte kontextunabhängig wiederverwenden; etablierte Rollen wie Links und Artikeltitel über semantische Aliase abbilden.",
+        },
+        {
+          icon: "bulb",
+          label: "WARUM DAS WICHTIG IST",
+          text:
+            "Ein Komponenten-Stylesheet bedient alle acht Marken: Ein Rebranding ändert nur die lokale Farbdatei, der Dunkelmodus belegt lediglich Variablen unter [data-theme=\"dark\"] neu, und rund 4.800 Grau-Referenzen bleiben überall konsistent – ohne ausufernde Sammlung einzelner semantischer Namen.",
+        },
+        {
+          icon: "puzzle",
+          label: "MEIN BEITRAG",
+          text:
+            "Eine Farbstrategie in vier Ebenen: eine globale Graustufen-Skala (--gr5 bis --gr93, benannt nach % Schwarz) für alle Marken, Marken-Basiswerte je Portal (--PrCl, --AcCl), wenige semantische Rollen für Text, Titel, Links, Hintergründe und Buttons sowie nummerierte Hell/Dunkel-Paare wie --Cc25 für alles Übrige – Marke für Marke ausgerollt.",
+        },
+        {
+          icon: "unsemantic",
+          label: "UNSEMANTISCHE FARBEN",
+          text:
+            "--Cc25 benennt eine Farbe, keine Rolle. Es hält je einen Wert für Hell- und Dunkelmodus und wird direkt in Komponenten wie dem Countdown eingesetzt – überall dort, wo die Markenfarbe ohne globale Bedeutung gebraucht wird, ganz ohne neues semantisches Alias.",
+        },
+      ],
+      tokenDemo: {
+        label: "Skizze: Farbsystem in vier Ebenen",
+        layersTitle: "Vier Ebenen",
+        modulesTitle: "Ein Modul, vier Varianten",
+        gray: "Graustufen",
+        brand: "Marke",
+        role: "Rolle",
+        palette: "Palette",
+        notes: [
+          "Für alle Marken gleich – benannt nach % Schwarz",
+          "Ein Wert je Portal – nur hier ändert ein Rebranding etwas",
+          "Wiederkehrende Aufgaben bekommen einen Namen",
+          "Eine Farbe, keine Rolle – je ein Wert für Hell und Dunkel",
+        ],
+        layersCaption: "Jede Ebene baut auf der vorherigen auf – von allgemein zu spezifisch",
+        modulesCaption: "Gleiche Struktur – nur die Tokens wechseln",
+        previewButton: "Live-Module ansehen",
+        previewHint: "Umfrage und Countdown mit Portal- und Modus-Umschalter",
+      },
+      preview: {
+        title: "Live-Vorschau",
+        lead: "Echte Komponenten aus dem System: ein Stylesheet für alle Portale, umgeschaltet nur über Tokens.",
+        close: "Vorschau schließen",
+        tokens: "Aktive Tokens",
+        uses: {
+          brand: "Markenfarbe – Button und Kommentar-Link der Umfrage",
+          title: "Semantische Rolle – Titel des Countdowns",
+          tile: "Palettenwert – Ziffern-Kacheln des Countdowns",
+        },
+        tokensNote:
+          "Gleiche Komponenten, gleiches CSS – beim Umschalten ändern sich nur diese Werte.",
+      },
       pollQuestion: "Welche Artikel der Ausgabe 07/2023 haben dir zugesagt?",
       pollTitle: "Leserlieblinge",
       pollLabel: "Umfrageergebnisse",
-      participants: "Teilnehmer",
+      participants: "Teilnehmende",
       pollStart: "01.06.2023, 13:45 Uhr",
       pollEnd: "02.08.2023, 13:45 Uhr",
       until: "bis",
@@ -117,85 +148,133 @@ const copy = {
         "Praxis: Gaming unter Linux mit Nobara",
         "Praxis: Radeon 6000 mit MPT und MCT optimieren – Treibergrenzen sprengen",
         "Sonstiges (bitte kurz im Thread schreiben)",
-        "Test: 5× Z790-Mainboard",
+        "Test: 5× Z790-Mainboards",
         "Test: 6× Notebooks mit RTX 4000",
-        "Test: 8× Midi-Gehäuse",
-        "Test: AMD Radeon RX 7600",
       ],
-      countdownIndex: "02 / WIEDERVERWENDBARE KOMPONENTE",
-      countdownTitle: ["Ein Countdown,", "passend zur Marke."],
-      countdownDescription:
-        "Eine gemeinsame Modulstruktur passt sich mit wenigen Farb-Tokens, Inhalten und Layoutvarianten an unterschiedliche Portalidentitäten an.",
-      countdownNoteLabel: "Prinzip",
-      countdownNoteTab: "2 Portale · 2 Modi",
-      countdownLabel: "Shadowstone Release-Countdown",
+      countdownLabel: "Shadowstone-Release-Countdown",
       countdownButton: "Alle Shadowstone-Infos",
       release: "Release",
-      titleColorLabel: "SEMANTISCHE TITELFARBE",
-      titleColorComparison:
-        "Farbe des Countdown-Titels in hellem und dunklem Modus",
-      lightMode: "HELLMODUS",
-      darkMode: "DUNKELMODUS",
-      titleColorLightToken: "--modTtl → --gr80 · #333333 (80 % Schwarz)",
-      titleColorDarkToken: "--modTtl → --gr5 · #f2f2f2 (5 % Schwarz)",
-      brandAccentLabel: "UNSEMANTISCHER FARB-TOKEN",
-      brandAccentLightToken: "--Cc25 ·",
-      brandAccentDarkToken: "--Cc25 ·",
-      brandAccentComparison: "Markenakzent für hellen und dunklen Modus",
-      brandAccentNote:
-        "--Cc25 ist ein unsemantischer Farb-Token mit Werten für Hell- und Dunkelmodus. Er lässt sich für verschiedene UI-Elemente wiederverwenden und vermeidet eine unübersichtliche Liste elementbezogener Variablen, die oft dieselben Farbwerte enthalten.",
-      paletteNote:
-        "--modTtl ist die semantische Farbe des Countdown-Titels. Im Hellmodus verweist sie auf --gr80 (#333333, 80 % Schwarz), im Dunkelmodus auf --gr5 (#f2f2f2, 5 % Schwarz).",
+      releaseDate: "19.11.",
     },
     quality: {
-      index: "03 / UX & FRONTEND IN DER PRAXIS",
-      title: "Kleine Details, bessere Erlebnisse.",
-      description:
-        "Vier Muster aus meiner täglichen Arbeit an Core Web Vitals und Barrierefreiheit nach WCAG 2.2: Layout-Verschiebungen reduzieren, Tastaturbedienung verbessern, Touch-Ziele vergrößern und unnötige Bewegung vermeiden. Die Demos sind nachgebaute Konzeptbeispiele, keine gemessenen Projektergebnisse.",
-      noteLabel: "Praxis",
-      noteTab: "4 Beispiele",
-      beforeState: "Vorher · Werbefläche nicht reserviert",
-      afterState: "Nachher · Werbefläche reserviert",
       cards: [
         {
-          title: "Unerwartetes Springen verhindern",
+          title: "Ein Farbsystem für acht Marken",
           description:
-            "Der Vergleich zeigt: Wird Werbung nachträglich eingefügt, rutscht der Artikel weiter. Reservierter Platz hält ihn stabil.",
+            "Gemeinsame Komponenten, die sich über Tokens an jede Marke und jeden Modus anpassen.",
+          story: {
+            situationLabel: "Situation",
+            situation:
+              "Ein Publishing-System betreibt acht Portale mit eigener Markenidentität – aber mit denselben Komponenten, etwa Umfrage oder Release-Countdown. Jede Marke braucht ihre Farben, jedes Modul einen Hell- und einen Dunkelmodus.",
+            whyLabel: "Warum es zählt",
+            why: [
+              {
+                term: "Wartung",
+                text: "Ohne System entsteht pro Marke ein eigenes Stylesheet – jede Änderung müsste achtmal umgesetzt werden.",
+              },
+              {
+                term: "Konsistenz",
+                text: "Grautöne, Links und Titel sollen auf allen Portalen gleich funktionieren.",
+              },
+              {
+                term: "Übersicht",
+                text: "Ein eigenes semantisches Token für jede Farbanwendung führt zu einer endlosen Liste von Variablen mit denselben Werten.",
+              },
+            ],
+            solutionLabel: "Umsetzung",
+            solutionLead:
+              "Nicht jede Farbanwendung braucht ein eigenes semantisches Token. Ich habe die Farben in vier Ebenen geordnet – von allgemein zu spezifisch – und Marke für Marke ausgerollt:",
+            steps: [
+              "Globale Graustufen von --gr5 bis --gr93, benannt nach % Schwarz – für alle Marken gleich.",
+              "Marken-Basiswerte je Portal (--PrCl1, --AcCl) – die einzige Datei, die ein Rebranding ändert.",
+              "Wenige semantische Rollen für Wiederkehrendes: Text, Titel, Links, Hintergründe und Buttons (z. B. --lk → --PrCl1).",
+              "Nummerierte Hell/Dunkel-Paare wie --Cc25 für alles Übrige – eine Farbe, keine Rolle, direkt in Komponenten nutzbar.",
+            ],
+            resultLabel: "Ergebnis",
+            result:
+              "Ein Komponenten-Stylesheet bedient alle acht Marken. Ein Rebranding ändert nur die lokale Farbdatei, der Dunkelmodus belegt lediglich Variablen neu.",
+            deeperLabel: "Tiefer einsteigen: die technischen Details",
+            deeper:
+              "Der Dunkelmodus setzt die Variablen unter [data-theme=\"dark\"] neu – die Komponenten selbst bleiben unverändert. Rund 4.800 Grau-Referenzen nutzen dieselbe Skala und bleiben überall konsistent. Beispiel Countdown: Der Titel nutzt die semantische Rolle --modTtl (hell → --gr80 · #333333, dunkel → --gr5 · #f2f2f2), die Ziffern-Kacheln den unsemantischen Wert --Cc25 (Northstar: #285b78 hell, #020202 dunkel). Gern erkläre ich die Details im Gespräch.",
+          },
+        },
+        {
+          title: "Eine Seite, die beim Lesen nicht springt",
+          description:
+            "Die Seite bleibt ruhig, während Werbung und Bilder laden.",
+          story: {
+            situationLabel: "Situation",
+            situation:
+              "Artikelseiten finanzieren sich über Werbung. Die Anzeigen kommen aus externen Ad-Systemen und laden erst nach dem Text – zu unvorhersehbaren Zeiten und in wechselnden Größen. Jede Anzeige schiebt den Inhalt darunter weg.",
+            whyLabel: "Warum es zählt",
+            why: [
+              {
+                term: "Lesende",
+                text: "verlieren die Zeile oder tippen daneben.",
+              },
+              {
+                term: "Barrierefreiheit",
+                text: "Mit Bildschirmlupe oder eingeschränkter Handmotorik ist eine springende Seite eine Barriere, kein Ärgernis.",
+              },
+              {
+                term: "Business",
+                text: "Seit Juni 2025 verlangt der European Accessibility Act für viele kommerzielle Websites Barrierefreiheit. Google wertet Verschiebungen zudem als Qualitätssignal.",
+              },
+            ],
+            solutionLabel: "Umsetzung",
+            solutionLead:
+              "Entscheidend ist das richtige Maß: zu wenig Platz und die Seite springt trotzdem, zu viel und es bleiben leere Lücken.",
+            steps: [
+              "Platz für jeden Werbeplatz reservieren – nach den Größen, die tatsächlich ausgeliefert werden.",
+              "Bildgrößen vorab festlegen, damit der Browser den Platz kennt.",
+              "Auf Smartphone und Desktop prüfen, denn Formate und Ladezeiten unterscheiden sich.",
+            ],
+            resultLabel: "Ergebnis",
+            result:
+              "Der Inhalt steht, bevor die Werbung kommt – die Seite bleibt beim Lesen still.",
+            deeperLabel: "Tiefer einsteigen: die technischen Details",
+            deeper:
+              "Die Kennzahl heißt Cumulative Layout Shift (CLS) und gehört zu Googles Core Web Vitals; das Ziel liegt bei 0,1 oder weniger für die meisten Besuche. Werbeplätze und Bilder erhalten feste Maße (min-height, aspect-ratio, width/height), sodass der Browser den Platz von Anfang an freihält. Der European Accessibility Act verweist auf die Norm EN 301 549, die auf WCAG 2.1 Level AA aufbaut. Gern erkläre ich die Details im Gespräch.",
+          },
           metric:
             "CLS-Ziel: ≤ 0,1 am 75. Perzentil; für dieses Konzept nicht gemessen.",
         },
         {
-          title: "Tastaturfokus sichtbar machen",
+          title: "Ein Gaming-Portal, das ohne Maus funktioniert",
           description:
-            "Der Vergleich zeigt einen schwer erkennbaren Fokus neben einem klaren Fokuszustand und einem Direktlink zum Artikel.",
-          criterion: "WCAG 2.4.7 · Fokus sichtbar · AA",
-        },
-        {
-          title: "Touch-Ziele leichter treffen",
-          description:
-            "Der Vergleich zeigt ein kleines, unbeschriftetes Ziel neben einem deutlich beschrifteten, größeren Bedienelement.",
-          criterion: "WCAG 2.5.8 · Mindestgröße von Zielen · AA",
-        },
-        {
-          title: "Status ohne Bewegung klar anzeigen",
-          description:
-            "Beide Beispiele zeigen denselben Status. Nur die Animation ändert sich: Sie entfällt, wenn reduzierte Bewegung eingestellt ist.",
+            "Gestaltet für Lesende, die per Tastatur, Schalter oder Sprachsteuerung navigieren.",
+          story: {
+            situationLabel: "Situation",
+            situation:
+              "Wer Spiele liebt, liest auch Gaming-Seiten – darunter Menschen, die mit eingeschränkter Handmotorik oder ganz ohne Hände spielen. Seiten, die für Maus und Touch gebaut sind, lassen sie zurück.",
+            whyLabel: "Warum es zählt",
+            why: [
+              {
+                term: "Eingeschränkte Handmotorik",
+                text: "Inhalte werden Schritt für Schritt erreicht. Ein langes Menü vor jedem Artikel macht das langsam und ermüdend – und man verliert leicht die Position.",
+              },
+              {
+                term: "Business",
+                text: "Seit Juni 2025 verlangt der European Accessibility Act für viele kommerzielle Websites Barrierefreiheit.",
+              },
+            ],
+            solutionLabel: "Umsetzung",
+            solutionLead:
+              "Seiten für Maus und Touch verstecken ihre Probleme: ein langes Menü vor jedem Artikel, unsichtbarer Fokus, kleine Klickziele und Animationen ohne Ende. Die Lösung verändert Design und Code gemeinsam.",
+            steps: [
+              "Skip-Link ergänzen – ein Tastendruck springt am Menü vorbei direkt zum Artikel.",
+              "Fokus deutlich sichtbar machen, damit jederzeit klar ist, wo man sich befindet.",
+              "Kleine Klickziele vergrößern und unnötige Bewegung entfernen.",
+            ],
+            resultLabel: "Ergebnis",
+            result:
+              "Der Artikel ist einen Schritt entfernt, und Lesende sehen jederzeit, wo sie sich befinden.",
+            deeperLabel: "Tiefer einsteigen: die technischen Details",
+            deeper:
+              "Relevante WCAG-2.2-Kriterien: 2.4.1 Blöcke umgehen (Skip-Link), 2.4.7 Fokus sichtbar und 2.5.8 Zielgröße (Minimum). Klickziele sind 44 px groß – deutlich über dem Minimum von 24 px. Animationen werden abgeschaltet, wenn das Gerät reduzierte Bewegung anfordert (prefers-reduced-motion). Gern erkläre ich die Details im Gespräch.",
+          },
         },
       ],
-      beforeAfter: "Vorher und nachher: Gestaltung der Bedienelemente",
-      motionExamples: "Beispiele für Bewegung und reduzierte Bewegung",
-      before: "VORHER · KLEINES ZIEL",
-      after: "NACHHER · GRÖSSERES ZIEL",
-      unlabeled: "16 × 16 px · ohne Beschriftung",
-      articles: "Artikel",
-      target44: "44 × 44 px · beschriftet",
-      standard: "MIT ANIMATION",
-      reduced: "REDUZIERTE BEWEGUNG",
-      statusUpdates: "Ergebnisse werden geladen",
-      statusClear: "Ergebnisse werden geladen",
-      motionNote: "Gleiche Statusmeldung – nur die Animation ändert sich.",
-      reducedMotionCode:
-        "Diese Medienabfrage deaktiviert Animationen für Personen, die reduzierte Bewegung bevorzugen:",
     },
     demo: {
       layoutLabel: "Beispiel für Layout-Verschiebungen",
@@ -208,44 +287,68 @@ const copy = {
         "Werbung geladen. Der Inhalt darunter ist nach unten gerückt.",
       loadedAfter:
         "Werbung geladen. Der reservierte Platz hält den Inhalt an seiner Position.",
-      adImage: "Beispielwerbung für ein digitales Magazin",
-      discover: "Mehr entdecken",
-      topbar: "DIGITAL · 6 MIN. LESEZEIT",
-      articleTitle: "Die Zukunft des Spielens beginnt jetzt",
-      intro:
-        "Neue Ideen verändern, wie wir spielen, entdecken und miteinander verbunden bleiben.",
-      reserved: "Reservierter Werbeplatz",
-      reservedText: "Werbeplatz reserviert",
-      readMore: "WEITERLESEN",
-      below:
-        "Was die neuen Technologien für Spielerinnen und Spieler bedeuten.",
-      focusInstruction:
-        "Drücke die Tabulatortaste, bis „Zum Artikel springen“ erscheint, und bestätige mit Enter, um zum Beispielartikel zu springen.",
-      beforeFocus: "VORHER · SCHWER ERKENNBAR",
-      afterFocus: "NACHHER · FOKUS + DIREKTLINK",
-      withoutFocus: "Beispielnavigation ohne klaren Fokusindikator",
-      withFocus: "Beispielnavigation mit sichtbarem Tastaturfokus",
-      latest: "Aktuelles",
-      reviews: "Tests",
-      skipArticle: "Zum Artikel springen",
-      focusBlends: "Der Tastaturfokus hebt sich kaum von der Seite ab.",
-      demoArticle: "Beispielartikel: Neue Geschichten",
-      skipNavigation:
-        "Navigation überspringen und direkt zum Artikel springen.",
+      stepTextLoads: "Text lädt",
+      stepReserved: "Platz reserviert",
+      stepAdArrives: "Werbung kommt",
+      captionBefore: "Der Text springt, sobald die Werbung lädt",
+      captionAfter: "Nichts bewegt sich, wenn die Werbung lädt",
+      ad: "Anzeige",
+      read: "Lesen",
+      skipLabel: "Beispiel: Tastaturweg zum Artikel",
+      skipLink: "Zum Artikel",
+      skipCaptionBefore: "Beispiel: 9 Tastendrücke bis zum Artikel",
+      skipCaptionAfter: "2 Tastendrücke: Tab, dann Enter",
+      keyboard: {
+        button: "Live-Demo ansehen",
+        hint: "Vorher und Nachher nebeneinander – abspielen oder selbst testen",
+        title: "Live-Demo: Ohne Maus zum Artikel",
+        lead: "Die drei Änderungen im direkten Vergleich: Skip-Link, sichtbarer Fokus, große Klickziele ohne Dauer-Animation.",
+        close: "Demo schließen",
+        play: "Tastenweg abspielen",
+        playHint: "▶ spielt beide Wege automatisch ab – oder einfach Tab drücken und selbst durchgehen",
+        try: "Selbst testen",
+        presses: "Tastendrücke",
+        path: "Tastenweg",
+        live: "Live",
+        navLabel: "Hauptnavigation",
+        nav: ["News", "Tests", "Tipps", "Hardware", "Videos", "Specials", "Forum", "Abo"],
+        article: "Artikel",
+        skip: "Zum Artikel springen",
+        skipped: "8 Menüpunkte übersprungen",
+        articleTitle: "Shadowstone im Test",
+        checks: {
+          before: [
+            "Kein Skip-Link – 9 Tastendrücke bis zum Artikel",
+            "Fokus kaum sichtbar – wo bin ich gerade?",
+            "Kleine Klickziele, Animation ohne Ende",
+          ],
+          after: [
+            "Skip-Link – Tab, dann Enter",
+            "Deutlicher Fokusrahmen an jeder Stelle",
+            "Große Klickziele, keine Dauer-Animation",
+          ],
+        },
+        summaryValue: "9 → 2",
+        summary:
+          "Pro Artikel 7 Tastendrücke weniger. Bei Schaltersteuerung ist jeder davon ein eigener Druck – und der Fokusrahmen zeigt jederzeit die Position.",
+      },
     },
     about: {
       eyebrow: "Ein bisschen über mich",
-      meterTitle: "Web-Erfahrung",
-      meterUnit: "Jahre im Web",
-      meterStart: "2011",
-      meterCurrent: "heute",
-      meterAria: "Mehr als zehn Jahre Erfahrung im Web, seit 2011.",
-      title: ["Design im Kopf.", "Entwicklung im Fokus."],
-      lead: "Aus meiner Basis in Grafik- und Mediengestaltung seit 2008 ist ein Arbeitsstil gewachsen, der Gestaltung und Frontend verbindet – von der ersten Idee bis zum fertigen Web-Erlebnis.",
-      first:
-        "Seit 2014 bin ich bei Computec Media – zunächst als Trainee, seit 2016 als UI/UX Designer & Frontend Developer. Ich gestalte und entwickle responsive Websites, Landingpages und WordPress-Frontends für verschiedene Medienmarken und begleite Projekte gemeinsam mit Backend, Marketing und weiteren Teams von UI-Konzepten, Wireframes und Prototypen bis zu Umsetzung, Testing und Optimierung.",
-      second:
-        "Mein Fokus: UI/UX, Webperformance, Core Web Vitals und Barrierefreiheit nach WCAG 2.2. ChatGPT und Claude nutze ich für Ideen, UI-Konzepte und als Unterstützung bei PHP-Templates, React-Komponenten und bestehenden Projekten. Konzept, Entscheidungen und Qualität verantworte ich selbst.",
+      title: ["Design im Kopf.", "Entwicklung im Fokus"],
+      noteLabel: "10+ Jahre im Web",
+      noteTab: "seit 2011",
+      intro:
+        "Ich komme aus der Grafik- und Mediengestaltung – und arbeite bis heute so: Design und Frontend zusammen, von der ersten Idee bis zur fertigen Seite. Seit 2014 gestalte und entwickle ich bei Computec Media responsive Websites, Landingpages und WordPress-Frontends für verschiedene Medienmarken. Mein Fokus: UI/UX, Webperformance und Barrierefreiheit.",
+    },
+    // Quote verbatim from the Zwischenzeugnis (Computec Media, 29 Sep 2026)
+    testimonial: {
+      eyebrow: "Was andere sagen",
+      quote:
+        "Er kommunizierte klar, freundlich und lösungsorientiert und genoss bei allen Beteiligten hohes Vertrauen und hohe Wertschätzung.",
+      name: "Markus Wollny",
+      role: "Leiter Web-Entwicklung, Computec Media",
+      source: "Zwischenzeugnis · Computec Media GmbH · September 2026",
     },
     expertise: {
       eyebrow: "Mein Werkzeugkasten",
@@ -253,7 +356,6 @@ const copy = {
       aside:
         "Von der ersten Idee bis zum geprüften Frontend: vier Disziplinen, die sich in meiner Arbeit ergänzen.",
       noteLabel: "Überblick",
-      boardLabel: "Kompetenzbereiche",
       areaUnit: "Bereiche",
       skillUnit: "Kompetenzen",
       groups: [
@@ -312,66 +414,43 @@ const copy = {
       ],
     },
     experience: {
-      eyebrow: "Mein bisheriger Weg",
       title: "Berufserfahrung",
-      careerStrip: {
-        labels: [
-          "Computec Media · UI/UX · Frontend · WordPress",
-          "Trainee",
-          "World of Cruise",
-          "Grafik & Print",
-        ],
-        values: ["2016 — heute", "2014 — 2016", "2011 — 2014", "2008 — 2011"],
-      },
-      // Descriptions follow the CV (public/Lebenslauf_Daniel_Popa.pdf) — keep both in sync
+      years: "Jahre",
+      more: "Mehr lesen",
+      less: "Weniger anzeigen",
+      // Oldest first: the timeline reads left → right towards today.
+      // Texts follow the CV (public/Lebenslauf_Daniel_Popa.pdf) — keep both in sync.
       entries: [
         {
-          date: "Juli 2016 — heute",
-          // career-strip segment this entry belongs to (shared pill colour)
-          segment: 1,
-          role: "UI/UX Designer & Frontend Developer",
-          company: "Computec Media GmbH · Fürth, Deutschland",
+          range: "2008–2011",
+          duration: "3 Jahre",
+          role: "Grafik- & Mediengestalter Digital & Print",
           description:
-            "Konzeption, Neugestaltung und kontinuierliche Optimierung responsiver Websites und digitaler Anwendungen für verschiedene Medienmarken. Entwicklung eines zentralen CSS-Farbsystems mit semantischen und wiederverwendbaren Variablen für konsistente UI-Gestaltung im Light- und Dark-Mode (siehe Fallstudie 01). Entwicklung und Pflege von Frontend-Komponenten, WordPress-Themes und PHP-Templates mit HTML, CSS/SCSS und JavaScript. Optimierung von Webperformance, Core Web Vitals, Accessibility und SEO. Erstellung von UI-Konzepten, Wireframes und Prototypen in Zusammenarbeit mit Backend, Marketing und weiteren Teams sowie gezielter Einsatz von KI-Tools.",
+            "Gestaltung digitaler und gedruckter Medien, Logos und Corporate Designs sowie Entwicklung visueller Konzepte.",
         },
         {
-          date: "Juni 2014 — Juli 2016",
-          // career-strip segment this entry belongs to (shared pill colour)
-          segment: 2,
-          role: "Trainee UI/UX Design & Frontend Development",
-          company: "Computec Media GmbH · Fürth, Deutschland",
-          description:
-            "Mitarbeit bei Konzeption, Design und Entwicklung von Websites, Landingpages und UI-Prototypen. Entwicklung von WordPress-Themes und Frontend-Komponenten sowie Testing und Performance-Optimierung.",
-        },
-        {
-          date: "Oktober 2011 — Juli 2014",
-          // career-strip segment this entry belongs to (shared pill colour)
-          segment: 3,
+          range: "2011–2014",
+          duration: "3 Jahre",
           role: "Mediengestalter · Freelancer",
           company: "World of Cruise SRL · Hermannstadt, Rumänien",
           description:
             "Gestaltung und Entwicklung von Websites und Frontends mit HTML, CSS, JavaScript und jQuery. Erstellung von Print- und Digitalmedien, Logos und Corporate Designs sowie Kundenberatung.",
         },
         {
-          date: "März 2008 — August 2011",
-          // career-strip segment this entry belongs to (shared pill colour)
-          segment: 4,
-          role: "Grafik- & Mediengestalter Digital & Print",
+          range: "2014–2016",
+          duration: "2 Jahre",
+          role: "Trainee UI/UX Design & Frontend Development",
+          company: "Computec Media GmbH · Fürth, Deutschland",
           description:
-            "Gestaltung digitaler und gedruckter Medien, Logos und Corporate Designs sowie Entwicklung visueller Konzepte.",
-        },
-      ],
-      // Education and languages — one compact row below the timeline
-      facts: [
-        {
-          label: "Studium",
-          value:
-            "Fachhochschule für Informatik „Consoft-Computers“ · Hermannstadt · 2005 — 2008",
+            "Mitarbeit bei Konzeption, Design und Entwicklung von Websites, Landingpages und UI-Prototypen. Entwicklung von WordPress-Themes und Frontend-Komponenten sowie Testing und Performance-Optimierung.",
         },
         {
-          label: "Sprachen",
-          value:
-            "Deutsch & Englisch verhandlungssicher · Rumänisch Muttersprache",
+          range: "2016 – heute",
+          since: 2016,
+          role: "UI/UX Designer & Frontend Developer",
+          company: "Computec Media GmbH · Fürth, Deutschland",
+          description:
+            "Konzeption, Neugestaltung und kontinuierliche Optimierung responsiver Websites und digitaler Anwendungen für verschiedene Medienmarken. Entwicklung eines zentralen CSS-Farbsystems mit semantischen und wiederverwendbaren Variablen für konsistente UI-Gestaltung im Hell- und Dunkelmodus (siehe Fallstudie 01). Entwicklung und Pflege von Frontend-Komponenten, WordPress-Themes und PHP-Templates mit HTML, CSS/SCSS und JavaScript. Optimierung von Webperformance, Core Web Vitals, Barrierefreiheit und SEO. Erstellung von UI-Konzepten, Wireframes und Prototypen in Zusammenarbeit mit Backend, Marketing und weiteren Teams sowie gezielter Einsatz von KI-Tools.",
         },
       ],
     },
@@ -397,11 +476,12 @@ const copy = {
       noteLabel: "Pause",
       noteTab: "8 Paare · 5 Maskottchen",
       aside:
-        "Ein kleines Frontend-Experiment mit echten Farb-Tokens aus einem Publishing-System: Primär- und Akzentfarben, ein Badge-Grün mit geprüftem Kontrast und ein abstrahierter Werbemodul-Token. Das Ziel: Sammle alle 5 Maskottchen – jedes gewonnene Spiel schaltet ein neues frei.",
+        "Ein kleines Frontend-Experiment mit echten Farb-Tokens aus einem Publishing-System: Primär- und Akzentfarben, ein Badge-Grün mit geprüftem Kontrast und ein abstrahiertes Werbemodul-Token. Das Ziel: Sammle alle 5 Maskottchen – jedes gewonnene Spiel schaltet ein neues frei.",
       boardLabel: "Memory-Spielfeld",
       moves: "Züge",
       pairs: "Paare",
       restart: "Neu mischen",
+      newCollection: "Neue Sammlung starten",
       hidden: (n) => `Karte ${n}, verdeckt`,
       found: (token) => `Paar gefunden: ${token}`,
       miss: "Kein Paar – die Karten werden wieder verdeckt.",
@@ -466,12 +546,11 @@ const copy = {
       close: "Close navigation menu",
     },
     hero: {
-      greeting: "Hello, I’m",
       role: ["Senior web designer &", "Frontend developer"],
       intro:
         "With over 10 years of experience, I turn complex ideas into clear, thoughtful digital experiences.",
       work: "Explore my work",
-      downloadCv: "Download my CV",
+      downloadCv: "Download my CV (German)",
       about: "About me",
       art: "Portrait of Daniel Popa. I live in Nuremberg, Germany, and work remotely or hybrid in the Nuremberg/Fürth area.",
       location: "Location",
@@ -480,43 +559,75 @@ const copy = {
       worldwide: "Remote · Hybrid",
     },
     heroBadge: {
-      exp1: "Years of Experience",
-      exp2: "in Web Design ",
+      exp1: "Years of experience",
+      exp2: "in web design",
     },
     work: {
-      eyebrow: "Selected engineering improvements",
-      title: "Behind the interface",
+      eyebrow: "Behind the interface",
+      title: "Small details, better experiences",
       aside:
-        "How a flexible color palette and a few clear semantic roles support shared components across a multi-brand publishing system. Portal and content names are fictional—the structure, tokens and color logic come from the real system.",
+        "Three case studies from a multi-brand publishing system: a color system that carries every brand, a page that doesn't jump while it loads, and a portal that works without a mouse. Portal and content names are fictional – the structure, tokens and color logic come from the real system. The sketches are rebuilt concept examples, not measured project results.",
       noteLabel: "Context",
       noteTab: "3 case studies",
-      tokenIndex: "01 / DESIGN SYSTEM",
-      tokenTitle: ["Flexible colors.", "Clear roles."],
-      tokenLead:
-        "The goal wasn’t to give every color use its own semantic token. It was to keep reusable color values flexible, then add clear names where a recurring global role—like a link or article title—benefits from one.",
-      brandColor: "BRAND COLOR",
-      brandDescription: "A brand primitive that defines the primary color.",
-      reusableRole: "REUSABLE ROLE",
-      roleDescription: "The link token maps the purpose to the brand color.",
-      layers: "FOUR LAYERS, ONE STRATEGY",
-      neutral: "Global neutral primitive",
-      primary: "Brand primary primitive",
-      semantic: "Semantic roles point to the right primitive",
-      unsemantic: "Unsemantic palette value with light and dark modes",
-      approachLabel: "THE APPROACH",
-      approach:
-        "Keep palette values reusable for any context; use semantic aliases for established roles such as links and article titles.",
-      mattersLabel: "WHY IT MATTERS",
-      matters:
-        "One component stylesheet serves all eight brands: a rebrand only touches the local color file, dark mode just remaps variables under [data-theme=\"dark\"], and about 4,800 gray references stay consistent everywhere—without a sprawling catalog of one-off semantic names.",
-      contributionLabel: "MY CONTRIBUTION",
-      contribution:
-        "A four-layer color strategy: a global grayscale (--gr5 to --gr93, named by % black) shared by every brand, brand primitives per portal (--PrCl, --AcCl), a few semantic roles for text, titles, links, backgrounds and buttons, and numbered light/dark pairs like --Cc25 for everything else—rolled out brand by brand.",
-      unsemanticLabel: "UNSEMANTIC COLORS",
-      takeawayMore: "Read more",
-      takeawayLess: "Show less",
-      unsemanticText:
-        "--Cc25 names a color, not a role. It holds one value for light mode and one for dark mode, and components like the countdown use it directly wherever they need the brand color without a global meaning—no new semantic alias required.",
+      // Four takeaways under the heading (icon, label, text clamped to 3 lines)
+      takeaways: [
+        {
+          icon: "target",
+          label: "THE APPROACH",
+          text:
+            "Keep palette values reusable for any context; use semantic aliases for established roles such as links and article titles.",
+        },
+        {
+          icon: "bulb",
+          label: "WHY IT MATTERS",
+          text:
+            "One component stylesheet serves all eight brands: a rebrand only touches the local color file, dark mode just remaps variables under [data-theme=\"dark\"], and about 4,800 gray references stay consistent everywhere – without a sprawling catalog of one-off semantic names.",
+        },
+        {
+          icon: "puzzle",
+          label: "MY CONTRIBUTION",
+          text:
+            "A four-layer color strategy: a global grayscale (--gr5 to --gr93, named by % black) shared by every brand, brand primitives per portal (--PrCl, --AcCl), a few semantic roles for text, titles, links, backgrounds and buttons, and numbered light/dark pairs like --Cc25 for everything else – rolled out brand by brand.",
+        },
+        {
+          icon: "unsemantic",
+          label: "UNSEMANTIC COLORS",
+          text:
+            "--Cc25 names a color, not a role. It holds one value for light mode and one for dark mode, and components like the countdown use it directly wherever they need the brand color without a global meaning – no new semantic alias required.",
+        },
+      ],
+      tokenDemo: {
+        label: "Sketch: a color system in four layers",
+        layersTitle: "Four layers",
+        modulesTitle: "One module, four variants",
+        gray: "Grayscale",
+        brand: "Brand",
+        role: "Role",
+        palette: "Palette",
+        notes: [
+          "The same for every brand – named by % black",
+          "One value per portal – the only place a rebrand touches",
+          "Recurring jobs get a name",
+          "A color, not a role – one value each for light and dark",
+        ],
+        layersCaption: "Each layer builds on the one before – from general to specific",
+        modulesCaption: "Same structure – only the tokens change",
+        previewButton: "View live modules",
+        previewHint: "Poll and countdown with portal and mode switches",
+      },
+      preview: {
+        title: "Live preview",
+        lead: "Real components from the system: one stylesheet for every portal, switched by tokens alone.",
+        close: "Close preview",
+        tokens: "Active tokens",
+        uses: {
+          brand: "Brand color – the poll's button and comment link",
+          title: "Semantic role – the countdown title",
+          tile: "Palette value – the countdown's digit tiles",
+        },
+        tokensNote:
+          "Same components, same CSS – switching only changes these values.",
+      },
       pollQuestion: "Which articles from the July 2023 issue did you enjoy?",
       pollTitle: "Readers’ favorites",
       pollLabel: "Poll results",
@@ -534,86 +645,134 @@ const copy = {
       dark: "Dark",
       pollOptions: [
         "Hands-on: Linux gaming with Nobara",
-        "Hands-on: Tune Radeon 6000 with MPT and MCT — push driver limits",
+        "Hands-on: Tune Radeon 6000 with MPT and MCT – push driver limits",
         "Other (please add a note in the thread)",
         "Review: 5× Z790 motherboards",
         "Review: 6× RTX 4000 laptops",
-        "Review: 8× mid-tower cases",
-        "Review: AMD Radeon RX 7600",
       ],
-      countdownIndex: "02 / REUSABLE COMPONENT",
-      countdownTitle: ["A countdown,", "shaped for the brand."],
-      countdownDescription:
-        "A single module structure adapts to different portal identities through a small set of color tokens, content and layout variants.",
-      countdownNoteLabel: "Principle",
-      countdownNoteTab: "2 portals · 2 modes",
       countdownLabel: "Shadowstone release countdown",
       countdownButton: "All Shadowstone updates",
       release: "Release",
-      titleColorLabel: "SEMANTIC TITLE COLOR",
-      titleColorComparison: "Countdown title color in light and dark mode",
-      lightMode: "LIGHT MODE",
-      darkMode: "DARK MODE",
-      titleColorLightToken: "--modTtl → --gr80 · #333333 (80% black)",
-      titleColorDarkToken: "--modTtl → --gr5 · #f2f2f2 (5% black)",
-      brandAccentLabel: "UNSEMANTIC COLOR TOKEN",
-      brandAccentLightToken: "--Cc25 ·",
-      brandAccentDarkToken: "--Cc25 ·",
-      brandAccentComparison: "Brand accent for light and dark mode",
-      brandAccentNote:
-        "--Cc25 is an unsemantic color token with light- and dark-mode values. Reusing it across UI elements avoids an unwieldy list of element-specific variables, many of which would hold the same colors.",
-      paletteNote:
-        "--modTtl is the semantic color for the countdown title. In light mode it references --gr80 (#333333, 80% black); in dark mode it references --gr5 (#f2f2f2, 5% black).",
+      releaseDate: "Nov 19",
     },
     quality: {
-      index: "03 / UX & FRONTEND IN PRACTICE",
-      title: "Small details, better experiences.",
-      description:
-        "Four patterns from my day-to-day work on Core Web Vitals and WCAG 2.2 accessibility: reducing layout shifts, improving keyboard access, making touch targets easier to hit and avoiding unnecessary motion. The demos are rebuilt concept examples, not measured project results.",
-      noteLabel: "In practice",
-      noteTab: "4 examples",
-      beforeState: "Before · ad space not reserved",
-      afterState: "After · ad space reserved",
       cards: [
         {
-          title: "Prevent unexpected jumps",
+          title: "One color system for eight brands",
           description:
-            "The comparison shows an article shifting when an ad appears late, then staying put when space is reserved.",
+            "Shared components that adapt to every brand and mode through tokens.",
+          story: {
+            situationLabel: "Situation",
+            situation:
+              "A publishing system runs eight portals, each with its own brand – but they share the same components, such as polls and release countdowns. Every brand needs its own colors, every module a light and a dark mode.",
+            whyLabel: "Why it matters",
+            why: [
+              {
+                term: "Maintenance",
+                text: "Without a system, every brand gets its own stylesheet – and every change has to be made eight times.",
+              },
+              {
+                term: "Consistency",
+                text: "Grays, links and titles should work the same way on every portal.",
+              },
+              {
+                term: "Clarity",
+                text: "A semantic token for every single color use leads to an endless list of variables holding the same values.",
+              },
+            ],
+            solutionLabel: "What I did",
+            solutionLead:
+              "Not every color use needs its own semantic token. I ordered the colors into four layers – from general to specific – and rolled them out brand by brand:",
+            steps: [
+              "A global grayscale from --gr5 to --gr93, named by % black – the same for every brand.",
+              "Brand primitives per portal (--PrCl1, --AcCl) – the only file a rebrand touches.",
+              "A few semantic roles for recurring jobs: text, titles, links, backgrounds and buttons (e.g. --lk → --PrCl1).",
+              "Numbered light/dark pairs like --Cc25 for everything else – a color, not a role, usable directly in components.",
+            ],
+            resultLabel: "Result",
+            result:
+              "One component stylesheet serves all eight brands. A rebrand only touches the local color file, and dark mode just remaps variables.",
+            deeperLabel: "Go deeper: the technical details",
+            deeper:
+              "Dark mode remaps the variables under [data-theme=\"dark\"] – the components themselves don't change. About 4,800 gray references use the same scale and stay consistent everywhere. Countdown example: the title uses the semantic role --modTtl (light → --gr80 · #333333, dark → --gr5 · #f2f2f2), the digit tiles use the unsemantic value --Cc25 (Northstar: #285b78 light, #020202 dark). Happy to walk through the details in an interview.",
+          },
+        },
+        {
+          title: "A page that doesn't jump while you read",
+          description: "Keeping the page still while ads and images load.",
+          story: {
+            situationLabel: "Situation",
+            situation:
+              "Article pages are paid for by ads. The ads come from outside ad systems and load after the text – at unpredictable times and in changing sizes. Every ad pushes the content below it out of place.",
+            whyLabel: "Why it matters",
+            why: [
+              {
+                term: "Readers",
+                text: "lose their place or tap the wrong thing.",
+              },
+              {
+                term: "Accessibility",
+                text: "With a screen magnifier or limited hand control, a moving page is a barrier, not an annoyance.",
+              },
+              {
+                term: "Business",
+                text: "Since June 2025 the European Accessibility Act requires many commercial websites to be accessible. Google also counts page movement as a quality signal.",
+              },
+            ],
+            solutionLabel: "What I did",
+            solutionLead:
+              "The key is the right amount of room: too little and the page still jumps, too much and it leaves empty gaps.",
+            steps: [
+              "Reserved space for each ad slot before the ad loads, based on the sizes that actually appear.",
+              "Set image sizes in advance, so the browser knows the room they need.",
+              "Checked on phones and desktops, because formats and load times differ.",
+            ],
+            resultLabel: "Result",
+            result:
+              "The content is in place before the ad arrives – the page stays still while you read.",
+            deeperLabel: "Go deeper: the technical details",
+            deeper:
+              "The measure is called Cumulative Layout Shift (CLS), one of Google's Core Web Vitals; the target is 0.1 or lower for most visits. Ad slots and images get fixed dimensions (min-height, aspect-ratio, width/height), so the browser keeps the room free from the start. The European Accessibility Act points to the standard EN 301 549, which builds on WCAG 2.1 level AA. Happy to walk through the details in an interview.",
+          },
           metric:
             "CLS target: ≤ 0.1 at the 75th percentile; not measured for this concept.",
         },
         {
-          title: "Make keyboard focus clear",
+          title: "A gaming portal that works without a mouse",
           description:
-            "The comparison shows hard-to-see focus next to a clear focus state and a skip link to the article.",
-          criterion: "WCAG 2.4.7 · Focus Visible · AA",
-        },
-        {
-          title: "Make touch targets easier to hit",
-          description:
-            "The comparison shows a tiny, unlabeled target next to a larger control with a clear label.",
-          criterion: "WCAG 2.5.8 · Target Size (Minimum) · AA",
-        },
-        {
-          title: "Keep status clear without motion",
-          description:
-            "Both examples show the same status. Only the animation changes: it stops when reduced motion is enabled.",
+            "Designed for readers who navigate by keyboard, switch or voice control.",
+          story: {
+            situationLabel: "Situation",
+            situation:
+              "People who love games read gaming sites too – including people who play with limited hand movement or without hands. Pages built for mouse and touch leave them behind.",
+            whyLabel: "Why it matters",
+            why: [
+              {
+                term: "Limited hand movement",
+                text: "Content is reached one step at a time. A long menu before every article makes that slow and tiring, and it's easy to lose your place.",
+              },
+              {
+                term: "Business",
+                text: "Since June 2025 the European Accessibility Act requires many commercial websites to be accessible.",
+              },
+            ],
+            solutionLabel: "What I did",
+            solutionLead:
+              "Pages built for mouse and touch hide their problems: a long menu before every article, focus you can't see, small click targets and motion that never stops. Fixing them means changing design and code together.",
+            steps: [
+              "Added a skip link – one key press jumps past the menu to the article.",
+              "Made focus clearly visible, so you always see where you are.",
+              "Enlarged small click targets and removed unnecessary motion.",
+            ],
+            resultLabel: "Result",
+            result:
+              "The article is one step away, and readers can see where they are at all times.",
+            deeperLabel: "Go deeper: the technical details",
+            deeper:
+              "Related WCAG 2.2 criteria: 2.4.1 Bypass Blocks (skip link), 2.4.7 Focus Visible and 2.5.8 Target Size (Minimum). Click targets are 44 px, well above the 24 px minimum. Animations switch off when the device asks for reduced motion (prefers-reduced-motion). Happy to walk through the details in an interview.",
+          },
         },
       ],
-      beforeAfter: "Before and after control design",
-      motionExamples: "Motion and reduced-motion examples",
-      before: "BEFORE · SMALL TARGET",
-      after: "AFTER · LARGER TARGET",
-      unlabeled: "16 × 16 px · no label",
-      articles: "Articles",
-      target44: "44 × 44 px · labeled",
-      standard: "ANIMATED",
-      reduced: "REDUCED MOTION",
-      statusUpdates: "Loading results",
-      statusClear: "Loading results",
-      motionNote: "Same status message—the animation is the only difference.",
-      reducedMotionCode:
-        "This media query disables animation for visitors who prefer reduced motion:",
     },
     demo: {
       layoutLabel: "Layout shift example",
@@ -625,41 +784,68 @@ const copy = {
       loadedBefore: "Advertisement loaded. The content below shifted down.",
       loadedAfter:
         "Advertisement loaded. Reserved space kept the content in place.",
-      adImage: "Sample ad for a digital magazine",
-      discover: "Discover more",
-      topbar: "DIGITAL · 6 MIN. READ",
-      articleTitle: "The future of gaming starts now",
-      intro: "New ideas are changing how we play, explore and stay connected.",
-      reserved: "Reserved ad space",
-      reservedText: "Ad space reserved",
-      readMore: "KEEP READING",
-      below: "What new technology means for players.",
-      focusInstruction:
-        "Press Tab until “Skip to article” appears, then press Enter to jump to the demo article.",
-      beforeFocus: "BEFORE · HARD TO SEE",
-      afterFocus: "AFTER · FOCUS + SKIP LINK",
-      withoutFocus: "Example navigation without a clear focus indicator",
-      withFocus: "Example navigation with visible keyboard focus",
-      latest: "Latest",
-      reviews: "Reviews",
-      skipArticle: "Skip to article",
-      focusBlends: "Keyboard focus blends into the page.",
-      demoArticle: "Demo article: New stories",
-      skipNavigation: "Skip the navigation and go straight to the article.",
+      stepTextLoads: "Text loads",
+      stepReserved: "Space reserved",
+      stepAdArrives: "Ad arrives",
+      captionBefore: "Text jumps when the ad loads",
+      captionAfter: "Nothing moves when the ad loads",
+      ad: "Ad",
+      read: "Read",
+      skipLabel: "Example: keyboard path to the article",
+      skipLink: "Skip to article",
+      skipCaptionBefore: "Example: 9 key presses to reach the article",
+      skipCaptionAfter: "2 key presses: Tab, then Enter",
+      keyboard: {
+        button: "View live demo",
+        hint: "Before and after side by side – play it or try it yourself",
+        title: "Live demo: to the article without a mouse",
+        lead: "The three changes side by side: skip link, visible focus, large click targets without endless motion.",
+        close: "Close demo",
+        play: "Play key path",
+        playHint: "▶ plays both paths automatically – or just press Tab and step through yourself",
+        try: "Try it",
+        presses: "key presses",
+        path: "Key path",
+        live: "Live",
+        navLabel: "Main navigation",
+        nav: ["News", "Reviews", "Tips", "Hardware", "Videos", "Specials", "Forum", "Subscribe"],
+        article: "Article",
+        skip: "Skip to article",
+        skipped: "8 menu items skipped",
+        articleTitle: "Shadowstone review",
+        checks: {
+          before: [
+            "No skip link – 9 key presses to the article",
+            "Focus barely visible – where am I?",
+            "Small click targets, endless animation",
+          ],
+          after: [
+            "Skip link – Tab, then Enter",
+            "Clear focus ring at every step",
+            "Large click targets, no endless animation",
+          ],
+        },
+        summaryValue: "9 → 2",
+        summary:
+          "7 fewer key presses per article. With switch control each one is a separate press – and the focus ring always shows where you are.",
+      },
     },
     about: {
       eyebrow: "A little about me",
-      meterTitle: "Web experience",
-      meterUnit: "years on the web",
-      meterStart: "2011",
-      meterCurrent: "today",
-      meterAria: "More than ten years of web experience, since 2011.",
-      title: ["Design-minded.", "Build-focused."],
-      lead: "My foundation in graphic and media design, going back to 2008, shaped an approach that brings visual craft and frontend together, from the first idea to the finished web experience.",
-      first:
-        "I’ve been at Computec Media since 2014—first as a trainee, and since 2016 as a UI/UX Designer & Frontend Developer. I design and build responsive websites, landing pages and WordPress frontends for a range of media brands, and work with backend, marketing and other teams to take projects from UI concepts, wireframes and prototypes through implementation, testing and refinement.",
-      second:
-        "My focus: UI/UX, web performance, Core Web Vitals and accessibility (WCAG 2.2). I use ChatGPT and Claude for ideation, UI concepts and support with PHP templates, React components and existing projects. I own the concepts, decisions and quality checks.",
+      title: ["Design-minded.", "Build-focused"],
+      noteLabel: "10+ years on the web",
+      noteTab: "since 2011",
+      intro:
+        "I started in graphic and media design, and that's still how I work: design and front end together, from the first idea to the finished page. Since 2014 at Computec Media I've designed and built responsive websites, landing pages and WordPress front ends for a range of media brands. My focus: UI/UX, web performance and accessibility.",
+    },
+    // Faithful translation of the German Zwischenzeugnis (29 Sep 2026)
+    testimonial: {
+      eyebrow: "What others say",
+      quote:
+        "He communicated clearly, kindly and with a focus on solutions, and enjoyed a high level of trust and appreciation from everyone involved.",
+      name: "Markus Wollny",
+      role: "Head of Web Development, Computec Media",
+      source: "Employment reference, translated from German · Computec Media GmbH · September 2026",
     },
     expertise: {
       eyebrow: "The toolkit",
@@ -667,7 +853,6 @@ const copy = {
       aside:
         "From the first idea to a tested frontend: four disciplines that come together in my work.",
       noteLabel: "Overview",
-      boardLabel: "Areas of practice",
       areaUnit: "areas",
       skillUnit: "skills",
       groups: [
@@ -713,7 +898,7 @@ const copy = {
           icon: "quality",
           title: "Quality & Accessibility",
           description:
-            "Accessible, fast experiences—tested and refined with care.",
+            "Accessible, fast experiences – tested and refined with care.",
           skills: [
             "WCAG 2.2",
             "Core Web Vitals",
@@ -726,70 +911,48 @@ const copy = {
       ],
     },
     experience: {
-      eyebrow: "The journey so far",
       title: "Experience",
-      careerStrip: {
-        labels: [
-          "Computec Media · UI/UX · Frontend · WordPress",
-          "Trainee",
-          "World of Cruise",
-          "Graphic & print",
-        ],
-        values: ["2016 — Now", "2014 — 2016", "2011 — 2014", "2008 — 2011"],
-      },
-      // Descriptions follow the CV (public/Lebenslauf_Daniel_Popa.pdf) — keep both in sync
+      years: "years",
+      more: "Read more",
+      less: "Show less",
+      // Oldest first: the timeline reads left → right towards today.
+      // Texts follow the CV (public/Lebenslauf_Daniel_Popa.pdf) — keep both in sync.
       entries: [
         {
-          date: "July 2016 — Now",
-          // career-strip segment this entry belongs to (shared pill colour)
-          segment: 1,
-          role: "UI/UX Designer & Frontend Developer",
-          company: "Computec Media GmbH · Fürth, Germany",
+          range: "2008–2011",
+          duration: "3 years",
+          role: "Graphic & Media Designer, Digital & Print",
           description:
-            "Concept, redesign and continuous optimization of responsive websites and digital applications for a range of media brands. Built a central CSS color system with semantic and reusable variables for consistent UI in light and dark mode (see case study 01). Development and maintenance of frontend components, WordPress themes and PHP templates with HTML, CSS/SCSS and JavaScript. Optimization of web performance, Core Web Vitals, accessibility and SEO. UI concepts, wireframes and prototypes in collaboration with backend, marketing and other teams, with targeted use of AI tools.",
+            "Design of digital and print media, logos and corporate designs, and development of visual concepts.",
         },
         {
-          date: "June 2014 — July 2016",
-          // career-strip segment this entry belongs to (shared pill colour)
-          segment: 2,
-          role: "Trainee UI/UX Design & Frontend Development",
-          company: "Computec Media GmbH · Fürth, Germany",
-          description:
-            "Contributed to the concept, design and development of websites, landing pages and UI prototypes. Developed WordPress themes and frontend components, plus testing and performance optimization.",
-        },
-        {
-          date: "October 2011 — July 2014",
-          // career-strip segment this entry belongs to (shared pill colour)
-          segment: 3,
+          range: "2011–2014",
+          duration: "3 years",
           role: "Media Designer · Freelancer",
           company: "World of Cruise SRL · Sibiu, Romania",
           description:
             "Design and development of websites and frontends with HTML, CSS, JavaScript and jQuery. Print and digital media, logos and corporate designs, plus client consulting.",
         },
         {
-          date: "March 2008 — August 2011",
-          // career-strip segment this entry belongs to (shared pill colour)
-          segment: 4,
-          role: "Graphic & Media Designer, Digital & Print",
+          range: "2014–2016",
+          duration: "2 years",
+          role: "Trainee UI/UX Design & Frontend Development",
+          company: "Computec Media GmbH · Fürth, Germany",
           description:
-            "Design of digital and print media, logos and corporate designs, and development of visual concepts.",
-        },
-      ],
-      // Education and languages — one compact row below the timeline
-      facts: [
-        {
-          label: "Education",
-          value:
-            "College of Computer Science “Consoft-Computers” · Sibiu · 2005 — 2008",
+            "Contributed to the concept, design and development of websites, landing pages and UI prototypes. Developed WordPress themes and frontend components, plus testing and performance optimization.",
         },
         {
-          label: "Languages",
-          value: "German & English (business fluent) · Romanian (native)",
+          range: "2016 – now",
+          since: 2016,
+          role: "UI/UX Designer & Frontend Developer",
+          company: "Computec Media GmbH · Fürth, Germany",
+          description:
+            "Concept, redesign and continuous optimization of responsive websites and digital applications for a range of media brands. Built a central CSS color system with semantic and reusable variables for consistent UI in light and dark mode (see case study 01). Development and maintenance of frontend components, WordPress themes and PHP templates with HTML, CSS/SCSS and JavaScript. Optimization of web performance, Core Web Vitals, accessibility and SEO. UI concepts, wireframes and prototypes in collaboration with backend, marketing and other teams, with targeted use of AI tools.",
         },
       ],
     },
     contact: {
-      eyebrow: "Have a good one in mind?",
+      eyebrow: "Got a good idea?",
       title: ["Let’s make", "it matter."],
       description: "Great digital experiences start with a good conversation.",
       channelsLabel: "Ways to connect",
@@ -809,11 +972,12 @@ const copy = {
       noteLabel: "Break",
       noteTab: "8 pairs · 5 mascots",
       aside:
-        "A small frontend experiment with real colour tokens from a publishing system: primary and accent colours, a badge green with checked contrast and an abstracted ad-module token. The goal: collect all 5 mascots – every won game unlocks a new one.",
+        "A small frontend experiment with real color tokens from a publishing system: primary and accent colors, a badge green with checked contrast and an abstracted ad-module token. The goal: collect all 5 mascots – every won game unlocks a new one.",
       boardLabel: "Memory board",
       moves: "Moves",
       pairs: "Pairs",
       restart: "Shuffle again",
+      newCollection: "Start a new collection",
       hidden: (n) => `Card ${n}, face down`,
       found: (token) => `Pair found: ${token}`,
       miss: "No match – the cards turn back over.",
@@ -837,7 +1001,7 @@ const copy = {
         dragon: "Drago is impressed – and only slightly jealous.",
         frog: "King Croak names you royal designer.",
         owl: "Owlbert the Wise nods approvingly. Very approvingly.",
-        goblin: "Gobbo the jester had his money on you all along!",
+        goblin: "Gobbo the Jester had his money on you all along!",
       },
     },
     footer: {
@@ -945,8 +1109,74 @@ function CountdownTimer({ text }) {
   );
 }
 
+// Wireframe browser window used by the practice demos (decorative)
+function DemoBrowser({ children }) {
+  return (
+    <div className="cls-demo__frame" aria-hidden="true">
+      <div className="cls-demo__chrome">
+        <i />
+        <i />
+        <i />
+        <b />
+      </div>
+      {children}
+    </div>
+  );
+}
+
+// Practice case study: Situation, Why, What I did, demo, Result, details
+function QualityStory({ story, metric, children }) {
+  return (
+    <div className="quality-card__detail quality-story">
+      <div className="quality-story__row">
+        <h5>{story.situationLabel}</h5>
+        <p>{story.situation}</p>
+      </div>
+
+      <div className="quality-story__row">
+        <h5>{story.whyLabel}</h5>
+        <ul className="quality-story__why">
+          {story.why.map((item) => (
+            <li key={item.term}>
+              <strong>{item.term}</strong> {item.text}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="quality-story__row">
+        <h5>{story.solutionLabel}</h5>
+        <div>
+          <p>{story.solutionLead}</p>
+          <ol className="quality-story__steps">
+            {story.steps.map((step) => (
+              <li key={step}>{step}</li>
+            ))}
+          </ol>
+        </div>
+      </div>
+
+      <div className="quality-story__demo">{children}</div>
+
+      <div className="quality-story__row">
+        <h5>{story.resultLabel}</h5>
+        <div>
+          <p>{story.result}</p>
+          {metric && <p className="quality-card__metric">{metric}</p>}
+        </div>
+      </div>
+
+      <div className="quality-story__row quality-story__row--plain">
+        <details className="quality-story__deeper">
+          <summary>{story.deeperLabel}</summary>
+          <p>{story.deeper}</p>
+        </details>
+      </div>
+    </div>
+  );
+}
+
 function LayoutShiftDemo({ text, language }) {
-  const [mode, setMode] = useState("before");
   const [replay, setReplay] = useState(0);
   const [promoLoaded, setPromoLoaded] = useState(false);
 
@@ -954,285 +1184,206 @@ function LayoutShiftDemo({ text, language }) {
     const timerId = window.setTimeout(() => setPromoLoaded(true), 1400);
 
     return () => window.clearTimeout(timerId);
-  }, [mode, replay]);
+  }, [replay]);
 
-  const selectMode = (nextMode) => {
-    setPromoLoaded(false);
-    setMode(nextMode);
-    setReplay((current) => current + 1);
-  };
+  const status = promoLoaded
+    ? `${text.before}: ${text.loadedBefore} ${text.after}: ${text.loadedAfter}`
+    : `${text.before}: ${text.loadingBefore} ${text.after}: ${text.loadingAfter}`;
 
-  const status = !promoLoaded
-    ? mode === "before"
-      ? text.loadingBefore
-      : text.loadingAfter
-    : mode === "before"
-      ? text.loadedBefore
-      : text.loadedAfter;
-
-  // Dummy ad — magazine promo in the badge palette (ink, gold, teal)
-  const promo = (
-    <svg
-      aria-label={text.adImage}
-      className="quality-mobile-demo__promo-art"
-      role="img"
-      viewBox="0 0 320 92"
-      preserveAspectRatio="xMidYMid slice"
-    >
-      <defs>
-        <linearGradient id="quality-promo-bg" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stopColor="#232321" />
-          <stop offset="1" stopColor="#3a3a36" />
-        </linearGradient>
-      </defs>
-      <rect width="320" height="92" fill="url(#quality-promo-bg)" />
-      {/* soft glow + fine dot grid */}
-      <circle cx="262" cy="46" r="62" fill="#f3d95d" opacity=".12" />
-      <g fill="#fff" opacity=".08">
-        {Array.from({ length: 40 }, (_, i) => (
-          <circle key={i} cx={176 + (i % 10) * 14} cy={10 + Math.floor(i / 10) * 24} r="1" />
-        ))}
-      </g>
-      {/* stacked magazine covers */}
-      <g transform="rotate(-8 252 50)">
-        <rect x="222" y="16" width="52" height="68" rx="3" fill="#2c9c84" />
-        <rect x="228" y="23" width="28" height="4" rx="2" fill="#fff" opacity=".85" />
-        <circle cx="250" cy="56" r="13" fill="#f3d95d" />
-      </g>
-      <g transform="rotate(6 280 50)">
-        <rect x="250" y="12" width="56" height="72" rx="3" fill="#f6f4ec" />
-        <rect x="256" y="19" width="30" height="4" rx="2" fill="#232321" />
-        <rect x="256" y="27" width="20" height="3" rx="1.5" fill="#99978d" />
-        <path d="M256 78 275 50l12 16 7-9 8 21Z" fill="#2c9c84" />
-        <circle cx="292" cy="40" r="6" fill="#d9b43c" />
-      </g>
-      {/* copy */}
-      <rect x="16" y="13" width="44" height="13" rx="6.5" fill="none" stroke="#f3d95d" strokeWidth="1" />
-      <text x="38" y="22.5" fill="#f3d95d" fontFamily="Arial, sans-serif" fontSize="7" fontWeight="700" letterSpacing=".08em" textAnchor="middle">
-        {language === "de" ? "ANZEIGE" : "AD"}
-      </text>
-      <text x="16" y="42" fill="#c9c7bd" fontFamily="Arial, sans-serif" fontSize="8" fontWeight="700" letterSpacing=".1em">
-        {language === "de" ? "NORTHSTAR · MAGAZIN" : "NORTHSTAR · MAGAZINE"}
-      </text>
-      <text x="16" y="61" fill="#fff" fontFamily="Arial, sans-serif" fontSize="17" fontWeight="700">
-        {text.discover}
-      </text>
-      <rect x="16" y="69" width="18" height="12" rx="6" fill="#f3d95d" />
-      <path d="M21.5 75h7m-2.5-2.5 2.5 2.5-2.5 2.5" stroke="#232321" strokeWidth="1.3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
+  // Wireframe browser page: chrome, optional ad slot, heading, text lines, button.
+  // `slot` is "none" | "reserved" | "ad"; the tap marker sits where the
+  // button was before the ad loaded — it hits or misses depending on the panel.
+  const frame = (slot, showTap) => (
+    <DemoBrowser>
+      <div className="cls-demo__page">
+        <div className="cls-demo__slot" data-slot={slot}>
+          {slot === "ad" && <span>{text.ad}</span>}
+        </div>
+        <span className="cls-demo__heading" />
+        <span className="cls-demo__line" />
+        <span className="cls-demo__line" />
+        <span className="cls-demo__line cls-demo__line--short" />
+        <span className="cls-demo__button">{text.read}</span>
+        {showTap && <span className="cls-demo__tap" />}
+      </div>
+    </DemoBrowser>
   );
 
-  // Dummy article hero — "the future of gaming": dusk sky, sun, hills, perspective grid
-  const articleArt = (
-    <svg
-      className="quality-mobile-demo__image"
-      aria-hidden="true"
-      viewBox="0 0 320 100"
-      preserveAspectRatio="xMidYMid slice"
-    >
-      <defs>
-        <linearGradient id="quality-article-sky" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#1f3440" />
-          <stop offset=".7" stopColor="#3f6f72" />
-          <stop offset="1" stopColor="#e6d7a0" />
-        </linearGradient>
-        <linearGradient id="quality-article-sun" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#f6e08a" />
-          <stop offset="1" stopColor="#d9b43c" />
-        </linearGradient>
-      </defs>
-      <rect width="320" height="100" fill="url(#quality-article-sky)" />
-      <g fill="#fff">
-        <circle cx="34" cy="14" r=".9" opacity=".7" />
-        <circle cx="78" cy="26" r=".7" opacity=".5" />
-        <circle cx="122" cy="10" r="1" opacity=".6" />
-        <circle cx="168" cy="22" r=".7" opacity=".5" />
-        <circle cx="292" cy="12" r=".9" opacity=".6" />
-      </g>
-      {/* rising sun behind the hills */}
-      <circle cx="214" cy="62" r="30" fill="url(#quality-article-sun)" />
-      {/* hills */}
-      <path d="M0 74 46 50l34 18 40-30 52 36H0Z" fill="#2a4a50" />
-      <path d="M150 76 214 46l58 22 48-14v22Z" fill="#244147" />
-      {/* ground with perspective grid */}
-      <rect y="74" width="320" height="26" fill="#1b2b30" />
-      <g stroke="#2c9c84" strokeWidth=".8" opacity=".75">
-        <path d="M0 80h320M0 87h320M0 96h320" />
-        <path d="M160 74 40 100M160 74 100 100M160 74v26M160 74l60 26M160 74l120 26M160 74 -40 100M160 74l200 26" />
-      </g>
-      {/* controller silhouette */}
-      <g transform="translate(60 78)">
-        <path d="M6 0h20c5 0 8 4 9 9l1 5c.5 3-2.5 4.5-4.5 2.5L28 13H4l-3.5 3.5C-1.5 18.5-4.5 17-4 14l1-5C-2 4 1 0 6 0Z" fill="#f6f4ec" />
-        <path d="M5 5v5M2.5 7.5h5" stroke="#232321" strokeWidth="1.4" strokeLinecap="round" />
-        <circle cx="25" cy="6" r="1.4" fill="#d9b43c" />
-        <circle cx="28.5" cy="9" r="1.4" fill="#2c9c84" />
-      </g>
-    </svg>
+  // One comparison panel: title, "first state → ad arrives", caption
+  const panel = (mode) => {
+    const isBefore = mode === "before";
+
+    return (
+      <figure className="cls-demo" data-mode={mode} data-loaded={promoLoaded}>
+        <h5 className="cls-demo__title">{isBefore ? text.before : text.after}</h5>
+        <div className="cls-demo__stage">
+          <div className="cls-demo__step">
+            <span className="cls-demo__label">
+              {isBefore ? text.stepTextLoads : text.stepReserved}
+            </span>
+            {frame(isBefore ? "none" : "reserved", false)}
+          </div>
+          <span className="cls-demo__arrow" aria-hidden="true" />
+          <div className="cls-demo__step">
+            <span className="cls-demo__label">{text.stepAdArrives}</span>
+            {frame(
+              promoLoaded ? "ad" : isBefore ? "none" : "reserved",
+              promoLoaded,
+            )}
+          </div>
+        </div>
+        <figcaption>{isBefore ? text.captionBefore : text.captionAfter}</figcaption>
+      </figure>
+    );
+  };
+
+  return (
+    <div className="quality-layout-demo" lang={language}>
+      <div className="cls-demo__panels" role="group" aria-label={text.layoutLabel}>
+        {panel("before")}
+        {panel("after")}
+      </div>
+
+      <button
+        className="cls-demo__replay"
+        onClick={() => {
+          setPromoLoaded(false);
+          setReplay((current) => current + 1);
+        }}
+        type="button"
+      >
+        {text.replay}
+      </button>
+
+      <p
+        className="quality-layout-demo__status"
+        aria-live="polite"
+        role="status"
+      >
+        {status}
+      </p>
+    </div>
+  );
+}
+
+// Keyboard path to the article. Each tick is one key press:
+// Before: Tab walks through 8 menu items, the 9th press reaches the article.
+// After: Tab focuses the skip link, Enter jumps straight to the article.
+const SKIP_DEMO_STEPS = 9;
+
+const prefersReducedMotion = () =>
+  window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
+
+// With reduced motion the demo shows its final state and never animates
+const skipDemoStart = () => (prefersReducedMotion() ? SKIP_DEMO_STEPS : 0);
+
+function SkipLinkDemo({ text, onPreview }) {
+  const [replay, setReplay] = useState(0);
+  const [step, setStep] = useState(skipDemoStart);
+
+  useEffect(() => {
+    if (prefersReducedMotion()) return undefined;
+
+    let current = 0;
+    const timerId = window.setInterval(() => {
+      current += 1;
+      setStep(current);
+      if (current >= SKIP_DEMO_STEPS) window.clearInterval(timerId);
+    }, 450);
+
+    return () => window.clearInterval(timerId);
+  }, [replay]);
+
+  const articleBody = (
+    <>
+      <span className="skip-demo__heading" />
+      <span className="cls-demo__line" />
+      <span className="cls-demo__line" />
+      <span className="cls-demo__line cls-demo__line--short" />
+    </>
   );
 
   return (
     <div className="quality-layout-demo">
-      <div
-        className="quality-layout-demo__controls"
-        role="group"
-        aria-label={text.layoutLabel}
-      >
+      <div className="cls-demo__panels" role="group" aria-label={text.skipLabel}>
+        <figure className="cls-demo skip-demo">
+          <h5 className="cls-demo__title">{text.before}</h5>
+          <DemoBrowser>
+            <div className="skip-demo__page">
+              {/* Same labelled menu as the live demo; focus walks through it */}
+              <ul className="skip-demo__menu">
+                {text.keyboard.nav.map((item, index) => (
+                  <li key={item} data-focused={step === index + 1}>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div
+                className="skip-demo__article"
+                data-focused={step >= SKIP_DEMO_STEPS}
+              >
+                {step >= SKIP_DEMO_STEPS && (
+                  <span className="skip-demo__count">{SKIP_DEMO_STEPS}</span>
+                )}
+                {articleBody}
+              </div>
+            </div>
+          </DemoBrowser>
+          <figcaption>{text.skipCaptionBefore}</figcaption>
+        </figure>
+
+        <figure className="cls-demo skip-demo">
+          <h5 className="cls-demo__title">{text.after}</h5>
+          <DemoBrowser>
+            <div className="skip-demo__page">
+              <span className="skip-demo__skip" data-focused={step === 1}>
+                {text.skipLink}
+              </span>
+              {step >= 2 && <span className="skip-demo__jump" />}
+              {/* The same menu, larger targets; fades once it has been skipped */}
+              <ul
+                className="skip-demo__menu skip-demo__menu--after"
+                data-skipped={step >= 2}
+              >
+                {text.keyboard.nav.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <div className="skip-demo__article" data-focused={step >= 2}>
+                {articleBody}
+              </div>
+            </div>
+          </DemoBrowser>
+          <figcaption>{text.skipCaptionAfter}</figcaption>
+        </figure>
+      </div>
+
+      <div className="ds-demo__cta">
         <button
-          aria-pressed={mode === "before"}
-          onClick={() => selectMode("before")}
-          type="button"
-        >
-          {text.before}
-        </button>
-        <button
-          aria-pressed={mode === "after"}
-          onClick={() => selectMode("after")}
-          type="button"
-        >
-          {text.after}
-        </button>
-        <button
-          className="quality-layout-demo__replay"
+          className="cls-demo__replay"
           onClick={() => {
-            setPromoLoaded(false);
+            setStep(skipDemoStart());
             setReplay((current) => current + 1);
           }}
           type="button"
         >
           {text.replay}
         </button>
-      </div>
-
-      <div className="quality-mobile-demo" data-mode={mode} lang={language}>
-        <div className="quality-mobile-demo__topbar">
-          <span>NORTHSTAR</span>
-          <span aria-hidden="true">☰</span>
-        </div>
-        {articleArt}
-        <p className="quality-mobile-demo__eyebrow">{text.topbar}</p>
-        <h5>{text.articleTitle}</h5>
-        <p className="quality-mobile-demo__intro">{text.intro}</p>
-
-        {mode === "after" && (
-          <div
-            className="quality-mobile-demo__reserved"
-            aria-label={text.reserved}
-          >
-            {promoLoaded ? (
-              promo
-            ) : (
-              <span className="quality-mobile-demo__reserved-label">
-                {text.reservedText}
-                <small>320 × 92</small>
-              </span>
-            )}
-          </div>
-        )}
-        {mode === "before" && promoLoaded && (
-          <div className="quality-mobile-demo__loaded-promo">{promo}</div>
-        )}
-        <div className="quality-mobile-demo__below">
-          <span>{text.readMore}</span>
-          <p>{text.below}</p>
-        </div>
-      </div>
-
-      <div className="quality-layout-demo__footer">
-        <p
-          className="quality-layout-demo__status"
-          aria-live="polite"
-          role="status"
-        >
-          {status}
-        </p>
+        <button className="ds-demo__preview" onClick={onPreview} type="button">
+          {text.keyboard.button}
+          <span aria-hidden="true">↗</span>
+        </button>
+        <span>{text.keyboard.hint}</span>
       </div>
     </div>
   );
 }
 
-function KeyboardFocusDemo({ text }) {
-  return (
-    <div className="quality-focus-demo">
-      <p className="quality-focus-demo__instruction">{text.focusInstruction}</p>
-      <div className="quality-focus-demo__comparison">
-        <div className="quality-focus-demo__example quality-focus-demo__example--before">
-          <span className="quality-focus-demo__label">{text.beforeFocus}</span>
-          <nav aria-label={text.withoutFocus}>
-            <a href="#quality-focus-demo-article">{text.latest}</a>
-            <a
-              className="quality-focus-demo__sample-focus"
-              href="#quality-focus-demo-article"
-            >
-              {text.reviews}
-            </a>
-          </nav>
-          <small>{text.focusBlends}</small>
-        </div>
-        <div className="quality-focus-demo__example quality-focus-demo__example--after">
-          <span className="quality-focus-demo__label">{text.afterFocus}</span>
-          <a
-            className="quality-focus-demo__skip"
-            href="#quality-focus-demo-article"
-          >
-            {text.skipArticle}
-          </a>
-          <nav aria-label={text.withFocus}>
-            <a href="#quality-focus-demo-article">{text.latest}</a>
-            <a href="#quality-focus-demo-article">{text.reviews}</a>
-          </nav>
-          <article
-            aria-label={text.demoArticle}
-            id="quality-focus-demo-article"
-            tabIndex="-1"
-          >
-            <h5>{text.demoArticle}</h5>
-            <p>{text.skipNavigation}</p>
-          </article>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function PollModule({ text }) {
-  const [theme, setTheme] = useState("light");
-  const [domain, setDomain] = useState("northstar");
+function PollModule({ text, domain, theme }) {
   const participants = 25;
 
   return (
     <div className="pollModuleShell" data-domain={domain} data-theme={theme}>
-      <div className="pollModule__controls">
-        <fieldset className="pollModule__switcher">
-          <legend>{text.portal}</legend>
-          <div>
-            {Object.entries(countdownDomains).map(([domainKey, portal]) => (
-              <button
-                aria-pressed={domain === domainKey}
-                key={domainKey}
-                onClick={() => setDomain(domainKey)}
-                type="button"
-              >
-                {portal.name}
-              </button>
-            ))}
-          </div>
-        </fieldset>
-        <fieldset className="pollModule__switcher">
-          <legend>{text.appearance}</legend>
-          <div>
-            {["light", "dark"].map((mode) => (
-              <button
-                aria-pressed={theme === mode}
-                key={mode}
-                onClick={() => setTheme(mode)}
-                type="button"
-              >
-                {mode === "light" ? text.light : text.dark}
-              </button>
-            ))}
-          </div>
-        </fieldset>
-      </div>
       <div className="pollModule">
         <header className="pollModule__header">
           <h4>{text.pollTitle}</h4>
@@ -1303,77 +1454,685 @@ function PollModule({ text }) {
   );
 }
 
+function CountdownModule({ text, timerText, language, domain, theme }) {
+  return (
+    <section
+      aria-label={`${countdownDomains[domain].name}: ${text.countdownLabel}`}
+      className="CountdownModule posRel"
+      data-domain={domain}
+      data-theme={theme}
+    >
+      <div className="countdownContent flx flxDirCol flxJustBtw p-5">
+        <div className="countdownHead">
+          <h4 className="countdownTitle txtCc1">
+            <span className="countdownTitleGame">Shadowstone:</span>
+            <span className="countdownReleaseTitle">
+              {language === "de" ? "Der Release-Countdown" : "Release countdown"}
+            </span>
+          </h4>
+        </div>
+        <div className="countdownBottom">
+          <CountdownTimer text={timerText} />
+          <a className="countdownButton btn txtUp fw700" href="#experience">
+            {text.countdownButton}
+            <span className="countdownArrow" aria-hidden="true">
+              →
+            </span>
+          </a>
+        </div>
+      </div>
+      <div className="countdownStage posRel ovHidd">
+        <img
+          alt=""
+          className="countdownImage posAbs top0 left0 w100 h100"
+          height="562"
+          loading="lazy"
+          src={`${import.meta.env.BASE_URL}shadowstone-countdown.png`}
+          width="999"
+        />
+      </div>
+      <time className="countdownBadge flx flxDirCol fw700" dateTime="2026-11-19">
+        <span className="countdownBadgeLabel txtUp">{text.release}</span>
+        <span className="countdownBadgeDate">{text.releaseDate}</span>
+        <span className="countdownBadgeYear">2026</span>
+      </time>
+    </section>
+  );
+}
+
+// Global grayscale shown in the token sketch (name = % black)
+const grayScale = [
+  ["--gr5", "#f2f2f2"],
+  ["--gr20", "#cccccc"],
+  ["--gr50", "#808080"],
+  ["--gr80", "#333333"],
+  ["--gr93", "#121212"],
+];
+
+const sketchVariants = [
+  ["northstar", "light"],
+  ["afterglow", "light"],
+  ["northstar", "dark"],
+  ["afterglow", "dark"],
+];
+
+// Connector between neighbouring screens: which part it links
+const sketchLinks = ["tiles", "title", "button"];
+
+// Countdown wireframe as a phone screen (mobile layout of the real module):
+// image + release badge, tag, title, four digit tiles, button.
+// Monochrome line style; tiles and button take the variant's token colour.
+// `link` draws a connector to the same part on the next screen.
+function MiniCountdown({ link }) {
+  return (
+    <div className="ds-cd">
+      <span className="ds-cd__image">
+        <span className="ds-cd__badge" />
+      </span>
+      <span className="ds-cd__tag" />
+      <span className="ds-cd__title">
+        <b />
+        <b />
+      </span>
+      <span className="ds-cd__tiles">
+        {[0, 1, 2, 3].map((tile) => (
+          <span key={tile}>
+            <i />
+            <b />
+          </span>
+        ))}
+      </span>
+      <span className="ds-cd__button" />
+      {link && <span className="ds-link" data-link={link} />}
+    </div>
+  );
+}
+
+// Case 01 sketch: the four token layers next to one module in four variants
+function TokenSystemDemo({ text, onPreview }) {
+  const demo = text.tokenDemo;
+  const north = countdownDomains.northstar;
+
+  return (
+    <div className="quality-layout-demo">
+      <div className="cls-demo__panels" role="group" aria-label={demo.label}>
+        <figure className="cls-demo ds-demo">
+          <h5 className="cls-demo__title">{demo.layersTitle}</h5>
+          <ol className="ds-layers">
+            <li>
+              <span className="ds-layers__name">{demo.gray}</span>
+              <span className="ds-layers__chips">
+                {grayScale.map(([token, value]) => (
+                  <i key={token} style={{ background: value }} title={`${token} · ${value}`} />
+                ))}
+              </span>
+              <code>--gr5 … --gr93</code>
+              <p className="ds-layers__note">{demo.notes[0]}</p>
+            </li>
+            <li>
+              <span className="ds-layers__name">{demo.brand}</span>
+              <span className="ds-layers__chips">
+                {Object.values(countdownDomains).map((portal) => (
+                  <i
+                    key={portal.name}
+                    style={{ background: portal.cc25 }}
+                    title={`${portal.name} · ${portal.cc25}`}
+                  />
+                ))}
+              </span>
+              <code>--PrCl1</code>
+              <p className="ds-layers__note">{demo.notes[1]}</p>
+            </li>
+            <li>
+              <span className="ds-layers__name">{demo.role}</span>
+              <span className="ds-layers__pills">
+                <span>
+                  <i style={{ background: north.cc25 }} />
+                  --lk → --PrCl1
+                </span>
+                <span>
+                  <i style={{ background: "#333333" }} />
+                  --modTtl → --gr80
+                </span>
+              </span>
+              <p className="ds-layers__note">{demo.notes[2]}</p>
+            </li>
+            <li>
+              <span className="ds-layers__name">{demo.palette}</span>
+              <span className="ds-layers__chips">
+                <i
+                  className="ds-layers__split"
+                  style={{ "--split-a": north.cc25, "--split-b": north.cc25Dark }}
+                />
+              </span>
+              <code>
+                --Cc25 · {text.light} / {text.dark}
+              </code>
+              <p className="ds-layers__note">{demo.notes[3]}</p>
+            </li>
+          </ol>
+          <figcaption>{demo.layersCaption}</figcaption>
+        </figure>
+
+        <figure className="cls-demo ds-demo">
+          <h5 className="cls-demo__title">{demo.modulesTitle}</h5>
+          <div className="ds-variants" aria-hidden="true">
+            {sketchVariants.map(([domain, theme], index) => (
+              <div
+                className="ds-mini"
+                data-domain={domain}
+                data-theme={theme}
+                key={`${domain}-${theme}`}
+              >
+                <span className="ds-mini__label">
+                  {countdownDomains[domain].name} · {theme === "light" ? text.light : text.dark}
+                </span>
+                <MiniCountdown link={sketchLinks[index]} />
+              </div>
+            ))}
+          </div>
+          <figcaption>{demo.modulesCaption}</figcaption>
+        </figure>
+      </div>
+
+      <div className="ds-demo__cta">
+        <button className="ds-demo__preview" onClick={onPreview} type="button">
+          {demo.previewButton}
+          <span aria-hidden="true">↗</span>
+        </button>
+        <span>{demo.previewHint}</span>
+      </div>
+    </div>
+  );
+}
+
+function PreviewSwitcher({ legend, options, value, onChange }) {
+  return (
+    <fieldset className="module-preview__switcher">
+      <legend>{legend}</legend>
+      <div>
+        {options.map(([key, label]) => (
+          <button
+            aria-pressed={value === key}
+            key={key}
+            onClick={() => onChange(key)}
+            type="button"
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+    </fieldset>
+  );
+}
+
+// Modal window with the real poll + countdown, switched by portal and mode
+// Modal shell shared by the live previews: header, close, toolbar, body.
+// The body only mounts while open (timers, focus, counters start fresh).
+function PreviewDialog({ open, onClose, title, lead, closeLabel, toolbar, children }) {
+  const dialogRef = useRef(null);
+  const titleId = useId();
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    if (open && !dialog.open) dialog.showModal();
+    if (!open && dialog.open) dialog.close();
+  }, [open]);
+
+  return (
+    <dialog
+      aria-labelledby={titleId}
+      className="module-preview"
+      onClick={(event) => {
+        if (event.target === dialogRef.current) onClose();
+      }}
+      onClose={onClose}
+      ref={dialogRef}
+    >
+      {open && (
+        <div className="module-preview__inner">
+          <header className="module-preview__header">
+            <div>
+              <h4 id={titleId}>{title}</h4>
+              <p>{lead}</p>
+            </div>
+            <button
+              aria-label={closeLabel}
+              className="module-preview__close"
+              onClick={onClose}
+              type="button"
+            >
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M3.5 3.5l9 9m0-9l-9 9" />
+              </svg>
+            </button>
+          </header>
+          {toolbar && <div className="module-preview__toolbar">{toolbar}</div>}
+          {children}
+        </div>
+      )}
+    </dialog>
+  );
+}
+
+// Portal + mode switchers used by both previews
+function PortalThemeSwitchers({ text, domain, theme, onDomain, onTheme }) {
+  return (
+    <>
+      <PreviewSwitcher
+        legend={text.portal}
+        onChange={onDomain}
+        options={Object.entries(countdownDomains).map(([key, item]) => [key, item.name])}
+        value={domain}
+      />
+      <PreviewSwitcher
+        legend={text.appearance}
+        onChange={onTheme}
+        options={[
+          ["light", text.light],
+          ["dark", text.dark],
+        ]}
+        value={theme}
+      />
+    </>
+  );
+}
+
+function ModulePreview({ open, onClose, text, timerText, language }) {
+  const [domain, setDomain] = useState("northstar");
+  const [theme, setTheme] = useState("light");
+  const portal = countdownDomains[domain];
+  const preview = text.preview;
+
+  const isLight = theme === "light";
+  // What drives the modules right now: [token, value, where it is used]
+  const tokens = [
+    ["--PrCl1", portal.cc25, preview.uses.brand],
+    [
+      isLight ? "--modTtl → --gr80" : "--modTtl → --gr5",
+      isLight ? "#333333" : "#f2f2f2",
+      preview.uses.title,
+    ],
+    ["--Cc25", isLight ? portal.cc25 : "#020202", preview.uses.tile],
+  ];
+
+  return (
+    <PreviewDialog
+      closeLabel={preview.close}
+      lead={preview.lead}
+      onClose={onClose}
+      open={open}
+      title={preview.title}
+      toolbar={
+        <PortalThemeSwitchers
+          domain={domain}
+          onDomain={setDomain}
+          onTheme={setTheme}
+          text={text}
+          theme={theme}
+        />
+      }
+    >
+      <div className="module-preview__stage" data-theme={theme}>
+        <div className="module-preview__countdown">
+          <CountdownModule
+            domain={domain}
+            language={language}
+            text={text}
+            theme={theme}
+            timerText={timerText}
+          />
+        </div>
+        <div className="module-preview__poll">
+          <PollModule text={text} domain={domain} theme={theme} />
+        </div>
+        <aside className="module-preview__tokens" aria-label={preview.tokens}>
+          <h5>{preview.tokens}</h5>
+          <dl>
+            {tokens.map(([token, value, use]) => (
+              <div key={use}>
+                <i style={{ background: value }} aria-hidden="true" />
+                <dt>
+                  <code>{token}</code>
+                  <span>{use}</span>
+                </dt>
+                <dd>
+                  <code>{value}</code>
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <p>{preview.tokensNote}</p>
+        </aside>
+      </div>
+    </PreviewDialog>
+  );
+}
+
+// Case 03 live demo — the sketch made playable. Each step is one key press:
+// before: Tab through 8 menu items, the 9th Tab reaches the article
+// after:  Tab focuses the skip link, Enter jumps to the article
+const KEY_PATHS = {
+  before: [
+    ...Array.from({ length: 8 }, (_, index) => ["Tab", `m${index}`]),
+    ["Tab", "article"],
+  ],
+  after: [
+    ["Tab", "skip"],
+    ["Enter", "article"],
+  ],
+};
+const KEY_PATH_STEPS = KEY_PATHS.before.length;
+const idleKeyboardPanel = { pos: null, keys: [], active: false };
+
+// One page of the comparison: mini site, key path, checklist, "try it"
+function KeyboardPanel({ variant, text, label, caption, brand, view, onTry, onKey, onPos }) {
+  const startRef = useRef(null);
+  const articleRef = useRef(null);
+  const articleId = useId();
+  const isAfter = variant === "after";
+  const path = KEY_PATHS[variant];
+  const reached = view.pos === "article";
+  const slots = Math.max(path.length, view.keys.length);
+  // Where a key press lands: a menu item, the skip link or the article
+  const targetLabel = (target) =>
+    target === "skip"
+      ? text.skip
+      : target === "article"
+        ? text.article
+        : text.nav[Number(target.slice(1))];
+  // The drawn focus always follows real focus — the native ring is replaced
+  const focusTo = (target) => () => onPos(target);
+
+  return (
+    <section className="kbdRace__panel" data-variant={variant} aria-label={label}>
+      <header className="kbdRace__head">
+        <h5>{label}</h5>
+        <p className="kbdRace__count" aria-live="polite">
+          <strong>{view.keys.length}</strong>
+          <span>{text.presses}</span>
+        </p>
+      </header>
+
+      <div
+        className="kbdRace__page"
+        onKeyDown={(event) => {
+          if (view.active && !reached && (event.key === "Tab" || event.key === "Enter")) {
+            onKey(event.key);
+          }
+        }}
+      >
+        <span className="kbdRace__start" ref={startRef} tabIndex={-1} />
+        <div className="kbdRace__bar">
+          <b>{brand}</b>
+          <span className="kbdRace__live">{text.live}</span>
+        </div>
+
+        {isAfter && (
+          <a
+            className="kbdRace__skip"
+            data-current={view.pos === "skip"}
+            href={`#${articleId}`}
+            onClick={(event) => {
+              event.preventDefault();
+              articleRef.current?.focus();
+            }}
+            onFocus={focusTo("skip")}
+          >
+            {text.skip}
+          </a>
+        )}
+
+        {/* The same main navigation in both versions */}
+        <nav aria-label={text.navLabel} className="kbdRace__nav" data-skipped={isAfter && reached}>
+          <ul className="kbdRace__menu">
+            {text.nav.map((item, index) => (
+              <li key={item}>
+                <a
+                  data-current={view.pos === `m${index}`}
+                  href="#"
+                  onClick={(event) => event.preventDefault()}
+                  onFocus={focusTo(`m${index}`)}
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        {isAfter && reached && (
+          <span className="kbdRace__skipped">↓ {text.skipped}</span>
+        )}
+
+        <article
+          className="kbdRace__article"
+          data-current={reached}
+          id={articleId}
+          onFocus={focusTo("article")}
+          ref={articleRef}
+          // before: the 9th Tab stop (like the article's first link);
+          // after: reached through the skip link only
+          tabIndex={isAfter ? -1 : 0}
+        >
+          {reached && <span className="kbdRace__badge">{view.keys.length}</span>}
+          <strong>{text.articleTitle}</strong>
+          <i />
+          <i />
+          <i />
+        </article>
+      </div>
+
+      <div className="kbdRace__path">
+        <span>{text.path}</span>
+        <ol>
+          {Array.from({ length: slots }, (_, index) => (
+            <li data-filled={index < view.keys.length} key={index}>
+              <b>{view.keys[index] ?? path[index]?.[0]}</b>
+              {path[index] && <span>{targetLabel(path[index][1])}</span>}
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <ul className="kbdRace__checks">
+        {text.checks[variant].map((item) => (
+          <li data-ok={isAfter} key={item}>
+            {/* SVG instead of ✕/✓ glyphs: centres exactly, independent of the font */}
+            <span aria-hidden="true">
+              <svg viewBox="0 0 16 16">
+                <path d={isAfter ? "M3.5 8.4l3 3 6-6.6" : "M4.5 4.5l7 7m0-7l-7 7"} />
+              </svg>
+            </span>
+            {item}
+          </li>
+        ))}
+      </ul>
+
+      <footer className="kbdRace__foot">
+        <p>{caption}</p>
+        <button
+          onClick={() => {
+            onTry();
+            startRef.current?.focus();
+          }}
+          type="button"
+        >
+          {text.try}
+        </button>
+      </footer>
+    </section>
+  );
+}
+
+// Case 03 preview — no portal/mode switches: this case is about the key path,
+// not about theming, so it always shows one portal in light mode
+function KeyboardPreview({ open, onClose, text }) {
+  const keyboard = text.keyboard;
+
+  return (
+    <PreviewDialog
+      closeLabel={keyboard.close}
+      lead={keyboard.lead}
+      onClose={onClose}
+      open={open}
+      title={keyboard.title}
+    >
+      <KeyboardRace
+        brand={countdownDomains.northstar.name}
+        domain="northstar"
+        text={text}
+        theme="light"
+      />
+    </PreviewDialog>
+  );
+}
+
+// Plays both key paths side by side, or follows the visitor's real focus
+function KeyboardRace({ text, domain, theme, brand }) {
+  const keyboard = text.keyboard;
+  const [mode, setMode] = useState("play");
+  const [tick, setTick] = useState(() => (prefersReducedMotion() ? KEY_PATH_STEPS : 0));
+  const [playId, setPlayId] = useState(0);
+  const [manual, setManual] = useState({
+    before: idleKeyboardPanel,
+    after: idleKeyboardPanel,
+  });
+  // Was the last input a Tab? Then focus entering a page came from a key
+  // press outside it (e.g. the play button) and counts as press no. 1.
+  const lastKeyWasTab = useRef(false);
+
+  useEffect(() => {
+    const onKeyDown = (event) => {
+      lastKeyWasTab.current = event.key === "Tab";
+    };
+    const onPointerDown = () => {
+      lastKeyWasTab.current = false;
+    };
+    window.addEventListener("keydown", onKeyDown, true);
+    window.addEventListener("pointerdown", onPointerDown, true);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown, true);
+      window.removeEventListener("pointerdown", onPointerDown, true);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (mode !== "play" || prefersReducedMotion()) return undefined;
+    let current = 0;
+    const timerId = window.setInterval(() => {
+      current += 1;
+      setTick(current);
+      if (current >= KEY_PATH_STEPS) window.clearInterval(timerId);
+    }, 550);
+    return () => window.clearInterval(timerId);
+  }, [mode, playId]);
+
+  const viewOf = (variant) => {
+    if (mode === "manual") return manual[variant];
+    const steps = KEY_PATHS[variant].slice(0, tick);
+    return {
+      pos: steps.at(-1)?.[1] ?? null,
+      keys: steps.map(([key]) => key),
+      active: false,
+    };
+  };
+
+  const updatePanel = (variant, change) =>
+    setManual((current) => ({
+      ...current,
+      [variant]: { ...current[variant], ...change(current[variant]) },
+    }));
+
+  const panel = (variant) => (
+    <KeyboardPanel
+      brand={brand}
+      caption={variant === "before" ? text.skipCaptionBefore : text.skipCaptionAfter}
+      label={variant === "before" ? text.before : text.after}
+      onKey={(key) => updatePanel(variant, (state) => ({ keys: [...state.keys, key] }))}
+      onPos={(pos) => {
+        // Focus moved inside a page: stop the animation and follow the visitor.
+        // Entering a page that isn't mid-run starts a fresh run.
+        setMode("manual");
+        updatePanel(variant, (state) => ({
+          pos,
+          keys: state.active ? state.keys : lastKeyWasTab.current ? ["Tab"] : [],
+          active: pos !== "article",
+        }));
+      }}
+      onTry={() => {
+        setMode("manual");
+        setManual({
+          before: idleKeyboardPanel,
+          after: idleKeyboardPanel,
+          [variant]: { pos: null, keys: [], active: true },
+        });
+      }}
+      text={keyboard}
+      variant={variant}
+      view={viewOf(variant)}
+    />
+  );
+
+  return (
+    <div className="kbdRace" data-domain={domain} data-theme={theme}>
+      <div className="kbdRace__controls">
+        <button
+          className="ds-demo__preview"
+          onClick={() => {
+            setMode("play");
+            setTick(prefersReducedMotion() ? KEY_PATH_STEPS : 0);
+            setPlayId((current) => current + 1);
+          }}
+          type="button"
+        >
+          {keyboard.play}
+          <span aria-hidden="true">▶</span>
+        </button>
+        <span>{keyboard.playHint}</span>
+      </div>
+
+      <div className="kbdRace__panels">
+        {panel("before")}
+        {panel("after")}
+      </div>
+
+      <div className="kbdRace__summary">
+        <strong>{keyboard.summaryValue}</strong>
+        <p>{keyboard.summary}</p>
+      </div>
+    </div>
+  );
+}
+
+// Language switch: "DE / EN" as plain text. The active language is ink with
+// an accent underline; the other one is muted and darkens on hover.
 function LanguageSwitcher({ language, onChange, label }) {
+  const options = [
+    ["de", "DE", "Deutsch"],
+    ["en", "EN", "English"],
+  ];
+
   return (
     <div className="language-switch" role="group" aria-label={label}>
-      <button
-        aria-label="Deutsch"
-        aria-pressed={language === "de"}
-        className="language-switch__option"
-        onClick={() => onChange("de")}
-        type="button"
-      >
-        <svg
-          aria-hidden="true"
-          className="language-switch__flag"
-          viewBox="0 0 24 24"
-        >
-          <defs>
-            <clipPath id="language-flag-de">
-              <circle cx="12" cy="12" r="11" />
-            </clipPath>
-          </defs>
-          <g clipPath="url(#language-flag-de)">
-            <path fill="#000" d="M0 0h24v8H0z" />
-            <path fill="#dd0000" d="M0 8h24v8H0z" />
-            <path fill="#ffce00" d="M0 16h24v8H0z" />
-          </g>
-          <circle
-            cx="12"
-            cy="12"
-            r="11"
-            fill="none"
-            stroke="currentColor"
-            strokeOpacity=".14"
-          />
-        </svg>
-        <span>DE</span>
-      </button>
-      <button
-        aria-label="English"
-        aria-pressed={language === "en"}
-        className="language-switch__option"
-        onClick={() => onChange("en")}
-        type="button"
-      >
-        <svg
-          aria-hidden="true"
-          className="language-switch__flag"
-          viewBox="0 0 24 24"
-        >
-          <defs>
-            <clipPath id="language-flag-en">
-              <circle cx="12" cy="12" r="11" />
-            </clipPath>
-          </defs>
-          <g clipPath="url(#language-flag-en)">
-            <path fill="#012169" d="M0 0h24v24H0z" />
-            <path d="m0 0 24 24m0-24L0 24" stroke="#fff" strokeWidth="5" />
-            <path d="m0 0 24 24m0-24L0 24" stroke="#c8102e" strokeWidth="2" />
-            <path d="M12 0v24M0 12h24" stroke="#fff" strokeWidth="8" />
-            <path d="M12 0v24M0 12h24" stroke="#c8102e" strokeWidth="4" />
-          </g>
-          <circle
-            cx="12"
-            cy="12"
-            r="11"
-            fill="none"
-            stroke="currentColor"
-            strokeOpacity=".14"
-          />
-        </svg>
-        <span>EN</span>
-      </button>
+      {options.map(([code, short, name], index) => (
+        <Fragment key={code}>
+          {index > 0 && (
+            <span className="language-switch__divider" aria-hidden="true">
+              /
+            </span>
+          )}
+          <button
+            aria-label={name}
+            aria-pressed={language === code}
+            className="language-switch__option"
+            onClick={() => onChange(code)}
+            type="button"
+          >
+            {short}
+          </button>
+        </Fragment>
+      ))}
     </div>
   );
 }
@@ -1466,7 +2225,7 @@ const noteIcons = {
     <>
       <path d="M24 4 40 10v11c0 10-6.8 17.3-16 21-9.2-3.7-16-11-16-21V10Z" />
       <path className="is-teal" d="M24 9.5 35 13.7v7.5c0 7.3-4.7 12.6-11 15.4-6.3-2.8-11-8.1-11-15.4v-7.5Z" />
-      <path className="is-line" d="m18.5 23 4 4 7.5-8" />
+      <path className="is-line is-light" d="m18.5 23 4 4 7.5-8" />
       <circle className="is-gold" cx="38" cy="38" r="4" />
     </>
   ),
@@ -1530,10 +2289,10 @@ const noteIcons = {
   ),
 };
 
-// Rounded hexagon shape from Hero-Badge.svg.
-const HEX_PATH =
-  "M84.89,1c6.01,0,11.08,1.58,16.46,4.75l55.72,31.97c7.6,4.43,11.71,11.4,11.71,20.58v70.91c0,9.5-4.12,16.14-11.71,20.58l-55.72,32.61c-10.45,6.01-22.48,6.01-32.92,0l-55.72-32.61c-7.6-4.43-11.71-11.08-11.71-20.58V58.3c0-9.18,4.12-16.14,11.71-20.58L68.43,5.75c5.38-3.17,10.45-4.75,16.46-4.75Z";
-
+// Round emblem shape: a circle centred on the icon and progress-ring centre
+// (84.89, 94), so icons and the coin on the lower edge keep their place.
+// The hero badge (Hero-Badge.svg) keeps its own hexagon.
+const EMBLEM_PATH = "M-1.11,94a86,86 0 1,0 172,0a86,86 0 1,0 -172,0Z";
 // Star from Hero-Badge.svg, used on the "achievement" coin.
 const STAR_PATH =
   "M85.44,165.11l5.82,9.92c.09.16.24.27.42.3l11.3,2.43c.48.1.67.69.34,1.06l-7.7,8.55c-.12.13-.18.31-.16.49l1.16,11.42c.05.49-.45.85-.9.65l-10.58-4.63c-.16-.07-.35-.07-.52,0l-10.58,4.63c-.45.2-.95-.16-.9-.65l1.16-11.42c.02-.18-.04-.36-.16-.49l-7.7-8.55c-.33-.37-.14-.95.34-1.06l11.3-2.43c.18-.04.33-.15.42-.3l5.82-9.92c.25-.42.86-.42,1.11,0Z";
@@ -1542,20 +2301,18 @@ const STAR_PATH =
 // Badge primitives (styles: _badge.scss) — shared by note cards and About.
 // ---------------------------------------------------------------------------
 
-// Rounded hexagon in the offset-print style (as <NumberMark>): gold copy
-// shifted down-right, white face, ink outline. Children are drawn in its
-// 170×188 coordinate space. Shift size: --hex-shift (_badge.scss).
+// Round emblem: white face with an ink outline, no shadow. Children are
+// drawn in its 170×188 coordinate space.
 function HexEmblem({ children }) {
   return (
     <svg className="hex-emblem" viewBox="-2 -2 173.78 192" aria-hidden="true">
-      <path className="hex-emblem__tint" d={HEX_PATH} />
-      <path className="hex-emblem__shape" d={HEX_PATH} />
+      <path className="hex-emblem__shape" d={EMBLEM_PATH} />
       {children}
     </svg>
   );
 }
 
-// One of the 48-unit icons, centred in the hexagon.
+// One of the 48-unit icons, centred in the emblem.
 function HexIcon({ name }) {
   return (
     <g className="hex-emblem__icon" transform="translate(33.3 42.4) scale(2.15)">
@@ -1572,14 +2329,6 @@ function BadgeCoin({ variant = "dots" }) {
         <svg viewBox="65 163 40 40">
           <path d={STAR_PATH} />
         </svg>
-      ) : variant === "wave" ? (
-        <svg viewBox="0 0 24 24">
-          <g className="badge-coin__hand">
-            <path d="M9 21.5C6.6 20.6 4.9 18.4 4.4 15.9l-.9-4.3A1.3 1.3 0 0 1 6 11l1.3 3.2V5.2a1.4 1.4 0 0 1 2.8 0V3.6a1.4 1.4 0 0 1 2.8 0v1a1.4 1.4 0 0 1 2.8 0v2.6a1.4 1.4 0 0 1 2.8 0v7.4c0 3.8-2.9 7-6.7 7.2-1 .1-1.9 0-2.8-.3Z" />
-            <path className="is-line" d="M10.1 5.2v6.3M12.9 4.6v6.9M15.7 7.2v4.8" />
-          </g>
-          <path className="is-line" d="M19.6 2.6c1.2.6 2 1.6 2.3 2.9M2.3 5.2c.3-1.3 1.1-2.3 2.3-2.9" />
-        </svg>
       ) : (
         <>
           <i />
@@ -1592,7 +2341,7 @@ function BadgeCoin({ variant = "dots" }) {
 }
 
 // Win mascots — medieval characters in the icon style (white faces, ink
-// outline, teal/gold accents, gold offset via CSS). One is picked at random
+// outline, teal/gold accents, no shadow). One is picked at random
 // for every won game; the caption comes from text.game.mascots[key].
 const WIN_MASCOTS = {
   // Knight helmet: googly eyes peek through the visor slit, gold plume
@@ -1692,36 +2441,31 @@ const WIN_MASCOTS = {
 
 const WIN_MASCOT_KEYS = Object.keys(WIN_MASCOTS);
 
-// Card-back emblem: a kite shield — metal rim with rivets, corner
-// brackets, two-tone blue face split down the middle, scratch marks — with a
-// griffin emblem in the centre (src/assets/GriffinIcon.svg) in deep shield
-// blue with a darker outer border.
+// Card-back emblem: a flat 2D kite shield — rim, corner brackets, rivets and a
+// two-tone face split by a seam, all as flat fills with ink outlines in the
+// page's warm greys — with a "click" mark forged in the same style: a cursor
+// with a grey metal rim, a two-tone red face split by a seam and rivets, plus
+// three click rays as riveted metal plates.
+const SHIELD_CURSOR = "M0 0V26L6.5 20 11 30 15.5 28 11 18.5H19.5Z";
+
 function ShieldEmblem() {
-  // Griffin (src/assets/GriffinIcon.svg, 284.69 × 267.77) scaled into the
-  // shield face; rendered twice below: dark outline layer + blue fill layer
-  const griffin = (
-    <g transform="translate(18.6 21.6) scale(.094)">
-      <path d="M50.69,258.61c9.9-3.26,15.8-15.53,14.18-25.51-1.94-11.98-11.71-17.45-20.04-24.76-15.76-13.83-29.62-29.75-30.29-51.93-.69-23.15,12.74-36.06,27.48-51.43,9.71-10.12,27.32-22.98,18.21-39.07-7.49-13.22-26.68-11.83-33.77,1.11-3.6,6.56-3.08,13.98-.47,20.79-11.91.07-21.76-7.31-24.82-18.83C-4.72,46.79,12.32,24.65,35.02,23.92h66.57c.06,4.46-.08,8.93-.01,13.38.29,18.39.2,36.82.25,55.24.03,10.45,1.02,22.2-.27,32.54-2.8,22.29-28.19,33.99-47.06,21.79,2.27,19.16,22.12,28.56,39.11,19.9,14.03-7.15,19.02-23.07,19.68-37.85.58-12.95-.19-26.25-.26-39.19-.04-7.22-.38-14.75,1.11-21.82,5.8-27.5,35.57-46.02,62.4-47.31,25.02-1.2,51,.91,76.13.02,9.94-1.01,17.26-8.14,22.05-16.38.74-1.27,1.65-2.86,2-4.24,2.84,4.11,5.05,9.5,6.34,14.4,9.74,37.03-25.99,76.3-61.66,51.99-6.67-4.55-11.74-11.77-20.4-12.43-14.69-1.13-23.88,15.17-15.62,27.32,7.99,11.76,26.05,10.4,36.33,2.57,1.23-.94,2.5-2.52,3.61-3.27.28-.19.52-.55.86-.14,1.08,1.26,2.94,7.05,3.36,8.86,6.81,29.11-24.31,51.88-48.91,32.88-3.53-2.73-6.87-7.15-10.9-8.95-12.16-5.44-23.34,6.77-18.7,18.7,4.24,10.9,17.81,13.17,27.68,8.96,3.5-1.49,6.33-4.04,9.16-6.49,12.87,24.46-14.57,49.21-37.39,31.92-5.23-3.96-8.77-8.74-16.37-6.39-11.28,3.48-9.56,20.2,2.48,21.3h87.5c9.57,18.05,29.55,31.94,50.24,22.45l7.46-4.37c-2.98,19.16-18.23,36.64-37.62,40.13-21.6,3.9-38.24-8.13-48.87-25.8-3.59-5.96-5.9-13.9-12.96-16.56-13.59-5.12-21.86,12.79-10.32,19.49.83.48,3.42,1.58,4.28,1.58h9.29l.13,49.63h-32.96v-9.67c10.04-4.23,14.95-16.57,11.74-26.83-.26-.37-7.84-.07-9.06-.15-4.85-.31-10.48-2.02-14.72-4.37-.54-.3-3.14-2.34-3.48-1.99l.13,43.02h-34.11l-.38-.38v-8.91c3.75-1.96,6.85-4.27,9.27-7.79,6.37-9.25,6.01-21.57,3.18-32.02l-15.33-.04c-6.06,12.2-11.86,24.58-17.09,37.18-1.65,3.96-3.04,8.1-4.84,11.96h-27.36v-9.16ZM87.85,34.62h-40.73c7.16,15.26,27.46,17.62,38.17,4.45.44-.54,2.97-4.04,2.55-4.45Z" />
-      <path d="M51.2,222.47c-4.08,8.87-8.82,17.5-12.95,26.38-2.9,6.25-5.46,12.65-8.31,18.93H2.45l-.38-.38v-9.29c13.04-6.36,19.51-21.66,15.27-35.64h33.85Z" />
-    </g>
-  );
+  // Each card renders its own shield, so the clip id must be unique
+  const clipId = useId();
   return (
     <svg className="win-mascot token-memory__mascot" viewBox="0 0 64 72" aria-hidden="true">
-      {/* metal rim */}
+      {/* Rim */}
       <path className="shield__rim" d="M32 3 54 9.5q4 1.5 4 6L57 40q-2 14-25 29Q9 54 7 40L6 15.5q0-4.5 4-6Z" />
-      {/* two-tone face */}
+      {/* Two-tone face, split by a seam */}
       <path className="shield__dark" d="M32 7.4 51.6 13q2.4 1 2.4 3.8l-.8 22.6Q51.4 51.4 32 64.6 12.6 51.4 10.8 39.4L10 16.8q0-2.8 2.4-3.8Z" />
       <path className="shield__light" d="M32 7.4 12.4 13q-2.4 1-2.4 3.8l.8 22.6Q12.6 51.4 32 64.6Z" />
-      <path className="is-line" d="M32 7.4v57.2" />
-      {/* scratch marks */}
-      <path className="is-line shield__scratch" d="m15.4 24 2.6-.6M14.2 30.6l2.2-.4M47 26.4l2.6-.4M45.6 50l2.4-1.2M18.6 52l1.8 1.4M41.6 15.4l2.4.4" />
-      {/* corner brackets */}
+      <path className="shield__seam" d="M32 7.4v57.2" />
+      {/* Corner brackets */}
       <path className="shield__rim" d="M10 16.8q0-2.8 2.4-3.8l5-1.4v2.8l-2.8.8v4.2l-4.5.2Z" />
       <path className="shield__rim" d="M54 16.8q0-2.8-2.4-3.8l-5-1.4v2.8l2.8.8v4.2l4.5.2Z" />
       <path className="shield__rim" d="m11.2 41.6 4.4-.8.2 4.2 3.2 1.8-1.6 2.6q-4.6-3.2-6.2-7.8Z" />
       <path className="shield__rim" d="m52.8 41.6-4.4-.8-.2 4.2-3.2 1.8 1.6 2.6q4.6-3.2 6.2-7.8Z" />
       <path className="shield__rim" d="M28.8 61.8 32 59.6l3.2 2.2-3.2 2.8Z" />
-      {/* rivets */}
+      {/* Rivets */}
       <g className="shield__rivet">
         <circle cx="32" cy="5.2" r="1" />
         <circle cx="20.4" cy="7.6" r="1" />
@@ -1738,10 +2482,33 @@ function ShieldEmblem() {
         <circle cx="13.6" cy="44.2" r=".9" />
         <circle cx="50.4" cy="44.2" r=".9" />
       </g>
-      {/* stylised griffin, drawn twice: a dark wider copy underneath gives one
-          outer border around the white silhouette */}
-      <g className="griffin__outline">{griffin}</g>
-      <g className="griffin__fill">{griffin}</g>
+      {/* Click rays: riveted metal plates around the cursor tip */}
+      {[-90, -45, 0].map((angle) => (
+        <g key={angle} transform={`translate(29.5 27) rotate(${angle})`}>
+          <rect className="shield__ray" x="-1.1" y="-9.6" width="2.2" height="4.2" rx=".6" />
+          <circle className="shield__ray-rivet" cx="0" cy="-7.5" r=".5" />
+        </g>
+      ))}
+      {/* Cursor: ink outline, grey rim band, two-tone red face, seam, rivets */}
+      <g transform="translate(29.5 27) scale(.68)">
+        <defs>
+          <clipPath id={clipId}>
+            <path d={SHIELD_CURSOR} />
+          </clipPath>
+        </defs>
+        <path className="shield__cursor-outline" d={SHIELD_CURSOR} />
+        <path className="shield__cursor-rim" d={SHIELD_CURSOR} />
+        <path className="shield__cursor-face" d={SHIELD_CURSOR} />
+        <path className="shield__cursor-shade" d="M0 0 13.25 29 32 32V-2Z" clipPath={`url(#${clipId})`} />
+        <path className="shield__cursor-seam" d="M0 0 13.25 29" />
+        <path className="shield__cursor-line" d={SHIELD_CURSOR} />
+        <g className="shield__rivet shield__cursor-rivets">
+          <circle cx="-0.72" cy="-1.67" r="1.12" />
+          <circle cx="-1.29" cy="27.29" r="1.12" />
+          <circle cx="21.19" cy="19.17" r="1.12" />
+          <circle cx="14" cy="30.66" r="1.12" />
+        </g>
+      </g>
     </svg>
   );
 }
@@ -1796,6 +2563,8 @@ function TokenMemory({ text, language }) {
   const [discovered, setDiscovered] = useState([]);
   const busy = open.length === 2;
   const won = matched.length === MEMORY_TOKENS.length;
+  // All mascots collected: the next shuffle starts a fresh collection
+  const complete = discovered.length === WIN_MASCOT_KEYS.length;
 
   // Second card turned: keep the pair, otherwise turn both back after a moment
   useEffect(() => {
@@ -1833,12 +2602,12 @@ function TokenMemory({ text, language }) {
     setMatched([]);
     setMoves(0);
     setStatus("");
+    if (complete) setDiscovered([]);
     setMascot((current) => {
-      const locked = WIN_MASCOT_KEYS.filter((key) => !discovered.includes(key));
-      const pool = locked.length
-        ? locked
-        : WIN_MASCOT_KEYS.filter((key) => key !== current);
-      return pool[Math.floor(Math.random() * pool.length)];
+      const locked = complete
+        ? WIN_MASCOT_KEYS.filter((key) => key !== current)
+        : WIN_MASCOT_KEYS.filter((key) => !discovered.includes(key));
+      return locked[Math.floor(Math.random() * locked.length)];
     });
   };
 
@@ -1866,7 +2635,7 @@ function TokenMemory({ text, language }) {
           </span>
         </div>
         <button className="token-memory__restart" onClick={restart} type="button">
-          {text.restart}
+          {complete ? text.newCollection : text.restart}
         </button>
       </div>
 
@@ -1907,13 +2676,13 @@ function TokenMemory({ text, language }) {
               <p className="token-memory__win-text">{text.mascots[mascot]}</p>
               {discovered[discovered.length - 1] === mascot && (
                 <p className="token-memory__win-unlock">
-                  {discovered.length === WIN_MASCOT_KEYS.length
+                  {complete
                     ? text.collectionDone
                     : text.newMascot(text.mascotNames[mascot])}
                 </p>
               )}
               <button className="token-memory__restart" onClick={restart} type="button">
-                {text.restart}
+                {complete ? text.newCollection : text.restart}
               </button>
             </div>
           </div>
@@ -1928,7 +2697,12 @@ function TokenMemory({ text, language }) {
         <div className="token-memory__collection-head">
           <p className="token-memory__collection-label">{text.collectionLabel}</p>
           <p className="token-memory__collection-hint">
-            {discovered.length === WIN_MASCOT_KEYS.length
+            <svg className="token-memory__hint-icon" viewBox="0 0 20 20" aria-hidden="true">
+              <circle cx="10" cy="10" r="8.75" />
+              <path d="M10 9v5" />
+              <circle className="token-memory__hint-dot" cx="10" cy="6.1" r=".95" />
+            </svg>
+            {complete
               ? text.collectionDone
               : text.collectionHint}
           </p>
@@ -1945,16 +2719,15 @@ function TokenMemory({ text, language }) {
                   {found ? (
                     <WinMascot name={key} />
                   ) : (
-                    // Locked: a square lock drawn exactly like the shield — metal
-                    // rim, two-tone blue face, corner brackets, rivets, white
-                    // keyhole emblem — muted, no hint at the mascot
+                    // Locked: a flat 2D padlock drawn like the shield — rim,
+                    // corner brackets, rivets, two-tone body split by a seam,
+                    // red keyhole; muted, no hint at the mascot
                     <svg className="win-mascot token-memory__lock" viewBox="0 0 64 64" aria-hidden="true">
                       <path className="lock__rim" d="M21 31V21a11 11 0 0 1 22 0v10h-4.4V21a6.6 6.6 0 0 0-13.2 0v10Z" />
                       <path className="lock__rim" d="M13 30h38a2 2 0 0 1 2 2v25a2 2 0 0 1-2 2H13a2 2 0 0 1-2-2V32a2 2 0 0 1 2-2Z" />
                       <path className="lock__dark" d="M15.4 33.4h33.2v22.2H15.4Z" />
                       <path className="lock__light" d="M15.4 33.4H32v22.2H15.4Z" />
-                      <path className="is-line" d="M32 33.4v22.2" />
-                      <path className="is-line lock__scratch" d="m18 41 2.4-.5M44 50.2l2.2-.8M42.6 37l2.2.4" />
+                      <path className="lock__seam" d="M32 33.4v22.2" />
                       <path className="lock__rim" d="M15.4 33.4h5v2.2h-2.8v2.8h-2.2Z" />
                       <path className="lock__rim" d="M48.6 33.4h-5v2.2h2.8v2.8h2.2Z" />
                       <path className="lock__rim" d="M15.4 55.6h5v-2.2h-2.8v-2.8h-2.2Z" />
@@ -1983,13 +2756,13 @@ function TokenMemory({ text, language }) {
   );
 }
 
-// Number in a mark, poll-mark style: gold copy offset down-right, white face,
-// thin ink outline. "bubble" points left (towards the text it belongs to,
+// Number in a mark: filled face with a thin ink outline, no shadow. "bubble" points left (towards the text it belongs to,
 // tail vertically centred); "circle" is a plain disc.
 const NUMBER_MARK_SHAPES = {
   bubble: {
-    viewBox: "0 0 28 24",
-    d: "M8.5 3h15A2.5 2.5 0 0 1 26 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 6 18.5v-4L1.6 12 6 9.5v-4A2.5 2.5 0 0 1 8.5 3Z",
+    // Body x 6–32 (26 wide) + tail on the left
+    viewBox: "0 0 34 24",
+    d: "M8.5 3h21A2.5 2.5 0 0 1 32 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-21A2.5 2.5 0 0 1 6 18.5v-4L1.6 12 6 9.5v-4A2.5 2.5 0 0 1 8.5 3Z",
   },
   circle: {
     viewBox: "0 0 24 24",
@@ -2005,7 +2778,6 @@ function NumberMark({ shape, className = "", hidden = false, children }) {
       aria-hidden={hidden || undefined}
     >
       <svg viewBox={viewBox} fill="none" aria-hidden="true">
-        <path className="number-mark__tint" d={d} transform="translate(1.6 1.4)" />
         <path className="number-mark__face" d={d} />
       </svg>
       <span className="number-mark__text">{children}</span>
@@ -2013,11 +2785,12 @@ function NumberMark({ shape, className = "", hidden = false, children }) {
   );
 }
 
-// Contact speech bubble — the BubbleTalk.svg outline traced in the poll-mark
-// style: tinted copy offset down-right, paper face with a thin outline.
-// The SVG stretches to the text box; non-scaling strokes keep the line thin.
+// Contact speech bubble: rounded rectangle (r 18) with a short tail at the
+// bottom left pointing down, drawn in the -2 -2 211 194 viewBox (body 207 × 150).
+// White face with a fine light outline (no shadow); the SVG stretches to the
+// text box, non-scaling strokes keep the line thin.
 const BUBBLE_PATH =
-  "M83.96 156.59c49.25.34 64.02-.85 82.87-5.43 18.85-4.58 32.6-22.58 33.62-53.83 1.02-31.25-1.53-46.36-3.57-59.09C194.85 25.49 188.56-.83 101.45.02 19.28 0 0 16.14 0 67.45c.3 61.71 10.68 81 44.5 85.45 0 15.72.06 22.88.23 26.61s.25 4.67 1.53 5.43c1.13.58 2.72-.08 6.62-3.06 3.91-2.97 31.08-25.3 31.08-25.3Z";
+  "M18 0H189A18 18 0 0 1 207 18V132A18 18 0 0 1 189 150H82L40 188L46 150H18A18 18 0 0 1 0 132V18A18 18 0 0 1 18 0Z";
 
 function ContactBubble() {
   return (
@@ -2027,14 +2800,13 @@ function ContactBubble() {
       preserveAspectRatio="none"
       aria-hidden="true"
     >
-      <path className="contact__bubble-tint" d={BUBBLE_PATH} transform="translate(3.6 3.4)" />
       <path className="contact__bubble-face" d={BUBBLE_PATH} vectorEffect="non-scaling-stroke" />
     </svg>
   );
 }
 
-// Poll marks (? and !) — offset-print look: a tinted fill shifted down-right,
-// a thin outline on top (same idea as the contact speech bubble). The glyph
+// Poll marks (? and !) — thin outlines; the tinted offset fills are hidden
+// (no shadows on the page, see _poll.scss). The glyph
 // sits inside a circle drawn the same way. The ? is a stroked curve, so its
 // outline is cut out with a mask (wide stroke minus narrow stroke).
 function PollMark({ type, className }) {
@@ -2104,7 +2876,7 @@ function PollMark({ type, className }) {
   );
 }
 
-function NoteCard({ icon, label, tab, children }) {
+function NoteCard({ icon, label, tab, coin = "dots", children }) {
   return (
     <div className="note-card badge-card">
       <div className="note-card__head">
@@ -2112,7 +2884,7 @@ function NoteCard({ icon, label, tab, children }) {
           <HexEmblem>
             <HexIcon name={icon} />
           </HexEmblem>
-          <BadgeCoin />
+          <BadgeCoin variant={coin} />
         </span>
         <span className="badge-tags">
           <span className="badge-tag">{label}</span>
@@ -2126,6 +2898,7 @@ function NoteCard({ icon, label, tab, children }) {
 
 // Text clamped to `lines` lines; a Read more / Show less toggle appears only
 // when the full text is longer. Re-measured on resize (ResizeObserver).
+// Text clamped to N lines with a "read more" toggle (only when it overflows)
 function ClampedText({ text, lines = 4, className = "", moreLabel, lessLabel }) {
   const textRef = useRef(null);
   const [overflows, setOverflows] = useState(false);
@@ -2166,117 +2939,105 @@ function ClampedText({ text, lines = 4, className = "", moreLabel, lessLabel }) 
           onClick={() => setOpen((value) => !value)}
         >
           {open ? lessLabel : moreLabel}
+          {/* Chevron: down = closed, rotates up when open (via aria-expanded) */}
+          <svg viewBox="0 0 12 12" aria-hidden="true">
+            <path d="M3 4.5 6 7.5l3-3" />
+          </svg>
         </button>
       )}
     </>
   );
 }
 
-// Takeaway cards: on desktop (4 columns) every text is clamped to the line
-// count of the shortest text, so all cards share its height. Cards whose text
-// is cut get a "Read more" toggle; below 1081px the full text always shows.
-const TAKEAWAY_DESKTOP = "(min-width: 1081px)";
-
+// Takeaways: one wide box, four columns divided by fine dotted lines
+// (emblem, label, text clamped to 3 lines with "Mehr lesen")
 function Takeaways({ items, moreLabel, lessLabel }) {
-  const listRef = useRef(null);
-  const [lines, setLines] = useState(0);
-  const [cut, setCut] = useState([]);
-  const [open, setOpen] = useState([]);
-  const baseId = useId();
-  // Re-measure when the texts change (language switch), not on every render
-  const textKey = items.map((item) => item.text).join("|");
-
-  useEffect(() => {
-    const list = listRef.current;
-    if (!list) return undefined;
-    const desktop = window.matchMedia(TAKEAWAY_DESKTOP);
-
-    const measure = () => {
-      if (!desktop.matches) {
-        setLines(0);
-        setCut([]);
-        return;
-      }
-      const texts = [...list.querySelectorAll(".token-case-study__takeaway-text")];
-      if (!texts.length) return;
-      const lineHeight = parseFloat(getComputedStyle(texts[0]).lineHeight);
-      // scrollHeight is the full text height, also while the text is clamped
-      const counts = texts.map((p) => Math.round(p.scrollHeight / lineHeight));
-      const min = Math.min(...counts);
-      setLines(min);
-      const next = counts.map((count) => count > min);
-      setCut((prev) => (prev.join() === next.join() ? prev : next));
-    };
-
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(list);
-    desktop.addEventListener("change", measure);
-    return () => {
-      observer.disconnect();
-      desktop.removeEventListener("change", measure);
-    };
-  }, [textKey]);
-
-  const toggle = (index) =>
-    setOpen((prev) => {
-      const next = [...prev];
-      next[index] = !next[index];
-      return next;
-    });
-
   return (
-    <div
-      ref={listRef}
-      className="token-case-study__takeaways"
-      style={lines ? { "--takeaway-lines": lines } : undefined}
-    >
-      {items.map((item, index) => {
-        const textId = `${baseId}-takeaway-${index}`;
-        const clamped = lines > 0 && cut[index] && !open[index];
-        return (
-          <div className="token-case-study__takeaway badge-card" key={item.icon}>
-            <span className="badge-emblem token-case-study__takeaway-icon">
-              <HexEmblem>
-                <HexIcon name={item.icon} />
-              </HexEmblem>
-            </span>
-            <div>
-              <span className="badge-tag badge-tag--ghost">{item.label}</span>
-              <p
-                id={textId}
-                className={`token-case-study__takeaway-text${clamped ? " is-clamped" : ""}`}
-              >
-                {item.text}
-              </p>
-              {lines > 0 && cut[index] && (
-                <button
-                  type="button"
-                  className="token-case-study__takeaway-more"
-                  aria-expanded={Boolean(open[index])}
-                  aria-controls={textId}
-                  onClick={() => toggle(index)}
-                >
-                  {open[index] ? lessLabel : moreLabel}
-                </button>
-              )}
-            </div>
-          </div>
-        );
-      })}
+    <div className="takeaways">
+      {items.map((item) => (
+        <div className="takeaway" key={item.icon}>
+          <span className="badge-emblem takeaway__icon">
+            <HexEmblem>
+              <HexIcon name={item.icon} />
+            </HexEmblem>
+          </span>
+          <span className="badge-tag badge-tag--ghost">{item.label}</span>
+          <ClampedText
+            className="takeaway__text"
+            lessLabel={lessLabel}
+            lines={3}
+            moreLabel={moreLabel}
+            text={item.text}
+          />
+        </div>
+      ))}
     </div>
+  );
+}
+
+// Neutral avatar for the testimonial: a business-portrait illustration in
+// flat greys — swept hair, off-white face with ears, shaded neck, white shirt
+// with collar points, dark tie, grey jacket with lighter lapels — in a round
+// frame like the hero portrait. Not a real likeness.
+function SilhouetteAvatar() {
+  const clipId = useId();
+  const neckId = useId();
+  return (
+    <svg className="testimonial__avatar" viewBox="0 0 64 64" aria-hidden="true">
+      <defs>
+        <clipPath id={clipId}>
+          <circle cx="32" cy="32" r="31" />
+        </clipPath>
+        {/* Shadow under the chin */}
+        <linearGradient id={neckId} x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stopColor="#d2d1cb" />
+          <stop offset="0.55" stopColor="#ebeae5" />
+        </linearGradient>
+      </defs>
+      <g clipPath={`url(#${clipId})`}>
+        <rect width="64" height="64" className="testimonial__avatar-bg" />
+        {/* Jacket and lapels */}
+        <path className="testimonial__avatar-jacket" d="M2 64c1-10 8-15.5 20-18l10 4 10-4c12 2.5 19 8 20 18Z" />
+        <path className="testimonial__avatar-lapel" d="M21 46.5l9 5.5-3 12h-5l-6-13Z" />
+        <path className="testimonial__avatar-lapel" d="M43 46.5l-9 5.5 3 12h5l6-13Z" />
+        {/* Shirt, collar points, tie */}
+        <path className="testimonial__avatar-shirt" d="M24.5 45 32 49l7.5-4 .5 19H24Z" />
+        <path className="testimonial__avatar-collar" d="M24.5 45 32 49l-4 6.5Z" />
+        <path className="testimonial__avatar-collar" d="M39.5 45 32 49l4 6.5Z" />
+        <path className="testimonial__avatar-tie" d="M30 49h4l-.6 3h-2.8ZM30.6 52h2.8l1.6 12h-6Z" />
+        {/* Neck, ears, face */}
+        <path fill={`url(#${neckId})`} d="M27 35h10v10.5c0 2-2.2 3.5-5 3.5s-5-1.5-5-3.5Z" />
+        <ellipse className="testimonial__avatar-ear" cx="20.6" cy="27" rx="2.6" ry="4" />
+        <ellipse className="testimonial__avatar-ear" cx="43.4" cy="27" rx="2.6" ry="4" />
+        <path className="testimonial__avatar-face" d="M21 24c0-9 5-13 11-13s11 4 11 13-5 15.5-11 15.5S21 33 21 24Z" />
+        {/* Hair: swept quiff with a curl at the side */}
+        <path
+          className="testimonial__avatar-hair"
+          d="M19.6 25.5C18.6 14.5 23 7.6 31 7c4-.2 6-1.5 7-3 .6 2 .1 3-1 4 6 1.5 9.6 6 8.6 13 1 1.5 2 2 3 1.5-1 2.5-3.5 2.5-5 1-.6-3.5-2.6-6.5-6.6-8-2 2.5-8 4.5-15 4-1 1.5-1.5 3.5-1 6.5Z"
+        />
+      </g>
+      <circle cx="32" cy="32" r="31" className="testimonial__avatar-ring" />
+    </svg>
+  );
+}
+
+// Testimonial quote marks: two slanted, heavy strokes
+function QuoteMark() {
+  return (
+    <svg className="testimonial__mark" viewBox="0 0 64 56" aria-hidden="true">
+      <path d="M16 0h14l-9 56H5Z" />
+      <path d="M45 0h14l-9 56H34Z" />
+    </svg>
   );
 }
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [language, setLanguage] = useState("de");
-  const [selectedCountdownDomain, setSelectedCountdownDomain] =
-    useState("northstar");
-  const [selectedCountdownTheme, setSelectedCountdownTheme] = useState("light");
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [keyboardOpen, setKeyboardOpen] = useState(false);
 
   const closeMenu = () => setMenuOpen(false);
-  const countdownDomain = countdownDomains[selectedCountdownDomain];
   const text = copy[language];
 
   useEffect(() => {
@@ -2362,21 +3123,11 @@ function App() {
             aria-labelledby="hero-title"
           >
             <div className="hero__copy">
-              <p className="hero__greeting">
-                <span className="hero__greeting-tint" aria-hidden="true" />
-                <span className="hero__greeting-text">
-                  {text.hero.greeting}
-                </span>
-                <BadgeCoin variant="wave" />
-              </p>
-              <h1 id="hero-title">
-                Daniel <span>Popa</span>
-              </h1>
+              <h1 id="hero-title">Daniel Popa</h1>
               <p className="hero__role">
-                <span>{text.hero.role[0]}</span>
+                <span>{text.hero.role[0]}</span>{" "}
                 <span>{text.hero.role[1]}</span>
               </p>
-              <div className="hero__rule" aria-hidden="true" />
               <div className="hero__bottom">
                 <p className="hero__intro">{text.hero.intro}</p>
                 <div className="hero__actions">
@@ -2449,644 +3200,170 @@ function App() {
               </NoteCard>
             </div>
 
-            <div className="work__feature-grid">
-              <div className="work__story-column badge-card">
-                <article
-                  className="token-case-study"
-                  aria-labelledby="token-case-title"
+            <Takeaways
+              items={text.work.takeaways}
+              lessLabel={text.experience.less}
+              moreLabel={text.experience.more}
+            />
+
+            <div className="quality-case-study__grid">
+              <article
+                className="quality-card quality-card--wide badge-card"
+                aria-labelledby="quality-system-title"
+              >
+                <NumberMark shape="circle" className="quality-card__number" hidden>
+                  01
+                </NumberMark>
+                <div className="quality-card__copy">
+                  <h4 id="quality-system-title">{text.quality.cards[0].title}</h4>
+                  <p>{text.quality.cards[0].description}</p>
+                </div>
+                <QualityStory story={text.quality.cards[0].story}>
+                  <TokenSystemDemo
+                    text={text.work}
+                    onPreview={() => setPreviewOpen(true)}
+                  />
+                </QualityStory>
+              </article>
+
+              <article
+                className="quality-card quality-card--wide badge-card"
+                aria-labelledby="quality-cls-title"
+              >
+                <NumberMark shape="circle" className="quality-card__number" hidden>
+                  02
+                </NumberMark>
+                <div className="quality-card__copy">
+                  <h4 id="quality-cls-title">{text.quality.cards[1].title}</h4>
+                  <p>{text.quality.cards[1].description}</p>
+                </div>
+                <QualityStory
+                  story={text.quality.cards[1].story}
+                  metric={text.quality.cards[1].metric}
                 >
-                  <div className="token-case-study__story">
-                    <p className="token-case-study__index">
-                      {text.work.tokenIndex}
-                    </p>
-                    <h3 id="token-case-title">
-                      {text.work.tokenTitle[0]}
-                      <br />
-                      {text.work.tokenTitle[1]}
-                    </h3>
-                    <p className="token-case-study__lead">
-                      {text.work.tokenLead}
-                    </p>
+                  <LayoutShiftDemo text={text.demo} language={language} />
+                </QualityStory>
+              </article>
 
-                    {/* Token list — three groups, one shared column grid:
-                        swatch | token | description */}
-                    <div className="token-case-study__tokens">
-                      <div className="token-case-study__group">
-                        <span className="token-case-study__label">
-                          {text.work.brandColor}
-                        </span>
-                        <p>{text.work.brandDescription}</p>
-                        <div className="token-case-study__layers">
-                          {Object.entries(countdownDomains).map(
-                            ([domainKey, domain]) => (
-                              <div key={domainKey}>
-                                <span
-                                  className="token-case-study__swatch"
-                                  style={{ backgroundColor: domain.cc25 }}
-                                  aria-hidden="true"
-                                />
-                                <div>
-                                  <code>--PrCl1 · {domain.cc25}</code>
-                                  <span>{domain.name}</span>
-                                </div>
-                              </div>
-                            ),
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="token-case-study__group">
-                        <span className="token-case-study__label">
-                          {text.work.reusableRole}
-                        </span>
-                        <div className="token-case-study__layers">
-                        <div>
-                          <span
-                            className="token-case-study__swatch token-case-study__swatch--role"
-                            aria-hidden="true"
-                          />
-                          <div>
-                            <code>--lk → --PrCl1</code>
-                            <span>{text.work.roleDescription}</span>
-                          </div>
-                        </div>
-                        </div>
-                      </div>
-
-                      <div className="token-case-study__group">
-                        <span className="token-case-study__label">
-                          {text.work.layers}
-                        </span>
-                        <div className="token-case-study__layers">
-                        <div>
-                          <span
-                            className="token-case-study__swatch token-case-study__swatch--neutral"
-                            aria-hidden="true"
-                          />
-                          <div>
-                            <code>--gr5 · #f2f2f2</code>
-                            <span>{text.work.neutral}</span>
-                          </div>
-                        </div>
-                        <div>
-                          <span
-                            className="token-case-study__swatch token-case-study__swatch--brand"
-                            aria-hidden="true"
-                          />
-                          <div>
-                            <code>--PrCl1 · {countdownDomains.northstar.cc25}</code>
-                            <span>{text.work.primary}</span>
-                          </div>
-                        </div>
-                        <div>
-                          <span
-                            className="token-case-study__swatch token-case-study__swatch--semantic"
-                            aria-hidden="true"
-                          />
-                          <div>
-                            <code>--lk · --artTtl · --bgMd</code>
-                            <span>{text.work.semantic}</span>
-                          </div>
-                        </div>
-                        <div>
-                          <span
-                            className="token-case-study__swatch token-case-study__swatch--unsemantic"
-                            aria-hidden="true"
-                          />
-                          <div>
-                            <code>--Cc25 · {countdownDomains.northstar.cc25}</code>
-                            <span>{text.work.unsemantic}</span>
-                          </div>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-              <div className="work__poll-column">
-                <PollModule text={text.work} />
-              </div>
-
-              <Takeaways
-                moreLabel={text.work.takeawayMore}
-                lessLabel={text.work.takeawayLess}
-                items={[
-                  { icon: "target", label: text.work.approachLabel, text: text.work.approach },
-                  { icon: "bulb", label: text.work.mattersLabel, text: text.work.matters },
-                  { icon: "puzzle", label: text.work.contributionLabel, text: text.work.contribution },
-                  { icon: "unsemantic", label: text.work.unsemanticLabel, text: text.work.unsemanticText },
-                ]}
-              />
+              <article
+                className="quality-card quality-card--wide badge-card"
+                aria-labelledby="quality-keyboard-title"
+              >
+                <NumberMark shape="circle" className="quality-card__number" hidden>
+                  03
+                </NumberMark>
+                <div className="quality-card__copy">
+                  <h4 id="quality-keyboard-title">{text.quality.cards[2].title}</h4>
+                  <p>{text.quality.cards[2].description}</p>
+                </div>
+                <QualityStory story={text.quality.cards[2].story}>
+                  <SkipLinkDemo
+                    text={text.demo}
+                    onPreview={() => setKeyboardOpen(true)}
+                  />
+                </QualityStory>
+              </article>
             </div>
 
-            <article
-              className="countdown-case-study"
-              aria-labelledby="countdown-case-title"
-            >
-              <div className="countdown-case-study__heading">
-                <div>
-                  <p className="token-case-study__index">
-                    {text.work.countdownIndex}
-                  </p>
-                  <h3 id="countdown-case-title">
-                    {text.work.countdownTitle[0]}
-                    <br />
-                    {text.work.countdownTitle[1]}
-                  </h3>
-                </div>
-                <NoteCard
-                  icon="stopwatch"
-                  label={text.work.countdownNoteLabel}
-                  tab={text.work.countdownNoteTab}
-                >
-                  {text.work.countdownDescription}
-                </NoteCard>
-              </div>
+            <ModulePreview
+              language={language}
+              onClose={() => setPreviewOpen(false)}
+              open={previewOpen}
+              text={text.work}
+              timerText={text.timer}
+            />
 
-              <div className="countdown-case-study__controls">
-                <fieldset>
-                  <legend>{text.work.portal}</legend>
-                  <div className="countdown-case-study__options">
-                    {Object.entries(countdownDomains).map(
-                      ([domainKey, domain]) => (
-                        <button
-                          aria-pressed={selectedCountdownDomain === domainKey}
-                          className="countdown-case-study__option"
-                          key={domainKey}
-                          onClick={() => setSelectedCountdownDomain(domainKey)}
-                          type="button"
-                        >
-                          {domain.name}
-                        </button>
-                      ),
-                    )}
-                  </div>
-                </fieldset>
-                <fieldset>
-                  <legend>{text.work.appearance}</legend>
-                  <div className="countdown-case-study__options">
-                    {["light", "dark"].map((theme) => (
-                      <button
-                        aria-pressed={selectedCountdownTheme === theme}
-                        className="countdown-case-study__option"
-                        key={theme}
-                        onClick={() => setSelectedCountdownTheme(theme)}
-                        type="button"
-                      >
-                        {theme === "light" ? text.work.light : text.work.dark}
-                      </button>
-                    ))}
-                  </div>
-                </fieldset>
-              </div>
-
-              <section
-                aria-label={`${countdownDomain.name}: ${text.work.countdownLabel}`}
-                className="CountdownModule posRel"
-                data-domain={selectedCountdownDomain}
-                data-theme={selectedCountdownTheme}
-              >
-                <div className="countdownContent flx flxDirCol flxJustBtw p-5">
-                  <div className="countdownHead">
-                    <h4 className="countdownTitle txtCc1">
-                      <span className="countdownTitleGame">Shadowstone:</span>
-                      <span className="countdownReleaseTitle">
-                        {language === "de"
-                          ? "Der Release-Countdown"
-                          : "Release countdown"}
-                      </span>
-                    </h4>
-                  </div>
-                  <div className="countdownBottom">
-                    <CountdownTimer text={text.timer} />
-                    <a
-                      className="countdownButton btn txtUp fw700"
-                      href="#experience"
-                    >
-                      {text.work.countdownButton}
-                      <span className="countdownArrow" aria-hidden="true">
-                        →
-                      </span>
-                    </a>
-                  </div>
-                </div>
-                <div className="countdownStage posRel ovHidd">
-                  <img
-                    alt=""
-                    className="countdownImage posAbs top0 left0 w100 h100"
-                    height="562"
-                    loading="lazy"
-                    src={`${import.meta.env.BASE_URL}shadowstone-countdown.png`}
-                    width="999"
-                  />
-                </div>
-                <time
-                  className="countdownBadge flx flxDirCol fw700"
-                  dateTime="2026-11-19"
-                >
-                  <span className="countdownBadgeLabel txtUp">
-                    {text.work.release}
-                  </span>
-                  <span className="countdownBadgeDate">19.11.</span>
-                  <span className="countdownBadgeYear">2026</span>
-                </time>
-              </section>
-
-              <div
-                className="countdown-case-study__token-note badge-card"
-                data-domain={selectedCountdownDomain}
-                data-theme={selectedCountdownTheme}
-                style={{
-                  "--Cc25": countdownDomain.cc25,
-                  "--Cc25-dark": countdownDomain.cc25Dark,
-                  "--module-accent":
-                    selectedCountdownTheme === "dark"
-                      ? countdownDomain.cc25Dark
-                      : countdownDomain.cc25,
-                }}
-              >
-                {/* Same token list as case study 01: group label, note,
-                    rows of swatch | token | mode */}
-                <div className="token-case-study__tokens">
-                  <div className="token-case-study__group">
-                    <span className="token-case-study__label">
-                      {text.work.titleColorLabel}
-                    </span>
-                    <p>{text.work.paletteNote}</p>
-                    <div
-                      className="token-case-study__layers"
-                      role="group"
-                      aria-label={text.work.titleColorComparison}
-                    >
-                    <div>
-                      <span
-                        className="token-case-study__swatch countdown-case-study__swatch countdown-case-study__swatch--title-light"
-                        aria-hidden="true"
-                      />
-                      <div>
-                        <code>{text.work.titleColorLightToken}</code>
-                        <span>{text.work.lightMode}</span>
-                      </div>
-                    </div>
-                    <div>
-                      <span
-                        className="token-case-study__swatch countdown-case-study__swatch countdown-case-study__swatch--title-dark"
-                        aria-hidden="true"
-                      />
-                      <div>
-                        <code>{text.work.titleColorDarkToken}</code>
-                        <span>{text.work.darkMode}</span>
-                      </div>
-                    </div>
-                    </div>
-                  </div>
-
-                  <div className="token-case-study__group">
-                    <span className="token-case-study__label">
-                      {text.work.brandAccentLabel}
-                    </span>
-                    <p>{text.work.brandAccentNote}</p>
-                    <div
-                      className="token-case-study__layers"
-                      role="group"
-                      aria-label={text.work.brandAccentComparison}
-                    >
-                    <div>
-                      <span
-                        className="token-case-study__swatch countdown-case-study__swatch countdown-case-study__swatch--accent-light"
-                        aria-hidden="true"
-                      />
-                      <div>
-                        <code>
-                          {text.work.brandAccentLightToken} {countdownDomain.cc25}
-                        </code>
-                        <span>{text.work.lightMode}</span>
-                      </div>
-                    </div>
-                    <div>
-                      <span
-                        className="token-case-study__swatch countdown-case-study__swatch countdown-case-study__swatch--accent-dark"
-                        aria-hidden="true"
-                      />
-                      <div>
-                        <code>
-                          {text.work.brandAccentDarkToken}{" "}
-                          {selectedCountdownTheme === "dark"
-                            ? "#020202"
-                            : countdownDomain.cc25Dark}
-                        </code>
-                        <span>{text.work.darkMode}</span>
-                      </div>
-                    </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <section
-              className="quality-case-study"
-              aria-labelledby="quality-case-title"
-            >
-              <div className="quality-case-study__heading">
-                <div>
-                  <p className="token-case-study__index">
-                    {text.quality.index}
-                  </p>
-                  <h3 id="quality-case-title">{text.quality.title}</h3>
-                </div>
-                <NoteCard
-                  icon="cursor"
-                  label={text.quality.noteLabel}
-                  tab={text.quality.noteTab}
-                >
-                  {text.quality.description}
-                </NoteCard>
-              </div>
-
-              <div className="quality-case-study__grid">
-                <article
-                  className="quality-card badge-card"
-                  aria-labelledby="quality-cls-title"
-                >
-                  <NumberMark shape="circle" className="quality-card__number" hidden>
-                    01
-                  </NumberMark>
-                  <div className="quality-card__copy">
-                    <h4 id="quality-cls-title">
-                      {text.quality.cards[0].title}
-                    </h4>
-                    <p>{text.quality.cards[0].description}</p>
-                  </div>
-                  <div className="quality-card__detail">
-                    <LayoutShiftDemo text={text.demo} language={language} />
-                    <p className="quality-card__metric">
-                      {text.quality.cards[0].metric}
-                    </p>
-                  </div>
-                </article>
-
-                <article
-                  className="quality-card badge-card"
-                  aria-labelledby="quality-keyboard-title"
-                >
-                  <NumberMark shape="circle" className="quality-card__number" hidden>
-                    02
-                  </NumberMark>
-                  <div className="quality-card__copy">
-                    <h4 id="quality-keyboard-title">
-                      {text.quality.cards[1].title}
-                    </h4>
-                    <p>{text.quality.cards[1].description}</p>
-                  </div>
-                  <div className="quality-card__detail">
-                    <KeyboardFocusDemo text={text.demo} />
-                    <span className="badge-tag badge-tag--ghost quality-card__criterion">
-                      {text.quality.cards[1].criterion}
-                    </span>
-                  </div>
-                </article>
-
-                <article
-                  className="quality-card badge-card"
-                  aria-labelledby="quality-controls-title"
-                >
-                  <NumberMark shape="circle" className="quality-card__number" hidden>
-                    03
-                  </NumberMark>
-                  <div className="quality-card__copy">
-                    <h4 id="quality-controls-title">
-                      {text.quality.cards[2].title}
-                    </h4>
-                    <p>{text.quality.cards[2].description}</p>
-                  </div>
-                  <div className="quality-card__detail">
-                    <div
-                      className="quality-compare"
-                      aria-label={text.quality.beforeAfter}
-                    >
-                      <div className="quality-compare__panel">
-                        <span>{text.quality.before}</span>
-                        <div className="quality-demo quality-demo--control-before">
-                          <span
-                            className="quality-demo__target quality-demo__target--small"
-                            aria-hidden="true"
-                          />
-                          <small>{text.quality.unlabeled}</small>
-                        </div>
-                      </div>
-                      <div className="quality-compare__panel">
-                        <span>{text.quality.after}</span>
-                        <div className="quality-demo quality-demo--control-after">
-                          <div className="quality-demo__control-example">
-                            <span
-                              className="quality-demo__target quality-demo__target--large"
-                              aria-hidden="true"
-                            >
-                              <svg viewBox="0 0 20 20" fill="none">
-                                <path d="M4 10h12m-5-5 5 5-5 5" />
-                              </svg>
-                            </span>
-                            <span className="quality-demo__control-label">
-                              {text.quality.articles}
-                            </span>
-                          </div>
-                          <small>{text.quality.target44}</small>
-                        </div>
-                      </div>
-                    </div>
-                    <span className="badge-tag badge-tag--ghost quality-card__criterion">
-                      {text.quality.cards[2].criterion}
-                    </span>
-                  </div>
-                </article>
-
-                <article
-                  className="quality-card badge-card"
-                  aria-labelledby="quality-motion-title"
-                >
-                  <NumberMark shape="circle" className="quality-card__number" hidden>
-                    04
-                  </NumberMark>
-                  <div className="quality-card__copy">
-                    <h4 id="quality-motion-title">
-                      {text.quality.cards[3].title}
-                    </h4>
-                    <p>{text.quality.cards[3].description}</p>
-                  </div>
-                  <div className="quality-card__detail">
-                    <div
-                      className="quality-compare"
-                      aria-label={text.quality.motionExamples}
-                    >
-                      <div className="quality-compare__panel">
-                        <span>{text.quality.standard}</span>
-                        <div className="quality-demo quality-demo--motion">
-                          <i aria-hidden="true" />
-                          <small>{text.quality.statusUpdates}</small>
-                        </div>
-                      </div>
-                      <div className="quality-compare__panel">
-                        <span>{text.quality.reduced}</span>
-                        <div className="quality-demo quality-demo--no-motion">
-                          <i aria-hidden="true" />
-                          <small>{text.quality.statusClear}</small>
-                        </div>
-                      </div>
-                    </div>
-                    <p className="quality-card__motion-note">
-                      {text.quality.motionNote}
-                    </p>
-                    <code className="quality-card__code">
-                      {text.quality.reducedMotionCode}
-                      <br />
-                      @media (prefers-reduced-motion: reduce) {"{"}
-                      <br />
-                      &nbsp;&nbsp;.spinner {"{"} animation: none; {"}"}
-                      <br />
-                      {"}"}
-                    </code>
-                  </div>
-                </article>
-              </div>
-            </section>
+            <KeyboardPreview
+              onClose={() => setKeyboardOpen(false)}
+              open={keyboardOpen}
+              text={text.demo}
+            />
           </section>
 
           <section
-            className="about section-space"
+            className="about section-wrap section-space"
             id="about"
             aria-labelledby="about-title"
           >
-            <div className="section-wrap about__inner badge-card">
-              <div
-                className="about-meter"
-                role="img"
-                aria-label={text.about.meterAria}
-              >
-                <span className="badge-emblem about-meter__emblem">
-                  <HexEmblem>
-                    <g transform="rotate(-90 84.89 94)">
-                      <circle
-                        className="about-meter__track"
-                        cx="84.89"
-                        cy="94"
-                        r="58"
-                        pathLength="100"
-                      />
-                      <circle
-                        className="about-meter__arc"
-                        cx="84.89"
-                        cy="94"
-                        r="58"
-                        pathLength="100"
-                      />
-                    </g>
-                  </HexEmblem>
-                  <span className="about-meter__value" aria-hidden="true">
-                    <strong>
-                      10<sup>+</sup>
-                    </strong>
-                    <small>{text.about.meterUnit}</small>
-                  </span>
-                  <BadgeCoin variant="star" />
-                </span>
-                <span className="badge-tags about-meter__tags" aria-hidden="true">
-                  <span className="badge-tag">{text.about.meterTitle}</span>
-                  <span className="badge-tag badge-tag--fact">
-                    {text.about.meterStart} — {text.about.meterCurrent}
-                  </span>
-                </span>
-              </div>
-              <div className="about__copy">
+            {/* Same heading pattern as the work section: eyebrow, title, note */}
+            <div className="section-heading">
+              <div>
                 <p className="eyebrow">{text.about.eyebrow}</p>
                 <h2 id="about-title">
                   {text.about.title[0]}
                   <br />
-                  <span>{text.about.title[1]}</span>
+                  {text.about.title[1]}
+                  <span>.</span>
                 </h2>
-                <p className="about__lead">{text.about.lead}</p>
-                <p>{text.about.first}</p>
-                <p>{text.about.second}</p>
               </div>
-              <div
-                className="about__experience"
-                id="experience"
-                aria-labelledby="experience-title"
+              <NoteCard
+                coin="star"
+                icon="signpost"
+                label={text.about.noteLabel}
+                tab={text.about.noteTab}
               >
-                <div className="about__experience-heading">
-                  <span className="badge-emblem about__experience-emblem">
-                    <HexEmblem>
-                      <HexIcon name="signpost" />
-                    </HexEmblem>
-                  </span>
-                  <div>
-                    <p className="eyebrow">{text.experience.eyebrow}</p>
-                    <h3 id="experience-title">
-                      {text.experience.title}
-                      <span>.</span>
-                    </h3>
-                  </div>
-                </div>
-                <div
-                  className="career-strip"
-                  role="group"
-                  aria-label={text.experience.title}
-                >
-                  {text.experience.careerStrip.labels.map((label, index) => (
-                    <div
-                      className={`career-strip__segment career-strip__segment--${index + 1}`}
-                      key={label}
-                    >
-                      <span className="career-strip__label">{label}</span>
-                      <span className="career-strip__value">
-                        {text.experience.careerStrip.values[index]}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <div className="timeline">
-                  {text.experience.entries.map((entry, index) => (
-                    <article className="timeline-entry" key={entry.date}>
-                      <div className="timeline-entry__body">
-                        {/* Swatch in the entry's strip colour, left of the role */}
-                        <div className="timeline-entry__title">
-                          <span
-                            className={`career-strip__value timeline-entry__date timeline-entry__date--${entry.segment}`}
-                          >
-                            <span className="timeline-entry__date-text">
-                              {entry.date}
-                            </span>
-                          </span>
-                          <h4>{entry.role}</h4>
-                        </div>
-                        {entry.company && (
-                          <p className="timeline-entry__company">
-                            {entry.company}
-                          </p>
-                        )}
-                        <ClampedText
-                          className="timeline-entry__description"
-                          text={entry.description}
-                          lines={4}
-                          moreLabel={text.work.takeawayMore}
-                          lessLabel={text.work.takeawayLess}
-                        />
-                      </div>
-                    </article>
-                  ))}
-                </div>
-                <dl className="about__facts">
-                  {text.experience.facts.map((fact) => (
-                    <div key={fact.label}>
-                      <dt>{fact.label}</dt>
-                      <dd>{fact.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
+                {text.about.intro}
+              </NoteCard>
             </div>
+
+            {/* Career timeline: oldest → today, one column per role */}
+            <div className="career" id="experience" aria-labelledby="experience-title">
+              <h3 id="experience-title">{text.experience.title}</h3>
+              <ol className="career__list">
+                {text.experience.entries.map((entry) => (
+                  <li className="career__item" key={entry.range}>
+                    <p className="career__range">{entry.range}</p>
+                    <span className="career__dot" aria-hidden="true" />
+                    <div className="career__body">
+                      <p className="career__duration">
+                        {entry.since
+                          ? `${copyrightYear - entry.since} ${text.experience.years}`
+                          : entry.duration}
+                      </p>
+                      <h4>{entry.role}</h4>
+                      {entry.company && (
+                        <p className="career__company">{entry.company}</p>
+                      )}
+                      <ClampedText
+                        className="career__summary"
+                        lessLabel={text.experience.less}
+                        lines={4}
+                        moreLabel={text.experience.more}
+                        text={entry.description}
+                      />
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </section>
+
+          <section
+            className="testimonial section-wrap section-space"
+            aria-labelledby="testimonial-title"
+          >
+            <h2 className="eyebrow" id="testimonial-title">
+              {text.testimonial.eyebrow}
+            </h2>
+            <figure className="testimonial__figure">
+              <QuoteMark />
+              <blockquote className="testimonial__quote">
+                <p>{text.testimonial.quote}</p>
+              </blockquote>
+              <figcaption className="testimonial__author">
+                <SilhouetteAvatar />
+                <span className="testimonial__who">
+                  {/* Name set in a handwriting face — a typographic sign-off,
+                      not a reproduction of the real signature */}
+                  <span className="testimonial__signature" aria-hidden="true">
+                    {text.testimonial.name}
+                  </span>
+                  <strong>{text.testimonial.name}</strong>
+                  <span>{text.testimonial.role}</span>
+                </span>
+              </figcaption>
+              <p className="testimonial__source">{text.testimonial.source}</p>
+            </figure>
           </section>
 
           <section
@@ -3110,30 +3387,9 @@ function App() {
                 {text.expertise.aside}
               </NoteCard>
             </div>
-            <div className="expertise-board badge-card">
-              <header className="expertise-board__header">
-                <p>{text.expertise.boardLabel}</p>
-                <div
-                  className="expertise-board__totals"
-                  aria-label={`${text.expertise.groups.length} ${text.expertise.areaUnit}, ${text.expertise.groups.reduce((total, group) => total + group.skills.length, 0)} ${text.expertise.skillUnit}`}
-                >
-                  <span className="badge-tag" aria-hidden="true">
-                    {String(text.expertise.groups.length).padStart(2, "0")}{" "}
-                    {text.expertise.areaUnit}
-                  </span>
-                  <span className="badge-tag badge-tag--fact" aria-hidden="true">
-                    {String(
-                      text.expertise.groups.reduce(
-                        (total, group) => total + group.skills.length,
-                        0,
-                      ),
-                    ).padStart(2, "0")}{" "}
-                    {text.expertise.skillUnit}
-                  </span>
-                </div>
-              </header>
+            <div className="expertise-board">
               <div className="expertise-grid">
-                {text.expertise.groups.map((group, index) => (
+                {text.expertise.groups.map((group) => (
                   <article className="expertise-card" key={group.title}>
                     <span className="badge-emblem expertise-card__icon">
                       <HexEmblem>
@@ -3141,12 +3397,17 @@ function App() {
                       </HexEmblem>
                     </span>
                     <div className="expertise-card__content">
-                      <div className="expertise-card__heading">
-                        <h3>{group.title}</h3>
-                        <NumberMark shape="bubble" className="expertise-card__count">
-                          {String(group.skills.length).padStart(2, "0")}
-                        </NumberMark>
-                      </div>
+                      {/* The last word and the count never break apart, so a long
+                          title wraps onto two rows with the count after it */}
+                      <h3 className="expertise-card__heading">
+                        {group.title.split(" ").slice(0, -1).join(" ")}{" "}
+                        <span className="expertise-card__title-end">
+                          {group.title.split(" ").at(-1)}
+                          <NumberMark shape="bubble" className="expertise-card__count" hidden>
+                            {String(group.skills.length).padStart(2, "0")}
+                          </NumberMark>
+                        </span>
+                      </h3>
                       <p>{group.description}</p>
                     </div>
                     <ul aria-label={group.title}>
@@ -3166,9 +3427,6 @@ function App() {
                         );
                       })}
                     </ul>
-                    <NumberMark shape="circle" className="expertise-card__index" hidden>
-                      {String(index + 1).padStart(2, "0")}
-                    </NumberMark>
                   </article>
                 ))}
               </div>
@@ -3204,7 +3462,7 @@ function App() {
             id="contact"
             aria-labelledby="contact-title"
           >
-            <div className="section-wrap contact__inner badge-card">
+            <div className="section-wrap contact__inner">
               <div className="contact__intro">
                 <span className="badge-emblem contact__emblem">
                   <HexEmblem>
@@ -3362,35 +3620,9 @@ function App() {
           </a>
           <p>{text.footer.description}</p>
           <a className="back-to-top" href="#page-top" aria-label={text.footer.top}>
-            <svg aria-hidden="true" viewBox="0 1 32 32">
-              {/* Flame (behind the nozzle) — hidden until hover/focus */}
-              <g className="back-to-top__flame">
-                <path
-                  className="back-to-top__flame-outer"
-                  d="M13.4 23.2c0 3.4 1.2 5.4 2.6 7.6 1.4-2.2 2.6-4.2 2.6-7.6Z"
-                />
-                <path
-                  className="back-to-top__flame-inner"
-                  d="M14.9 23.2c0 1.9.5 3 1.1 4.2.6-1.2 1.1-2.3 1.1-4.2Z"
-                />
-                <path className="back-to-top__spark" d="M11.6 25.4l-.9 1.8M20.4 25.4l.9 1.8" />
-              </g>
-              {/* Ship */}
-              <g className="back-to-top__ship">
-                <path className="back-to-top__fin" d="M10.2 15.6 6.4 19.4v4.4l3.8-2.2Z" />
-                <path className="back-to-top__fin" d="M21.8 15.6l3.8 3.8v4.4l-3.8-2.2Z" />
-                <path
-                  className="back-to-top__body"
-                  d="M16 2.6c-4 3-5.8 7.4-5.8 12.6v6.4h11.6v-6.4c0-5.2-1.8-9.6-5.8-12.6Z"
-                />
-                <path
-                  className="back-to-top__nose"
-                  d="M16 2.6c-2.1 1.6-3.5 3.6-4.4 5.9h8.8c-.9-2.3-2.3-4.3-4.4-5.9Z"
-                />
-                <path className="back-to-top__nozzle" d="M13.2 21.6h5.6l-.8 1.9h-4Z" />
-                <circle className="back-to-top__window" cx="16" cy="13.6" r="2.7" />
-                <path className="back-to-top__glint" d="M14.7 12.9a1.5 1.5 0 0 1 1.2-1" />
-              </g>
+            {/* Fine wire arrow pointing up */}
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M12 19V5M6.5 10.5 12 5l5.5 5.5" />
             </svg>
           </a>
           <span className="site-footer__copyright">

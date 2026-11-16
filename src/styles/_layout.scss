@@ -8,7 +8,9 @@
   display: flow-root;
   width: var(--shell-width);
   margin: 0 auto;
-  overflow: clip;
+  // No clipping here, so full-bleed elements (the hero divider) can reach the
+  // viewport edges; horizontal overflow is clipped on html (_base.scss)
+  overflow: visible;
   color: var(--ink);
   background: var(--paper);
   font-family: var(--sans);
@@ -25,7 +27,7 @@
 }
 
 // Every section uses the same symmetric padding (see --space-* tokens), so
-// the distance from any visible boundary (hero frame or divider) to the
+// the distance from any visible boundary (hero divider or section divider) to the
 // next content is always one --space-section.
 .section-space {
   position: relative;
@@ -33,7 +35,7 @@
 }
 
 // Fine divider between consecutive sections, at content width. The first
-// section after the hero has none: the hero frame already separates it.
+// section after the hero has none: the hero has its own divider (_hero.scss).
 .section-space + .section-space::before {
   position: absolute;
   top: 0;
@@ -44,33 +46,15 @@
   content: "";
 }
 
-// Mobile: section cards span the same width as the hero frame (shell minus
-// --frame-inset); headings outside the cards keep the --space-inline edge, so
-// their text still lines up with the hero text.
-@media (max-width: 700px) {
-  .section-space {
-    padding-inline: var(--frame-inset);
-  }
-
-  .section-space + .section-space::before {
-    right: var(--frame-inset);
-    left: var(--frame-inset);
-  }
-
-  // Only the eyebrow + title wrapper; the note card below spans full width
-  .section-space > .section-heading > div:first-child {
-    padding-inline: calc(var(--space-inline) - var(--frame-inset));
-  }
-}
+// Mobile keeps the same --space-inline edge as desktop, so headings, text and
+// boxes all line up with the hero text.
 
 // ---------------------------------------------------------------------------
 // Headings — one pattern for section headings (h2) and case-study headings (h3):
 // title first, full-width note card underneath.
 // ---------------------------------------------------------------------------
 
-.section-heading,
-.countdown-case-study__heading,
-.quality-case-study__heading {
+.section-heading {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: clamp(16px, 2vw, 24px);
@@ -83,7 +67,7 @@
   gap: 9px;
   margin: 0;
   color: #6d6c65;
-  font-size: 9.9px;
+  font-size: 13px;
   font-weight: 750;
   letter-spacing: 0.12em;
   line-height: 1.5;
@@ -100,30 +84,13 @@
   line-height: 1;
 
   span {
-    color: var(--accent-text);
+    color: var(--accent-red);
   }
-}
-
-.countdown-case-study__heading h3,
-.quality-case-study__heading h3 {
-  max-width: 600px;
-  margin: 10px 0 0;
-  color: var(--ink);
-  font-family: var(--serif);
-  font-size: clamp(29.7px, 3.5vw, 42.9px);
-  font-weight: 500;
-  letter-spacing: -0.06em;
-  line-height: 1;
 }
 
 @media (max-width: 700px) {
   .section-heading h2 {
     font-size: clamp(35.2px, 9.9vw, 48.4px);
-  }
-
-  .countdown-case-study__heading h3,
-  .quality-case-study__heading h3 {
-    font-size: clamp(30.8px, 9.4vw, 41.8px);
   }
 }
 

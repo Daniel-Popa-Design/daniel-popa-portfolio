@@ -1,0 +1,146 @@
+// Testimonial — one quote from the Zwischenzeugnis: red quote marks, large
+// quote, then avatar | signature-style name + name + role, and a quiet
+// source line.
+// Text selectors are prefixed with `.portfolio-shell` so they outrank the
+// global 13px body-text rule in _overrides.scss.
+
+.testimonial.section-wrap {
+  width: 100%;
+  max-width: none;
+}
+
+.testimonial h2.eyebrow {
+  margin: 0 0 clamp(24px, 3vw, 40px);
+}
+
+.testimonial__figure {
+  display: grid;
+  max-width: 980px;
+  gap: clamp(22px, 2.8vw, 36px);
+  margin: 0;
+}
+
+// Two heavy slanted strokes in the main red
+.testimonial__mark {
+  display: block;
+  width: clamp(44px, 5vw, 64px);
+  height: auto;
+  fill: var(--accent-red);
+}
+
+.testimonial__quote {
+  margin: 0;
+}
+
+.portfolio-shell .testimonial__quote p {
+  max-width: 30ch;
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(24px, 3.4vw, 44px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.22;
+}
+
+// Author: avatar on the left, then signature-style name, name, role
+.testimonial__author {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.testimonial__who {
+  display: grid;
+  gap: 3px;
+}
+
+// Handwriting face (Mrs Saint Delafield) — decorative sign-off above the
+// typed name; a typeface, not a reproduction of a real signature
+.portfolio-shell .testimonial__signature {
+  margin-bottom: 4px;
+  color: var(--ink);
+  font-family: "Mrs Saint Delafield", cursive;
+  font-size: 38px;
+  line-height: 1;
+}
+
+.portfolio-shell .testimonial__author strong {
+  color: var(--accent-red);
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.portfolio-shell .testimonial__who > span:last-child {
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+// Neutral silhouette avatar — same round look as the hero portrait
+.testimonial__avatar {
+  width: 72px;
+  height: 72px;
+  flex: none;
+}
+
+.testimonial__avatar-bg {
+  fill: #dedede;
+}
+
+// Flat greys: dark hair, jacket and tie; light lapels; off-white face and shirt
+.testimonial__avatar-hair {
+  fill: #7a7a7a;
+}
+
+.testimonial__avatar-jacket {
+  fill: #7f7f7f;
+}
+
+.testimonial__avatar-lapel {
+  fill: #a2a8a8;
+}
+
+.testimonial__avatar-tie {
+  fill: #6b6b6b;
+}
+
+.testimonial__avatar-shirt {
+  fill: #f2f1ec;
+}
+
+.testimonial__avatar-collar {
+  fill: #e2e1db;
+}
+
+.testimonial__avatar-ear {
+  fill: #ebeae5;
+}
+
+.testimonial__avatar-face {
+  fill: #f3f2ee;
+}
+
+.testimonial__avatar-ring {
+  fill: none;
+  stroke: color-mix(in srgb, var(--accent-red) 45%, #fff);
+  stroke-width: 1.5;
+}
+
+// Source — a quiet uppercase reference line under the author, no divider
+.portfolio-shell .testimonial__source {
+  margin: 0;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+@media (max-width: 560px) {
+  .testimonial__avatar {
+    width: 60px;
+    height: 60px;
+  }
+}

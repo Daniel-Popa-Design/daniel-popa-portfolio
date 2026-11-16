@@ -3,7 +3,7 @@
 //
 //   .badge-card     light card surface with a fine border
 //   .badge-emblem   positioning wrapper for .hex-emblem + .badge-coin
-//   .hex-emblem     grey rounded hexagon (SVG) with ink outline; icons inside
+//   .hex-emblem     round emblem (SVG circle) with ink outline; icons inside
 //   .badge-coin     white coin on the hexagon's lower edge (dots or star)
 //   .badge-tags     column of .badge-tag pills (teal; --fact, --ghost variants)
 //
@@ -41,16 +41,9 @@
   overflow: visible;
 }
 
-// Offset-print hexagon: the shift is in SVG units (170 = hexagon width), so
-// it is set per emblem size to read as ≈3px on screen (see sizes below)
-.hex-emblem__tint {
-  fill: color-mix(in srgb, var(--badge-gold) 70%, transparent);
-  transform: translate(var(--hex-shift, 6px), var(--hex-shift, 6px));
-}
-
 .hex-emblem__shape {
   fill: #fff;
-  stroke: var(--badge-ink);
+  stroke: #959595; // lighter outer outline (icons inside keep their ink lines)
   stroke-width: 1.25px;
   vector-effect: non-scaling-stroke;
 }
@@ -80,6 +73,12 @@
 
   .is-line {
     fill: none;
+  }
+
+  // White line on a coloured accent shape (e.g. the check on the shield)
+  .is-light {
+    stroke: #fff;
+    stroke-width: 2px;
   }
 }
 
@@ -129,37 +128,6 @@
     stroke-linejoin: round;
     stroke-width: 1.25px;
     vector-effect: non-scaling-stroke;
-  }
-}
-
-// Stroke-only details inside coin icons (finger lines, motion marks)
-.badge-coin .is-line {
-  fill: none;
-  stroke-linecap: round;
-}
-
-// Waving hand — rotates from the wrist, pauses between waves
-.badge-coin__hand {
-  transform-box: fill-box;
-  transform-origin: 40% 95%;
-  animation: badge-coin-wave 2.8s ease-in-out infinite;
-}
-
-@keyframes badge-coin-wave {
-  0%,
-  55%,
-  100% {
-    transform: rotate(0deg);
-  }
-
-  10%,
-  30% {
-    transform: rotate(16deg);
-  }
-
-  20%,
-  40% {
-    transform: rotate(-8deg);
   }
 }
 
@@ -214,15 +182,3 @@
   font-weight: 500;
 }
 
-// Gold offset per emblem size (SVG units ≈ 3px × 170 / rendered width)
-.badge-emblem {
-  --hex-shift: 6px; // 80px: note cards, contact
-}
-
-:is(.about__experience-emblem, .expertise-card__icon, .token-case-study__takeaway-icon) {
-  --hex-shift: 10px; // 44–52px
-}
-
-.about-meter__emblem {
-  --hex-shift: 4px; // 112–150px
-}
