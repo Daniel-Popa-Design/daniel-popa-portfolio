@@ -41,7 +41,7 @@
   > h5 {
     margin: 0;
     color: var(--story-accent);
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.4;
@@ -49,10 +49,9 @@
 
   p,
   li {
-    max-width: 82ch; // still a comfortable line length at 13px
     margin: 0;
     color: var(--ink-soft);
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.6;
   }
 
@@ -63,7 +62,7 @@
 
   .quality-card__metric {
     margin-top: 6px;
-    font-size: 13px;
+    font-size: 15px;
   }
 }
 
@@ -87,22 +86,22 @@
 
   li {
     position: relative;
-    padding-left: 26px;
+    padding-left: 32px;
     counter-increment: step;
 
     &::before {
       position: absolute;
-      top: 2px;
+      top: 1.5px; // centred on the first 24px text line (15px × 1.6)
       left: 0;
       display: grid;
-      width: 17px;
-      height: 17px;
+      width: 21px;
+      height: 21px;
       place-items: center;
       border-radius: 50%;
       color: #fff;
       background: var(--badge-ink);
-      font-size: 9.5px;
-      font-weight: 700;
+      font-size: 13px;
+      font-weight: 400;
       content: counter(step);
     }
   }
@@ -147,7 +146,7 @@
 
   p {
     margin-top: 10px;
-    font-size: 13px;
+    font-size: 15px;
   }
 }
 
@@ -186,7 +185,7 @@
 #main .cls-demo__replay {
   min-height: 40px;
   padding: 0 18px;
-  border: 1px solid #d7d6cf;
+  border: 1px solid #a9a8a3; // ghost button edge (the warm grey of the lock)
   border-radius: 999px;
   color: var(--badge-ink);
   background: #fff;
@@ -237,7 +236,7 @@
 #main .cls-demo__title {
   margin: 0 0 14px;
   color: var(--badge-ink);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: -0.02em;
 }
@@ -257,7 +256,7 @@
 
 .cls-demo__label {
   color: var(--badge-ink);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   text-align: center;
 }
@@ -353,7 +352,7 @@
     border-radius: 999px;
     color: #fff;
     background: var(--accent-red);
-    font-size: 8px;
+    font-size: 11px;
     font-weight: 400;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -432,7 +431,7 @@
 .cls-demo figcaption {
   margin-top: 12px;
   color: var(--ink-soft);
-  font-size: 13px;
+  font-size: 15px;
   text-align: center;
 }
 
@@ -696,7 +695,7 @@
 .quality-card__copy p {
   margin: 0;
   color: #66655e;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.55;
 }
 
@@ -821,4 +820,19 @@
 // Breathing room between a case's header and its first row
 .quality-story > .quality-story__row:first-child {
   padding-top: 24px;
+}
+
+// Reading text at 15px. These selectors are more specific than the global
+// 13px text rule in _overrides.scss (which they would otherwise lose to);
+// inline emphasis inside the text follows the paragraph size.
+.portfolio-shell :is(
+  .quality-story__row p,
+  .quality-story__row li,
+  .quality-story__row strong,
+  .quality-card__copy p,
+  .quality-story__deeper p,
+  .cls-demo figcaption,
+  .cls-demo__label
+) {
+  font-size: 15px;
 }

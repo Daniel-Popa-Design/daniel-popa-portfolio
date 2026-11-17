@@ -33,7 +33,7 @@
   align-items: center;
   gap: 8px;
   color: #5e5e58;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
 }
 
@@ -46,7 +46,7 @@
 .portfolio-shell .token-memory__restart {
   min-height: 36px;
   padding: 0 16px;
-  border: 1px solid #d7d6cf;
+  border: 1px solid #a9a8a3; // ghost button edge (the warm grey of the lock)
   border-radius: 999px;
   color: var(--badge-ink);
   background: #fff;
@@ -289,7 +289,7 @@
   max-width: 30ch;
   margin: 0 0 6px;
   color: #5e5e58;
-  font-size: 13px;
+  font-size: 15px;
   font-style: italic;
   line-height: 1.45;
 }
@@ -354,7 +354,7 @@
   min-height: 1.5em;
   margin: 16px 0 0;
   color: #5e5e58;
-  font-size: 13px;
+  font-size: 15px;
   text-align: center;
 
   // Empty: take up no space. Collapsed instead of display: none, so the live
@@ -390,7 +390,7 @@
   border-radius: 4px;
   color: #fff;
   background: var(--badge-teal);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 650;
 }
 
@@ -428,7 +428,7 @@
   margin: 0;
   padding-left: 28px;
   color: #5e5e58;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 // Info icon before the hint — positioned absolutely so its 20px size never
@@ -543,7 +543,7 @@
 
 .portfolio-shell .token-memory__slot-name {
   color: #6b6b65; // ≥ 4.5:1 on the cream slot
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   line-height: 1.25;
 }

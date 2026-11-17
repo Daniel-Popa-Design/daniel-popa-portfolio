@@ -1,332 +1,91 @@
-// Contact — open layout (no card): emblem + heading + speech bubble, then the
-// channel pills. Shared look comes from _badge.scss.
-
-.contact {
-  position: relative;
-  overflow: hidden;
-}
+// Contact — a calm closing block: big title, one short line, one
+// clear action (a round dark button), two quiet text links (LinkedIn, CV)
+// and a small meta line with the e-mail address and location.
 
 .contact__inner {
   display: grid;
+  justify-items: start;
   width: 100%;
   max-width: none;
-  gap: 20px;
 }
 
-// ---------------------------------------------------------------------------
-// Intro — heading | speech bubble
-// ---------------------------------------------------------------------------
-
-.contact__intro {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(126px, auto); // bubble column
-  grid-template-areas: "heading description";
-  align-items: center;
-  gap: 16px clamp(16px, 2.5vw, 28px);
-}
-
-.contact__heading {
-  min-width: 0;
-  grid-area: heading;
-
-  .eyebrow {
-    margin: 0 0 8px;
-  }
-
-  h2 {
-    margin: 0;
-    color: var(--badge-ink);
-    font-size: clamp(31.9px, 4.4vw, 44px);
-    font-weight: 500;
-    letter-spacing: -0.07em;
-    line-height: 0.98;
-
-    // Second title line in the warm red accent (as case labels and timeline)
-    span {
-      color: #c4472a;
-    }
-  }
-}
-
-// Speech bubble (<ContactBubble>): rounded rectangle with a tail at the
-// bottom left — white face, fine light outline (as the contact pills), no
-// shadow; soft italic text under a small red quote mark
-.portfolio-shell .contact__description {
-  position: relative;
-  // Everything at 70% of the original (180px wide, 13px text) so the bubble
-  // keeps its proportions: the text wraps exactly as before
-  width: min(100%, 170px);
-  justify-self: end;
-  grid-area: description;
+// Title in the section-heading style (_layout.scss), with the red dot
+.contact h2 {
   margin: 0;
-  padding: 14px 18px 40px;
-  color: var(--ink-soft);
-  font-size: 13px;
-  font-style: italic;
-  font-synthesis: style;
-  font-weight: 400;
-  line-height: 1.55;
-  text-align: center;
-}
+  color: var(--ink);
+  font-size: clamp(35.2px, 4.4vw, 52.8px);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 1;
 
-.contact__bubble-art {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  pointer-events: none;
-}
-
-.contact__bubble-art {
-  overflow: visible;
-}
-
-
-// Ring style in the card-back greys: rim and edge are strokes centred on the
-// outline and drawn under the face, so only their outer half shows
-.contact__bubble-rim {
-  fill: none;
-  stroke: #ecebe7;
-  stroke-linejoin: round;
-  stroke-width: 9px;
-}
-
-// Fine white edge between rim and face (1px shows)
-.contact__bubble-edge {
-  fill: none;
-  stroke: #fff;
-  stroke-linejoin: round;
-  stroke-width: 2px;
-}
-
-.contact__bubble-face {
-  fill: #dcdbd6; // the card backs' face
-  stroke: none;
-}
-
-// Font size set on the span itself: the global span rule (_overrides.scss)
-// would otherwise force 13px and ignore the bubble's 70% scale
-.portfolio-shell .contact__description-text {
-  position: relative;
-  z-index: 2;
-  display: block;
-  overflow-wrap: break-word;
-  font-size: 13px;
-  font-weight: 400;
-
-  // Small red opening quote mark above the line
-  &::before {
-    display: block;
-    height: 9px;
+  span {
     color: var(--accent-red);
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 1;
-    content: "“";
   }
 }
 
-// ---------------------------------------------------------------------------
-// Channels — four identical pills (white, fine border, ink text + icon),
-// then one red call to action. Hover changes colour only.
-// ---------------------------------------------------------------------------
-
-.contact__channels {
-  display: grid;
-  // Widths follow the content: e-mail and location are the longest labels
-  grid-template-columns:
-    minmax(0, 1.6fr) minmax(0, 1.2fr) minmax(0, 1.6fr) minmax(0, 1.2fr);
-  gap: 8px;
+.portfolio-shell .contact__lead {
+  max-width: 60ch;
+  margin: 18px 0 0;
+  color: var(--ink-soft);
+  font-size: 17px;
+  line-height: 1.55;
 }
 
-.contact-channel {
-  display: grid;
-  min-width: 0;
-  grid-template-rows: auto minmax(40px, auto);
-  gap: 6px;
-  color: var(--badge-ink);
-  text-decoration: none;
-
-  &:focus-visible {
-    border-radius: 8px;
-    outline: 3px solid rgba(41, 41, 41, 0.45);
-    outline-offset: 3px;
-  }
-}
-
-.portfolio-shell .contact-channel__label {
-  overflow: hidden;
-  padding-left: 12px;
-  color: #5e5e58;
-  font-size: 13px;
-  line-height: 1.2;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.portfolio-shell .contact-channel__value {
+.contact__actions {
   display: flex;
-  min-width: 0;
-  min-height: 40px;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: 7px;
-  padding: 0 12px;
-  overflow: hidden;
-  border: 1px solid #d7d6cf;
-  border-radius: 999px;
-  color: var(--badge-ink);
-  background: #fff;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.2;
-  text-decoration: none;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  // Hover changes colour only — no movement
-  transition:
-    background-color 160ms ease,
-    border-color 160ms ease;
+  gap: 14px 28px;
+  margin-top: 28px;
+}
 
-  > span {
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+// Main action — round dark pill, the main red on hover (like the hero CTA).
+// Height comes from the button system (_buttons.scss).
+.portfolio-shell .contact__primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding-inline: 22px;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--badge-ink);
+  font-size: 13px;
+  text-decoration: none;
+  transition: background-color 160ms ease;
 
   svg {
     width: 18px;
     height: 18px;
-    flex: 0 0 18px;
     fill: none;
     stroke: currentColor;
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 1.5;
   }
-}
 
-// LinkedIn icon: solid letters inside a rounded frame
-.portfolio-shell .contact-channel__value svg.contact-channel__icon-linkedin {
-  fill: currentColor;
-  stroke: none;
-
-  .contact-channel__icon-frame {
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.2; // ≈ 1.1px: matches the location pin's line
-  }
-}
-
-// Optical balance: a wide envelope, a square and a tall pin look the same
-// size only when their heights differ a little — envelope ≈ 15 × 10px,
-// LinkedIn square ≈ 14 × 14px, pin ≈ 12 × 17px
-.portfolio-shell .contact-channel--linkedin .contact-channel__value svg {
-  width: 16px;
-  height: 16px;
-  flex-basis: 16px;
-}
-
-.portfolio-shell .contact-channel--location .contact-channel__value svg {
-  width: 18px;
-  height: 18px;
-  flex-basis: 18px;
-}
-
-// E-mail icon: the same fine line (≈ 1.1px in ink reads like the location
-// pin's ≈ 1.4px in the lighter grey)
-.portfolio-shell .contact-channel--email .contact-channel__value svg {
-  stroke-width: 1.2;
-}
-
-// Location is information, not a button: lighter border, no fill, softer
-// text — so it reads differently from the clickable pills
-.portfolio-shell .contact-channel--location .contact-channel__value {
-  border-color: #ebeae5;
-  color: var(--ink-soft);
-  background: transparent;
-  font-weight: 500;
-}
-
-// Links (e-mail, LinkedIn): ink border + faint fill on hover;
-// the location is plain information, so it has no hover state
-a.contact-channel:hover .contact-channel__value {
-  border-color: var(--badge-ink);
-  background: #f6f6f3;
-}
-
-// Call to action — red like the other CTAs: deeper red at rest, the main red
-// on hover (lighter on hover, white text ≥ 4.5:1 in both states)
-.portfolio-shell .contact-channel--status .contact-channel__action {
-  min-height: 40px;
-  padding-inline: 14px;
-  border: 1px solid color-mix(in srgb, var(--accent-red) 82%, #000);
-  color: #fff;
-  background: color-mix(in srgb, var(--accent-red) 82%, #000);
-  font-size: 13px;
-  font-weight: 600;
-
-  // Colour change only: cancel the shared .button lift (_layout.scss)
   &:hover {
-    border-color: var(--accent-red);
-    color: #fff;
     background: var(--accent-red);
-    transform: none;
   }
 
-  svg {
-    width: 16px;
-    flex-basis: 16px;
-  }
-
-  // Hover changes colour only: the arrow stays put too
-  &:hover svg {
-    transform: none;
+  &:focus-visible {
+    outline: 2px solid var(--accent-red);
+    outline-offset: 3px;
   }
 }
 
-// ---------------------------------------------------------------------------
-// Responsive
-// ---------------------------------------------------------------------------
-
-@media (max-width: 900px) {
-  // Four channels: a tidy 2 × 2 grid
-  .contact__channels {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+// Small meta line: the address in plain text (copyable) and the location
+.portfolio-shell .contact__meta {
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 14px;
 }
 
 @media (max-width: 700px) {
-  .contact__intro {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      "heading"
-      "description";
+  .portfolio-shell .contact__lead {
+    font-size: 15px;
   }
 
-  .contact__heading h2 {
-    font-size: clamp(31.9px, 8.8vw, 39.6px);
-  }
-
-  .portfolio-shell .contact__description {
-    justify-self: start;
-    min-height: 0;
-    padding: 14px 18px 40px;
-  }
-
-  .contact__channels {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 10px;
-  }
-
-  .portfolio-shell .contact-channel__value {
-    min-height: 44px;
-    justify-content: flex-start;
-  }
-
-  .portfolio-shell .contact-channel--status .contact-channel__action {
-    justify-content: space-between;
+  .contact__actions {
+    gap: 14px 22px;
   }
 }

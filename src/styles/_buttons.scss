@@ -23,8 +23,6 @@
 #main .cls-demo__replay,
 #main .ds-demo__preview,
 .portfolio-shell .token-memory__restart,
-.portfolio-shell .contact-channel__value,
-.portfolio-shell .contact-channel--status .contact-channel__action,
 #main .module-preview__switcher button,
 #main .kbdRace__foot button {
   height: var(--btn-h);
@@ -51,7 +49,8 @@
   }
 }
 
-.hero .button--blue {
+.hero .button--blue,
+.portfolio-shell .contact__primary {
   height: var(--btn-h-primary);
   min-height: var(--btn-h-primary);
 }
@@ -88,4 +87,29 @@
   .site-header .primary-navigation .nav-contact {
     min-height: 44px;
   }
+}
+
+// Button text: 15px everywhere, in step with the 15px body text.
+// !important because _base.scss forces `button { font-size: 13px !important }`
+// (kept for the recreated poll/countdown modules, which have their own sizes).
+.site-header .primary-navigation a,
+.language-switch__option,
+.hero .button--blue,
+.portfolio-shell .contact__primary,
+#main .cls-demo__replay,
+#main .ds-demo__preview,
+.portfolio-shell .token-memory__restart,
+#main .module-preview__switcher button,
+#main .kbdRace__foot button,
+.portfolio-shell .clamped-text__toggle,
+.quality-story__deeper summary,
+.hero-cv,
+.portfolio-shell .text-link {
+  font-size: 15px !important;
+}
+
+// Text inside these links/buttons follows their size (the global 13px span
+// rule in _overrides.scss would otherwise win for the inner <span>)
+.portfolio-shell :is(.hero-cv, .text-link, .clamped-text__toggle, .contact__primary) span {
+  font-size: inherit;
 }
