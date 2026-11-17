@@ -422,6 +422,7 @@ const copy = {
           range: "2008–2011",
           duration: "3 Jahre",
           role: "Grafik- & Mediengestalter Digital & Print",
+          company: "S.C. Noblesse S.R.L. · Hermannstadt, Rumänien",
           description:
             "Gestaltung digitaler und gedruckter Medien, Logos und Corporate Designs sowie Entwicklung visueller Konzepte.",
         },
@@ -429,7 +430,7 @@ const copy = {
           range: "2011–2014",
           duration: "3 Jahre",
           role: "Mediengestalter · Freelancer",
-          company: "World of Cruise SRL · Hermannstadt, Rumänien",
+          company: "World of Cruise S.R.L. · Hermannstadt, Rumänien",
           description:
             "Gestaltung und Entwicklung von Websites und Frontends mit HTML, CSS, JavaScript und jQuery. Erstellung von Print- und Digitalmedien, Logos und Corporate Designs sowie Kundenberatung.",
         },
@@ -452,26 +453,20 @@ const copy = {
       ],
     },
     contact: {
-      eyebrow: "Eine gute Idee im Kopf?",
-      title: ["Lass uns", "etwas bewegen."],
-      description:
-        "Gute digitale Erlebnisse beginnen mit einem guten Gespräch.",
-      channelsLabel: "Kontaktmöglichkeiten",
-      emailLabel: "E-Mail",
-      emailValue: "popadaniel.office@gmail.com",
-      linkedinLabel: "LinkedIn",
-      linkedinValue: "Profil ansehen",
-      locationLabel: "Standort",
-      locationValue: "Nürnberg · Remote oder hybrid",
-      statusLabel: "Kontakt",
+      title: "Lass uns sprechen",
+      lead: "Ich bin offen für neue Aufgaben in UI/UX-Design und Frontend-Entwicklung – remote oder vor Ort in Nürnberg.",
+      emailCta: "E-Mail schreiben",
+      linkedin: "LinkedIn",
+      email: "popadaniel.office@gmail.com",
+      location: "Nürnberg, Deutschland",
     },
     game: {
       eyebrow: "Ein kleines Extra",
-      title: "Token-Memory",
+      title: "Token-Turnier",
       noteLabel: "Pause",
       noteTab: "8 Paare · 5 Maskottchen",
       aside:
-        "Ein kleines Frontend-Experiment mit echten Farb-Tokens aus einem Publishing-System: Primär- und Akzentfarben, ein Badge-Grün mit geprüftem Kontrast und ein abstrahiertes Werbemodul-Token. Das Ziel: Sammle alle 5 Maskottchen – jedes gewonnene Spiel schaltet ein neues frei.",
+        "Ein kleines Frontend-Experiment mit echten Farb-Tokens aus einem Publishing-System. Finde die Paare und sammle alle 5 Maskottchen – jedes gewonnene Spiel schaltet ein neues frei.",
       boardLabel: "Memory-Spielfeld",
       moves: "Züge",
       pairs: "Paare",
@@ -915,6 +910,7 @@ const copy = {
           range: "2008–2011",
           duration: "3 years",
           role: "Graphic & Media Designer, Digital & Print",
+          company: "S.C. Noblesse S.R.L. · Sibiu, Romania",
           description:
             "Design of digital and print media, logos and corporate designs, and development of visual concepts.",
         },
@@ -922,7 +918,7 @@ const copy = {
           range: "2011–2014",
           duration: "3 years",
           role: "Media Designer · Freelancer",
-          company: "World of Cruise SRL · Sibiu, Romania",
+          company: "World of Cruise S.R.L. · Sibiu, Romania",
           description:
             "Design and development of websites and frontends with HTML, CSS, JavaScript and jQuery. Print and digital media, logos and corporate designs, plus client consulting.",
         },
@@ -945,25 +941,20 @@ const copy = {
       ],
     },
     contact: {
-      eyebrow: "Got a good idea?",
-      title: ["Let’s make", "it matter."],
-      description: "Great digital experiences start with a good conversation.",
-      channelsLabel: "Ways to connect",
-      emailLabel: "Email",
-      emailValue: "popadaniel.office@gmail.com",
-      linkedinLabel: "LinkedIn",
-      linkedinValue: "View profile",
-      locationLabel: "Location",
-      locationValue: "Nuremberg · Remote or hybrid",
-      statusLabel: "Contact",
+      title: "Let’s talk",
+      lead: "I’m open to new roles in UI/UX design and frontend development – remote or on-site in Nuremberg.",
+      emailCta: "Email me",
+      linkedin: "LinkedIn",
+      email: "popadaniel.office@gmail.com",
+      location: "Nuremberg, Germany",
     },
     game: {
       eyebrow: "A little extra",
-      title: "Token memory",
+      title: "Token Tournament",
       noteLabel: "Break",
       noteTab: "8 pairs · 5 mascots",
       aside:
-        "A small frontend experiment with real color tokens from a publishing system: primary and accent colors, a badge green with checked contrast and an abstracted ad-module token. The goal: collect all 5 mascots – every won game unlocks a new one.",
+        "A small frontend experiment with real color tokens from a publishing system. Find the pairs and collect all 5 mascots – every win unlocks a new one.",
       boardLabel: "Memory board",
       moves: "Moves",
       pairs: "Pairs",
@@ -2543,29 +2534,6 @@ function NumberMark({ shape, className = "", hidden = false, children }) {
   );
 }
 
-// Contact speech bubble: rounded rectangle (r 18) with a short tail at the
-// bottom left pointing down, drawn in the -2 -2 211 194 viewBox (body 207 × 150).
-// Styled like the ring number marks in the card-back greys: a light grey rim,
-// a fine white edge and the grey face of the cards (no shadow). The SVG stretches to the text box; non-scaling
-// strokes keep rim and edge the same width at any size.
-const BUBBLE_PATH =
-  "M18 0H189A18 18 0 0 1 207 18V132A18 18 0 0 1 189 150H82L40 188L46 150H18A18 18 0 0 1 0 132V18A18 18 0 0 1 18 0Z";
-
-function ContactBubble() {
-  return (
-    <svg
-      className="contact__bubble-art"
-      viewBox="-2 -2 211 194"
-      preserveAspectRatio="none"
-      aria-hidden="true"
-    >
-      <path className="contact__bubble-rim" d={BUBBLE_PATH} vectorEffect="non-scaling-stroke" />
-      <path className="contact__bubble-edge" d={BUBBLE_PATH} vectorEffect="non-scaling-stroke" />
-      <path className="contact__bubble-face" d={BUBBLE_PATH} />
-    </svg>
-  );
-}
-
 // Poll marks (? and !) — thin outlines; the tinted offset fills are hidden
 // (no shadows on the page, see _poll.scss). The glyph
 // sits inside a circle drawn the same way. The ? is a stroked curve, so its
@@ -3288,109 +3256,39 @@ function App() {
             aria-labelledby="contact-title"
           >
             <div className="section-wrap contact__inner">
-              <div className="contact__intro">
-                <div className="contact__heading">
-                  <p className="eyebrow">{text.contact.eyebrow}</p>
-                  <h2 id="contact-title">
-                    {text.contact.title[0]}
-                    <br />
-                    <span>{text.contact.title[1]}</span>
-                  </h2>
-                </div>
-                <p className="contact__description">
-                  <ContactBubble />
-                  <span className="contact__description-text">
-                    {text.contact.description}
-                  </span>
-                </p>
-              </div>
-              <div
-                className="contact__channels"
-                role="group"
-                aria-label={text.contact.channelsLabel}
-              >
-                <a
-                  className="contact-channel contact-channel--email"
-                  href="mailto:popadaniel.office@gmail.com"
-                >
-                  <span className="contact-channel__label">
-                    {text.contact.emailLabel}
-                  </span>
-                  <span className="contact-channel__value">
-                    <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
-                      {/* Sits ~0.7px below the box centre: centred on the
-                          lowercase letters of the address, not on the line box */}
-                      <rect x="1.65" y="5.3" width="16.7" height="11" rx="2.2" />
-                      <path d="m3 7.2 7 5 7-5" />
-                    </svg>
-                    <span>{text.contact.emailValue}</span>
-                  </span>
+              <h2 id="contact-title">
+                {text.contact.title}
+                <span>.</span>
+              </h2>
+              <p className="contact__lead">{text.contact.lead}</p>
+              {/* One clear action (round, dark), then two quiet text links */}
+              <div className="contact__actions">
+                <a className="contact__primary" href={`mailto:${text.contact.email}`}>
+                  {text.contact.emailCta}
+                  <ArrowIcon />
                 </a>
                 <a
-                  className="contact-channel contact-channel--linkedin"
+                  className="text-link"
                   href="https://www.linkedin.com/in/daniel-popa-office/"
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span className="contact-channel__label">
-                    {text.contact.linkedinLabel}
-                  </span>
-                  <span className="contact-channel__value">
-                    {/* LinkedIn mark (single-colour): a rounded frame with solid
-                        "in" letters — strong shapes, so it stays crisp at 18px */}
-                    <svg
-                      className="contact-channel__icon-linkedin"
-                      aria-hidden="true"
-                      viewBox="0 0 20 20"
-                    >
-                      <rect className="contact-channel__icon-frame" x="1.4" y="1.4" width="17.2" height="17.2" rx="4" />
-                      <path d="M5.75 4.3a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8ZM4.55 8.3h2.4v7.4h-2.4ZM8.7 8.3h2.3v1.05c.5-.8 1.4-1.25 2.5-1.25 2.2 0 3.2 1.4 3.2 3.9v3.7h-2.35v-3.45c0-1.25-.5-2-1.55-2-1.15 0-1.8.8-1.8 2.15v3.3H8.7Z" />
-                    </svg>
-                    <span>{text.contact.linkedinValue}</span>
-                    <ArrowIcon diagonal />
-                  </span>
+                  <span>{text.contact.linkedin}</span>
                 </a>
-                <div className="contact-channel contact-channel--location">
-                  <span className="contact-channel__label">
-                    {text.contact.locationLabel}
-                  </span>
-                  <span className="contact-channel__value">
-                    <svg
-                      aria-hidden="true"
-                      viewBox="0 0 64 80"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M32 3C16 3 5 15 5 31c0 18 15 34 23 42 2.4 2.4 5.6 2.4 8 0 8-8 23-24 23-42C59 15 48 3 32 3Z"
-                        stroke="currentColor"
-                        strokeWidth="6.2"
-                        strokeLinejoin="round"
-                      />
-                      <circle
-                        cx="32"
-                        cy="30"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="6.2"
-                      />
-                    </svg>
-
-                    <span>{text.contact.locationValue}</span>
-                  </span>
-                </div>
-                <div className="contact-channel contact-channel--status">
-                  <span className="contact-channel__label">
-                    {text.contact.statusLabel}
-                  </span>
-                  <a
-                    className="button button--light contact-channel__value contact-channel__action"
-                    href="mailto:popadaniel.office@gmail.com"
-                  >
-                    {text.nav.talk} <ArrowIcon diagonal />
-                  </a>
-                </div>
+                <a
+                  className="text-link"
+                  href={`${import.meta.env.BASE_URL}Lebenslauf_Daniel_Popa.pdf`}
+                  download="Lebenslauf_Daniel_Popa.pdf"
+                >
+                  <span>{text.hero.downloadCv}</span>
+                  <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 3v10m-4-4 4 4 4-4M4 16v2h12v-2"></path>
+                  </svg>
+                </a>
               </div>
+              <p className="contact__meta">
+                {text.contact.email} · {text.contact.location}
+              </p>
             </div>
           </section>
         </main>
