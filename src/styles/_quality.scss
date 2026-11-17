@@ -12,10 +12,6 @@
   margin-top: 0;
 }
 
-.quality-card__detail {
-  border-top-color: var(--line);
-}
-
 // Layout-shift card spans the full content width of the practice grid
 .quality-card--wide {
   grid-column: 1 / -1;
@@ -108,7 +104,14 @@
 }
 
 .quality-story__demo {
-  padding-block: 4px 18px;
+  // + the 14px row padding = 36px (phone/tablet) / 48px (desktop) above the
+  // demo (after the steps) and below it (before the result) — symmetric, and
+  // clearly more than the 28px between the text rows
+  padding-block: 22px;
+
+  @media (min-width: 901px) {
+    padding-block: 34px;
+  }
 }
 
 .quality-story__deeper {
@@ -164,7 +167,7 @@
 // Before | After side by side; stacks when the card gets narrow
 .quality-layout-demo {
   display: grid;
-  gap: 18px; // panels → actions: the same air as the steps above the panels
+  gap: 24px; // panels → button: a little less than the 32px around the demo
   justify-items: start;
   container-type: inline-size;
 }
@@ -207,14 +210,6 @@
     outline: 2px solid #596e3d;
     outline-offset: 2px;
   }
-}
-
-.quality-card__detail {
-  margin-top: 9px;
-}
-
-.quality-card__detail {
-  grid-column: auto;
 }
 
 // ---------------------------------------------------------------------------
@@ -673,7 +668,6 @@
 }
 
 .quality-card__number {
-  padding-top: 3px;
   letter-spacing: 0.12em;
   grid-area: number;
   display: grid;
@@ -687,7 +681,6 @@
 }
 
 .quality-card__copy {
-  grid-column: 2;
   grid-area: copy;
   min-width: 0;
 }
@@ -753,14 +746,17 @@
   background: none;
 }
 
+// Every case: the last row ("Mehr Details") has no bottom padding, so the
+// space above and below the divider between two cases is the same (56px
+// desktop, 32px phone)
+.quality-story > .quality-story__row:last-child {
+  padding-bottom: 0;
+}
+
 // Last case: no bottom padding — the section's own padding sets the gap to the
 // next section, so the space above and below the section divider is equal
 .quality-case-study__grid > .quality-card.badge-card:last-child {
   padding-bottom: 0;
-
-  .quality-story__row:last-child {
-    padding-bottom: 0;
-  }
 }
 
 .quality-card__detail {

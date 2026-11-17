@@ -1,8 +1,7 @@
 // Button heights — one system for every button and pill on the page.
-// Desktop (≥ 901px, mouse): 34px, the height of the menu pills; the hero's
-// main call to action ("button--blue") is 40px so it keeps a little weight.
-// Tablet + phone (≤ 900px, touch): 44px for every button (comfortable tap
-// target). The language switch keeps its look; only its tap area grows.
+// Desktop (≥ 901px, mouse): 40px for every button, menu pills included.
+// Tablet + phone (≤ 900px, touch): 44px (comfortable tap target). The
+// language switch keeps its look; only its tap area grows.
 //
 // Loaded after the section partials, so these heights win; selectors match
 // the specificity of the rules they replace. The recreated poll/countdown
@@ -10,16 +9,15 @@
 
 :root {
   --btn-h: 44px;
-  --btn-h-primary: 44px;
 
   @media (min-width: 901px) {
-    --btn-h: 34px;
-    --btn-h-primary: 40px;
+    --btn-h: 40px;
   }
 }
 
 .site-header .primary-navigation a,
 .hero .button--blue,
+.portfolio-shell .contact__primary,
 #main .cls-demo__replay,
 #main .ds-demo__preview,
 .portfolio-shell .token-memory__restart,
@@ -47,12 +45,6 @@
   .site-header .primary-navigation a {
     padding-inline: 12px;
   }
-}
-
-.hero .button--blue,
-.portfolio-shell .contact__primary {
-  height: var(--btn-h-primary);
-  min-height: var(--btn-h-primary);
 }
 
 // Dark buttons: one hover for all of them, the same as the current-section

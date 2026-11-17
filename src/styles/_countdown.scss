@@ -1,12 +1,9 @@
 // Countdown module — shown in the live preview window of case study 01 (see _work.scss).
 
-
 .CountdownModule[data-domain=afterglow] {
-  --Cc1: #000;
   --Cc2: #575757;
   --Cc3: #392d3a;
   --Cc23: var(--demo-afterglow-accent);
-  --countdown-panel: #f2f2f2;
 }
 
 .CountdownModule .countdownContent {
@@ -74,7 +71,6 @@
 
 .CountdownModule .countdownBadge {
   align-self: center;
-  margin-left: calc(-1 * var(--spacer-7, 3rem));
 }
 
 .CountdownModule .countdownBadge::after {
@@ -405,15 +401,12 @@
 }
 
 .CountdownModule {
-  --Cc1: #0c2438;
   --Cc2: #68716c;
   --Cc3: #123652;
   --Cc23: var(--brand-northstar);
   --sf12: #fff;
   --sf16: var(--Cc3);
   --bk: #000;
-  --countdown-panel: #f2f2f2;
-  --countdown-page: #fff;
   --countdown-accent: var(--Cc23);
   position: relative;
   min-width: 0;
@@ -447,8 +440,6 @@
 .CountdownModule[data-domain=afterglow][data-theme=dark] {
   --Cc3: #1d171e;
   --Cc23: var(--brand-afterglow-soft);
-  --countdown-panel: #392d3a;
-  --countdown-page: #1d171e;
   --module-accent: var(--brand-afterglow-soft);
 }
 
@@ -460,13 +451,10 @@
 }
 
 .CountdownModule[data-theme=dark] {
-  --Cc1: #fff;
   --Cc2: #c4cbd0;
   --Cc3: #091c2a;
   --Cc23: var(--brand-northstar-soft);
   --sf16: #000;
-  --countdown-panel: #0d304b;
-  --countdown-page: #061a2a;
   --module-bg: var(--gr80);
   --modTtl: var(--gr5);
   color: #fff;
@@ -599,8 +587,6 @@
 }
 
 .CountdownModule .countdownValue::before {
-  border-right-color: rgba(255, 255, 255, 0.26);
-  border-left-color: rgba(255, 255, 255, 0.26);
   position: absolute;
   z-index: 1;
   top: 50%;
@@ -639,7 +625,6 @@
 }
 
 .CountdownModule[data-theme=dark] .countdownValue {
-  border-color: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--module-accent);
   background: #454540;
@@ -776,7 +761,6 @@
 
 .CountdownModule .countdownValue {
   text-align: center;
-  border-color: rgba(255, 255, 255, 0.2);
   position: relative;
   display: block;
   width: 100%;
@@ -813,7 +797,6 @@
   z-index: 3;
   justify-self: auto;
   margin: 0;
-  background-image: none;
   top: 14px;
   right: 14px;
   width: 72px;

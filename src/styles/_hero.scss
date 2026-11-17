@@ -23,12 +23,11 @@
   position: relative;
   margin: var(--hero-inset) var(--hero-inset) 0;
   padding: var(--space-section) calc(var(--space-inline) - var(--hero-inset));
+  // The portrait image box is larger than the circle (transparent edges) and
+  // would widen the page on phones. Clip sideways only, so the head can still
+  // rise above the circle. `clip` (not `hidden`) creates no scroll container.
+  overflow-x: clip;
 
-  // Desktop: more air above and below, a little more on top (≈ 122 / 100px
-  // at 1440px) so the hero reads as its own calm block under the header
-  @media (min-width: 901px) {
-    padding-block: clamp(80px, 8.5vw, 124px) clamp(64px, 7vw, 100px);
-  }
   background: var(--paper); // plain white, no frame
 
   // Divider under the hero — the same fine line, at the same content width,
@@ -358,8 +357,6 @@
     // Single column: the row gap sits between the CTAs and the portrait and
     // leaves room for the head that rises above the circle.
     gap: calc(var(--head-rise) + var(--head-clearance));
-    // Tighter vertical padding inside the frame on mobile
-    padding-block: 20px;
   }
 
   .hero h1 {

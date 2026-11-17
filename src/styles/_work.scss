@@ -21,8 +21,9 @@
 .takeaways {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  align-items: stretch;
-  margin-bottom: clamp(28px, 3.5vw, 44px);
+  align-items: start;
+  gap: 14px;
+  margin-bottom: clamp(36px, 4.5vw, 56px); // = the space between two cases
   padding: 24px 0;
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -36,6 +37,21 @@
   min-width: 0;
   padding: 4px clamp(18px, 2.2vw, 28px);
   text-align: left;
+}
+
+// Four columns: title, text and "Mehr lesen" share three rows across all
+// columns (subgrid), so when a long title wraps to two lines, the texts of
+// every column still start at the same height
+@media (min-width: 1081px) {
+  .takeaways {
+    grid-template-rows: repeat(3, auto);
+  }
+
+  .takeaway {
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+    align-content: stretch;
+  }
 }
 
 // Divider between neighbouring columns
@@ -59,7 +75,6 @@
 @media (max-width: 1080px) {
   .takeaways {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: 20px;
   }
 
   // 2 × 2: vertical line only between the two columns, line above row 2
@@ -82,7 +97,6 @@
   .takeaways {
     grid-template-columns: minmax(0, 1fr);
     padding-block: 8px;
-    row-gap: 0;
   }
 
   // Stacked: line between the items instead of beside them
@@ -98,50 +112,6 @@
 }
 
 // ---------------------------------------------------------------------------
-
-.takeaways {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  align-items: start;
-  gap: 14px;
-  margin-bottom: clamp(28px, 3.5vw, 44px);
-}
-
-.takeaway.badge-card {
-  display: grid;
-  justify-items: start;
-  align-content: start;
-  gap: 12px;
-  padding: 22px 18px 20px;
-  text-align: left;
-}
-
-.portfolio-shell .takeaway__text {
-  max-width: 30ch;
-  margin: 0;
-  color: var(--ink-soft);
-  font-size: 15px;
-  line-height: 1.6;
-}
-
-// The toggle sits right under the text, on its left edge
-.takeaway .clamped-text__toggle {
-  margin-top: -4px;
-}
-
-@media (max-width: 1080px) {
-  .takeaways {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 560px) {
-  .takeaways {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-// ---------------------------------------------------------------------------
 // Case 01 sketch — "Four layers" (token cascade) | "One module, four variants".
 // Panels, titles and captions reuse .cls-demo from _quality.scss.
 // ---------------------------------------------------------------------------
@@ -150,6 +120,7 @@
 .cls-demo.ds-demo {
   display: flex;
   flex-direction: column;
+  container-type: inline-size; // the variant sketches size to the panel
 
   figcaption {
     margin-top: auto;
@@ -290,10 +261,6 @@
 // the dark screens swap the surface (--gr80) and the title (--modTtl → --gr5).
 //
 // Fixed internal geometry (200px screen) so the connectors hit their parts.
-
-.cls-demo.ds-demo {
-  container-type: inline-size;
-}
 
 .ds-variants {
   --screen-gap: 14px;
@@ -542,6 +509,16 @@
   &:focus-visible {
     outline: 2px solid #596e3d;
     outline-offset: 3px;
+  }
+
+  // Zoom icon (opens the preview): lens + plus, rounded line ends
+  .zoom-icon {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-width: 1.5; // ≈ 1.4px at 22px, close to the regular text weight
   }
 }
 
@@ -801,6 +778,7 @@
 //   after:  skip link, larger targets, 3px focus ring, still badge
 // ---------------------------------------------------------------------------
 
+// Always shown as Northstar in light mode (see KeyboardPreview in App.jsx)
 .kbdRace {
   --k-card: #fff;
   --k-page: #f6f8f9;
@@ -814,28 +792,6 @@
 
   display: grid;
   gap: 14px;
-
-  &[data-domain="afterglow"] {
-    --k-ink: var(--brand-afterglow);
-    --k-accent: var(--brand-afterglow);
-  }
-
-  &[data-theme="dark"] {
-    --k-card: #292929;
-    --k-page: #333330;
-    --k-rule: #55554f;
-    --k-ink: #f7f6f0;
-    --k-muted: #d3d2cb;
-    --k-accent: var(--brand-northstar-soft);
-    --k-accent-text: #0b2d4a;
-    --k-bad: #f08a6c;
-    --k-good: #7fd1b2;
-  }
-
-  &[data-theme="dark"][data-domain="afterglow"] {
-    --k-accent: var(--brand-afterglow-soft);
-    --k-accent-text: #1d171e;
-  }
 }
 
 .kbdRace__controls {
@@ -1338,5 +1294,13 @@
 @media (prefers-reduced-motion: reduce) {
   .module-preview[open] {
     animation: none;
+  }
+}
+
+// Phones: the takeaways box keeps the same 32px to the first case as there is
+// between two cases
+@media (max-width: 700px) {
+  .takeaways {
+    margin-bottom: 32px;
   }
 }

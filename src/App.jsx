@@ -72,25 +72,25 @@ const copy = {
       takeaways: [
         {
           icon: "target",
-          label: "DER ANSATZ",
+          label: "Der Ansatz",
           text:
             "Palettenwerte kontextunabhängig wiederverwenden; etablierte Rollen wie Links und Artikeltitel über semantische Aliase abbilden.",
         },
         {
           icon: "bulb",
-          label: "WARUM DAS WICHTIG IST",
+          label: "Warum das wichtig ist",
           text:
             "Ein Komponenten-Stylesheet bedient alle acht Marken: Ein Rebranding ändert nur die lokale Farbdatei, der Dunkelmodus belegt lediglich Variablen unter [data-theme=\"dark\"] neu, und rund 4.800 Grau-Referenzen bleiben überall konsistent – ohne ausufernde Sammlung einzelner semantischer Namen.",
         },
         {
           icon: "puzzle",
-          label: "MEIN BEITRAG",
+          label: "Mein Beitrag",
           text:
             "Eine Farbstrategie in vier Ebenen: eine globale Graustufen-Skala (--gr5 bis --gr93, benannt nach % Schwarz) für alle Marken, Marken-Basiswerte je Portal (--PrCl, --AcCl), wenige semantische Rollen für Text, Titel, Links, Hintergründe und Buttons sowie nummerierte Hell/Dunkel-Paare wie --Cc25 für alles Übrige – Marke für Marke ausgerollt.",
         },
         {
           icon: "unsemantic",
-          label: "UNSEMANTISCHE FARBEN",
+          label: "Unsemantische Farben",
           text:
             "--Cc25 benennt eine Farbe, keine Rolle. Es hält je einen Wert für Hell- und Dunkelmodus und wird direkt in Komponenten wie dem Countdown eingesetzt – überall dort, wo die Markenfarbe ohne globale Bedeutung gebraucht wird, ganz ohne neues semantisches Alias.",
         },
@@ -562,25 +562,25 @@ const copy = {
       takeaways: [
         {
           icon: "target",
-          label: "THE APPROACH",
+          label: "The approach",
           text:
             "Keep palette values reusable for any context; use semantic aliases for established roles such as links and article titles.",
         },
         {
           icon: "bulb",
-          label: "WHY IT MATTERS",
+          label: "Why it matters",
           text:
             "One component stylesheet serves all eight brands: a rebrand only touches the local color file, dark mode just remaps variables under [data-theme=\"dark\"], and about 4,800 gray references stay consistent everywhere – without a sprawling catalog of one-off semantic names.",
         },
         {
           icon: "puzzle",
-          label: "MY CONTRIBUTION",
+          label: "My contribution",
           text:
             "A four-layer color strategy: a global grayscale (--gr5 to --gr93, named by % black) shared by every brand, brand primitives per portal (--PrCl, --AcCl), a few semantic roles for text, titles, links, backgrounds and buttons, and numbered light/dark pairs like --Cc25 for everything else – rolled out brand by brand.",
         },
         {
           icon: "unsemantic",
-          label: "UNSEMANTIC COLORS",
+          label: "Unsemantic colors",
           text:
             "--Cc25 names a color, not a role. It holds one value for light mode and one for dark mode, and components like the countdown use it directly wherever they need the brand color without a global meaning – no new semantic alias required.",
         },
@@ -996,6 +996,18 @@ const copy = {
 
 const copyrightYear = new Date().getFullYear();
 
+// Zoom icon for the preview buttons: round lens with a plus, short handle
+// pointing down-left (mirrored, so it leans towards the button text);
+// one stroke weight with rounded ends (colour from the button text)
+function ZoomIcon() {
+  return (
+    <svg className="zoom-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none">
+      <circle cx="13.5" cy="10.5" r="6.5" />
+      <path d="m8.5 15.5-5 5M13.5 7.75v5.5M10.75 10.5h5.5" />
+    </svg>
+  );
+}
+
 function ArrowIcon({ diagonal = false, down = false }) {
   return (
     <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
@@ -1119,7 +1131,7 @@ function QualityStory({ story, metric, children }) {
         <ul className="quality-story__why">
           {story.why.map((item) => (
             <li key={item.term}>
-              <strong>{item.term}</strong> {item.text}
+              <strong>{item.term}:</strong> {item.text}
             </li>
           ))}
         </ul>
@@ -1352,7 +1364,7 @@ function SkipLinkDemo({ text, onPreview }) {
         </button>
         <button className="ds-demo__preview" onClick={onPreview} type="button">
           {text.keyboard.button}
-          <span aria-hidden="true">↗</span>
+          <ZoomIcon />
         </button>
         <span>{text.keyboard.hint}</span>
       </div>
@@ -1619,7 +1631,7 @@ function TokenSystemDemo({ text, onPreview }) {
       <div className="ds-demo__cta">
         <button className="ds-demo__preview" onClick={onPreview} type="button">
           {demo.previewButton}
-          <span aria-hidden="true">↗</span>
+          <ZoomIcon />
         </button>
         <span>{demo.previewHint}</span>
       </div>

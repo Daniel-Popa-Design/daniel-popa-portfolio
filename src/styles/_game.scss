@@ -418,7 +418,6 @@
   margin: 0;
   color: #6d6c65;
   font-size: 13px;
-  font-weight: 750;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -426,19 +425,19 @@
 .portfolio-shell .token-memory__collection-hint {
   position: relative;
   margin: 0;
-  padding-left: 28px;
+  padding-left: 32px;
   color: #5e5e58;
   font-size: 15px;
 }
 
-// Info icon before the hint — positioned absolutely so its 20px size never
+// Info icon before the hint — positioned absolutely so its 24px size never
 // changes the row height; fine 1.2px line, stem + dot in ink
 .token-memory__hint-icon {
   position: absolute;
   top: 50%;
   left: 0;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   transform: translateY(-50%);
   fill: none;
   stroke: #8a8984;
@@ -544,7 +543,6 @@
 .portfolio-shell .token-memory__slot-name {
   color: #6b6b65; // ≥ 4.5:1 on the cream slot
   font-size: 15px;
-  font-weight: 600;
   line-height: 1.25;
 }
 

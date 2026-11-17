@@ -7,7 +7,6 @@
   --serif: var(--sans);
 
   // Neutrals
-  --page: #e5e5e5;
   --paper: #fff;
   --surface: #fffefa;
   --ink: #262626;
@@ -19,16 +18,11 @@
 
   // Accents
   --lemon: #f3d95d;
-  --lemon-pale: #f7edb9;
   --accent-warm: #e87955;
   --accent-red: #c4472a; // main red: case labels, timeline, links, hovers (≥ 4.5:1 on white)
-  // Gold for text (highlighted heading words, heading dots, "+") — darker
-  // than --badge-gold so it reaches 4.68:1 on white (WCAG AA)
-  --accent-text: #8f7000;
 
   // Badge style (hero experience badge + note cards)
   --badge-teal: #c4472a; // preview: warm red (= --story-accent); was #27a589 teal
-  --badge-gold: #dfb306;
   --badge-gray: #d1d1d1;
   --badge-ink: #343434;
 
@@ -55,10 +49,14 @@
   // Spacing scale — one rhythm for every section, symmetric top/bottom,
   // shrinking fluidly so mobile never gets more space than desktop.
   --space-inline: clamp(18px, 4.8vw, 68px); // side padding: header, hero, sections, footer
-  --space-section: clamp(44px, 5.5vw, 80px); // top = bottom padding of every section
-  --space-stack: clamp(44px, 5.5vw, 80px); // gap between stacked case studies
+  --space-section: clamp(44px, 5.5vw, 80px); // top = bottom padding of every section and the hero
   --space-heading: clamp(20px, 2.4vw, 32px); // heading block → content
   --space-card: clamp(12px, 1.4vw, 20px); // inner padding of section cards
+
+  // Desktop: generous, fixed air above and below the hero and every section
+  @media (min-width: 901px) {
+    --space-section: 150px;
+  }
 }
 
 @media (max-width: 900px) {
