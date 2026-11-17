@@ -55,7 +55,10 @@
   border-radius: 0;
   color: var(--ink);
   background: none;
-  font-size: 20px; // clearly above the 15px text below
+  // Same type as the career titles (.career__body h4 in _about.scss)
+  font-size: clamp(17px, 1.6vw, 20px);
+  font-weight: 550;
+  letter-spacing: -0.01em;
   line-height: 1.3;
 
   &::before {

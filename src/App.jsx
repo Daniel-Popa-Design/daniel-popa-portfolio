@@ -1008,6 +1008,21 @@ function ZoomIcon() {
   );
 }
 
+// Paper plane for the e-mail button: outline + centre fold, two short motion
+// lines trailing behind; same line weight and round ends as the zoom icon.
+// On hover the plane lifts off up-right and the trail stretches (CSS).
+function PaperPlaneIcon() {
+  return (
+    <svg className="plane-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none">
+      <g className="plane-icon__plane">
+        <path d="M21 3 3.5 10.2l6.9 3.4 3.4 6.9L21 3Z" />
+        <path d="m10.4 13.6 4.9-4.9" />
+      </g>
+      <path className="plane-icon__trail" d="m3.5 20.5 3-3M2.75 15.25l1.5-1.5" />
+    </svg>
+  );
+}
+
 function ArrowIcon({ diagonal = false, down = false }) {
   return (
     <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
@@ -3277,7 +3292,7 @@ function App() {
               <div className="contact__actions">
                 <a className="contact__primary" href={`mailto:${text.contact.email}`}>
                   {text.contact.emailCta}
-                  <ArrowIcon />
+                  <PaperPlaneIcon />
                 </a>
                 <a
                   className="text-link"
@@ -3286,6 +3301,7 @@ function App() {
                   target="_blank"
                 >
                   <span>{text.contact.linkedin}</span>
+                  <ArrowIcon diagonal />
                 </a>
                 <a
                   className="text-link"

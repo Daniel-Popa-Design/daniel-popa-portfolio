@@ -53,14 +53,47 @@
   text-decoration: none;
   transition: background-color 160ms ease;
 
-  svg {
-    width: 18px;
-    height: 18px;
-    fill: none;
+  // Paper plane — same size, line weight and round ends as the zoom icon
+  .plane-icon {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    overflow: visible; // room for the lift-off on hover
     stroke: currentColor;
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 1.5;
+  }
+
+  .plane-icon__plane,
+  .plane-icon__trail {
+    transition: transform 240ms cubic-bezier(0.3, 0.7, 0.4, 1), opacity 240ms ease;
+  }
+
+  .plane-icon__trail {
+    opacity: 0.6;
+    transform-origin: 6px 18px;
+  }
+
+  // Lift-off: the plane drifts up-right, the trail stretches behind it
+  &:hover,
+  &:focus-visible {
+    .plane-icon__plane {
+      transform: translate(1.5px, -1.5px);
+    }
+
+    .plane-icon__trail {
+      opacity: 1;
+      transform: scale(1.25);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .plane-icon__plane,
+    .plane-icon__trail {
+      transition: none;
+      transform: none !important;
+    }
   }
 
   &:hover {
