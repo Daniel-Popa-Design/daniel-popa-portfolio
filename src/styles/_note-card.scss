@@ -1,14 +1,12 @@
-// Note card — the summary card under every section and case-study heading.
-// Look comes from the badge primitives (_badge.scss); this file is layout only.
+// Note card — the summary under every section heading: the tags in one row,
+// the text underneath. Look comes from the badge primitives (_badge.scss);
+// this file is layout only.
 
 .note-card {
   display: grid;
-  // Desktop/tablet: emblem + tags | text. Phones: stacked (see below).
-  // Fixed head column (grows only if the tags need more) so the text starts
-  // at the same spot in every section
-  grid-template-columns: minmax(max-content, 320px) minmax(0, 1fr);
-  align-items: center;
-  gap: 18px clamp(20px, 3vw, 40px);
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: start;
+  gap: 14px;
   width: 100%;
   margin: 0;
 }
@@ -22,21 +20,9 @@
   background: none;
 }
 
-.note-card__head {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.note-card__emblem {
-  width: 80px;
-  margin-bottom: 10px; // the coin hangs below the hexagon
-}
-
-// Hover: shrink by 2px (80 → 78), scaled from the centre
-.note-card:hover .note-card__emblem {
-  transform-origin: center;
-  transform: scale(calc(78 / 80));
+// Tags side by side (wrapping on narrow screens) instead of stacked
+.note-card .badge-tags {
+  flex-flow: row wrap;
 }
 
 .portfolio-shell .note-card__text {
@@ -45,10 +31,4 @@
   color: var(--ink-soft);
   font-size: 13px;
   line-height: 1.65;
-}
-
-@media (max-width: 700px) {
-  .note-card {
-    grid-template-columns: minmax(0, 1fr);
-  }
 }

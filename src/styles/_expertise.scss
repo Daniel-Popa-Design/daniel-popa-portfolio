@@ -25,10 +25,10 @@
 .expertise-card {
   display: grid;
   min-width: 0;
-  grid-template-columns: 52px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   grid-template-areas:
-    "icon content"
-    "icon skills";
+    "content"
+    "skills";
   align-items: center;
   gap: 8px 16px;
   padding: 16px 0;
@@ -37,17 +37,6 @@
   &:last-child {
     border-bottom: 0;
   }
-
-  // Hover: shrink by 2px (52 → 50), scaled from the centre
-  &:hover .expertise-card__icon {
-    transform-origin: center;
-    transform: scale(calc(50 / 52));
-  }
-}
-
-.expertise-card__icon {
-  width: 52px;
-  grid-area: icon;
 }
 
 .expertise-card__content {
@@ -93,23 +82,13 @@
   min-height: 26px;
   align-items: center;
   gap: 6px;
-  padding: 2px 10px 2px 7px;
+  padding: 2px 10px;
   border: 1px solid rgba(52, 52, 52, 0.35);
   border-radius: 999px;
   color: var(--badge-ink);
   background: var(--surface);
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.2;
-
-  &::before {
-    width: 6px;
-    height: 6px;
-    flex: 0 0 6px;
-    border: 1px solid var(--badge-ink);
-    border-radius: 50%;
-    background: var(--badge-gold);
-    content: "";
-  }
 }
 
 // Skill level from the CV, e.g. "React (erste Praxiserfahrung)" — quieter than the name
@@ -145,43 +124,80 @@
   }
 }
 
-// Yellow face, ink outline and number (ink on lemon ≈ 12:1 contrast);
-// the flat bubble labels below keep their own grey fill
+// Default face: flat ink, no outline (white number, see the ring marks);
+// the bubble labels below keep their own grey fill
 .number-mark__face {
-  fill: var(--lemon);
-  stroke: #959595; // lighter outline, as the badge emblems
-  stroke-width: 0.8;
-  stroke-linejoin: round;
+  fill: var(--badge-ink);
+  stroke: none;
 }
 
-// Bubble: centre the number in the body (x 6–32 of 34), right of the tail
-.portfolio-shell .number-mark--bubble .number-mark__text {
-  padding-left: 12%;
-  padding-bottom: 1px;
-}
+// Ring marks (case numbers, game counters): the hero badge's layers in ink —
+// a light grey rim, a fine white edge and the ink face with a white number
+// (white on ink ≈ 12:1)
+.number-mark--ring {
+  .number-mark__rim {
+    fill: color-mix(in srgb, var(--badge-ink) 22%, #fff);
+    stroke: none;
+  }
 
-// Bubble label: same shape, flat — no gold offset, no outline, light grey
-// fill; ink text on it ≈ 10:1 contrast (WCAG AA needs 4.5:1)
-.number-mark--bubble {
+  .number-mark__edge {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 3;
+  }
+
   .number-mark__face {
-    fill: #ebeae5;
+    fill: var(--badge-ink);
     stroke: none;
   }
 }
 
+// White number — more specific than the per-component colour rules
+.portfolio-shell .number-mark.number-mark--ring {
+  color: #fff;
+}
+
+// Digits sit ~0.4px above the circle's centre (line box vs. glyphs);
+// 1px top padding moves them 0.5px down onto the centre
+.portfolio-shell .number-mark--ring .number-mark__text {
+  padding-top: 1px;
+}
+
+// Bubble: centre the number in the body (x 6–32 of 34), right of the tail
+// Numbers in every mark: regular weight (beats the per-component weights)
+.portfolio-shell .number-mark .number-mark__text {
+  font-weight: 400;
+  letter-spacing: -0.6px;
+}
+
+.portfolio-shell .number-mark--bubble .number-mark__text {
+  padding-left: 12%; // body centre, right of the pointer; vertically centred
+}
+
+// Bubble: flat and simple — one ink face, no rim, white number
+// (white on ink ≈ 12:1)
+.number-mark--bubble .number-mark__face {
+  fill: var(--badge-ink);
+  stroke: none;
+}
+
 .portfolio-shell .number-mark--bubble {
-  color: var(--badge-ink);
+  color: #fff;
 }
 
 // Skill count — bubble pointing left at the card title
 .portfolio-shell .expertise-card__count {
   display: inline-grid;
-  width: 41px; // 34 × 24 shape at 29px height
-  height: 29px;
-  // Negative block margins: the 29px bubble must not stretch the title line
-  margin: -6px 0 -6px 8px;
+  width: 37px; // 32 × 21 shape
+  height: 24px;
+  // Negative block margins: the bubble must not stretch the title line
+  margin: -4px 0 -4px 8px;
   font-size: 10px;
   vertical-align: middle;
+  // middle aligns to the x-height; lift 1.5px so the bubble centres on the
+  // title's letters
+  position: relative;
+  top: -1.5px;
 }
 
 // ---------------------------------------------------------------------------
@@ -190,19 +206,10 @@
 
 @media (max-width: 700px) {
   .expertise-card {
-    grid-template-columns: 44px minmax(0, 1fr);
-    grid-template-areas:
-      "icon   content"
-      "skills skills";
-    column-gap: 12px;
     padding: 14px 0;
   }
 
-  .expertise-card__icon {
-    width: 44px;
-  }
-
   .portfolio-shell .expertise-card li {
-    font-size: 11px;
+    font-size: 13px;
   }
 }

@@ -1,10 +1,13 @@
 // Site header — wordmark, primary navigation, language switch, mobile menu.
 // Badge style (_badge.scss): pill shapes with a fine border, no shadows.
 
-// Full-width bar; content kept at the page-shell width
+// Full-width bar, sticky at the top; content kept at the page-shell width.
+// Once the page is scrolled (.is-scrolled) the bar gets lower: 84 → 60px
+// (phones: 60 → 52px).
 .site-header {
-  position: relative;
-  z-index: 10;
+  position: sticky;
+  top: 0;
+  z-index: 30;
   border-bottom: 1px solid var(--line);
   background: var(--surface);
 }
@@ -13,6 +16,7 @@
   display: flex;
   width: var(--shell-width);
   min-height: 84px;
+  transition: min-height 200ms ease;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
@@ -29,30 +33,32 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 3px 11px 3px 3px;
-  border-radius: 999px;
   text-decoration: none;
-}
-
-// Pixel code-brackets logo (770 × 413, ~1.86:1): shown bare at header height.
-.wordmark__symbol {
-  display: block;
-  width: 90px;
-  flex: 0 0 90px;
-
-  img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
 }
 
 .wordmark .wordmark__name {
   color: var(--badge-ink);
   font-family: var(--serif);
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 19px;
   letter-spacing: 0;
+}
+
+.site-header.is-scrolled .site-header__inner {
+  min-height: 60px;
+}
+
+// Reading progress — a 2px line in the main red over the header's bottom
+// border, scaled from the left by --scroll-progress (0–1, set in App.jsx)
+.scroll-progress {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: var(--accent-red);
+  transform: scaleX(var(--scroll-progress, 0));
+  transform-origin: left center;
+  pointer-events: none;
 }
 
 // ---------------------------------------------------------------------------
@@ -93,11 +99,13 @@
 }
 
 .site-header .primary-navigation a {
-  font-size: 12px;
+  font-size: 13px;
 }
 
-// Current section (first link) — ink pill
-.primary-navigation > a:first-child {
+// Current section (follows the scroll position, set in App.jsx) — ink pill.
+// The other links only get a light grey fill on hover, so "you are here"
+// and "you can go here" never look the same.
+.primary-navigation > a.is-active {
   color: #fff;
   background: var(--badge-ink);
 
@@ -149,7 +157,7 @@
 // Scoped to the header (outside .portfolio-shell) to beat the global span size
 .site-header .language-switch__divider {
   color: #b3b2ab;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .language-switch__option {
@@ -160,9 +168,9 @@
   place-items: center;
   padding: 0 6px;
   border: 0;
-  color: #8a8983;
+  color: #6d6c66; // ≥ 4.5:1
   background: none;
-  font-size: 12px !important; // beats the global button size (_base.scss)
+  font-size: 13px !important; // beats the global button size (_base.scss)
   font-weight: 600;
   letter-spacing: 0.06em;
   cursor: pointer;
@@ -202,7 +210,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .language-switch__option::after {
+  .language-switch__option::after,
+  .site-header__inner {
     transition: none;
   }
 }
@@ -235,7 +244,7 @@
   }
 
   .site-header .primary-navigation a {
-    font-size: 11px;
+    font-size: 13px;
   }
 }
 
@@ -250,13 +259,12 @@
     padding: 3px 9px 3px 3px;
   }
 
-  .wordmark__symbol {
-    width: 38px;
-    flex-basis: 38px;
+  .wordmark .wordmark__name {
+    font-size: 17px;
   }
 
-  .wordmark .wordmark__name {
-    font-size: 11px;
+  .site-header.is-scrolled .site-header__inner {
+    min-height: 52px;
   }
 
   .site-header__tools {
@@ -339,15 +347,15 @@
       border-radius: 0;
     }
 
-    > a:first-child,
+    > a.is-active,
     .nav-contact {
       justify-content: center;
       border: 0;
       border-radius: 999px;
     }
 
-    > a:first-child {
-      margin-bottom: 4px;
+    > a.is-active {
+      margin-block: 2px;
     }
 
     .nav-contact {
@@ -358,7 +366,7 @@
   }
 
   .site-header .primary-navigation a {
-    font-size: 12px;
+    font-size: 13px;
   }
 }
 
@@ -368,7 +376,7 @@
   }
 
   .wordmark .wordmark__name {
-    font-size: 9.9px;
+    font-size: 16px;
   }
 
   .site-header__tools {

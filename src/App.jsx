@@ -1,7 +1,5 @@
 import { Fragment, useEffect, useId, useRef, useState } from "react";
 import portrait from "./assets/daniel-popa-cutout.png";
-import siteLogo from "./assets/code-brackets-logo.svg";
-import heroBadge from "./assets/Hero-Badge.svg";
 
 const countdownDomains = {
   northstar: {
@@ -348,7 +346,6 @@ const copy = {
         "Er kommunizierte klar, freundlich und lösungsorientiert und genoss bei allen Beteiligten hohes Vertrauen und hohe Wertschätzung.",
       name: "Markus Wollny",
       role: "Leiter Web-Entwicklung, Computec Media",
-      source: "Zwischenzeugnis · Computec Media GmbH · September 2026",
     },
     expertise: {
       eyebrow: "Mein Werkzeugkasten",
@@ -464,8 +461,6 @@ const copy = {
       emailValue: "popadaniel.office@gmail.com",
       linkedinLabel: "LinkedIn",
       linkedinValue: "Profil ansehen",
-      phoneLabel: "Telefon",
-      phoneValue: "+49 152 556 546 20",
       locationLabel: "Standort",
       locationValue: "Nürnberg · Remote oder hybrid",
       statusLabel: "Kontakt",
@@ -512,7 +507,6 @@ const copy = {
     footer: {
       description:
         "Selbst gestaltet und entwickelt in Nürnberg – mit React, Vite und SCSS.",
-      top: "Nach oben",
       home: "Daniel Popa, zurück nach oben",
     },
   },
@@ -845,7 +839,6 @@ const copy = {
         "He communicated clearly, kindly and with a focus on solutions, and enjoyed a high level of trust and appreciation from everyone involved.",
       name: "Markus Wollny",
       role: "Head of Web Development, Computec Media",
-      source: "Employment reference, translated from German · Computec Media GmbH · September 2026",
     },
     expertise: {
       eyebrow: "The toolkit",
@@ -960,8 +953,6 @@ const copy = {
       emailValue: "popadaniel.office@gmail.com",
       linkedinLabel: "LinkedIn",
       linkedinValue: "View profile",
-      phoneLabel: "Mobile",
-      phoneValue: "+49 152 556 546 20",
       locationLabel: "Location",
       locationValue: "Nuremberg · Remote or hybrid",
       statusLabel: "Contact",
@@ -1007,7 +998,6 @@ const copy = {
     footer: {
       description:
         "Designed and built in Nuremberg, with React, Vite and SCSS.",
-      top: "Back to top",
       home: "Daniel Popa, back to top",
     },
   },
@@ -2137,209 +2127,6 @@ function LanguageSwitcher({ language, onChange, label }) {
   );
 }
 
-// Note-card icons — drawn on a 48-unit grid in the hero-badge style:
-// white shapes with an ink outline, accents in badge gold / teal.
-// Fill roles come from classes (see _note-card.scss): default white,
-// .is-gold, .is-teal, .is-ink, .is-line (stroke only).
-const noteIcons = {
-  // Fanned colour swatches — design tokens
-  swatches: (
-    <>
-      <rect x="17.5" y="7" width="13" height="31" rx="3" transform="rotate(-24 24 38)" />
-      <rect className="is-teal" x="17.5" y="7" width="13" height="31" rx="3" />
-      <rect className="is-gold" x="17.5" y="7" width="13" height="31" rx="3" transform="rotate(24 24 38)" />
-      <path className="is-line" d="M21 12.5h6M21 16.5h6" transform="rotate(24 24 38)" />
-      <circle cx="24" cy="38" r="2.6" />
-    </>
-  ),
-  // Stopwatch with a gold progress wedge — release countdown
-  stopwatch: (
-    <>
-      <rect x="19.5" y="3.5" width="9" height="5" rx="1.6" />
-      <path className="is-line" d="M24 8.5v3.5M35.4 13.6l2.4-2.4" />
-      <circle cx="24" cy="28" r="15" />
-      <path className="is-gold" d="M24 28V17a11 11 0 0 1 9.5 16.5Z" />
-      <path className="is-line" d="M24 15.5v1.6M36.5 28h-1.6M24 40.5v-1.6M11.5 28h1.6" />
-      <circle className="is-ink" cx="24" cy="28" r="2.1" />
-    </>
-  ),
-  // Cursor clicking a button, with a sparkle — UX details
-  cursor: (
-    // Scaled 1.15× and re-centred: the drawing (x 5–45, y 5–36) sat small and high
-    <g transform="translate(24 24) scale(1.15) translate(-25 -20.6)">
-      <rect className="is-teal" x="5" y="11" width="27" height="17" rx="5" />
-      <path className="is-line" d="M10.5 19.5h9" />
-      <path d="M24.5 21.5 39 27.4l-6.4 2.3-2.5 6.6Z" />
-      <path className="is-gold" d="m40.5 5 1.3 3.5 3.5 1.3-3.5 1.3-1.3 3.5-1.3-3.5-3.5-1.3 3.5-1.3Z" />
-    </g>
-  ),
-  // Game controller: d-pad, start/select, gold + teal buttons — the extra game
-  gamepad: (
-    <>
-      <path d="M14.5 14h19c5.4 0 8.5 3.5 9.6 8.8l1.7 8.9c.8 4.3-3.9 6.8-7.1 3.7L33.4 30H14.6l-4.3 5.4c-3.2 3.1-7.9.6-7.1-3.7l1.7-8.9C6 17.5 9.1 14 14.5 14Z" />
-      <path className="is-line" d="M14.5 19v8M10.5 23h8" />
-      <path className="is-line" d="M21.5 20h5" />
-      <circle className="is-gold" cx="32.5" cy="20.8" r="2.3" />
-      <circle className="is-teal" cx="37" cy="25.2" r="2.3" />
-    </>
-  ),
-  // Toolbox with a gold latch — skill set
-  toolbox: (
-    <>
-      <path className="is-line" d="M18 15v-4.5a2.5 2.5 0 0 1 2.5-2.5h7a2.5 2.5 0 0 1 2.5 2.5V15" />
-      <rect x="5" y="15" width="38" height="24" rx="4" />
-      <path className="is-line" d="M5 25h38M12 15v24M36 15v24" />
-      <rect className="is-gold" x="19.5" y="21.5" width="9" height="8" rx="2" />
-    </>
-  ),
-  // Browser window with a cursor — UI/UX design
-  interface: (
-    <>
-      <rect x="4" y="8" width="40" height="30" rx="4" />
-      <path className="is-teal" d="M4 12a4 4 0 0 1 4-4h32a4 4 0 0 1 4 4v4H4Z" />
-      <path className="is-line" d="M11 24h14M11 30h9" />
-      <rect className="is-gold" x="30" y="22" width="8" height="10" rx="2" />
-      <path d="m31 31 9 3.6-3.9 1.4-1.5 4Z" />
-    </>
-  ),
-  // Stacked layers — visual design & systems
-  systems: (
-    <>
-      <path d="M24 26 6 18l18-8 18 8Z" transform="translate(0 12)" />
-      <path className="is-teal" d="M24 26 6 18l18-8 18 8Z" transform="translate(0 6)" />
-      <path className="is-gold" d="M24 26 6 18l18-8 18 8Z" />
-    </>
-  ),
-  // Code window — frontend & WordPress
-  development: (
-    <>
-      <rect x="4" y="8" width="40" height="32" rx="4" />
-      <path className="is-line" d="M4 15h40" />
-      <circle className="is-gold" cx="9.5" cy="11.5" r="1.4" />
-      <circle className="is-teal" cx="14" cy="11.5" r="1.4" />
-      <path className="is-line" d="m17 22-5 5.5 5 5.5M31 22l5 5.5-5 5.5M26.5 20.5l-5 14" />
-    </>
-  ),
-  // Shield with a check — quality & accessibility
-  quality: (
-    <>
-      <path d="M24 4 40 10v11c0 10-6.8 17.3-16 21-9.2-3.7-16-11-16-21V10Z" />
-      <path className="is-teal" d="M24 9.5 35 13.7v7.5c0 7.3-4.7 12.6-11 15.4-6.3-2.8-11-8.1-11-15.4v-7.5Z" />
-      <path className="is-line is-light" d="m18.5 23 4 4 7.5-8" />
-      <circle className="is-gold" cx="38" cy="38" r="4" />
-    </>
-  ),
-  // Two speech bubbles — contact
-  chat: (
-    <>
-      <path d="M5 10a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v11a4 4 0 0 1-4 4H16l-7 5v-5.4A4 4 0 0 1 5 21Z" />
-      <path className="is-line" d="M11 13h16M11 18h10" />
-      <path className="is-teal" d="M43 23a4 4 0 0 0-4-4H25a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8l6 4.5V35a4 4 0 0 0 4-4Z" />
-      <circle className="is-gold" cx="27.5" cy="27" r="1.6" />
-      <circle className="is-gold" cx="32" cy="27" r="1.6" />
-      <circle className="is-gold" cx="36.5" cy="27" r="1.6" />
-    </>
-  ),
-  // Target with an arrow — the approach
-  target: (
-    <>
-      <circle cx="22" cy="26" r="16" />
-      <circle className="is-teal" cx="22" cy="26" r="10" />
-      <circle className="is-gold" cx="22" cy="26" r="4" />
-      <path className="is-line" d="M22 26 39 9M33 8.5h6.5V15" />
-    </>
-  ),
-  // Light bulb — why it matters
-  bulb: (
-    <>
-      <path d="M24 7a12 12 0 0 0-7 21.7c1.3 1 2 2.5 2 4.1V35h10v-2.2c0-1.6.7-3.1 2-4.1A12 12 0 0 0 24 7Z" />
-      <path className="is-line" d="m20 22 4 4 4-4M24 26v8" />
-      <rect className="is-gold" x="18.5" y="37" width="11" height="5" rx="2" />
-      <path className="is-line" d="M5 19h3.5M39.5 19H43M9.5 6.5l2.5 2.5M38.5 6.5 36 9" />
-    </>
-  ),
-  // Puzzle piece — my contribution
-  puzzle: (
-    <>
-      <path
-        className="is-teal"
-        d="M8 14h9a4.5 4.5 0 1 1 9 0h9v9a4.5 4.5 0 1 1 0 9v9h-9a4.5 4.5 0 1 0-9 0H8v-9a4.5 4.5 0 1 0 0-9Z"
-      />
-      <circle className="is-gold" cx="40" cy="9" r="4" />
-    </>
-  ),
-  // Unlabelled colour drop with a blank, dashed name tag — unsemantic token
-  unsemantic: (
-    <>
-      <path className="is-teal" d="M17 5c-6.5 9-11 15.3-11 21.5a11 11 0 0 0 22 0C28 20.3 23.5 14 17 5Z" />
-      <path className="is-line" d="M11.5 27.5a5.5 5.5 0 0 0 5.5 5.5" />
-      <path d="M30 23h9.5l5 6-5 6H30a2.5 2.5 0 0 1-2.5-2.5v-7A2.5 2.5 0 0 1 30 23Z" />
-      <path className="is-line" d="M31.5 29h5" strokeDasharray="1.6 1.8" />
-      <circle className="is-gold" cx="40" cy="29" r="1.6" />
-    </>
-  ),
-  // Signpost — career path
-  signpost: (
-    <>
-      <path className="is-line" d="M24 5v34" />
-      <path d="M24 9h14.5l4 4.5-4 4.5H24Z" />
-      <path className="is-teal" d="M24 21H9.5l-4 4.5 4 4.5H24Z" />
-      <rect className="is-gold" x="15" y="39" width="18" height="5" rx="2.5" />
-    </>
-  ),
-};
-
-// Round emblem shape: a circle centred on the icon and progress-ring centre
-// (84.89, 94), so icons and the coin on the lower edge keep their place.
-// The hero badge (Hero-Badge.svg) keeps its own hexagon.
-const EMBLEM_PATH = "M-1.11,94a86,86 0 1,0 172,0a86,86 0 1,0 -172,0Z";
-// Star from Hero-Badge.svg, used on the "achievement" coin.
-const STAR_PATH =
-  "M85.44,165.11l5.82,9.92c.09.16.24.27.42.3l11.3,2.43c.48.1.67.69.34,1.06l-7.7,8.55c-.12.13-.18.31-.16.49l1.16,11.42c.05.49-.45.85-.9.65l-10.58-4.63c-.16-.07-.35-.07-.52,0l-10.58,4.63c-.45.2-.95-.16-.9-.65l1.16-11.42c.02-.18-.04-.36-.16-.49l-7.7-8.55c-.33-.37-.14-.95.34-1.06l11.3-2.43c.18-.04.33-.15.42-.3l5.82-9.92c.25-.42.86-.42,1.11,0Z";
-
-// ---------------------------------------------------------------------------
-// Badge primitives (styles: _badge.scss) — shared by note cards and About.
-// ---------------------------------------------------------------------------
-
-// Round emblem: white face with an ink outline, no shadow. Children are
-// drawn in its 170×188 coordinate space.
-function HexEmblem({ children }) {
-  return (
-    <svg className="hex-emblem" viewBox="-2 -2 173.78 192" aria-hidden="true">
-      <path className="hex-emblem__shape" d={EMBLEM_PATH} />
-      {children}
-    </svg>
-  );
-}
-
-// One of the 48-unit icons, centred in the emblem.
-function HexIcon({ name }) {
-  return (
-    <g className="hex-emblem__icon" transform="translate(33.3 42.4) scale(2.15)">
-      {noteIcons[name]}
-    </g>
-  );
-}
-
-// White coin: "typing" dots, the gold star, or a waving hand.
-function BadgeCoin({ variant = "dots" }) {
-  return (
-    <span className={`badge-coin badge-coin--${variant}`} aria-hidden="true">
-      {variant === "star" ? (
-        <svg viewBox="65 163 40 40">
-          <path d={STAR_PATH} />
-        </svg>
-      ) : (
-        <>
-          <i />
-          <i />
-          <i />
-        </>
-      )}
-    </span>
-  );
-}
-
 // Win mascots — medieval characters in the icon style (white faces, ink
 // outline, teal/gold accents, no shadow). One is picked at random
 // for every won game; the caption comes from text.game.mascots[key].
@@ -2441,73 +2228,38 @@ const WIN_MASCOTS = {
 
 const WIN_MASCOT_KEYS = Object.keys(WIN_MASCOTS);
 
-// Card-back emblem: a flat 2D kite shield — rim, corner brackets, rivets and a
-// two-tone face split by a seam, all as flat fills with ink outlines in the
-// page's warm greys — with a "click" mark forged in the same style: a cursor
-// with a grey metal rim, a two-tone red face split by a seam and rivets, plus
-// three click rays as riveted metal plates.
-const SHIELD_CURSOR = "M0 0V26L6.5 20 11 30 15.5 28 11 18.5H19.5Z";
+// Card-back emblem in the ring style of the number marks: a kite shield with
+// a light red rim, a fine light edge and a white face, carrying a king's head
+// as red line art (redrawn after the reference icon: crenellated crown with
+// a heart, closed eyes, curled moustache, pointed beard).
+const SHIELD_PATH =
+  "M32 4 53 10.2q3.6 1.3 3.6 5.2L55.8 40Q53.8 53 32 67.4 10.2 53 8.2 40L7.4 15.4q0-3.9 3.6-5.2Z";
 
 function ShieldEmblem() {
-  // Each card renders its own shield, so the clip id must be unique
-  const clipId = useId();
   return (
     <svg className="win-mascot token-memory__mascot" viewBox="0 0 64 72" aria-hidden="true">
-      {/* Rim */}
-      <path className="shield__rim" d="M32 3 54 9.5q4 1.5 4 6L57 40q-2 14-25 29Q9 54 7 40L6 15.5q0-4.5 4-6Z" />
-      {/* Two-tone face, split by a seam */}
-      <path className="shield__dark" d="M32 7.4 51.6 13q2.4 1 2.4 3.8l-.8 22.6Q51.4 51.4 32 64.6 12.6 51.4 10.8 39.4L10 16.8q0-2.8 2.4-3.8Z" />
-      <path className="shield__light" d="M32 7.4 12.4 13q-2.4 1-2.4 3.8l.8 22.6Q12.6 51.4 32 64.6Z" />
-      <path className="shield__seam" d="M32 7.4v57.2" />
-      {/* Corner brackets */}
-      <path className="shield__rim" d="M10 16.8q0-2.8 2.4-3.8l5-1.4v2.8l-2.8.8v4.2l-4.5.2Z" />
-      <path className="shield__rim" d="M54 16.8q0-2.8-2.4-3.8l-5-1.4v2.8l2.8.8v4.2l4.5.2Z" />
-      <path className="shield__rim" d="m11.2 41.6 4.4-.8.2 4.2 3.2 1.8-1.6 2.6q-4.6-3.2-6.2-7.8Z" />
-      <path className="shield__rim" d="m52.8 41.6-4.4-.8-.2 4.2-3.2 1.8 1.6 2.6q4.6-3.2 6.2-7.8Z" />
-      <path className="shield__rim" d="M28.8 61.8 32 59.6l3.2 2.2-3.2 2.8Z" />
-      {/* Rivets */}
-      <g className="shield__rivet">
-        <circle cx="32" cy="5.2" r="1" />
-        <circle cx="20.4" cy="7.6" r="1" />
-        <circle cx="43.6" cy="7.6" r="1" />
-        <circle cx="8" cy="23" r="1" />
-        <circle cx="56" cy="23" r="1" />
-        <circle cx="8.4" cy="35" r="1" />
-        <circle cx="55.6" cy="35" r="1" />
-        <circle cx="14.6" cy="53.4" r="1" />
-        <circle cx="49.4" cy="53.4" r="1" />
-        <circle cx="32" cy="66.4" r="1" />
-        <circle cx="12.8" cy="16" r=".9" />
-        <circle cx="51.2" cy="16" r=".9" />
-        <circle cx="13.6" cy="44.2" r=".9" />
-        <circle cx="50.4" cy="44.2" r=".9" />
-      </g>
-      {/* Click rays: riveted metal plates around the cursor tip */}
-      {[-90, -45, 0].map((angle) => (
-        <g key={angle} transform={`translate(29.5 27) rotate(${angle})`}>
-          <rect className="shield__ray" x="-1.1" y="-9.6" width="2.2" height="4.2" rx=".6" />
-          <circle className="shield__ray-rivet" cx="0" cy="-7.5" r=".5" />
-        </g>
-      ))}
-      {/* Cursor: ink outline, grey rim band, two-tone red face, seam, rivets */}
-      <g transform="translate(29.5 27) scale(.68)">
-        <defs>
-          <clipPath id={clipId}>
-            <path d={SHIELD_CURSOR} />
-          </clipPath>
-        </defs>
-        <path className="shield__cursor-outline" d={SHIELD_CURSOR} />
-        <path className="shield__cursor-rim" d={SHIELD_CURSOR} />
-        <path className="shield__cursor-face" d={SHIELD_CURSOR} />
-        <path className="shield__cursor-shade" d="M0 0 13.25 29 32 32V-2Z" clipPath={`url(#${clipId})`} />
-        <path className="shield__cursor-seam" d="M0 0 13.25 29" />
-        <path className="shield__cursor-line" d={SHIELD_CURSOR} />
-        <g className="shield__rivet shield__cursor-rivets">
-          <circle cx="-0.72" cy="-1.67" r="1.12" />
-          <circle cx="-1.29" cy="27.29" r="1.12" />
-          <circle cx="21.19" cy="19.17" r="1.12" />
-          <circle cx="14" cy="30.66" r="1.12" />
-        </g>
+      <path className="shield__rim" d={SHIELD_PATH} />
+      <path className="shield__edge" d={SHIELD_PATH} />
+      <path className="shield__face" d={SHIELD_PATH} />
+      {/* King — drawn on a 40 × 48 grid, centred on the face */}
+      <g className="shield__king" transform="translate(14.8 15.6) scale(.86)">
+        {/* Crown: three crenellated towers, band, heart */}
+        <path d="M7 15V5h5v3h4V3h8v5h4V5h5v10Z" />
+        <path d="M7 11h26" />
+        <path d="M20 9.4l-1.9-1.9a1.15 1.15 0 0 1 1.9-1.3 1.15 1.15 0 0 1 1.9 1.3Z" />
+        {/* Head: sides and jaw, hair tufts */}
+        <path d="M8.5 15v12c0 4 1.6 7 4 9M31.5 15v12c0 4-1.6 7-4 9" />
+        <path d="M8.5 18 6.3 21M31.5 18l2.2 3" />
+        {/* Brows, closed eyes, nose */}
+        <path d="M11.5 19.2q2.8-1.8 5.6 0M22.9 19.2q2.8-1.8 5.6 0" />
+        <path d="M12 22.4q2.5 1.5 5 0M23 22.4q2.5 1.5 5 0" />
+        <path d="M20 19.5V28q-1.2 1-2.6.4" />
+        {/* Curled moustache, mouth */}
+        <path d="M20 30.4c-2.2-1.9-5.6-1.6-7.4.8-.5.8.4 1.6 1.1.9M20 30.4c2.2-1.9 5.6-1.6 7.4.8.5.8-.4 1.6-1.1.9" />
+        <path d="M17.8 33.4h4.4" />
+        {/* Pointed beard with two curls */}
+        <path d="M12.5 33c0 6.4 3.4 11 7.5 14 4.1-3 7.5-7.6 7.5-14" />
+        <path d="M17 37.5q2 1.8 0 4M23 37.5q-2 1.8 0 4" />
       </g>
     </svg>
   );
@@ -2616,19 +2368,19 @@ function TokenMemory({ text, language }) {
       <div className="token-memory__bar">
         <div className="token-memory__stats">
           <span className="token-memory__stat">
-            <NumberMark shape="circle" className="token-memory__count" hidden>
+            <NumberMark shape="ring" className="token-memory__count" hidden>
               {String(moves).padStart(2, "0")}
             </NumberMark>
             {text.moves}
           </span>
           <span className="token-memory__stat">
-            <NumberMark shape="circle" className="token-memory__count" hidden>
+            <NumberMark shape="ring" className="token-memory__count" hidden>
               {matched.length}/{MEMORY_TOKENS.length}
             </NumberMark>
             {text.pairs}
           </span>
           <span className="token-memory__stat">
-            <NumberMark shape="circle" className="token-memory__count" hidden>
+            <NumberMark shape="ring" className="token-memory__count" hidden>
               {discovered.length}/{WIN_MASCOT_KEYS.length}
             </NumberMark>
             {text.mascotCount}
@@ -2719,28 +2471,17 @@ function TokenMemory({ text, language }) {
                   {found ? (
                     <WinMascot name={key} />
                   ) : (
-                    // Locked: a flat 2D padlock drawn like the shield — rim,
-                    // corner brackets, rivets, two-tone body split by a seam,
-                    // red keyhole; muted, no hint at the mascot
+                    // Locked: a padlock in the ring style — light rim, fine
+                    // edge, lemon body, ink keyhole; no hint at the mascot
                     <svg className="win-mascot token-memory__lock" viewBox="0 0 64 64" aria-hidden="true">
-                      <path className="lock__rim" d="M21 31V21a11 11 0 0 1 22 0v10h-4.4V21a6.6 6.6 0 0 0-13.2 0v10Z" />
-                      <path className="lock__rim" d="M13 30h38a2 2 0 0 1 2 2v25a2 2 0 0 1-2 2H13a2 2 0 0 1-2-2V32a2 2 0 0 1 2-2Z" />
-                      <path className="lock__dark" d="M15.4 33.4h33.2v22.2H15.4Z" />
-                      <path className="lock__light" d="M15.4 33.4H32v22.2H15.4Z" />
-                      <path className="lock__seam" d="M32 33.4v22.2" />
-                      <path className="lock__rim" d="M15.4 33.4h5v2.2h-2.8v2.8h-2.2Z" />
-                      <path className="lock__rim" d="M48.6 33.4h-5v2.2h2.8v2.8h2.2Z" />
-                      <path className="lock__rim" d="M15.4 55.6h5v-2.2h-2.8v-2.8h-2.2Z" />
-                      <path className="lock__rim" d="M48.6 55.6h-5v-2.2h2.8v-2.8h2.2Z" />
-                      <g className="lock__rivet">
-                        <circle cx="13.2" cy="31.8" r=".9" />
-                        <circle cx="32" cy="31.8" r=".9" />
-                        <circle cx="50.8" cy="31.8" r=".9" />
-                        <circle cx="13.2" cy="57.2" r=".9" />
-                        <circle cx="32" cy="57.2" r=".9" />
-                        <circle cx="50.8" cy="57.2" r=".9" />
-                      </g>
-                      <path className="lock__key" d="M32 38.4a3.2 3.2 0 0 1 1.8 5.8l1.1 5.6h-5.8l1.1-5.6a3.2 3.2 0 0 1 1.8-5.8Z" />
+                      {/* Shackle: a light rim line with a lemon core */}
+                      <path className="lock__shackle-rim" d="M22 31V22a10 10 0 0 1 20 0v9" />
+                      <path className="lock__shackle" d="M22 31V22a10 10 0 0 1 20 0v9" />
+                      {/* Body: rim, fine edge, lemon face — the ring style */}
+                      <rect className="lock__rim" x="13" y="30" width="38" height="28" rx="6" />
+                      <rect className="lock__edge" x="13" y="30" width="38" height="28" rx="6" />
+                      <rect className="lock__face" x="13" y="30" width="38" height="28" rx="6" />
+                      <path className="lock__key" d="M32 37.4a3.4 3.4 0 0 1 1.9 6.2l1.2 6h-6.2l1.2-6a3.4 3.4 0 0 1 1.9-6.2Z" />
                     </svg>
                   )}
                 </span>
@@ -2760,25 +2501,42 @@ function TokenMemory({ text, language }) {
 // tail vertically centred); "circle" is a plain disc.
 const NUMBER_MARK_SHAPES = {
   bubble: {
-    // Body x 6–32 (26 wide) + tail on the left
-    viewBox: "0 0 34 24",
-    d: "M8.5 3h21A2.5 2.5 0 0 1 32 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-21A2.5 2.5 0 0 1 6 18.5v-4L1.6 12 6 9.5v-4A2.5 2.5 0 0 1 8.5 3Z",
+    // Body x 6–30, y 3–18 (24 × 15) + a triangular pointer on the left.
+    // Flat: one dark face, white number (see _expertise.scss)
+    viewBox: "0 0 32 21",
+    d: "M8.5 3h19A2.5 2.5 0 0 1 30 5.5v10a2.5 2.5 0 0 1-2.5 2.5h-19A2.5 2.5 0 0 1 6 15.5v-2L.8 10.5 6 7.5v-2A2.5 2.5 0 0 1 8.5 3Z",
   },
   circle: {
     viewBox: "0 0 24 24",
     d: "M12 2.6a9.4 9.4 0 1 1 0 18.8 9.4 9.4 0 0 1 0-18.8Z",
   },
+  // Hero-badge style in yellow, round: a wide light rim, a fine light edge
+  // and the lemon face (100 × 100 space, rendered at 40px: rim ≈ 4.6px)
+  ring: {
+    viewBox: "0 0 100 100",
+    layers: [
+      ["rim", "M50 2a48 48 0 1 1 0 96 48 48 0 0 1 0-96Z"],
+      ["edge", "M50 13.5a36.5 36.5 0 1 1 0 73 36.5 36.5 0 0 1 0-73Z"],
+      ["face", "M50 13.5a36.5 36.5 0 1 1 0 73 36.5 36.5 0 0 1 0-73Z"],
+    ],
+  },
 };
 
 function NumberMark({ shape, className = "", hidden = false, children }) {
-  const { viewBox, d } = NUMBER_MARK_SHAPES[shape];
+  const { viewBox, d, layers } = NUMBER_MARK_SHAPES[shape];
   return (
     <span
       className={`number-mark number-mark--${shape} ${className}`}
       aria-hidden={hidden || undefined}
     >
       <svg viewBox={viewBox} fill="none" aria-hidden="true">
-        <path className="number-mark__face" d={d} />
+        {layers ? (
+          layers.map(([part, path]) => (
+            <path className={`number-mark__${part}`} d={path} key={part} />
+          ))
+        ) : (
+          <path className="number-mark__face" d={d} />
+        )}
       </svg>
       <span className="number-mark__text">{children}</span>
     </span>
@@ -2787,8 +2545,9 @@ function NumberMark({ shape, className = "", hidden = false, children }) {
 
 // Contact speech bubble: rounded rectangle (r 18) with a short tail at the
 // bottom left pointing down, drawn in the -2 -2 211 194 viewBox (body 207 × 150).
-// White face with a fine light outline (no shadow); the SVG stretches to the
-// text box, non-scaling strokes keep the line thin.
+// Styled like the ring number marks in the card-back greys: a light grey rim,
+// a fine white edge and the grey face of the cards (no shadow). The SVG stretches to the text box; non-scaling
+// strokes keep rim and edge the same width at any size.
 const BUBBLE_PATH =
   "M18 0H189A18 18 0 0 1 207 18V132A18 18 0 0 1 189 150H82L40 188L46 150H18A18 18 0 0 1 0 132V18A18 18 0 0 1 18 0Z";
 
@@ -2800,7 +2559,9 @@ function ContactBubble() {
       preserveAspectRatio="none"
       aria-hidden="true"
     >
-      <path className="contact__bubble-face" d={BUBBLE_PATH} vectorEffect="non-scaling-stroke" />
+      <path className="contact__bubble-rim" d={BUBBLE_PATH} vectorEffect="non-scaling-stroke" />
+      <path className="contact__bubble-edge" d={BUBBLE_PATH} vectorEffect="non-scaling-stroke" />
+      <path className="contact__bubble-face" d={BUBBLE_PATH} />
     </svg>
   );
 }
@@ -2876,21 +2637,13 @@ function PollMark({ type, className }) {
   );
 }
 
-function NoteCard({ icon, label, tab, coin = "dots", children }) {
+function NoteCard({ label, tab, children }) {
   return (
     <div className="note-card badge-card">
-      <div className="note-card__head">
-        <span className="badge-emblem note-card__emblem">
-          <HexEmblem>
-            <HexIcon name={icon} />
-          </HexEmblem>
-          <BadgeCoin variant={coin} />
-        </span>
-        <span className="badge-tags">
-          <span className="badge-tag">{label}</span>
-          <span className="badge-tag badge-tag--fact">{tab}</span>
-        </span>
-      </div>
+      <span className="badge-tags">
+        <span className="badge-tag">{label}</span>
+        <span className="badge-tag badge-tag--fact">{tab}</span>
+      </span>
       <p className="note-card__text">{children}</p>
     </div>
   );
@@ -2950,17 +2703,12 @@ function ClampedText({ text, lines = 4, className = "", moreLabel, lessLabel }) 
 }
 
 // Takeaways: one wide box, four columns divided by fine dotted lines
-// (emblem, label, text clamped to 3 lines with "Mehr lesen")
+// (label, text clamped to 3 lines with "Mehr lesen")
 function Takeaways({ items, moreLabel, lessLabel }) {
   return (
     <div className="takeaways">
       {items.map((item) => (
         <div className="takeaway" key={item.icon}>
-          <span className="badge-emblem takeaway__icon">
-            <HexEmblem>
-              <HexIcon name={item.icon} />
-            </HexEmblem>
-          </span>
           <span className="badge-tag badge-tag--ghost">{item.label}</span>
           <ClampedText
             className="takeaway__text"
@@ -3031,14 +2779,84 @@ function QuoteMark() {
   );
 }
 
+// Hero experience badge — a flat rounded hexagon: lighter red rim, a fine
+// light edge, the face in the main red, and a white "10+". The slanted glyphs
+// are the previous badge's own (src/assets/Hero-Badge.backup.svg), now drawn
+// as solid fills instead of outlines.
+function HeroBadge() {
+  return (
+    <svg className="hero-badge" viewBox="0 0 100 112" role="img" aria-label="10+">
+      <path className="hero-badge__rim" d="M45.28 16.08 Q50.00 13.35 54.72 16.08 L82.22 31.95 Q86.94 34.68 86.94 40.13 L86.94 71.87 Q86.94 77.32 82.22 80.05 L54.72 95.92 Q50.00 98.65 45.28 95.92 L17.78 80.05 Q13.06 77.32 13.06 71.87 L13.06 40.13 Q13.06 34.67 17.78 31.95Z" />
+      <path className="hero-badge__edge" d="M50.00 25.00 L76.85 40.50 L76.85 71.50 L50.00 87.00 L23.15 71.50 L23.15 40.50Z" />
+      <path className="hero-badge__face" d="M50.00 25.00 L76.85 40.50 L76.85 71.50 L50.00 87.00 L23.15 71.50 L23.15 40.50Z" />
+      {/* Glyphs scaled from the old 176 × 210 badge space, "10" centred */}
+      <g transform="translate(17.3 21.2) scale(.36)">
+        <path className="hero-badge__number" d="M52.29,61.77h15.23c.36,0,.64.12.86.38.21.25.29.55.21.91l-8.9,72.48c-.07.36-.23.66-.48.91-.25.25-.55.38-.91.38h-14.8c-.36,0-.64-.12-.86-.38-.21-.25-.29-.55-.21-.91l6.97-56.72c0-.14-.07-.29-.21-.43-.14-.14-.29-.18-.43-.11l-10.4,2.47-.43.11c-.72,0-1-.39-.86-1.18l1.18-11.26c.14-.71.54-1.21,1.18-1.5l11.26-4.83c.5-.21,1.04-.32,1.61-.32Z" />
+        <path className="hero-badge__number" d="M76.47,132.38c-4.04-3.82-6.06-9.06-6.06-15.71,0-1.36.11-2.79.32-4.29l3.22-26.16c.93-7.79,3.98-13.96,9.17-18.5,5.18-4.54,11.74-6.81,19.68-6.81,7.22,0,12.87,1.89,16.94,5.68,4.08,3.79,6.11,9.01,6.11,15.66,0,.79-.07,2.11-.21,3.97l-3.22,26.16c-1,7.94-4.11,14.21-9.33,18.82-5.22,4.61-11.8,6.92-19.73,6.92-7.22,0-12.85-1.91-16.89-5.74ZM101.88,120.26c1.75-1.68,2.77-3.98,3.06-6.92l3.43-27.77c.07-.43.11-1,.11-1.72,0-2.43-.66-4.32-1.98-5.68-1.32-1.36-3.16-2.04-5.52-2.04-2.65,0-4.83.84-6.54,2.52s-2.75,3.98-3.11,6.92l-3.43,27.77c-.07.36-.11.89-.11,1.61,0,2.43.66,4.34,1.98,5.74,1.32,1.39,3.13,2.09,5.42,2.09,2.72,0,4.95-.84,6.7-2.52Z" />
+        <path className="hero-badge__plus" d="M151.68,51.48c.13.16.18.35.13.57l-.81,6.51c-.04.22-.15.41-.3.57s-.35.23-.57.23h-8.93c-.18,0-.31.11-.4.34l-1.07,9.06c-.05.22-.15.41-.3.57s-.35.23-.57.23h-6.25c-.49,0-.74-.27-.74-.81l1.14-9.06c0-.22-.09-.34-.27-.34h-8.93c-.22,0-.4-.08-.54-.23-.13-.16-.18-.35-.13-.57l.81-6.51c0-.22.09-.41.27-.57.18-.16.38-.23.6-.23h8.93c.09,0,.17-.03.23-.1.07-.07.1-.14.1-.23l1.14-9.27c.04-.22.14-.41.3-.57.16-.16.35-.24.57-.24h6.24c.22,0,.4.08.54.24.13.16.18.35.13.57l-1.14,9.27c0,.22.11.34.34.34h8.93c.22,0,.4.08.54.23Z" />
+      </g>
+    </svg>
+  );
+}
+
+// Page sections → menu entry they belong to (null = no entry)
+const NAV_SECTIONS = [
+  ["#work", "work"],
+  ["#about", "about"],
+  [".testimonial", "about"],
+  ["#expertise", "expertise"],
+  ["#game", null],
+  ["#contact", null],
+];
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [language, setLanguage] = useState("de");
   const [previewOpen, setPreviewOpen] = useState(false);
   const [keyboardOpen, setKeyboardOpen] = useState(false);
 
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState(null);
+  const headerRef = useRef(null);
+
   const closeMenu = () => setMenuOpen(false);
   const text = copy[language];
+
+  // Sticky header: compact once the page is scrolled; the progress line under
+  // it shows how much of the page has been read (--scroll-progress, 0–1).
+  // One update per frame; the line is set directly, without a re-render.
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+      headerRef.current?.style.setProperty("--scroll-progress", progress.toFixed(4));
+      setScrolled(window.scrollY > 8);
+      // Current section for the menu: the last section whose top has passed
+      // a line a third down the viewport. The hero has no menu entry, so at
+      // the top nothing is highlighted; sections without an entry (the game,
+      // the contact block with its own red button) highlight nothing either.
+      const line = window.innerHeight / 3;
+      let current = null;
+      for (const [selector, key] of NAV_SECTIONS) {
+        const element = document.querySelector(selector);
+        if (element && element.getBoundingClientRect().top <= line) current = key;
+      }
+      setActiveSection(current);
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const locale = copy[language];
@@ -3061,7 +2879,11 @@ function App() {
         {text.skip}
       </a>
 
-      <header className="site-header" id="page-top">
+      <header
+        className={`site-header${scrolled ? " is-scrolled" : ""}`}
+        id="page-top"
+        ref={headerRef}
+      >
         <div className="site-header__inner">
           <a
             className="wordmark"
@@ -3069,9 +2891,6 @@ function App() {
             aria-label={text.home}
             onClick={closeMenu}
           >
-            <span className="wordmark__symbol">
-              <img src={siteLogo} alt="" />
-            </span>
             <span className="wordmark__name">Daniel Popa</span>
           </a>
 
@@ -3080,13 +2899,28 @@ function App() {
             id="primary-navigation"
             aria-label={text.nav.label}
           >
-            <a href="#work" onClick={closeMenu}>
+            <a
+              href="#work"
+              className={activeSection === "work" ? "is-active" : undefined}
+              aria-current={activeSection === "work" ? "location" : undefined}
+              onClick={closeMenu}
+            >
               {text.nav.work}
             </a>
-            <a href="#about" onClick={closeMenu}>
+            <a
+              href="#about"
+              className={activeSection === "about" ? "is-active" : undefined}
+              aria-current={activeSection === "about" ? "location" : undefined}
+              onClick={closeMenu}
+            >
               {text.nav.about}
             </a>
-            <a href="#expertise" onClick={closeMenu}>
+            <a
+              href="#expertise"
+              className={activeSection === "expertise" ? "is-active" : undefined}
+              aria-current={activeSection === "expertise" ? "location" : undefined}
+              onClick={closeMenu}
+            >
               {text.nav.expertise}
             </a>
             <a className="nav-contact" href="#contact" onClick={closeMenu}>
@@ -3113,6 +2947,8 @@ function App() {
             </button>
           </div>
         </div>
+        {/* Reading progress: a fine red line along the header's bottom edge */}
+        <div className="scroll-progress" aria-hidden="true" />
       </header>
 
       <div className="portfolio-shell">
@@ -3151,7 +2987,7 @@ function App() {
             <div className="hero-art">
               <div className="hero-art__profile">
                 <div className="hero-art__badge__wrapper">
-                  <img className="hero-art__badge" src={heroBadge} alt="" />
+                  <HeroBadge />
 
                   <div className="hero-art__badge__text">
                     <span>
@@ -3192,7 +3028,6 @@ function App() {
                 </h2>
               </div>
               <NoteCard
-                icon="swatches"
                 label={text.work.noteLabel}
                 tab={text.work.noteTab}
               >
@@ -3211,7 +3046,7 @@ function App() {
                 className="quality-card quality-card--wide badge-card"
                 aria-labelledby="quality-system-title"
               >
-                <NumberMark shape="circle" className="quality-card__number" hidden>
+                <NumberMark shape="ring" className="quality-card__number" hidden>
                   01
                 </NumberMark>
                 <div className="quality-card__copy">
@@ -3230,7 +3065,7 @@ function App() {
                 className="quality-card quality-card--wide badge-card"
                 aria-labelledby="quality-cls-title"
               >
-                <NumberMark shape="circle" className="quality-card__number" hidden>
+                <NumberMark shape="ring" className="quality-card__number" hidden>
                   02
                 </NumberMark>
                 <div className="quality-card__copy">
@@ -3249,7 +3084,7 @@ function App() {
                 className="quality-card quality-card--wide badge-card"
                 aria-labelledby="quality-keyboard-title"
               >
-                <NumberMark shape="circle" className="quality-card__number" hidden>
+                <NumberMark shape="ring" className="quality-card__number" hidden>
                   03
                 </NumberMark>
                 <div className="quality-card__copy">
@@ -3297,8 +3132,6 @@ function App() {
                 </h2>
               </div>
               <NoteCard
-                coin="star"
-                icon="signpost"
                 label={text.about.noteLabel}
                 tab={text.about.noteTab}
               >
@@ -3354,15 +3187,14 @@ function App() {
                 <SilhouetteAvatar />
                 <span className="testimonial__who">
                   {/* Name set in a handwriting face — a typographic sign-off,
-                      not a reproduction of the real signature */}
-                  <span className="testimonial__signature" aria-hidden="true">
+                      not a reproduction of the real signature. It is the only
+                      place the name appears, so screen readers read it too. */}
+                  <span className="testimonial__signature">
                     {text.testimonial.name}
                   </span>
-                  <strong>{text.testimonial.name}</strong>
                   <span>{text.testimonial.role}</span>
                 </span>
               </figcaption>
-              <p className="testimonial__source">{text.testimonial.source}</p>
             </figure>
           </section>
 
@@ -3380,7 +3212,6 @@ function App() {
                 </h2>
               </div>
               <NoteCard
-                icon="toolbox"
                 label={text.expertise.noteLabel}
                 tab={`${text.expertise.groups.length} ${text.expertise.areaUnit} · ${text.expertise.groups.reduce((total, group) => total + group.skills.length, 0)} ${text.expertise.skillUnit}`}
               >
@@ -3391,11 +3222,6 @@ function App() {
               <div className="expertise-grid">
                 {text.expertise.groups.map((group) => (
                   <article className="expertise-card" key={group.title}>
-                    <span className="badge-emblem expertise-card__icon">
-                      <HexEmblem>
-                        <HexIcon name={group.icon} />
-                      </HexEmblem>
-                    </span>
                     <div className="expertise-card__content">
                       {/* The last word and the count never break apart, so a long
                           title wraps onto two rows with the count after it */}
@@ -3447,7 +3273,6 @@ function App() {
                 </h2>
               </div>
               <NoteCard
-                icon="gamepad"
                 label={text.game.noteLabel}
                 tab={text.game.noteTab}
               >
@@ -3464,12 +3289,6 @@ function App() {
           >
             <div className="section-wrap contact__inner">
               <div className="contact__intro">
-                <span className="badge-emblem contact__emblem">
-                  <HexEmblem>
-                    <HexIcon name="chat" />
-                  </HexEmblem>
-                  <BadgeCoin />
-                </span>
                 <div className="contact__heading">
                   <p className="eyebrow">{text.contact.eyebrow}</p>
                   <h2 id="contact-title">
@@ -3499,8 +3318,10 @@ function App() {
                   </span>
                   <span className="contact-channel__value">
                     <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
-                      <rect x="2.5" y="4" width="15" height="12" rx="2" />
-                      <path d="m3.5 6 6.5 5 6.5-5" />
+                      {/* Sits ~0.7px below the box centre: centred on the
+                          lowercase letters of the address, not on the line box */}
+                      <rect x="1.65" y="5.3" width="16.7" height="11" rx="2.2" />
+                      <path d="m3 7.2 7 5 7-5" />
                     </svg>
                     <span>{text.contact.emailValue}</span>
                   </span>
@@ -3515,53 +3336,18 @@ function App() {
                     {text.contact.linkedinLabel}
                   </span>
                   <span className="contact-channel__value">
-                    <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
-                      <rect
-                        x="1"
-                        y="1"
-                        width="18"
-                        height="18"
-                        rx="3.5"
-                        stroke="currentColor"
-                        strokeWidth="1.25"
-                      />
-                      <circle
-                        cx="5.1"
-                        cy="5.1"
-                        r="1.1"
-                        stroke="currentColor"
-                        strokeWidth="1.1"
-                      />
-                      <path
-                        d="M4 8.2h2.2v7.6H4zM8.2 8.2h2.2v1.1c.55-.8 1.35-1.3 2.5-1.3 2.1 0 3.2 1.35 3.2 3.8v4h-2.2v-3.8c0-1.4-.55-2.2-1.65-2.2-1.2 0-1.85.85-1.85 2.3v3.7H8.2z"
-                        stroke="currentColor"
-                        strokeWidth="1.2"
-                        strokeLinejoin="round"
-                      />
+                    {/* LinkedIn mark (single-colour): a rounded frame with solid
+                        "in" letters — strong shapes, so it stays crisp at 18px */}
+                    <svg
+                      className="contact-channel__icon-linkedin"
+                      aria-hidden="true"
+                      viewBox="0 0 20 20"
+                    >
+                      <rect className="contact-channel__icon-frame" x="1.4" y="1.4" width="17.2" height="17.2" rx="4" />
+                      <path d="M5.75 4.3a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8ZM4.55 8.3h2.4v7.4h-2.4ZM8.7 8.3h2.3v1.05c.5-.8 1.4-1.25 2.5-1.25 2.2 0 3.2 1.4 3.2 3.9v3.7h-2.35v-3.45c0-1.25-.5-2-1.55-2-1.15 0-1.8.8-1.8 2.15v3.3H8.7Z" />
                     </svg>
                     <span>{text.contact.linkedinValue}</span>
                     <ArrowIcon diagonal />
-                  </span>
-                </a>
-                <a
-                  className="contact-channel contact-channel--phone"
-                  href="tel:+4915255654620"
-                >
-                  <span className="contact-channel__label">
-                    {text.contact.phoneLabel}
-                  </span>
-                  <span className="contact-channel__value">
-                    <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
-                      <rect
-                        x="5.25"
-                        y="2.25"
-                        width="9.5"
-                        height="15.5"
-                        rx="2"
-                      />
-                      <path d="M8 4.5h4M9.25 15.25h1.5" />
-                    </svg>
-                    <span>{text.contact.phoneValue}</span>
                   </span>
                 </a>
                 <div className="contact-channel contact-channel--location">
@@ -3613,18 +3399,9 @@ function App() {
       <footer className="site-footer">
         <div className="site-footer__inner">
           <a className="wordmark" href="#page-top" aria-label={text.footer.home}>
-            <span className="wordmark__symbol">
-              <img src={siteLogo} alt="" />
-            </span>
             <span className="wordmark__name">Daniel Popa</span>
           </a>
           <p>{text.footer.description}</p>
-          <a className="back-to-top" href="#page-top" aria-label={text.footer.top}>
-            {/* Fine wire arrow pointing up */}
-            <svg aria-hidden="true" viewBox="0 0 24 24">
-              <path d="M12 19V5M6.5 10.5 12 5l5.5 5.5" />
-            </svg>
-          </a>
           <span className="site-footer__copyright">
             © {copyrightYear} Daniel Popa
           </span>

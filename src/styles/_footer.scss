@@ -1,6 +1,5 @@
 // Footer — full-width dark bar (inverted), content kept at the page-shell
-// width, plus the floating back-to-top button. Wordmark base styles live in
-// _header.scss; the footer inverts them.
+// width. Wordmark base styles live in _header.scss; the footer inverts them.
 
 .site-footer {
   margin: 0;
@@ -28,11 +27,6 @@
   .wordmark__name {
     color: #fff;
   }
-
-  // Logo as an inverted greyscale version: light greys on the dark bar
-  .wordmark__symbol img {
-    filter: grayscale(1) invert(1);
-  }
 }
 
 // Credit line with a small gold dot
@@ -42,69 +36,22 @@
   gap: 8px;
   margin: 0;
   color: #c9c9c3;
-  font-size: 12px;
+  font-size: 13px;
 
   &::before {
     width: 9px;
     height: 9px;
     flex: 0 0 9px;
     border-radius: 50%;
-    background: var(--badge-gold);
+    background: var(--accent-red);
     content: "";
   }
 }
 
 .site-footer .site-footer__copyright {
   color: #a3a39c;
-  font-size: 11px;
+  font-size: 13px;
   white-space: nowrap;
-}
-
-// ---------------------------------------------------------------------------
-// Back to top — round button with a fine wire arrow; hover fills it with the
-// main red (arrow turns white). Colour change only, no movement.
-// ---------------------------------------------------------------------------
-
-.back-to-top {
-  position: fixed;
-  right: max(24px, (100vw - 1440px) / 2 + 24px);
-  bottom: 24px;
-  z-index: 20;
-  display: grid;
-  width: 48px;
-  height: 48px;
-  place-items: center;
-  padding: 0;
-  border: 1px solid var(--badge-ink);
-  border-radius: 50%;
-  color: var(--badge-ink);
-  background: #fff;
-  text-decoration: none;
-  transition:
-    background-color 180ms ease,
-    border-color 180ms ease,
-    color 180ms ease;
-
-  svg {
-    width: 22px;
-    height: 22px;
-    fill: none;
-    stroke: currentColor;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 1.25;
-  }
-
-  &:hover {
-    border-color: var(--accent-red);
-    color: #fff;
-    background: var(--accent-red);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--accent-red);
-    outline-offset: 3px;
-  }
 }
 
 // ---------------------------------------------------------------------------
@@ -117,17 +64,11 @@
     align-items: flex-start;
     gap: 10px;
     padding-block: 18px 20px;
-    padding-right: 72px; // keep text clear of the floating button
   }
 
   .site-footer .site-footer__copyright {
     width: 100%;
     padding-top: 10px;
     border-top: 1px solid rgba(255, 255, 255, 0.14);
-  }
-
-  .back-to-top {
-    right: 16px;
-    bottom: 16px;
   }
 }

@@ -117,7 +117,7 @@
 .portfolio-shell .career__duration {
   margin: 0 0 10px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .career__body h4 {
@@ -132,7 +132,7 @@
 .portfolio-shell .career__company {
   margin: 0 0 10px;
   color: var(--ink-soft);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
 }
 
@@ -140,7 +140,7 @@
   max-width: 40ch;
   margin: 0;
   color: var(--muted);
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 1.55;
 }
 
@@ -162,12 +162,14 @@
   margin: 8px 0 0;
   padding: 2px 0;
   border: 0;
-  color: var(--career-accent, #c4472a);
+  // Quiet grey at rest; the main red on hover — red stays the one accent
+  // (the title line, the career dots) instead of repeating on every link
+  color: var(--ink-soft);
   background: none;
   font: inherit;
   // !important: _base.scss forces `button { font-size: 13px !important }`;
   // this more specific rule wins between the two
-  font-size: 10.5px !important;
+  font-size: 13px !important;
   font-weight: 500;
   letter-spacing: 0.02em;
   text-decoration: underline;
@@ -193,7 +195,7 @@
   }
 
   &:hover {
-    color: color-mix(in srgb, var(--career-accent, #c4472a) 80%, #000);
+    color: var(--accent-red);
   }
 
   &:focus-visible {

@@ -33,7 +33,7 @@
   align-items: center;
   gap: 8px;
   color: #5e5e58;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
 }
 
@@ -51,7 +51,7 @@
   color: var(--badge-ink);
   background: #fff;
   font: inherit;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 650;
   cursor: pointer;
   // Same hover as the contact links: colour only, no movement
@@ -126,7 +126,7 @@
   position: absolute;
   inset: 0;
   display: grid;
-  border: 1px solid var(--badge-ink);
+  border: 1px solid #c6c5bf; // soft warm grey, as the card-back greys
   border-radius: 10px;
   background: #fff;
   backface-visibility: hidden;
@@ -135,113 +135,72 @@
 // Card back — like a printed deck: white border, light grey field with a
 // fine pattern (small crosses + dots), thin inner line and a shield emblem
 // with the click-mark shield in the middle. No corner indices.
+// Card back — the ring style of the number marks as a playing card, in
+// neutral warm greys: a light grey rim, a fine white edge (outline inside the
+// rim) and a grey face with a faint card pattern. Hover: lighter, colour only.
 .token-memory__face--back {
   place-items: center;
   overflow: hidden;
   background: #fff;
-  transition: background-color 160ms ease;
 
   &::before {
     position: absolute;
-    inset: 5%;
-    border-radius: 5px;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M5.3 3.8h1.4v1.5h1.5v1.4H6.7v1.5H5.3V6.7H3.8V5.3h1.5Z' fill='%23262626' fill-opacity='.12'/%3E%3Ccircle cx='0' cy='0' r='.8' fill='%23262626' fill-opacity='.14'/%3E%3Ccircle cx='12' cy='0' r='.8' fill='%23262626' fill-opacity='.14'/%3E%3Ccircle cx='0' cy='12' r='.8' fill='%23262626' fill-opacity='.14'/%3E%3Ccircle cx='12' cy='12' r='.8' fill='%23262626' fill-opacity='.14'/%3E%3C/svg%3E") center / 12px 12px, #e2e2de;
-    box-shadow: inset 0 0 0 2px #e2e2de, inset 0 0 0 3px #fff;
+    inset: 0; // fills the card edge to edge (no white margin)
+    border: 4px solid #ecebe7;
+    border-radius: 10px;
+    outline: 1.5px solid #fbfbf9;
+    outline-offset: -5.5px;
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M7 4.6 9.4 7 7 9.4 4.6 7Z' fill='%23343434' fill-opacity='.07'/%3E%3C/svg%3E") center / 14px 14px,
+      #dcdbd6;
+    transition: background-color 160ms ease;
     content: "";
   }
 }
 
 .token-memory__card:not(:disabled):hover .token-memory__face--back::before {
-  background-color: #eaeae6;
+  background-color: #e6e5e1;
 }
 
-// Shield emblem — flat 2D: rim, corner brackets, rivets, two-tone face split
-// by a seam (warm greys, ink outlines), with a click mark in the same style
+// Shield emblem — ring style: light red rim and fine light edge (strokes
+// under the face, so only their outer half shows), white face, king's head
+// as red line art
 .win-mascot.token-memory__mascot {
   position: relative;
   width: 62%;
   max-width: 96px;
   height: auto;
+  overflow: visible;
   filter: none;
   animation: none;
   transition: transform 200ms ease;
 
-  // Flat 2D: solid fills, crisp ink outlines, warm greys, no texture
-  :is(path, circle) {
-    stroke: var(--badge-ink);
-    stroke-linejoin: round;
-    stroke-width: 1.2px;
-  }
-
   .shield__rim {
-    fill: #a9a8a3;
+    fill: none;
+    stroke: color-mix(in srgb, var(--accent-red) 45%, #fff);
+    stroke-linejoin: round;
+    stroke-width: 7px;
   }
 
-  .shield__light {
-    fill: #eceae5;
+  .shield__edge {
+    fill: none;
+    stroke: color-mix(in srgb, var(--accent-red) 12%, #fff);
+    stroke-linejoin: round;
+    stroke-width: 2.4px;
+  }
+
+  .shield__face {
+    fill: #fff;
     stroke: none;
   }
 
-  .shield__dark {
-    fill: #dedcd6;
-  }
-
-  .shield__seam {
+  // Line art: 1.35 units in the .86-scaled group ≈ 1.2 shield units lines
+  .shield__king path {
     fill: none;
-    stroke-width: 0.9px;
-  }
-
-  .shield__rivet circle {
-    fill: #f1f0ec;
-    stroke-width: 0.8px;
-  }
-
-  // Click mark — cursor drawn in user units of a group scaled by .68, so the
-  // widths below are set for scale .68 so the outlines match the shield
-  .shield__ray {
-    fill: #a9a8a3;
-    stroke: var(--badge-ink);
-    stroke-width: 1.1px;
-  }
-
-  .shield__ray-rivet {
-    fill: #f1f0ec;
-    stroke-width: 0.6px;
-  }
-
-  .shield__cursor-outline {
-    fill: var(--badge-ink);
-    stroke-width: 9.05px;
-  }
-
-  .shield__cursor-rim {
-    fill: #a9a8a3;
-    stroke: #a9a8a3;
-    stroke-width: 5.52px;
-  }
-
-  .shield__cursor-face {
-    fill: #b8644f;
-    stroke: none;
-  }
-
-  .shield__cursor-shade {
-    fill: #9c5341;
-    stroke: none;
-  }
-
-  .shield__cursor-seam {
-    fill: none;
-    stroke-width: 1.3px;
-  }
-
-  .shield__cursor-line {
-    fill: none;
-    stroke-width: 1.76px;
-  }
-
-  .shield__cursor-rivets circle {
-    stroke-width: 1.06px;
+    stroke: var(--accent-red);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.35px;
   }
 }
 
@@ -344,14 +303,15 @@
 
   :is(path, circle, ellipse, rect) {
     fill: #fff;
-    stroke: var(--badge-ink);
+    stroke: #959595; // soft grey outline, as the emblem strokes
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 1.6px;
   }
 
+  // Accents in the light red tint (no yellow on the page)
   .is-gold {
-    fill: var(--badge-gold);
+    fill: color-mix(in srgb, var(--accent-red) 45%, #fff);
   }
 
   .is-teal {
@@ -394,7 +354,7 @@
   min-height: 1.5em;
   margin: 16px 0 0;
   color: #5e5e58;
-  font-size: 12px;
+  font-size: 13px;
   text-align: center;
 
   // Empty: take up no space. Collapsed instead of display: none, so the live
@@ -430,7 +390,7 @@
   border-radius: 4px;
   color: #fff;
   background: var(--badge-teal);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 650;
 }
 
@@ -457,7 +417,7 @@
 .portfolio-shell .token-memory__collection-label {
   margin: 0;
   color: #6d6c65;
-  font-size: 9.9px;
+  font-size: 13px;
   font-weight: 750;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -468,7 +428,7 @@
   margin: 0;
   padding-left: 28px;
   color: #5e5e58;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 // Info icon before the hint — positioned absolutely so its 20px size never
@@ -538,48 +498,52 @@
   // Smaller than an unlocked mascot so the lock reads as a placeholder:
   // ~34px on desktop, down to 26px on small phones
   width: clamp(26px, 3vw, 34px);
+  overflow: visible;
   filter: none;
-  opacity: 0.75;
 
-  // Flat 2D: solid fills, crisp ink outlines, warm greys, no texture
-  :is(path, circle) {
-    stroke: var(--badge-ink);
-    stroke-linejoin: round;
-    stroke-width: 1.2px;
+  // Ring style in the card back's warm greys: rim and edge are strokes under
+  // the face (outer half shows); the shackle is a light rim with a grey core
+  .lock__shackle-rim {
+    fill: none;
+    stroke: #e6e5e0;
+    stroke-linecap: round;
+    stroke-width: 9px;
+  }
+
+  .lock__shackle {
+    fill: none;
+    stroke: #a9a8a3;
+    stroke-linecap: round;
+    stroke-width: 4.5px;
   }
 
   .lock__rim {
-    fill: #a9a8a3;
-  }
-
-  .lock__light {
-    fill: #eceae5;
-    stroke: none;
-  }
-
-  .lock__dark {
-    fill: #dedcd6;
-  }
-
-  .lock__seam {
     fill: none;
-    stroke-width: 0.9px;
+    stroke: #e6e5e0;
+    stroke-width: 8px;
   }
 
-  .lock__rivet circle {
-    fill: #f1f0ec;
-    stroke-width: 0.8px;
+  .lock__edge {
+    fill: none;
+    stroke: #fbfbf9;
+    stroke-width: 2.4px;
+  }
+
+  // Keeps the generic .win-mascot outline (soft grey #959595, 1.6px)
+  .lock__face {
+    fill: #dcdbd6;
   }
 
   .lock__key {
-    fill: #b8644f; // muted red, same as the shield cursor
+    fill: var(--badge-ink);
+    fill-opacity: 0.7;
     stroke: none;
   }
 }
 
 .portfolio-shell .token-memory__slot-name {
-  color: #8c8c84;
-  font-size: 11px;
+  color: #6b6b65; // ≥ 4.5:1 on the cream slot
+  font-size: 13px;
   font-weight: 600;
   line-height: 1.25;
 }
@@ -588,19 +552,16 @@
   color: var(--ink);
 }
 
+// Phones: three slots per row, so the 13px names fit on two lines
 @media (max-width: 560px) {
   .token-memory__collection-list {
-    gap: 6px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
   }
 
   .token-memory__slot {
-    padding: 10px 2px 8px;
+    padding: 10px 6px 8px;
   }
-
-  .portfolio-shell .token-memory__slot-name {
-    font-size: 8.8px;
-  }
-
 }
 
 @media (prefers-reduced-motion: reduce) {

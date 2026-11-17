@@ -1,0 +1,91 @@
+// Button heights — one system for every button and pill on the page.
+// Desktop (≥ 901px, mouse): 34px, the height of the menu pills; the hero's
+// main call to action ("button--blue") is 40px so it keeps a little weight.
+// Tablet + phone (≤ 900px, touch): 44px for every button (comfortable tap
+// target). The language switch keeps its look; only its tap area grows.
+//
+// Loaded after the section partials, so these heights win; selectors match
+// the specificity of the rules they replace. The recreated poll/countdown
+// modules and the miniature sketches keep their own sizes.
+
+:root {
+  --btn-h: 44px;
+  --btn-h-primary: 44px;
+
+  @media (min-width: 901px) {
+    --btn-h: 34px;
+    --btn-h-primary: 40px;
+  }
+}
+
+.site-header .primary-navigation a,
+.hero .button--blue,
+#main .cls-demo__replay,
+#main .ds-demo__preview,
+.portfolio-shell .token-memory__restart,
+.portfolio-shell .contact-channel__value,
+.portfolio-shell .contact-channel--status .contact-channel__action,
+#main .module-preview__switcher button,
+#main .kbdRace__foot button {
+  height: var(--btn-h);
+  min-height: var(--btn-h);
+  padding-block: 0;
+  font-weight: 400; // one regular weight for every button
+}
+
+// Desktop menu: the links are inline by default, so make them flex boxes —
+// otherwise the fixed height doesn't apply and the text isn't centred
+@media (min-width: 901px) {
+  .site-header .primary-navigation a {
+    display: inline-flex;
+    align-items: center;
+    padding-inline: 18px; // same side padding as the other buttons
+  }
+}
+
+// Narrower desktops: a little tighter so the menu still fits next to the
+// name and the language switch
+@media (min-width: 901px) and (max-width: 1080px) {
+  .site-header .primary-navigation a {
+    padding-inline: 12px;
+  }
+}
+
+.hero .button--blue {
+  height: var(--btn-h-primary);
+  min-height: var(--btn-h-primary);
+}
+
+// Dark buttons: one hover for all of them, the same as the current-section
+// menu pill — the ink lightens a little (colour only). The hero's main call
+// to action keeps the main red on hover, like the other red CTAs.
+#main .ds-demo__preview:hover,
+.site-header .menu-toggle:hover {
+  border-color: #4a4a48;
+  color: #fff;
+  background: #4a4a48;
+}
+
+// Round icon button in the preview dialogs: square at the same height
+#main .module-preview__close {
+  width: var(--btn-h);
+  height: var(--btn-h);
+}
+
+// Language switch: text only, so just the tap area follows the system
+.language-switch__option {
+  min-height: var(--btn-h);
+}
+
+// Touch screens: the mobile menu and its links
+@media (max-width: 900px) {
+  .site-header .menu-toggle {
+    width: 44px;
+    height: 44px;
+  }
+
+  .site-header .primary-navigation > a,
+  .site-header .primary-navigation .nav-contact {
+    min-height: 44px;
+  }
+}

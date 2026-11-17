@@ -12,7 +12,8 @@
 
 // ---------------------------------------------------------------------------
 // Takeaways — one wide box under the heading; four open columns divided by
-// 1px lines (emblem, label, text clamped to 3 lines + "Mehr lesen").
+// 1px lines (eyebrow title with a red line, left-aligned text clamped to
+// 3 lines + "Mehr lesen").
 // 4 columns → 2 × 2 on tablets → stacked on phones.
 // ---------------------------------------------------------------------------
 
@@ -29,12 +30,12 @@
 
 .takeaway {
   display: grid;
-  justify-items: center;
+  justify-items: start;
   align-content: start;
   gap: 12px;
   min-width: 0;
-  padding: 4px clamp(14px, 1.8vw, 24px);
-  text-align: center;
+  padding: 4px clamp(18px, 2.2vw, 28px);
+  text-align: left;
 }
 
 // Divider between neighbouring columns
@@ -42,19 +43,15 @@
   background: var(--divider-y);
 }
 
-.takeaway__icon {
-  width: 44px;
-}
-
 .portfolio-shell .takeaway__text {
   max-width: 30ch;
   margin: 0;
   color: var(--ink-soft);
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 1.6;
 }
 
-// The toggle sits right under the text, centred with it
+// The toggle sits right under the text, on its left edge
 .takeaway .clamped-text__toggle {
   margin-top: -4px;
 }
@@ -112,26 +109,22 @@
 
 .takeaway.badge-card {
   display: grid;
-  justify-items: center;
+  justify-items: start;
   align-content: start;
   gap: 12px;
   padding: 22px 18px 20px;
-  text-align: center;
-}
-
-.takeaway__icon {
-  width: 44px;
+  text-align: left;
 }
 
 .portfolio-shell .takeaway__text {
   max-width: 30ch;
   margin: 0;
   color: var(--ink-soft);
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 1.6;
 }
 
-// The toggle sits right under the text, centred with it
+// The toggle sits right under the text, on its left edge
 .takeaway .clamped-text__toggle {
   margin-top: -4px;
 }
@@ -189,8 +182,8 @@
       height: 20px;
       place-items: center;
       border-radius: 50%;
-      color: var(--badge-ink);
-      background: var(--lemon);
+      color: #fff;
+      background: var(--badge-ink);
       font-size: 9.5px;
       font-weight: 700;
       content: counter(layer);
@@ -236,13 +229,13 @@
   grid-row: 2;
   margin: 0;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.45;
 }
 
 .portfolio-shell .ds-layers__name {
   color: var(--badge-ink);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
 }
 
@@ -537,14 +530,13 @@
   color: #fff;
   background: var(--dark);
   font: inherit;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 650;
   cursor: pointer;
   transition: background-color 160ms ease, color 160ms ease;
 
   &:hover {
-    color: var(--dark);
-    background: var(--lemon);
+    background: #4a4a48;
   }
 
   &:focus-visible {
@@ -555,7 +547,7 @@
 
 .portfolio-shell .ds-demo__cta > span {
   color: var(--muted);
-  font-size: 11px;
+  font-size: 13px;
 }
 
 // ---------------------------------------------------------------------------
@@ -608,7 +600,7 @@
   max-width: 62ch;
   margin: 4px 0 0;
   color: var(--ink-soft);
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 1.55;
 }
 
@@ -661,7 +653,7 @@
     margin-bottom: 5px;
     padding: 0;
     color: var(--muted);
-    font-size: 9px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -738,7 +730,7 @@
   h5 {
     margin: 0 0 12px;
     color: var(--panel-muted);
-    font-size: 9px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -777,7 +769,7 @@
 
   code {
     font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
-    font-size: 11.5px;
+    font-size: 13px;
   }
 
   dd code {
@@ -788,7 +780,7 @@
 .portfolio-shell .module-preview__tokens dt span,
 .portfolio-shell .module-preview__tokens > p {
   color: var(--panel-muted);
-  font-size: 11.5px;
+  font-size: 13px;
   line-height: 1.45;
 }
 
@@ -855,7 +847,7 @@
 
 .portfolio-shell .kbdRace__controls > span {
   color: var(--muted);
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .kbdRace__panels {
@@ -979,7 +971,7 @@
   border-radius: 999px;
   color: var(--k-accent-text);
   background: var(--k-accent);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   text-decoration: none;
   outline: 3px solid transparent;
@@ -1166,7 +1158,7 @@
 
 // Where each press lands — prefixed to set the size over the global span rule
 .portfolio-shell .kbdRace__path li span {
-  font-size: 11px;
+  font-size: 13px;
 }
 
 // Checklist — the three "Umsetzung" points, ✕ before / ✓ after
@@ -1183,7 +1175,7 @@
     align-items: flex-start;
     gap: 8px;
     color: var(--k-ink);
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.4;
   }
 
@@ -1230,7 +1222,7 @@
 .portfolio-shell .kbdRace__foot p {
   margin: 0;
   color: var(--k-muted);
-  font-size: 11px;
+  font-size: 13px;
 }
 
 #main .kbdRace__foot button {
@@ -1241,7 +1233,7 @@
   color: var(--k-accent);
   background: transparent;
   font: inherit;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   cursor: pointer;
 
@@ -1278,7 +1270,7 @@
 .portfolio-shell .kbdRace__summary p {
   margin: 0;
   color: var(--k-ink);
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 1.5;
 }
 
