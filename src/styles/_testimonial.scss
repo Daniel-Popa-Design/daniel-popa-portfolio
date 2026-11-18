@@ -80,9 +80,60 @@
   fill: #dedede;
 }
 
-// Flat greys: dark hair, jacket and tie; light lapels; off-white face and shirt
-.testimonial__avatar-hair {
+// Flat greys: dark beard, jacket and tie; light lapels; off-white face and shirt
+.testimonial__avatar-beard {
   fill: #7a7a7a;
+}
+
+.testimonial__avatar-shine {
+  fill: none;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-width: 1.4;
+  opacity: 0.8;
+}
+
+.testimonial__avatar-brow {
+  fill: none;
+  stroke: #6b6b6b;
+  stroke-linecap: round;
+  stroke-width: 1.1;
+}
+
+.testimonial__avatar-eye {
+  fill: #5a5a5a;
+}
+
+.testimonial__avatar-nose {
+  fill: none;
+  stroke: #cfcec8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 0.9;
+}
+
+// Lower lip in a warm light grey, the mouth line and a slightly darker
+// moustache over it
+.testimonial__avatar-lip {
+  fill: #ddd3cd;
+}
+
+.testimonial__avatar-mouth {
+  fill: none;
+  stroke: #575757;
+  stroke-linecap: round;
+  stroke-width: 0.6;
+}
+
+.testimonial__avatar-moustache {
+  fill: #6e6e6e;
+}
+
+.testimonial__avatar-glasses {
+  fill: none;
+  stroke: #3d3d3d;
+  stroke-linecap: round;
+  stroke-width: 1.2;
 }
 
 .testimonial__avatar-jacket {

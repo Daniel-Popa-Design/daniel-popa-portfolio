@@ -43,6 +43,92 @@
   letter-spacing: 0;
 }
 
+.wordmark:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+// "Back to top" coin next to the name (ToTopIcon in App.jsx). The name is
+// the link; the coin is the hint. It keeps its space while hidden, so the
+// header never shifts when it appears.
+.wordmark__top {
+  display: inline-grid;
+  width: 26px;
+  height: 26px;
+  flex: none;
+  place-items: center;
+  border: 1px solid rgba(52, 52, 52, 0.22);
+  border-radius: 50%;
+  color: var(--badge-ink);
+  transition:
+    opacity 220ms ease,
+    transform 260ms cubic-bezier(0.34, 1.4, 0.64, 1),
+    visibility 220ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+
+  svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.5;
+  }
+}
+
+// Header: hidden on the first screen (it would do nothing there), rises in
+// once the page is scrolled past it (.is-away, set in App.jsx)
+.site-header .wordmark__top {
+  opacity: 0;
+  transform: translateY(6px) scale(0.7);
+  visibility: hidden;
+}
+
+.site-header.is-away .wordmark__top {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}
+
+// Hover / keyboard focus: the coin fills in ink and the arrow gives a short
+// upward nudge, the direction the click will go. Hover only on devices that
+// really hover, so the fill never sticks after a tap.
+@keyframes wordmark-top-nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  45% {
+    transform: translateY(-3px);
+  }
+}
+
+@mixin header-top-active {
+  .wordmark__top {
+    border-color: var(--badge-ink);
+    color: #fff;
+    background: var(--badge-ink);
+
+    svg {
+      animation: wordmark-top-nudge 520ms cubic-bezier(0.34, 1.4, 0.64, 1);
+    }
+  }
+}
+
+@media (hover: hover) {
+  .site-header .wordmark:hover {
+    @include header-top-active;
+  }
+}
+
+.site-header .wordmark:focus-visible {
+  @include header-top-active;
+}
+
 .site-header.is-scrolled .site-header__inner {
   min-height: 60px;
 }
@@ -211,8 +297,13 @@
 
 @media (prefers-reduced-motion: reduce) {
   .language-switch__option::after,
-  .site-header__inner {
+  .site-header__inner,
+  .wordmark__top {
     transition: none;
+  }
+
+  .wordmark__top svg {
+    animation: none !important;
   }
 }
 
@@ -261,6 +352,16 @@
 
   .wordmark .wordmark__name {
     font-size: 17px;
+  }
+
+  .wordmark__top {
+    width: 24px;
+    height: 24px;
+
+    svg {
+      width: 13px;
+      height: 13px;
+    }
   }
 
   .site-header.is-scrolled .site-header__inner {

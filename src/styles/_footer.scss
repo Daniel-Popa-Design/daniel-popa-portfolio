@@ -27,6 +27,39 @@
   .wordmark__name {
     color: #fff;
   }
+
+  // Back-to-top coin: always shown here (end of the page), light on dark;
+  // fills in the main red on hover / keyboard focus
+  .wordmark__top {
+    border-color: rgba(255, 255, 255, 0.32);
+    color: #fff;
+  }
+
+  &:focus-visible {
+    outline-color: #fff;
+  }
+}
+
+// Same nudge as the header coin (keyframes in _header.scss)
+@mixin footer-top-active {
+  .wordmark__top {
+    border-color: var(--accent-red);
+    background: var(--accent-red);
+
+    svg {
+      animation: wordmark-top-nudge 520ms cubic-bezier(0.34, 1.4, 0.64, 1);
+    }
+  }
+}
+
+@media (hover: hover) {
+  .site-footer .wordmark:hover {
+    @include footer-top-active;
+  }
+}
+
+.site-footer .wordmark:focus-visible {
+  @include footer-top-active;
 }
 
 // Credit line with a small gold dot

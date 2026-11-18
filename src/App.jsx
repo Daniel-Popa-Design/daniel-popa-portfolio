@@ -2718,10 +2718,11 @@ function Takeaways({ items, moreLabel, lessLabel }) {
   );
 }
 
-// Neutral avatar for the testimonial: a business-portrait illustration in
-// flat greys — swept hair, off-white face with ears, shaded neck, white shirt
-// with collar points, dark tie, grey jacket with lighter lapels — in a round
-// frame like the hero portrait. Not a real likeness.
+// Avatar for the testimonial: a business-portrait illustration in flat greys:
+// bald head with ears, dark rectangular glasses and a long full beard,
+// shaded neck, white shirt with collar points, dark tie, grey jacket with
+// lighter lapels, in a round frame like the hero portrait. The previous
+// version (swept hair, no glasses) is kept in assets/TestimonialAvatar.backup.svg.
 function SilhouetteAvatar() {
   const clipId = useId();
   const neckId = useId();
@@ -2750,17 +2751,55 @@ function SilhouetteAvatar() {
         <path className="testimonial__avatar-tie" d="M30 49h4l-.6 3h-2.8ZM30.6 52h2.8l1.6 12h-6Z" />
         {/* Neck, ears, face */}
         <path fill={`url(#${neckId})`} d="M27 35h10v10.5c0 2-2.2 3.5-5 3.5s-5-1.5-5-3.5Z" />
-        <ellipse className="testimonial__avatar-ear" cx="20.6" cy="27" rx="2.6" ry="4" />
-        <ellipse className="testimonial__avatar-ear" cx="43.4" cy="27" rx="2.6" ry="4" />
-        <path className="testimonial__avatar-face" d="M21 24c0-9 5-13 11-13s11 4 11 13-5 15.5-11 15.5S21 33 21 24Z" />
-        {/* Hair: swept quiff with a curl at the side */}
+        <ellipse className="testimonial__avatar-ear" cx="20.8" cy="27.5" rx="2.6" ry="3.8" />
+        <ellipse className="testimonial__avatar-ear" cx="43.2" cy="27.5" rx="2.6" ry="3.8" />
+        {/* Bald head: a round dome, no hair, with a soft shine on top */}
+        <path className="testimonial__avatar-face" d="M21 25c0-10.2 4.9-15.5 11-15.5S43 14.8 43 25c0 9.5-4.9 15-11 15s-11-5.5-11-15Z" />
+        <path className="testimonial__avatar-shine" d="M26 14.5c1.6-1.9 3.6-2.8 6-2.8" />
+        {/* Brows and eyes */}
+        <path className="testimonial__avatar-brow" d="M24.4 21.2c1.6-.8 3.6-.9 5.2-.3M39.6 21.2c-1.6-.8-3.6-.9-5.2-.3" />
+        <circle className="testimonial__avatar-eye" cx="27" cy="24.9" r=".8" />
+        <circle className="testimonial__avatar-eye" cx="37" cy="24.9" r=".8" />
+        {/* Nose */}
+        <path className="testimonial__avatar-nose" d="M32.2 25.5v4.2l-1.4.4" />
+        {/* Full beard with moustache, running long to a point below the chin */}
         <path
-          className="testimonial__avatar-hair"
-          d="M19.6 25.5C18.6 14.5 23 7.6 31 7c4-.2 6-1.5 7-3 .6 2 .1 3-1 4 6 1.5 9.6 6 8.6 13 1 1.5 2 2 3 1.5-1 2.5-3.5 2.5-5 1-.6-3.5-2.6-6.5-6.6-8-2 2.5-8 4.5-15 4-1 1.5-1.5 3.5-1 6.5Z"
+          className="testimonial__avatar-beard"
+          d="M21.2 27.5c.2 7 2.8 12.6 6.6 16.2L32 48.5l4.2-4.8c3.8-3.6 6.4-9.2 6.6-16.2-1 2.4-2.4 3.9-4.2 4.6-2-1.6-4.2-2.1-6.6-1.6-2.4-.5-4.6 0-6.6 1.6-1.8-.7-3.2-2.2-4.2-4.6Z"
         />
+        {/* Mouth: a gap in the beard showing the lower lip, with the
+            moustache drawn over its top edge */}
+        <path
+          className="testimonial__avatar-lip"
+          d="M28.7 33.9c1.1-.4 2.2-.5 3.3-.2 1.1-.3 2.2-.2 3.3.2-.5 1.7-1.8 2.6-3.3 2.6s-2.8-.9-3.3-2.6Z"
+        />
+        <path className="testimonial__avatar-mouth" d="M29 34c1 .4 2 .5 3 .3 1 .2 2 .1 3-.3" />
+        <path
+          className="testimonial__avatar-moustache"
+          d="M26.8 33.9c1.4-1.6 3.2-2.2 5.2-1.5 2-.7 3.8-.1 5.2 1.5-1.5.3-2.8.1-3.9-.4-.5.2-.9.3-1.3.3s-.8-.1-1.3-.3c-1.1.5-2.4.7-3.9.4Z"
+        />
+        {/* Glasses: dark rectangular frames with temples to the ears */}
+        <g className="testimonial__avatar-glasses">
+          <rect x="23.2" y="22.4" width="7.4" height="5" rx="1.3" />
+          <rect x="33.4" y="22.4" width="7.4" height="5" rx="1.3" />
+          <path d="M30.6 24.2c.9-.5 1.9-.5 2.8 0M23.2 24H21.4M40.8 24h1.8" />
+        </g>
       </g>
       <circle cx="32" cy="32" r="31" className="testimonial__avatar-ring" />
     </svg>
+  );
+}
+
+// "Back to top" hint next to the wordmark: an up arrow in a fine round coin,
+// same line weight as the other icons. Header: appears once the page is
+// scrolled past the first screen; footer: always shown.
+function ToTopIcon() {
+  return (
+    <span className="wordmark__top" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M12 18.5v-13M6.5 11 12 5.5l5.5 5.5" />
+      </svg>
+    </span>
   );
 }
 
@@ -2811,11 +2850,29 @@ function App() {
   const [keyboardOpen, setKeyboardOpen] = useState(false);
 
   const [scrolled, setScrolled] = useState(false);
+  // Past the first screen: the header wordmark shows its "back to top" arrow
+  const [awayFromTop, setAwayFromTop] = useState(false);
   const [activeSection, setActiveSection] = useState(null);
   const headerRef = useRef(null);
+  const wordmarkRef = useRef(null);
 
   const closeMenu = () => setMenuOpen(false);
   const text = copy[language];
+
+  // Wordmark in header and footer: back to the top of the page. Smooth via
+  // the CSS scroll-behavior (instant when reduced motion is requested, see
+  // _base.scss). No "#page-top" left in the URL; keyboard focus moves to the
+  // header wordmark so the next Tab continues from the top. The href stays
+  // as a fallback.
+  const scrollToTop = (event) => {
+    event.preventDefault();
+    closeMenu();
+    window.scrollTo({ top: 0 });
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+    wordmarkRef.current?.focus({ preventScroll: true });
+  };
 
   // Sticky header: compact once the page is scrolled; the progress line under
   // it shows how much of the page has been read (--scroll-progress, 0–1).
@@ -2828,6 +2885,7 @@ function App() {
       const progress = max > 0 ? Math.min(1, window.scrollY / max) : 0;
       headerRef.current?.style.setProperty("--scroll-progress", progress.toFixed(4));
       setScrolled(window.scrollY > 8);
+      setAwayFromTop(window.scrollY > window.innerHeight * 0.6);
       // Current section for the menu: the last section whose top has passed
       // a line a third down the viewport. The hero has no menu entry, so at
       // the top nothing is highlighted; sections without an entry (the game,
@@ -2875,7 +2933,7 @@ function App() {
       </a>
 
       <header
-        className={`site-header${scrolled ? " is-scrolled" : ""}`}
+        className={`site-header${scrolled ? " is-scrolled" : ""}${awayFromTop ? " is-away" : ""}`}
         id="page-top"
         ref={headerRef}
       >
@@ -2883,10 +2941,12 @@ function App() {
           <a
             className="wordmark"
             href="#page-top"
-            aria-label={text.home}
-            onClick={closeMenu}
+            aria-label={awayFromTop ? text.footer.home : text.home}
+            onClick={scrollToTop}
+            ref={wordmarkRef}
           >
             <span className="wordmark__name">Daniel Popa</span>
+            <ToTopIcon />
           </a>
 
           <nav
@@ -3324,8 +3384,9 @@ function App() {
 
       <footer className="site-footer">
         <div className="site-footer__inner">
-          <a className="wordmark" href="#page-top" aria-label={text.footer.home}>
+          <a className="wordmark" href="#page-top" aria-label={text.footer.home} onClick={scrollToTop}>
             <span className="wordmark__name">Daniel Popa</span>
+            <ToTopIcon />
           </a>
           <p>{text.footer.description}</p>
           <span className="site-footer__copyright">
