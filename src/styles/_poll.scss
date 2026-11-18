@@ -590,6 +590,29 @@
   }
 }
 
+// Action buttons (login + comment). Side by side only while both fit at a
+// comfortable width (260px each, enough for the longer German labels);
+// otherwise they stack — login on top, comment below. Decided by the poll's
+// own width, so it works at every viewport and in both languages.
+// Height: 36px on desktop like the original module, 40px on touch screens.
+#main .pollModuleShell[data-theme] .pollModule__actions {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  grid-template-rows: none;
+}
+
+#main .pollModuleShell[data-theme] :is(.pollModule__login, .pollModule__comment) {
+  height: 40px;
+  min-height: 40px;
+  padding-block: 0;
+}
+
+@media (min-width: 901px) {
+  #main .pollModuleShell[data-theme] :is(.pollModule__login, .pollModule__comment) {
+    height: 36px;
+    min-height: 36px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .pollModule,
   .pollModule__bar,
