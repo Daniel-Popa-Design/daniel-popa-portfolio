@@ -16,7 +16,7 @@ const countdownDomains = {
 
 const copy = {
   de: {
-    documentTitle: "Daniel Popa — Senior Webdesigner & Frontend-Entwickler",
+    documentTitle: "Daniel Popa — Senior Webdesigner | Frontend-Entwicklung",
     metaDescription:
       "Daniel Popa ist Senior Webdesigner und Frontend-Entwickler aus Nürnberg mit über 10 Jahren Erfahrung in UI/UX, CSS/SCSS, WordPress, Webperformance und Barrierefreiheit.",
     socialDescription:
@@ -45,7 +45,7 @@ const copy = {
       close: "Navigation schließen",
     },
     hero: {
-      role: ["Senior Webdesigner &", "Frontend-Entwickler"],
+      role: ["Senior Webdesigner |", "Frontend-Entwicklung"],
       intro:
         "Mit über 10 Jahren Erfahrung verwandle ich komplexe Ideen in klare, durchdachte digitale Erlebnisse.",
       work: "Meine Arbeiten ansehen",
@@ -506,7 +506,7 @@ const copy = {
     },
   },
   en: {
-    documentTitle: "Daniel Popa — Senior Web Designer & Frontend Developer",
+    documentTitle: "Daniel Popa — Senior Web Designer | Frontend Development",
     metaDescription:
       "Daniel Popa is a Senior Web Designer and Frontend Developer based in Nuremberg with 10+ years of experience in UI/UX, CSS/SCSS, WordPress, web performance and accessibility.",
     socialDescription:
@@ -535,7 +535,7 @@ const copy = {
       close: "Close navigation menu",
     },
     hero: {
-      role: ["Senior web designer &", "Frontend developer"],
+      role: ["Senior Web Designer |", "Frontend Development"],
       intro:
         "With over 10 years of experience, I turn complex ideas into clear, thoughtful digital experiences.",
       work: "Explore my work",
