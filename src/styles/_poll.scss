@@ -62,7 +62,7 @@
   background: var(--poll-action);
   color: var(--poll-action-text);
   cursor: pointer;
-  font-size: 13.2px;
+  font-size: 0.825rem;
   font-weight: 400;
 }
 
@@ -71,7 +71,7 @@
 }
 
 .pollModuleShell:not([data-theme=dark]) .pollModule__login:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--poll-action) 30%, transparent);
+  outline: 3px solid var(--poll-action); // full colour for ≥ 3:1 (WCAG 1.4.11)
   outline-offset: 3px;
 }
 
@@ -104,7 +104,7 @@
 }
 
 .pollModuleShell:not([data-theme=dark]) .pollModule__comment:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--poll-action) 30%, transparent);
+  outline: 3px solid var(--poll-action); // full colour for ≥ 3:1 (WCAG 1.4.11)
   outline-offset: 3px;
 }
 
@@ -139,7 +139,7 @@
   border: 1.5px solid currentColor;
   border-radius: 50%;
   color: var(--poll-action);
-  font-size: 17.6px;
+  font-size: 1.1rem;
   font-weight: 600;
   line-height: 1;
   font-family: Georgia, serif;
@@ -164,7 +164,7 @@
   padding: 1px 5px;
   background: var(--poll-muted);
   color: var(--poll-bg);
-  font-size: 12.1px;
+  font-size: 0.75625rem;
   font-weight: 700;
 }
 
@@ -174,7 +174,7 @@
   font-weight: 400;
   white-space: nowrap;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 
 // Light mode: both portals use the shared warm yellow for the result bars
@@ -195,7 +195,7 @@
   border-radius: 50%;
   color: var(--poll-action);
   background: transparent;
-  font-size: 17.6px;
+  font-size: 1.1rem;
   font-style: italic;
   font-weight: 600;
   line-height: 1;
@@ -209,7 +209,7 @@
   border-radius: 50%;
   color: var(--poll-action);
   background: transparent;
-  font-size: 17.6px;
+  font-size: 1.1rem;
   font-style: italic;
   font-weight: 600;
   line-height: 1;
@@ -236,7 +236,7 @@
   border-radius: 4px;
   color: var(--poll-comment-ink);
   background: transparent;
-  font-size: 13.2px;
+  font-size: 0.825rem;
   font-weight: 400;
 }
 
@@ -263,7 +263,7 @@
 
 #main .pollModuleShell .pollModule__login:focus-visible,
 #main .pollModuleShell .pollModule__comment:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--poll-comment-ink) 35%, transparent);
+  outline: 3px solid var(--poll-comment-ink);
   outline-offset: 3px;
 }
 
@@ -400,11 +400,11 @@
   border-bottom-color: #4b4b45;
 }
 
-.pollModule__header h4 {
+.pollModule__header h3 {
   margin: 0;
   color: inherit;
   letter-spacing: -0.04em;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 500;
 }
 
@@ -421,7 +421,7 @@
 
 .pollModule__question-mark {
   border: 1.5px solid currentColor;
-  font-size: 17.6px;
+  font-size: 1.1rem;
   line-height: 1;
   display: grid;
   flex: 0 0 28px;
@@ -435,12 +435,12 @@
   background: #f3d95d;
 }
 
-.pollModule__question h5 {
+.pollModule__question h4 {
   margin: 1px 0 0;
   font-weight: 300;
   color: inherit;
   line-height: 1.5;
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 .pollModule__option {
@@ -457,7 +457,7 @@
 
 .pollModule__option-label {
   color: inherit;
-  font-size: 9.9px;
+  font-size: 0.61875rem;
   line-height: 1.35;
 }
 
@@ -501,7 +501,7 @@
   margin: 0;
   line-height: 1.5;
   color: #77766f;
-  font-size: 8.8px;
+  font-size: 0.55rem;
 }
 
 .pollModuleShell[data-theme=dark] .pollModule__meta,
@@ -524,7 +524,7 @@
   min-height: 35px;
   color: #252525;
   background: #f3d95d;
-  font-size: 9.9px;
+  font-size: 0.61875rem;
 }
 
 .pollModule__login:hover {
@@ -542,7 +542,7 @@
   border: 1px solid var(--poll-action);
   border-radius: 4px;
   cursor: pointer;
-  font-size: 16.5px;
+  font-size: 1.03125rem;
   font-weight: 400;
   text-align: center;
   text-decoration: none;
@@ -598,6 +598,12 @@
 #main .pollModuleShell[data-theme] .pollModule__actions {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
   grid-template-rows: none;
+}
+
+// Button text as in the original module, in both themes
+#main .pollModuleShell[data-theme] .pollModule__login {
+  font-size: 0.8125rem;
+  font-weight: 400;
 }
 
 #main .pollModuleShell[data-theme] :is(.pollModule__login, .pollModule__comment) {

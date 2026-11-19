@@ -13,7 +13,7 @@
 .contact h2 {
   margin: 0;
   color: var(--ink);
-  font-size: clamp(35.2px, 4.4vw, 52.8px);
+  font-size: clamp(2.2rem, 4.4vw, 3.3rem);
   font-weight: 500;
   letter-spacing: -0.065em;
   line-height: 1;
@@ -27,7 +27,7 @@
   max-width: 60ch;
   margin: 18px 0 0;
   color: var(--ink-soft);
-  font-size: 17px;
+  font-size: 1.0625rem;
   line-height: 1.55;
 }
 
@@ -49,7 +49,7 @@
   border-radius: 999px;
   color: #fff;
   background: var(--badge-ink);
-  font-size: 13px;
+  font-size: 0.8125rem;
   text-decoration: none;
   transition: background-color 160ms ease;
 
@@ -110,12 +110,12 @@
 .portfolio-shell .contact__meta {
   margin: 22px 0 0;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 @media (max-width: 700px) {
   .portfolio-shell .contact__lead {
-    font-size: 15px;
+    font-size: var(--text-body);
   }
 
   .contact__actions {

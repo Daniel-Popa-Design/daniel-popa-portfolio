@@ -1,8 +1,8 @@
 // Quality case study (03) — UX & frontend practice cards and their demos.
 
-.quality-card h4 {
+.quality-card h3 {
   margin: 0 0 10px;
-  font-size: clamp(19.8px, 1.9vw, 24.2px);
+  font-size: clamp(1.2375rem, 1.9vw, 1.5125rem);
   font-weight: 550;
   letter-spacing: -0.045em;
   line-height: 1.25;
@@ -34,10 +34,10 @@
   gap: 8px 24px;
   padding-block: 14px; // no divider: the red labels + spacing structure a case
 
-  > h5 {
+  > h4 {
     margin: 0;
     color: var(--story-accent);
-    font-size: 17px;
+    font-size: 1.0625rem;
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.4;
@@ -47,7 +47,7 @@
   li {
     margin: 0;
     color: var(--ink-soft);
-    font-size: 15px;
+    font-size: var(--text-body);
     line-height: 1.6;
   }
 
@@ -58,7 +58,7 @@
 
   .quality-card__metric {
     margin-top: 6px;
-    font-size: 15px;
+    font-size: var(--text-body);
   }
 }
 
@@ -96,7 +96,7 @@
       border-radius: 50%;
       color: #fff;
       background: var(--badge-ink);
-      font-size: 13px;
+      font-size: 0.8125rem;
       font-weight: 400;
       content: counter(step);
     }
@@ -120,7 +120,7 @@
     align-items: center;
     gap: 6px;
     color: var(--badge-ink);
-    font-size: 13px;
+    font-size: 0.8125rem;
     font-weight: 600;
     text-decoration: underline;
     text-underline-offset: 3px;
@@ -149,7 +149,7 @@
 
   p {
     margin-top: 10px;
-    font-size: 15px;
+    font-size: var(--text-body);
   }
 }
 
@@ -193,7 +193,7 @@
   color: var(--badge-ink);
   background: #fff;
   font: inherit;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 650;
   cursor: pointer;
   // Same hover as the contact links and "Neu mischen": colour only
@@ -231,7 +231,7 @@
 #main .cls-demo__title {
   margin: 0 0 14px;
   color: var(--badge-ink);
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: -0.02em;
 }
@@ -251,7 +251,7 @@
 
 .cls-demo__label {
   color: var(--badge-ink);
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 600;
   text-align: center;
 }
@@ -347,7 +347,7 @@
     border-radius: 999px;
     color: #fff;
     background: var(--accent-red);
-    font-size: 11px;
+    font-size: 0.6875rem;
     font-weight: 400;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -390,7 +390,7 @@
   border-radius: 999px;
   color: var(--badge-ink);
   background: var(--gr5);
-  font-size: 9px;
+  font-size: 0.5625rem;
   font-weight: 500;
 }
 
@@ -417,7 +417,7 @@
   top: 76px;
   right: 9px;
   color: var(--cls-accent);
-  font-size: 10px;
+  font-size: 0.625rem;
   line-height: 1;
   content: "↓";
   animation: cls-demo-fade 0.3s 0.3s ease both;
@@ -426,7 +426,7 @@
 .cls-demo figcaption {
   margin-top: 12px;
   color: var(--ink-soft);
-  font-size: 15px;
+  font-size: 0.9375rem;
   text-align: center;
 }
 
@@ -482,26 +482,29 @@
   // After: same menu, larger targets; kept clear of the jump arrow on the right
   &--after {
     max-width: 76%;
-    transition: opacity 0.25s ease;
 
     li {
       height: 21px;
       padding: 0 8px;
     }
 
-    &[data-skipped="true"] {
-      opacity: 0.4;
+    // Skipped: shown as "passed by" with dashed, lighter chips. No opacity,
+    // so the labels stay readable (--muted on white: 5.35:1, WCAG 1.4.3)
+    &[data-skipped="true"] li {
+      border-style: dashed;
+      color: var(--muted);
+      background: transparent;
     }
   }
 }
 
 // Label size — prefixed to win over the global text rule
 .portfolio-shell .skip-demo__menu li {
-  font-size: 8.5px;
+  font-size: 0.53125rem;
 }
 
 .portfolio-shell .skip-demo__menu--after li {
-  font-size: 9.5px;
+  font-size: 0.59375rem;
 }
 
 .skip-demo__skip {
@@ -510,7 +513,7 @@
   border-radius: 999px;
   color: #fff;
   background: var(--cls-accent);
-  font-size: 10px;
+  font-size: 0.625rem;
   font-weight: 400;
   outline: 1.5px solid transparent;
   outline-offset: 3px;
@@ -586,7 +589,7 @@
   border-radius: 50%;
   color: #fff;
   background: var(--cls-accent);
-  font-size: 9.5px;
+  font-size: 0.59375rem;
   font-weight: 700;
   animation: cls-demo-tap 0.3s ease both;
 }
@@ -676,7 +679,7 @@
   place-items: center;
   padding: 0;
   color: #292929;
-  font-size: 10px;
+  font-size: 0.625rem;
   font-weight: 700;
 }
 
@@ -688,14 +691,14 @@
 .quality-card__copy p {
   margin: 0;
   color: #66655e;
-  font-size: 15px;
+  font-size: var(--text-body);
   line-height: 1.55;
 }
 
 .quality-card__metric {
   margin: 10px 0 0;
   color: #626159;
-  font-size: 11px;
+  font-size: 0.6875rem;
   line-height: 1.5;
 }
 
@@ -784,10 +787,10 @@
 }
 
 // Case title — with the solid line above, the landmark that marks a new case
-.quality-card__copy h4 {
+.quality-card__copy h3 {
   margin: 0 0 6px;
   color: #292929;
-  font-size: clamp(20px, 2.3vw, 28px);
+  font-size: clamp(1.25rem, 2.3vw, 1.75rem);
   font-weight: 500;
   letter-spacing: -0.04em;
   line-height: 1.2;
@@ -809,7 +812,7 @@
   border-radius: 0;
   color: var(--badge-ink);
   background: none;
-  font-size: 12px;
+  font-size: 0.75rem;
   letter-spacing: 0;
 }
 
@@ -826,9 +829,11 @@
   .quality-story__row li,
   .quality-story__row strong,
   .quality-card__copy p,
-  .quality-story__deeper p,
-  .cls-demo figcaption,
-  .cls-demo__label
+  .quality-story__deeper p
 ) {
-  font-size: 15px;
+  font-size: var(--text-body);
+}
+
+.portfolio-shell :is(.cls-demo figcaption, .cls-demo__label) {
+  font-size: 0.9375rem;
 }

@@ -26,7 +26,7 @@
   h3 {
     margin: 0 0 clamp(20px, 2.5vw, 32px);
     color: var(--ink);
-    font-size: clamp(20px, 2.3vw, 28px);
+    font-size: clamp(1.25rem, 2.3vw, 1.75rem);
     font-weight: 500;
     letter-spacing: -0.04em;
     line-height: 1.2;
@@ -76,7 +76,7 @@
   height: 20px;
   margin: 0;
   color: var(--ink);
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 600;
   line-height: 20px;
   white-space: nowrap;
@@ -117,13 +117,13 @@
 .portfolio-shell .career__duration {
   margin: 0 0 10px;
   color: var(--muted);
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 .career__body h4 {
   margin: 0 0 6px;
   color: var(--ink);
-  font-size: clamp(17px, 1.6vw, 20px);
+  font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
   font-weight: 550;
   letter-spacing: -0.01em;
   line-height: 1.3;
@@ -132,7 +132,7 @@
 .portfolio-shell .career__company {
   margin: 0 0 10px;
   color: var(--ink-soft);
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 500;
 }
 
@@ -140,7 +140,7 @@
   max-width: 40ch;
   margin: 0;
   color: var(--muted);
-  font-size: 15px;
+  font-size: var(--text-body);
   line-height: 1.55;
 }
 
@@ -167,10 +167,8 @@
   color: var(--ink-soft);
   background: none;
   font: inherit;
-  // !important: _base.scss forces `button { font-size: 13px !important }`;
-  // this more specific rule wins between the two
-  font-size: 13px !important;
-  font-weight: 500;
+  font-size: 0.8125rem;
+  font-weight: 400;
   letter-spacing: 0.02em;
   text-decoration: underline;
   text-decoration-thickness: 1px;

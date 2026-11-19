@@ -13,7 +13,7 @@
 
 .CountdownModule .countdownTitle {
   display: -webkit-box;
-  font-size: 27.5px;
+  font-size: 1.71875rem;
   -webkit-line-clamp: 3;
 }
 
@@ -44,7 +44,7 @@
 .CountdownModule .countdownStatus {
   display: inline-flex;
   align-items: center;
-  font-size: 23.1px;
+  font-size: 1.44375rem;
   line-height: 1.3;
 }
 
@@ -116,15 +116,15 @@
 }
 
 .CountdownModule .countdownBadgeLabel {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 
 .CountdownModule .countdownBadgeDate {
-  font-size: 28.6px;
+  font-size: 1.7875rem;
 }
 
 .CountdownModule .countdownBadgeYear {
-  font-size: 14.3px;
+  font-size: 0.89375rem;
 }
 
 .CountdownModule .countdownButton {
@@ -132,7 +132,7 @@
   gap: 10px;
   padding: 9px 12px;
   border: 1px solid var(--Cc3);
-  font-size: 13.2px;
+  font-size: 0.825rem;
   transition: background-color 160ms ease, color 160ms ease;
 }
 
@@ -143,7 +143,7 @@
 
 .CountdownModule .countdownArrow {
   display: inline-block;
-  font-size: 17.6px;
+  font-size: 1.1rem;
   transition: transform 160ms ease;
 }
 
@@ -153,7 +153,7 @@
 }
 
 .CountdownModule .countdownTitleGame {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 
 .CountdownModule .countdownTitleGame::before {
@@ -189,7 +189,7 @@
 .CountdownModule .countdownBadge {
   transform: none;
   border: 4px solid rgba(255, 255, 255, 0.78);
-  color: var(--ink) !important;
+  color: var(--ink);
 }
 
 .CountdownModule .countdownBadgeLabel {
@@ -223,7 +223,7 @@
   grid-row: 1;
   min-height: 390px;
   justify-content: space-between;
-  padding: clamp(24px, 4vw, 50px) !important;
+  padding: clamp(24px, 4vw, 50px);
 }
 
 .countdownTitle {
@@ -233,7 +233,7 @@
 
 .countdownTitleGame {
   color: var(--lemon);
-  font-size: 12.1px;
+  font-size: 0.75625rem;
   font-weight: 750;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -241,7 +241,7 @@
 
 .countdownReleaseTitle {
   color: #fff;
-  font-size: clamp(25.3px, 3.3vw, 39.6px);
+  font-size: clamp(1.58125rem, 3.3vw, 2.475rem);
   font-weight: 400;
   letter-spacing: -0.055em;
   line-height: 1.05;
@@ -264,7 +264,7 @@
 
 .countdownValue {
   color: #fff;
-  font-size: clamp(27.5px, 3.5vw, 44px);
+  font-size: clamp(1.71875rem, 3.5vw, 2.75rem);
   font-weight: 600;
   letter-spacing: -0.06em;
   line-height: 1;
@@ -273,7 +273,7 @@
 .countdownLabel {
   margin-top: 7px;
   color: #bcb5c5;
-  font-size: 12px;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
 }
 
@@ -286,7 +286,7 @@
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 999px;
   color: #fff;
-  font-size: 9.9px;
+  font-size: 0.61875rem;
   text-decoration: none;
 }
 
@@ -326,17 +326,17 @@
 }
 
 .countdownBadgeLabel {
-  font-size: 7.7px;
+  font-size: 0.48125rem;
   letter-spacing: 0.12em;
 }
 
 .countdownBadgeDate {
-  font-size: 15.4px;
+  font-size: 0.9625rem;
   line-height: 1.1;
 }
 
 .countdownBadgeYear {
-  font-size: 8.8px;
+  font-size: 0.55rem;
 }
 
 .CountdownModule .countdownTimer {
@@ -390,14 +390,14 @@
 
 .CountdownModule[data-theme=light] .countdownBadge {
   border-radius: 50%;
-  color: #fff !important;
+  color: #fff;
   background: var(--module-accent);
 }
 
 .CountdownModule[data-theme=light] .countdownBadgeLabel,
 .CountdownModule[data-theme=light] .countdownBadgeDate,
 .CountdownModule[data-theme=light] .countdownBadgeYear {
-  color: #fff !important;
+  color: #fff;
 }
 
 .CountdownModule {
@@ -471,7 +471,7 @@
   background: transparent;
   height: 250px;
   min-height: 0;
-  padding: 18px 22px !important;
+  padding: 18px 22px;
 }
 
 .CountdownModule .countdownTitle {
@@ -616,7 +616,7 @@
 .CountdownModule .countdownLabel {
   margin-top: 7px;
   color: #74736d;
-  font-size: 8.8px;
+  font-size: 0.55rem;
   font-weight: 550;
   letter-spacing: 0.06em;
   line-height: 1.2;
@@ -656,7 +656,7 @@
 
 #main .CountdownModule[data-theme=dark] .countdownBadge {
   border-color: rgba(255, 255, 255, 0.86);
-  color: #fff !important;
+  color: #fff;
   background: #020202;
   background-image: none;
 }
@@ -664,7 +664,7 @@
 #main .CountdownModule[data-theme=dark] .countdownBadgeLabel,
 #main .CountdownModule[data-theme=dark] .countdownBadgeDate,
 #main .CountdownModule[data-theme=dark] .countdownBadgeYear {
-  color: #fff !important;
+  color: #fff;
 }
 
 #main .CountdownModule .countdownReleaseTitle {
@@ -673,37 +673,37 @@
 
 #main .CountdownModule[data-theme=dark] .countdownTitleGame {
   background: var(--module-accent);
-  color: #000 !important;
+  color: #000;
 }
 
 #main .CountdownModule[data-theme=dark] .countdownButton {
   border-color: var(--module-accent);
   background: var(--module-accent);
-  color: #000 !important;
+  color: #000;
 }
 
 #main .CountdownModule[data-theme=dark] .countdownButton:hover {
   border-color: color-mix(in srgb, var(--module-accent) 82%, #fff);
   background: color-mix(in srgb, var(--module-accent) 82%, #fff);
-  color: #000 !important;
+  color: #000;
 }
 
 #main .CountdownModule[data-theme=dark] .countdownButton:focus-visible,
 #main .CountdownModule[data-theme=dark] .countdownButton .countdownArrow {
-  color: #000 !important;
+  color: #000;
 }
 
 #main .CountdownModule .countdownButton {
-  font-size: 12px !important;
+  font-size: 0.75rem;
 }
 
 #main .CountdownModule .countdownBadgeLabel,
 #main .CountdownModule .countdownBadgeYear {
-  font-size: 10px !important;
+  font-size: 0.625rem;
 }
 
 #main .CountdownModule .countdownBadgeDate {
-  font-size: 17px !important;
+  font-size: 1.0625rem;
 }
 
 @media (min-width: 701px) {
@@ -742,12 +742,12 @@
     align-self: flex-start;
     margin-bottom: 4px;
     padding: 3px 6px;
-    font-size: 8.8px;
+    font-size: 0.55rem;
   }
 
   .CountdownModule .countdownReleaseTitle {
     margin-block: auto;
-    font-size: clamp(22px, 2.4vw, 29.7px);
+    font-size: clamp(1.375rem, 2.4vw, 1.85625rem);
   }
 
   .CountdownModule .countdownTimer {
@@ -770,7 +770,7 @@
   border-radius: 8px;
   color: #292929;
   background: var(--module-accent);
-  font-size: clamp(29.7px, 3.3vw, 39.6px);
+  font-size: clamp(1.85625rem, 3.3vw, 2.475rem);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.035em;
@@ -780,7 +780,7 @@
 @media (min-width: 701px) {
   .CountdownModule .countdownBadge {
     border: 0;
-    color: #292929 !important;
+    color: #292929;
     transform: none;
   }
 }
@@ -828,7 +828,7 @@
 
   .CountdownModule[data-theme=dark] .countdownBadge {
     border: 1px solid rgba(255, 255, 255, 0.12);
-    color: var(--module-accent) !important;
+    color: var(--module-accent);
     background: #454540;
   }
 
@@ -851,7 +851,7 @@
 @media (max-width: 700px) {
 
   .CountdownModule .countdownTitle {
-    font-size: 27.5px;
+    font-size: 1.71875rem;
   }
 
   .CountdownModule .countdownStage {
@@ -901,13 +901,13 @@
 
 @media (max-width: 700px) {
   .CountdownModule .countdownBadgeDate {
-    font-size: 22px;
+    font-size: 1.375rem;
   }
 }
 
 @media (min-width: 701px) {
   .CountdownModule .countdownBadgeDate {
-    font-size: 20.9px;
+    font-size: 1.30625rem;
     font-weight: 550;
     line-height: 1;
   }
@@ -915,13 +915,13 @@
 
 @media (max-width: 700px) {
   .CountdownModule .countdownBadgeLabel {
-    font-size: 8.8px;
+    font-size: 0.55rem;
   }
 }
 
 @media (min-width: 701px) {
   .CountdownModule .countdownBadgeLabel {
-    font-size: 6.6px;
+    font-size: 0.4125rem;
     font-weight: 600;
     letter-spacing: 0.08em;
   }
@@ -929,13 +929,13 @@
 
 @media (max-width: 700px) {
   .CountdownModule .countdownBadgeYear {
-    font-size: 12.1px;
+    font-size: 0.75625rem;
   }
 }
 
 @media (min-width: 701px) {
   .CountdownModule .countdownBadgeYear {
-    font-size: 8.8px;
+    font-size: 0.55rem;
     font-weight: 500;
   }
 }
@@ -973,7 +973,7 @@
 
   .countdownContent {
     min-height: 440px;
-    padding: 20px !important;
+    padding: 20px;
   }
 
   .countdownStage {
@@ -994,7 +994,7 @@
 
   .CountdownModule .countdownValue {
     padding-block: 8px;
-    font-size: clamp(27.5px, 8.8vw, 36.3px);
+    font-size: clamp(1.71875rem, 8.8vw, 2.26875rem);
   }
 
   .CountdownModule {
@@ -1020,7 +1020,7 @@
   }
 
   .CountdownModule .countdownContent {
-    padding: 20px !important;
+    padding: 20px;
     grid-area: content;
     grid-column: 1;
     grid-row: 2;
@@ -1059,11 +1059,11 @@
 
 @media (max-width: 420px) {
   .countdownValue {
-    font-size: 27.5px;
+    font-size: 1.71875rem;
   }
 
   .countdownLabel {
-    font-size: 7.7px;
+    font-size: 0.48125rem;
   }
 
   .countdownTimer {
@@ -1109,7 +1109,7 @@
 
 @media (max-width: 420px) {
   .CountdownModule .countdownValue {
-    font-size: 26.4px;
+    font-size: 1.65rem;
   }
 }
 
@@ -1121,7 +1121,7 @@
   .CountdownModule .countdownButton {
     gap: 6px;
     padding-inline: 8px;
-    font-size: 8.8px;
+    font-size: 0.55rem;
   }
 }
 
@@ -1134,7 +1134,7 @@
     min-height: 34px;
     gap: 9px;
     padding: 0 12px;
-    font-size: 8.8px;
+    font-size: 0.55rem;
     white-space: nowrap;
   }
 }
@@ -1198,7 +1198,7 @@ transform: perspective(400px) rotateX(0);
 #main #work .CountdownModule .countdownTitleGame {
   border: 1px solid var(--cd-line);
   border-radius: 4px;
-  color: var(--cd-line) !important;
+  color: var(--cd-line);
   background: var(--cd-paper);
   animation: none;
 }
@@ -1232,38 +1232,38 @@ transform: perspective(400px) rotateX(0);
 // Release badge — offset-print disc: paper face, outline, tint crescent
 #main #work .CountdownModule .countdownBadge {
   border: 1px solid var(--cd-line);
-  color: var(--cd-line) !important;
+  color: var(--cd-line);
   background: var(--cd-paper);
 }
 
 #main #work .CountdownModule .countdownBadge :is(.countdownBadgeLabel, .countdownBadgeDate, .countdownBadgeYear) {
-  color: var(--cd-line) !important;
+  color: var(--cd-line);
 }
 
 // CTA — the poll's filled action button: 4px corners, sentence case
 #main #work .CountdownModule .countdownButton {
   border: 1px solid var(--cd-action);
   border-radius: 4px;
-  color: #fff !important;
+  color: #fff;
   background: var(--cd-action);
   letter-spacing: 0.01em;
   text-transform: none;
 }
 
 #main #work .CountdownModule .countdownButton .countdownArrow {
-  color: inherit !important;
+  color: inherit;
 }
 
 #main #work .CountdownModule .countdownButton:hover {
   border-color: color-mix(in srgb, var(--cd-action) 85%, #000);
-  color: #fff !important;
+  color: #fff;
   background: color-mix(in srgb, var(--cd-action) 85%, #000);
 }
 
 // Dark: soft brand action with dark text (as the poll's dark accents)
 #main #work .CountdownModule[data-theme="dark"] .countdownButton,
 #main #work .CountdownModule[data-theme="dark"] .countdownButton .countdownArrow {
-  color: #000 !important;
+  color: #000;
 }
 
 #main #work .CountdownModule[data-theme="dark"] .countdownButton:hover {
@@ -1272,11 +1272,17 @@ transform: perspective(400px) rotateX(0);
 }
 
 #main #work .CountdownModule .countdownButton:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--cd-action) 35%, transparent);
+  outline: 3px solid var(--cd-action); // full colour for ≥ 3:1 (WCAG 1.4.11)
   outline-offset: 2px;
 }
 
 // "Der Release-Countdown" — semi-bold title (colour stays --modTtl)
 #main #work .CountdownModule .countdownReleaseTitle {
   font-weight: 600;
+}
+
+// Demo button in the module preview: looks like the portal button, but is a
+// plain element (no link target in the demo), so no pointer cursor
+.countdownButton--static {
+  cursor: default;
 }

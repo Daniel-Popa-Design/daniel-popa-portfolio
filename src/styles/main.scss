@@ -1,5 +1,6 @@
 // Stylesheet entry. Partials are ordered by the cascade:
 // tokens → base → layout → shared components → page sections (top to bottom) → overrides.
+@use "fonts";
 @use "tokens";
 @use "base";
 @use "layout";

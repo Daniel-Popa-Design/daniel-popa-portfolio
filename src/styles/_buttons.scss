@@ -81,23 +81,25 @@
   }
 }
 
-// Button text: 15px everywhere, in step with the 15px body text.
-// !important because _base.scss forces `button { font-size: 13px !important }`
-// (kept for the recreated poll/countdown modules, which have their own sizes).
-.site-header .primary-navigation a,
-.language-switch__option,
-.hero .button--blue,
-.portfolio-shell .contact__primary,
-#main .cls-demo__replay,
-#main .ds-demo__preview,
-.portfolio-shell .token-memory__restart,
-#main .module-preview__switcher button,
-#main .kbdRace__foot button,
-.portfolio-shell .clamped-text__toggle,
-.quality-story__deeper summary,
-.hero-cv,
-.portfolio-shell .text-link {
-  font-size: 15px !important;
+// Button text: 15px everywhere (one step below the 16px running text).
+// :is() takes the specificity of its strongest selector (#main …), so this one
+// rule beats the 13px text floor in _overrides.scss without !important.
+:is(
+  .site-header .primary-navigation a,
+  .language-switch__option,
+  .hero .button--blue,
+  .portfolio-shell .contact__primary,
+  #main .cls-demo__replay,
+  #main .ds-demo__preview,
+  .portfolio-shell .token-memory__restart,
+  #main .module-preview__switcher button,
+  #main .kbdRace__foot button,
+  .portfolio-shell .clamped-text__toggle,
+  .quality-story__deeper summary,
+  .hero-cv,
+  .portfolio-shell .text-link
+) {
+  font-size: 0.9375rem;
 }
 
 // Text inside these links/buttons follows their size (the global 13px span

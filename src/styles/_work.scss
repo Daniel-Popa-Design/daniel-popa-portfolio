@@ -63,7 +63,7 @@
   max-width: 30ch;
   margin: 0;
   color: var(--ink-soft);
-  font-size: 15px;
+  font-size: var(--text-body);
   line-height: 1.6;
 }
 
@@ -155,7 +155,7 @@
       border-radius: 50%;
       color: #fff;
       background: var(--badge-ink);
-      font-size: 13px;
+      font-size: 0.8125rem;
       font-weight: 400;
       content: counter(layer);
     }
@@ -190,7 +190,7 @@
   code {
     color: var(--ink-soft);
     font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
-    font-size: 10.5px;
+    font-size: 0.65625rem;
   }
 }
 
@@ -200,13 +200,13 @@
   grid-row: 2;
   margin: 0;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 0.8125rem;
   line-height: 1.45;
 }
 
 .portfolio-shell .ds-layers__name {
   color: var(--badge-ink);
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 600;
 }
 
@@ -244,7 +244,7 @@
     color: var(--ink-soft);
     background: var(--surface);
     font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
-    font-size: 10.5px;
+    font-size: 0.65625rem;
   }
 
   i {
@@ -312,7 +312,7 @@
 .portfolio-shell .ds-mini__label {
   overflow: hidden;
   color: var(--muted);
-  font-size: 8.5px;
+  font-size: 0.53125rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-overflow: ellipsis;
@@ -497,7 +497,7 @@
   color: #fff;
   background: var(--dark);
   font: inherit;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 650;
   cursor: pointer;
   transition: background-color 160ms ease, color 160ms ease;
@@ -524,7 +524,7 @@
 
 .portfolio-shell .ds-demo__cta > span {
   color: var(--muted);
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 // ---------------------------------------------------------------------------
@@ -564,10 +564,10 @@
   justify-content: space-between;
   gap: 16px;
 
-  h4 {
+  h2 {
     margin: 0;
     color: var(--ink);
-    font-size: clamp(19px, 2vw, 24px);
+    font-size: clamp(1.1875rem, 2vw, 1.5rem);
     font-weight: 550;
     letter-spacing: -0.04em;
   }
@@ -577,7 +577,7 @@
   max-width: 62ch;
   margin: 4px 0 0;
   color: var(--ink-soft);
-  font-size: 15px;
+  font-size: var(--text-body);
   line-height: 1.55;
 }
 
@@ -630,7 +630,7 @@
     margin-bottom: 5px;
     padding: 0;
     color: var(--muted);
-    font-size: 13px;
+    font-size: 0.8125rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -654,7 +654,7 @@
   color: #4c4c48;
   background: transparent;
   font: inherit;
-  font-size: 10px;
+  font-size: 0.625rem;
   font-weight: 700;
   cursor: pointer;
   transition: background-color 160ms ease, color 160ms ease;
@@ -704,10 +704,10 @@
   background: var(--panel-bg);
   transition: background-color 200ms ease, color 200ms ease;
 
-  h5 {
+  h3 {
     margin: 0 0 12px;
     color: var(--panel-muted);
-    font-size: 13px;
+    font-size: 0.8125rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -746,7 +746,7 @@
 
   code {
     font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 
   dd code {
@@ -757,7 +757,7 @@
 .portfolio-shell .module-preview__tokens dt span,
 .portfolio-shell .module-preview__tokens > p {
   color: var(--panel-muted);
-  font-size: 15px;
+  font-size: var(--text-body);
   line-height: 1.45;
 }
 
@@ -803,7 +803,7 @@
 
 .portfolio-shell .kbdRace__controls > span {
   color: var(--muted);
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 
 .kbdRace__panels {
@@ -831,10 +831,10 @@
   justify-content: space-between;
   gap: 10px;
 
-  h5 {
+  h3 {
     margin: 0;
     color: var(--k-ink);
-    font-size: 15px;
+    font-size: 0.9375rem;
     font-weight: 600;
   }
 }
@@ -847,7 +847,7 @@
 
   strong {
     color: var(--k-accent);
-    font-size: 26px;
+    font-size: 1.625rem;
     font-weight: 700;
     font-variant-numeric: tabular-nums;
     line-height: 1;
@@ -855,7 +855,7 @@
 
   span {
     color: var(--k-muted);
-    font-size: 10px;
+    font-size: 0.625rem;
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -899,7 +899,7 @@
 
   b {
     color: var(--k-ink);
-    font-size: 9px;
+    font-size: 0.5625rem;
     font-weight: 800;
     letter-spacing: 0.14em;
   }
@@ -911,7 +911,7 @@
   border-radius: 999px;
   color: #fff;
   background: var(--k-bad);
-  font-size: 8px;
+  font-size: 0.5rem;
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -927,7 +927,7 @@
   border-radius: 999px;
   color: var(--k-accent-text);
   background: var(--k-accent);
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 700;
   text-decoration: none;
   outline: 3px solid transparent;
@@ -974,7 +974,7 @@
 #main .kbdRace__panel[data-variant="before"] .kbdRace__menu a {
   height: 18px;
   padding: 0 6px;
-  font-size: 8.5px;
+  font-size: 0.53125rem;
 
   // Barely visible focus — the problem this case fixes
   &[data-current="true"] {
@@ -986,7 +986,7 @@
 #main .kbdRace__panel[data-variant="after"] .kbdRace__menu a {
   height: 24px;
   padding: 0 9px;
-  font-size: 10px;
+  font-size: 0.625rem;
 
   &[data-current="true"] {
     outline: 3px solid var(--k-accent);
@@ -998,7 +998,7 @@
 .portfolio-shell .kbdRace__skipped {
   margin-top: -4px;
   color: var(--k-accent);
-  font-size: 10px;
+  font-size: 0.625rem;
   font-weight: 700;
   animation: cls-demo-fade 0.3s ease both;
 }
@@ -1017,7 +1017,7 @@
 
   strong {
     color: var(--k-ink);
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 600;
   }
 
@@ -1055,7 +1055,7 @@
   border-radius: 50%;
   color: var(--k-accent-text);
   background: var(--k-accent);
-  font-size: 10px;
+  font-size: 0.625rem;
   font-weight: 700;
   animation: cls-demo-tap 0.3s ease both;
 }
@@ -1067,7 +1067,7 @@
 
   > span {
     color: var(--k-muted);
-    font-size: 9px;
+    font-size: 0.5625rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -1096,7 +1096,7 @@
 
     b {
       font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
-      font-size: 9.5px;
+      font-size: 0.59375rem;
       font-weight: 700;
     }
 
@@ -1114,7 +1114,7 @@
 
 // Where each press lands — prefixed to set the size over the global span rule
 .portfolio-shell .kbdRace__path li span {
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 
 // Checklist — the three "Umsetzung" points, ✕ before / ✓ after
@@ -1131,7 +1131,7 @@
     align-items: flex-start;
     gap: 8px;
     color: var(--k-ink);
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.4;
   }
 
@@ -1178,7 +1178,7 @@
 .portfolio-shell .kbdRace__foot p {
   margin: 0;
   color: var(--k-muted);
-  font-size: 15px;
+  font-size: var(--text-body);
 }
 
 #main .kbdRace__foot button {
@@ -1189,7 +1189,7 @@
   color: var(--k-accent);
   background: transparent;
   font: inherit;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 700;
   cursor: pointer;
 
@@ -1217,7 +1217,7 @@
 .portfolio-shell .kbdRace__summary strong {
   flex: 0 0 auto;
   color: var(--k-accent);
-  font-size: 26px;
+  font-size: 1.625rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
@@ -1226,14 +1226,16 @@
 .portfolio-shell .kbdRace__summary p {
   margin: 0;
   color: var(--k-ink);
-  font-size: 15px;
+  font-size: var(--text-body);
   line-height: 1.5;
 }
 
+// Restless pulse via size and a halo; the badge itself stays fully opaque so
+// its text keeps 4.9:1 (an opacity fade dropped it to 2.2:1)
 @keyframes kbd-pulse {
   to {
-    opacity: 0.35;
     transform: scale(0.92);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--k-bad) 30%, transparent);
   }
 }
 

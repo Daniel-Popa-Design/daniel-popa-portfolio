@@ -39,7 +39,7 @@
 .wordmark .wordmark__name {
   color: var(--badge-ink);
   font-family: var(--serif);
-  font-size: 19px;
+  font-size: 1.1875rem;
   letter-spacing: 0;
 }
 
@@ -185,7 +185,7 @@
 }
 
 .site-header .primary-navigation a {
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 
 // Current section (follows the scroll position, set in App.jsx) — ink pill.
@@ -243,7 +243,7 @@
 // Scoped to the header (outside .portfolio-shell) to beat the global span size
 .site-header .language-switch__divider {
   color: #b3b2ab;
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 
 .language-switch__option {
@@ -256,8 +256,8 @@
   border: 0;
   color: #6d6c66; // ≥ 4.5:1
   background: none;
-  font-size: 13px !important; // beats the global button size (_base.scss)
-  font-weight: 600;
+  // size: 15px, shared with all buttons (_buttons.scss)
+  font-weight: 400;
   letter-spacing: 0.06em;
   cursor: pointer;
   transition: color 160ms ease;
@@ -335,7 +335,7 @@
   }
 
   .site-header .primary-navigation a {
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 }
 
@@ -351,7 +351,7 @@
   }
 
   .wordmark .wordmark__name {
-    font-size: 17px;
+    font-size: 1.0625rem;
   }
 
   .wordmark__top {
@@ -437,6 +437,12 @@
       opacity: 1;
       transform: translateY(0);
       visibility: visible;
+      // Visible at once when opening, so focus can move to the first link
+      // right away (closing still fades out with the 170ms delay above)
+      transition:
+        opacity 170ms ease,
+        transform 170ms ease,
+        visibility 0s;
     }
 
     > a {
@@ -467,7 +473,7 @@
   }
 
   .site-header .primary-navigation a {
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 }
 
@@ -477,7 +483,7 @@
   }
 
   .wordmark .wordmark__name {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .site-header__tools {

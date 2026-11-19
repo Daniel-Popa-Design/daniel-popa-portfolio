@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Submit in Google Search Console: on a project page (…github.io/<repo>/)
+     no robots.txt can point here, as robots.txt only works at the domain root -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://daniel-popa-design.github.io/daniel-popa-portfolio/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://daniel-popa-design.github.io/daniel-popa-portfolio/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daniel-popa-design.github.io/daniel-popa-portfolio/en/" />
+  </url>
+  <url>
+    <loc>https://daniel-popa-design.github.io/daniel-popa-portfolio/en/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://daniel-popa-design.github.io/daniel-popa-portfolio/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daniel-popa-design.github.io/daniel-popa-portfolio/en/" />
+  </url>
+</urlset>

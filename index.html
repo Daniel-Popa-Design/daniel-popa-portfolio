@@ -2,21 +2,49 @@
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Barlow:ital,wght@1,700;1,800&family=Mrs+Saint+Delafield&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daniel Popa — Senior Webdesigner | Frontend-Entwicklung</title>
     <meta
       id="meta-description"
       name="description"
       content="Daniel Popa ist Senior Webdesigner und Frontend-Entwickler aus Nürnberg mit über 10 Jahren Erfahrung in UI/UX, CSS/SCSS, WordPress, Webperformance und Barrierefreiheit."
     />
-    <meta name="theme-color" content="#f7f5f0" />
-    <meta property="og:type" content="website" />
+
+    <!-- Hero portrait (LCP element): start loading before the JS renders it.
+         Only AVIF-capable browsers use this; others fall back to the WebP. -->
+    <link
+      rel="preload"
+      as="image"
+      href="/images/daniel-popa-portrait.avif"
+      type="image/avif"
+      fetchpriority="high"
+    />
+    <!-- Self-hosted body font (latin subset), used above the fold -->
+    <link
+      rel="preload"
+      as="font"
+      href="/fonts/montserrat-latin.woff2"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#fffefa" />
+
+    <!-- One address per language; the prerender step and App.jsx keep the
+         canonical / og:url / og:locale in step with the visible language -->
+    <link id="canonical" rel="canonical" href="https://daniel-popa-design.github.io/daniel-popa-portfolio/" />
+    <link rel="alternate" hreflang="de" href="https://daniel-popa-design.github.io/daniel-popa-portfolio/" />
+    <link rel="alternate" hreflang="en" href="https://daniel-popa-design.github.io/daniel-popa-portfolio/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://daniel-popa-design.github.io/daniel-popa-portfolio/" />
+
+    <!-- Share preview (LinkedIn, WhatsApp, Slack, X …) -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Daniel Popa" />
+    <meta id="og-url" property="og:url" content="https://daniel-popa-design.github.io/daniel-popa-portfolio/" />
+    <meta id="og-locale" property="og:locale" content="de_DE" />
     <meta
       id="og-title"
       property="og:title"
@@ -27,7 +55,47 @@
       property="og:description"
       content="Durchdachtes Design, das funktioniert. Entdecke die Arbeit und Erfahrung von Daniel Popa."
     />
-    <title>Daniel Popa — Senior Webdesigner | Frontend-Entwicklung</title>
+    <meta property="og:image" content="https://daniel-popa-design.github.io/daniel-popa-portfolio/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Daniel Popa – Senior Webdesigner | Frontend-Entwicklung, mit Porträtfoto" />
+    <meta property="profile:first_name" content="Daniel" />
+    <meta property="profile:last_name" content="Popa" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Structured data: who this page is about (schema.org Person) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "url": "https://daniel-popa-design.github.io/daniel-popa-portfolio/",
+        "mainEntity": {
+          "@type": "Person",
+          "name": "Daniel Popa",
+          "jobTitle": "Senior Webdesigner | Frontend-Entwicklung",
+          "url": "https://daniel-popa-design.github.io/daniel-popa-portfolio/",
+          "image": "https://daniel-popa-design.github.io/daniel-popa-portfolio/images/daniel-popa-portrait.webp",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Nürnberg",
+            "addressCountry": "DE"
+          },
+          "knowsAbout": [
+            "UI/UX-Design",
+            "Webdesign",
+            "HTML",
+            "CSS",
+            "SCSS",
+            "Responsive Design",
+            "Design-Systeme",
+            "WordPress",
+            "Barrierefreiheit (WCAG)",
+            "Webperformance"
+          ],
+          "sameAs": ["https://www.linkedin.com/in/daniel-popa-office/"]
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

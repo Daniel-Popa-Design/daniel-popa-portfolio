@@ -53,12 +53,20 @@
   padding: 0;
 }
 
+// The H1 holds name + role; it is only a wrapper, the two spans carry the look.
+.hero .hero__heading {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 500;
+}
+
 // Name in the main red, title case; role in ink on one line; calm intro
-.hero h1 {
+.hero .hero__name {
+  display: block;
   margin: 0 0 14px;
   color: var(--accent-red);
   font-family: var(--serif);
-  font-size: clamp(48px, 6.4vw, 88px);
+  font-size: clamp(3rem, 6.4vw, 5.5rem);
   font-weight: 500;
   letter-spacing: -0.055em;
   line-height: 1;
@@ -66,10 +74,11 @@
 }
 
 .hero .hero__role {
+  display: block;
   margin: 0;
   color: var(--ink);
   font-family: var(--serif);
-  font-size: clamp(20px, 2vw, 26px);
+  font-size: clamp(1.25rem, 2vw, 1.625rem);
   font-weight: 500;
   letter-spacing: -0.035em;
   line-height: 1.25;
@@ -78,6 +87,13 @@
   span {
     font-size: inherit;
   }
+}
+
+// Montserrat's "|" runs from -0.20em to 0.75em, so it sits 0.08em lower than
+// the middle of the capitals. Lift it to centre it on the text.
+.hero .hero__divider {
+  position: relative;
+  top: -0.08em;
 }
 
 .hero__bottom {
@@ -89,7 +105,7 @@
   max-width: 540px;
   margin: clamp(28px, 3.5vw, 44px) 0 0;
   color: var(--ink-soft);
-  font-size: clamp(16px, 1.4vw, 19px);
+  font-size: clamp(1rem, 1.4vw, 1.1875rem);
   line-height: 1.6;
 }
 
@@ -122,7 +138,7 @@
   border-radius: 999px;
   color: #fff;
   background: #1d1d1b;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 600;
   transition: background-color 180ms ease;
 
@@ -145,7 +161,7 @@
   gap: 8px;
   padding: 6px 0;
   color: var(--ink);
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -312,7 +328,7 @@
 
   > span {
     color: var(--badge-ink);
-    font-size: 15px;
+    font-size: 0.9375rem;
     font-weight: 650;
     line-height: 1.3;
     white-space: nowrap;
@@ -359,16 +375,17 @@
     gap: calc(var(--head-rise) + var(--head-clearance));
   }
 
-  .hero h1 {
+  .hero .hero__name {
     margin-bottom: 10px;
     // Name is ~5.3em wide: size it to the available width
-    font-size: min(64px, (100vw - 48px) / 5.4);
+    font-size: min(4rem, (100vw - 48px) / 5.4);
   }
 
   .hero .hero__role {
     max-width: 100%;
 
-    span {
+    // Only the two parts stack; the "|" stays inline after the first
+    > span {
       display: block;
     }
   }
@@ -400,5 +417,5 @@
 
 // Label text at 15px — more specific than the global 13px text rule
 .portfolio-shell .hero-art__badge__text > span {
-  font-size: 15px;
+  font-size: 0.9375rem;
 }

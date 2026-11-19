@@ -1,29 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -178.5 770 770">
-  <title>Pixel code brackets logo</title>
-  <rect x="86" y="16" width="31" height="32" rx="5" fill="#d8735c"/>
-  <rect x="34" y="73" width="38" height="37" rx="5" fill="#d8735c"/>
-  <rect x="88" y="120" width="23" height="24" rx="3" fill="#d8735c"/>
-  <rect x="206" y="55" width="100" height="57" rx="9" fill="#d8735c"/>
-  <rect x="206" y="55" width="50" height="57" rx="9" fill="#c4472a"/>
-  <rect x="152" y="110" width="102" height="57" rx="9" fill="#c4472a"/>
-  <rect x="206" y="111" width="48" height="56" rx="8" fill="#a33a22"/>
-  <rect x="94" y="164" width="59" height="90" rx="9" fill="#c4472a"/>
-  <rect x="94" y="209" width="59" height="45" rx="8" fill="#a33a22"/>
-  <rect x="151" y="251" width="103" height="58" rx="9" fill="#c4472a"/>
-  <rect x="206" y="251" width="48" height="58" rx="8" fill="#a33a22"/>
-  <rect x="205" y="305" width="91" height="57" rx="9" fill="#c4472a"/>
-  <rect x="205" y="305" width="48" height="57" rx="8" fill="#a33a22"/>
-  <path d="M425 55H478L384 358Q383 362 378 362H330Q326 362 328 356L417 61Q419 55 425 55Z" fill="#343434"/>
-  <rect x="509" y="56" width="80" height="57" rx="9" fill="#8c8c87"/>
-  <rect x="542" y="111" width="99" height="56" rx="9" fill="#6b6b66"/>
-  <rect x="542" y="111" width="47" height="56" rx="8" fill="#50504c"/>
-  <rect x="637" y="164" width="57" height="89" rx="9" fill="#8c8c87"/>
-  <rect x="637" y="208" width="57" height="45" rx="8" fill="#6b6b66"/>
-  <rect x="539" y="251" width="100" height="58" rx="9" fill="#6b6b66"/>
-  <rect x="539" y="251" width="48" height="58" rx="8" fill="#50504c"/>
-  <rect x="480" y="305" width="106" height="57" rx="9" fill="#6b6b66"/>
-  <rect x="539" y="305" width="47" height="57" rx="8" fill="#50504c"/>
-  <rect x="713" y="282" width="27" height="27" rx="4" fill="#8c8c87"/>
-  <rect x="668" y="317" width="32" height="32" rx="4" fill="#8c8c87"/>
-  <rect x="625" y="365" width="32" height="32" rx="4" fill="#8c8c87"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Daniel Popa</title>
+  <!-- Hexagon of the hero "10+" badge, split on the diagonal: main red (#c4472a)
+       top left, #1d1d1b bottom right; white "D." (full stop as in the page headings) in Montserrat SemiBold (as a path) -->
+  <defs>
+    <clipPath id="top-left"><polygon points="-10,-10 74,-10 -10,74"/></clipPath>
+  </defs>
+  <path d="M32 3 57 17.5v29L32 61 7 46.5v-29Z" fill="#1d1d1b" stroke="#1d1d1b" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M32 3 57 17.5v29L32 61 7 46.5v-29Z" fill="#c4472a" stroke="#c4472a" stroke-width="5" stroke-linejoin="round" clip-path="url(#top-left)"/>
+  <path d="M25.46 42.50L16.28 42.50L16.28 21.50L25.46 21.50Q28.88 21.50 31.46 22.80Q34.04 24.11 35.48 26.48Q36.92 28.85 36.92 32Q36.92 35.15 35.48 37.52Q34.04 39.89 31.46 41.20Q28.88 42.50 25.46 42.50M20.18 24.80L20.18 39.20L25.28 39.20Q27.62 39.20 29.36 38.31Q31.10 37.43 32.05 35.81Q32.99 34.19 32.99 32Q32.99 29.81 32.05 28.19Q31.10 26.57 29.36 25.69Q27.62 24.80 25.28 24.80" fill="#fff"/>
+  <circle cx="43.52" cy="38.30" r="4.2" fill="#fff"/>
 </svg>
