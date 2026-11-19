@@ -1286,3 +1286,10 @@ transform: perspective(400px) rotateX(0);
 .countdownButton--static {
   cursor: default;
 }
+
+// Text + arrow centred in the button; only visible where the button is wider
+// than its content (full width on phones)
+.CountdownModule .countdownButton {
+  justify-content: center;
+  text-align: center;
+}

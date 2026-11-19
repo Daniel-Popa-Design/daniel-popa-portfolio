@@ -122,7 +122,6 @@ const de = {
     multiple: "Mehrfachauswahl: Ja",
     vote: "Jetzt einloggen zum Abstimmen",
     comment: "Jetzt kommentieren",
-    commentLabel: "Jetzt kommentieren, 87 Kommentare",
     portal: "Portal",
     appearance: "Darstellung",
     light: "Hell",

@@ -122,7 +122,6 @@ const en = {
     multiple: "Multiple selections: Yes",
     vote: "Log in to vote",
     comment: "Add a comment",
-    commentLabel: "Add a comment, 87 comments",
     portal: "Portal",
     appearance: "Appearance",
     light: "Light",

@@ -729,3 +729,10 @@
 .pollModuleShell .poll-mark__fill {
   display: none;
 }
+
+// Demo buttons in the poll mock-up: look like the portal buttons, but are
+// plain elements (no login or comments in the demo), so no pointer cursor
+// (#main … to beat the module's own cursor: pointer rules)
+#main .pollModuleShell .pollModule__static {
+  cursor: default;
+}

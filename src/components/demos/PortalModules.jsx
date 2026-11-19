@@ -212,20 +212,16 @@ export function PollModule({ text, domain, theme }) {
               <span>{text.multiple}</span>
             </span>
           </p>
+          {/* Mock-up of the portal buttons: shown, not clickable (no login or
+              comments in the demo) */}
           <div className="pollModule__actions">
-            <button className="pollModule__login" type="button">
-              {text.vote}
-            </button>
-            <a
-              aria-label={text.commentLabel}
-              className="pollModule__comment"
-              href="mailto:popadaniel.office@gmail.com?subject=Kommentar%20zur%20Umfrage"
-            >
+            <span className="pollModule__login pollModule__static">{text.vote}</span>
+            <span className="pollModule__comment pollModule__static">
               <span>{text.comment}</span>
               <span aria-hidden="true">·</span>
               <PollMark type="comment" className="pollModule__comment-mark" />
               <span>87</span>
-            </a>
+            </span>
           </div>
         </footer>
       </div>
