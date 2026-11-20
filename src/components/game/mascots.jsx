@@ -1,6 +1,7 @@
-// Win mascot renderer and the shield emblem of the memory game.
+// Win mascot (hero badge) renderer and the shield emblem of the memory game.
 
-import { WIN_MASCOTS } from "./mascotData.jsx";
+import { useId } from "react";
+import { RARITIES, WIN_MASCOTS } from "./mascotData.jsx";
 
 // Card-back emblem in the ring style of the number marks: a kite shield with
 // a light red rim, a fine light edge and a white face, carrying a king's head
@@ -39,10 +40,115 @@ export function ShieldEmblem() {
   );
 }
 
+// Hexagon helpers for the hero badge (pointy top, centre 60/70)
+const hexPoints = (r, cx = 60, cy = 70) =>
+  [0, 1, 2, 3, 4, 5].map((i) => {
+    const a = -Math.PI / 2 + (i * Math.PI) / 3;
+    return [+(cx + r * Math.cos(a)).toFixed(2), +(cy + r * Math.sin(a)).toFixed(2)];
+  });
+const join = (points) => points.map((p) => p.join(",")).join(" ");
+
+const FRAME_OUTER = join(hexPoints(58));
+const FRAME_BEVEL = join(hexPoints(55.6));
+const FRAME_PANEL = join(hexPoints(52));
+const INNER = hexPoints(47);
+const GEM_BACK = join(hexPoints(12.5, 60, 12));
+const GEM = hexPoints(10.5, 60, 12);
+// Gem facets: right, bottom, left — all meeting in the gem's centre
+const GEM_FACETS = [
+  [GEM[0], GEM[1], GEM[2]],
+  [GEM[2], GEM[3], GEM[4]],
+  [GEM[4], GEM[5], GEM[0]],
+].map((facet) => `${join(facet)} 60,12`);
+
+// Ambient sparkles (x, y, size) and streaks around the hero
+const SPARKLES = [[24, 58, 1.6], [96, 76, 1.4], [30, 86, 1.1], [92, 40, 1], [86, 92, 1.2]];
+const STREAKS = ["M38 24L44 30", "M80 100L86 94", "M22 76L26 72"];
+
+// Win mascot: a collectible hero in a hexagonal badge — dark rim, silver
+// bevel, navy panel, rarity-coloured inner line and numbered gem crest
 export function WinMascot({ name }) {
+  const hero = WIN_MASCOTS[name];
+  const rarity = RARITIES[hero.rarity];
+  // Unique gradient ids per badge (sanitised: useId contains special chars)
+  const uid = useId().replace(/[^a-zA-Z0-9_-]/g, "");
+  const panelId = `${uid}-panel`;
+  const softId = `${uid}-soft`;
+
   return (
-    <svg className="win-mascot" viewBox="0 0 64 64" aria-hidden="true">
-      {WIN_MASCOTS[name]}
+    <svg className="hero-badge" viewBox="0 0 120 138" aria-hidden="true">
+      <defs>
+        <linearGradient id={panelId} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#596d90" />
+          <stop offset="1" stopColor="#34425e" />
+        </linearGradient>
+        <radialGradient id={softId}>
+          <stop offset="0" stopColor="#fff" stopOpacity=".9" />
+          <stop offset="1" stopColor="#fff" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+
+      {/* Frame */}
+      <polygon points={FRAME_OUTER} fill="#1c2735" />
+      <polygon points={FRAME_BEVEL} fill="#3a4a64" stroke="#b9c6d8" strokeWidth=".8" />
+      <polygon points={FRAME_PANEL} fill={`url(#${panelId})`} />
+
+      {/* Accent aura, sparkles, streaks */}
+      <circle cx="60" cy="66" r="30" fill={hero.accent} opacity=".12" />
+      <circle cx="60" cy="66" r="18" fill={hero.accent} opacity=".08" />
+      {SPARKLES.map(([x, y, r]) => (
+        <polygon
+          key={`${x}-${y}`}
+          fill="#dce6f2"
+          opacity=".45"
+          points={`${x},${y - r * 1.6} ${x + r},${y} ${x},${y + r * 1.6} ${x - r},${y}`}
+        />
+      ))}
+      {STREAKS.map((d) => (
+        <path key={d} d={d} stroke="#dce6f2" strokeWidth=".6" opacity=".35" />
+      ))}
+
+      {/* Inner line with corner dots in the rarity colour */}
+      <polygon points={join(INNER)} fill="none" stroke={rarity.line} strokeWidth=".7" opacity=".7" />
+      {[1, 2, 4, 5].map((i) => (
+        <circle key={i} cx={INNER[i][0]} cy={INNER[i][1]} r="1.3" fill={rarity.line} />
+      ))}
+
+      {/* Floor disc */}
+      <ellipse cx="60" cy="105.5" rx="31" ry="6" fill="none" stroke={hero.accent} strokeWidth=".6" opacity=".5" />
+      <ellipse cx="60" cy="105.5" rx="24" ry="4.4" fill="#26324a" opacity=".85" />
+
+      {/* Hero */}
+      {hero.art.map((shape, i) => {
+        const fill = shape.fill === "soft" ? `url(#${softId})` : shape.fill;
+        if (shape.t === "c") {
+          return <circle key={i} cx={shape.cx} cy={shape.cy} r={shape.r} fill={fill} opacity={shape.opacity} />;
+        }
+        if (shape.t === "path") {
+          return (
+            <path
+              key={i}
+              d={shape.d}
+              fill="none"
+              stroke={shape.stroke}
+              strokeWidth=".7"
+              strokeDasharray={shape.dash}
+              opacity={shape.opacity}
+            />
+          );
+        }
+        return <polygon key={i} points={shape.points} fill={fill} opacity={shape.opacity} />;
+      })}
+
+      {/* Bottom ornament and numbered gem crest */}
+      <polygon points="60,123 63,126.5 60,130 57,126.5" fill={rarity.gem[1]} />
+      <polygon points={GEM_BACK} fill="#1c2735" />
+      {GEM_FACETS.map((points, i) => (
+        <polygon key={points} points={points} fill={rarity.gem[[1, 2, 0][i]]} />
+      ))}
+      <text className="hero-badge__number" x="60" y="16.2" textAnchor="middle">
+        {hero.n}
+      </text>
     </svg>
   );
 }

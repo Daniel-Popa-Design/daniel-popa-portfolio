@@ -304,12 +304,11 @@
   line-height: 1.45;
 }
 
-// Mascot — icon style + gold offset of the whole silhouette
+// Icon base for the shield emblem and the padlock: white faces, soft grey line
 .win-mascot {
   width: clamp(64px, 8vw, 84px);
   height: auto;
   overflow: visible;
-  animation: token-memory-wiggle 1.6s ease-in-out 0.4s infinite;
 
   :is(path, circle, ellipse, rect) {
     fill: #fff;
@@ -318,23 +317,24 @@
     stroke-linejoin: round;
     stroke-width: 1.6px;
   }
+}
 
-  // Accents in the light red tint (no yellow on the page)
-  .is-gold {
-    fill: color-mix(in srgb, var(--accent-red) 45%, #fff);
-  }
+// Win mascot: hero in a hexagonal badge (flat faceted art, colours inline)
+.hero-badge {
+  width: clamp(84px, 10vw, 112px);
+  height: auto;
+  overflow: visible;
+  animation: hero-badge-float 3.2s ease-in-out 0.4s infinite;
+}
 
-  .is-teal {
-    fill: var(--badge-teal);
-  }
-
-  .is-ink {
-    fill: var(--badge-ink);
-  }
-
-  .is-line {
-    fill: none;
-  }
+.hero-badge__number {
+  fill: #fff;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: #16212b;
+  stroke-width: 2.2px;
 }
 
 @keyframes token-memory-pop {
@@ -348,15 +348,13 @@
   }
 }
 
-@keyframes token-memory-wiggle {
+// Gentle hover of the hero badge on the win card
+@keyframes hero-badge-float {
   0%, 100% {
-    transform: rotate(0);
+    transform: translateY(0);
   }
-  25% {
-    transform: rotate(-6deg);
-  }
-  75% {
-    transform: rotate(6deg);
+  50% {
+    transform: translateY(-3px);
   }
 }
 
@@ -495,8 +493,8 @@
   display: grid;
   place-items: center;
 
-  .win-mascot {
-    width: clamp(44px, 6vw, 72px);
+  .hero-badge {
+    width: clamp(48px, 6.4vw, 76px);
     animation: none;
   }
 }
@@ -579,7 +577,7 @@
   }
 
   .token-memory__win-card,
-  .win-mascot {
+  .hero-badge {
     animation: none;
   }
 

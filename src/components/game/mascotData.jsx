@@ -1,102 +1,272 @@
-// Win mascots of the memory game (drawings and keys).
+// Win mascots of the memory game: collectible heroes in hexagonal badges.
 
-// Win mascots — medieval characters in the icon style (white faces, ink
-// outline, teal/gold accents, no shadow). One is picked at random
-// for every won game; the caption comes from text.game.mascots[key].
-export const WIN_MASCOTS = {
-  // Knight helmet: googly eyes peek through the visor slit, gold plume
-  knight: (
-    <>
-      <path className="is-gold" d="M32 12c1.5-6.5 8-10 15-8.6-3.2 1.8-4.3 4.9-4 8.3-3.6-2.3-7.6-2.2-11 .3Z" />
-      <path d="M15 56V30c0-11 7.6-18.5 17-18.5S49 19 49 30v26Z" />
-      <path className="is-line" d="M32 12v14" />
-      <rect className="is-ink" x="18" y="28" width="28" height="10" rx="5" />
-      <circle cx="26" cy="33" r="4" />
-      <circle cx="38" cy="33" r="4" />
-      <circle className="is-ink" cx="27.4" cy="34" r="1.8" />
-      <circle className="is-ink" cx="36.7" cy="31.9" r="1.8" />
-      <circle className="is-ink" cx="26" cy="44" r="1.2" />
-      <circle className="is-ink" cx="32" cy="44" r="1.2" />
-      <circle className="is-ink" cx="38" cy="44" r="1.2" />
-      <path className="is-teal" d="M15 50h34v6H15Z" />
-    </>
-  ),
-  // Little dragon: curved gold horns, back spikes, nostrils, two fangs, smoke
-  dragon: (
-    <>
-      <path className="is-gold" d="M18 27c-3.5-5-3.8-11.5.4-16 0 4.4 2.2 7.6 5.6 9.6Z" />
-      <path className="is-gold" d="M46 27c3.5-5 3.8-11.5-.4-16 0 4.4-2.2 7.6-5.6 9.6Z" />
-      <path className="is-gold" d="m25.5 22 3-7.5 3 7.5Zm7 0 3-7.5 3 7.5Z" />
-      <path className="is-teal" d="M9 38c0-10.5 10.3-18.5 23-18.5S55 27.5 55 38c0 9.5-7.5 16-23 16S9 47.5 9 38Z" />
-      <path className="is-line" d="M18 26.5 27 29M46 26.5 37 29" />
-      <circle cx="23" cy="33" r="5.2" />
-      <circle cx="41" cy="33" r="5.2" />
-      <circle className="is-ink" cx="24.3" cy="32.2" r="2.2" />
-      <circle className="is-ink" cx="42.3" cy="32.2" r="2.2" />
-      <circle className="is-ink" cx="28.5" cy="41.5" r="1.3" />
-      <circle className="is-ink" cx="35.5" cy="41.5" r="1.3" />
-      <path className="is-line" d="M20 46.5c7.5 4.5 16.5 4.5 24 0" />
-      <path d="m24 47.6 1.8 4.2 1.8-3.4Z" />
-      <path d="m36.4 48.4 1.8 3.4 1.8-4.2Z" />
-      <circle cx="53" cy="23" r="3" />
-      <circle cx="57.5" cy="16.5" r="2.2" />
-      <circle cx="60.5" cy="11" r="1.5" />
-    </>
-  ),
-  // Frog king: crown between the eye bumps, rosy cheeks, huge grin
-  frog: (
-    <>
-      <circle className="is-teal" cx="20" cy="28" r="9" />
-      <circle className="is-teal" cx="44" cy="28" r="9" />
-      <ellipse className="is-teal" cx="32" cy="42" rx="24" ry="15" />
-      <circle cx="20" cy="27" r="5.5" />
-      <circle cx="44" cy="27" r="5.5" />
-      <circle className="is-ink" cx="21" cy="28" r="2.4" />
-      <circle className="is-ink" cx="43" cy="28" r="2.4" />
-      <path className="is-gold" d="M24.5 22V10l4.2 4.6L32 7.5l3.3 7.1 4.2-4.6v12Z" />
-      <circle className="is-gold" cx="15" cy="45" r="3" />
-      <circle className="is-gold" cx="49" cy="45" r="3" />
-      <path className="is-line" d="M17 40c7.5 9 22.5 9 30 0" />
-    </>
-  ),
-  // Wise owl in a starry wizard hat
-  owl: (
-    <>
-      <circle cx="32" cy="41" r="19" />
-      <path className="is-teal" d="M17 27 32 2l15 25Z" />
-      <circle className="is-gold" cx="29" cy="15" r="1.6" />
-      <circle className="is-gold" cx="35" cy="21" r="1.3" />
-      <ellipse className="is-teal" cx="32" cy="27.5" rx="21" ry="3.6" />
-      <path className="is-line" d="M17.5 32.5 25 35M46.5 32.5 39 35" />
-      <circle cx="24.5" cy="40" r="6.5" />
-      <circle cx="39.5" cy="40" r="6.5" />
-      <circle className="is-gold" cx="24.5" cy="40" r="3.6" />
-      <circle className="is-gold" cx="39.5" cy="40" r="3.6" />
-      <circle className="is-ink" cx="24.5" cy="40" r="1.7" />
-      <circle className="is-ink" cx="39.5" cy="40" r="1.7" />
-      <path className="is-gold" d="m29 47 3 5.5 3-5.5Z" />
-    </>
-  ),
-  // Goblin jester: pointy ears, two-tip hat with bells, odd eyes, one tooth
-  goblin: (
-    <>
-      <path className="is-teal" d="M19 37 3 28l14 15Z" />
-      <path className="is-teal" d="m45 37 16-9-14 15Z" />
-      <ellipse className="is-teal" cx="32" cy="40" rx="15" ry="16" />
-      <path d="M16.5 30c2-9.5 8.5-15 15.5-15s13.5 5.5 15.5 15Z" />
-      <path className="is-gold" d="M19 27 9 11l12 7Z" />
-      <path className="is-gold" d="m45 27 10-16-12 7Z" />
-      <circle className="is-gold" cx="9" cy="11" r="2.4" />
-      <circle className="is-gold" cx="55" cy="11" r="2.4" />
-      <circle cx="26" cy="37" r="5" />
-      <circle cx="39" cy="38" r="3.4" />
-      <circle className="is-ink" cx="26.8" cy="37.8" r="2.1" />
-      <circle className="is-ink" cx="38.6" cy="38.4" r="1.4" />
-      <ellipse className="is-teal" cx="32.5" cy="43" rx="3" ry="2.4" />
-      <path className="is-line" d="M24 48c5 4 11 4 16 0" />
-      <path d="M30.5 49.6h3v3.2h-3Z" />
-    </>
-  ),
+// Flat, faceted drawings without outlines: every form has a lit left face and
+// a shaded right face. Drawn on the 120 × 138 badge grid (see HeroBadge in
+// mascots.jsx). One hero is picked at random for every won game; the caption
+// comes from text.game.mascots[key]. Rarity only colours the badge gem.
+
+// Drawing primitives: polygon, circle, path. A fill of "soft" is the badge's
+// own white radial glow.
+const poly = (fill, points, opacity) => ({ t: "p", fill, points, opacity });
+const circ = (fill, cx, cy, r, opacity) => ({ t: "c", fill, cx, cy, r, opacity });
+
+export const RARITIES = {
+  common: { gem: ["#e4eaf1", "#aeb9c7", "#7f8c9d"], line: "#c9d4e4" },
+  rare: { gem: ["#8eeaf3", "#3cc3d6", "#1f8ea3"], line: "#9fe6ef" },
+  epic: { gem: ["#d2c2ff", "#a78bfa", "#6d52c9"], line: "#c8b8ff" },
+  legendary: { gem: ["#ffe08a", "#f2c14e", "#b8862a"], line: "#f3d27e" },
 };
 
+const gob = { cr: ["#d4506a", "#93304a"], oc: ["#ecbc52", "#b07f2a"], sk: ["#a6bd70", "#6f8646"] };
+const kn = { st: ["#dfe7ef", "#a7b6c8", "#6f8098"], gd: ["#e8b84e", "#b07f2a"] };
+const fr = { sk: ["#8fc487", "#5d9160"], wn: ["#c04a5f", "#83304a"], gd: ["#f0c34e", "#b8862a"] };
+const ow = { fe: ["#929bbd", "#5e6588"], vi: ["#7464c0", "#4a3f88"] };
+const dr = {
+  bd: ["#6385ad", "#3d5675", "#2c4059"],
+  em: ["#f3a24c", "#c9702a"],
+  wg: ["#e57d4b", "#a54b30"],
+  bn: ["#f2e5c6", "#c8b48c"],
+};
+
+export const WIN_MASCOTS = {
+  // Goblin jester: harlequin tunic and hood with bells, dagger, juggling orbs
+  goblin: {
+    n: 1,
+    rarity: "common",
+    accent: "#e2b24a",
+    art: [
+      { t: "path", d: "M82 38Q96 26 99 46Q100 60 92 60", stroke: "#e8eef6", dash: "1.6 2", opacity: 0.6 },
+      poly("#7fe3f0", "90,32 93,36 90,40 87,36"),
+      poly("#ecbc52", "97,43 100,47 97,51 94,47"),
+      poly("#d4506a", "92,55 95,59 92,63 89,59"),
+      poly(gob.cr[0], "52,84 58,84 57,100 52,100"),
+      poly(gob.oc[1], "62,84 68,84 68,100 63,100"),
+      poly(gob.oc[0], "52,100 57,100 56,104 42,104 40,99 45,101"),
+      poly(gob.cr[1], "63,100 68,100 78,104 80,99 75,101 64,104"),
+      poly(gob.cr[0], "60,54 48,56 46,74 47,82 60,84"),
+      poly(gob.oc[1], "60,54 72,56 74,74 73,82 60,84"),
+      poly(gob.oc[0], "50,62 53,66 50,70 47,66"),
+      poly(gob.oc[0], "54,72 57,76 54,80 51,76"),
+      poly(gob.cr[1], "70,62 73,66 70,70 67,66"),
+      poly(gob.cr[1], "66,72 69,76 66,80 63,76"),
+      poly(gob.cr[0], "47,81 53,81 50,90"),
+      poly(gob.cr[0], "53,81 60,81 56.5,90"),
+      poly(gob.oc[1], "60,81 67,81 63.5,90"),
+      poly(gob.oc[1], "67,81 73,81 70,90"),
+      poly(gob.cr[0], "48,58 42,68 44,76 48,74 46,66"),
+      poly(gob.sk[0], "42,74 47,74 47,79 42,79"),
+      poly("#ecbc52", "40.5,79 49,79 49,80.6 40.5,80.6"),
+      poly("#e8eef6", "43.4,80.6 44.7,80.6 44.7,92"),
+      poly("#aab6c4", "44.7,80.6 46,80.6 44.7,92"),
+      poly(gob.oc[1], "72,58 78,52 82,42 78,41 74,50 68,56"),
+      poly(gob.sk[1], "78,37 83,37 83,42 78,42"),
+      poly("#f1f4f8", "44,54 48,60 52,55 56,61 60,56 60,50"),
+      poly("#c7d0db", "60,50 60,56 64,61 68,55 72,60 76,54"),
+      poly(gob.sk[0], "51,40 28,33 51,47"),
+      poly("#c76a5a", "49,41 34,35.6 49,45"),
+      poly(gob.sk[1], "69,40 92,33 69,47"),
+      poly("#8f4538", "71,41 86,35.6 71,45"),
+      poly(gob.sk[0], "50,36 60,32 60,54 52,48"),
+      poly(gob.sk[1], "60,32 70,36 68,48 60,54"),
+      poly("#ffe066", "52,40 57.6,41.6 53,42.8"),
+      poly("#ffe066", "68,40 62.4,41.6 67,42.8"),
+      poly("#5b6f38", "59,42 61,41.6 66,48.4 61,48.8"),
+      poly("#2a1d24", "53,49.6 60,51.6 67,48.6 66,50.4 60,53.4 54,51"),
+      poly("#f1f4f8", "58.6,51.2 61,51.6 60.6,53"),
+      poly(gob.cr[0], "48,38 52,28 60,25 60,33 53,35"),
+      poly(gob.oc[1], "60,25 68,28 72,38 67,35 60,33"),
+      poly(gob.cr[0], "52,29 42,20 30,23 37,16 50,17 58,26"),
+      poly(gob.oc[1], "68,29 78,20 90,23 83,16 70,17 62,26"),
+      circ("#ecbc52", 30, 23, 2.6),
+      circ("#ecbc52", 90, 23, 2.6),
+      poly("#b07f2a", "90,20.4 92.6,23 90,25.6"),
+    ],
+  },
+  // Knight: great helm with glowing eye slit, gold cape and plume, planted sword
+  knight: {
+    n: 2,
+    rarity: "rare",
+    accent: "#7fe3f0",
+    art: [
+      poly(kn.gd[0], "40,46 60,44 60,102 46,98 28,106 34,70"),
+      poly(kn.gd[1], "60,44 80,46 86,70 92,106 74,98 60,102"),
+      poly(kn.st[1], "50,86 58,86 57,104 48,104"),
+      poly(kn.st[2], "62,86 70,86 72,104 63,104"),
+      poly(kn.st[2], "46,104 57,104 57,107 43,107"),
+      poly("#56667d", "63,104 74,104 77,107 63,107"),
+      poly(kn.st[0], "46,52 60,50 60,88 50,88 44,66"),
+      poly(kn.st[1], "60,50 74,52 76,66 70,88 60,88"),
+      poly("#ffffff", "59.4,52 60.6,52 60.6,72 59.4,72", 0.7),
+      poly("#2b3546", "47,72 73,72 73,75 47,75"),
+      poly("#3c6fb0", "48,75 60,75 60,96 50,92"),
+      poly("#28508a", "60,75 72,75 70,92 60,96"),
+      poly("#ecf6ff", "60,79 63,83 60,87 57,83"),
+      poly(kn.st[0], "34,50 48,46 52,54 44,60 33,58"),
+      poly(kn.st[1], "33,58 44,60 46,64 35,66"),
+      poly(kn.st[1], "72,46 86,50 87,58 76,60 68,54"),
+      poly(kn.st[2], "76,60 87,58 85,66 74,64"),
+      poly(kn.st[1], "36,64 44,62 56,67 54,72 40,70"),
+      poly(kn.st[2], "84,64 76,62 64,67 66,72 80,70"),
+      poly(kn.st[0], "54,66 60,66 60,73 54,73"),
+      poly(kn.st[2], "60,66 66,66 66,73 60,73"),
+      poly(kn.gd[0], "60,60.6 62.4,63.3 60,66 57.6,63.3"),
+      poly(kn.gd[0], "49,73 60,73 60,75.6 49,75.6"),
+      poly(kn.gd[1], "60,73 71,73 71,75.6 60,75.6"),
+      poly("#f4f9ff", "58.2,75.6 60,75.6 60,104"),
+      poly("#9fc3d8", "60,75.6 61.8,75.6 60,104"),
+      poly(kn.st[1], "54,47 66,47 64,51 56,51"),
+      poly(kn.st[0], "52,30 60,27 60,48 52,47 51,38"),
+      poly(kn.st[1], "60,27 68,30 69,38 68,47 60,48"),
+      poly("#1b2431", "52.5,37 67.5,37 67.5,39.6 61.2,39.6 61.2,45.4 58.8,45.4 58.8,39.6 52.5,39.6"),
+      poly("#8fe9ff", "54,37.7 57.4,37.7 57.4,38.9 54,38.9"),
+      poly("#8fe9ff", "62.6,37.7 66,37.7 66,38.9 62.6,38.9"),
+      poly(kn.gd[0], "60,27 62,20 70,14 79,12.6 72,17 68,22 64,28"),
+      poly(kn.gd[1], "64,28 68,22 72,17 75,20 70,26"),
+    ],
+  },
+  // Toad king: wine robe, ermine mantle, gold crown with a garnet, crystal sceptre
+  frog: {
+    n: 3,
+    rarity: "rare",
+    accent: "#7fe3f0",
+    art: [
+      poly(fr.gd[0], "82.6,40 84.4,40 86,104 84.2,104"),
+      poly("#8eeaf3", "84,28 89,34 84,41 84,34"),
+      poly("#2fa9bf", "84,28 84,34 84,41 79,34"),
+      poly(fr.gd[1], "80,41 88,41 87,43 81,43"),
+      poly(fr.wn[0], "60,52 46,56 36,104 60,104"),
+      poly(fr.wn[1], "60,52 74,56 84,104 60,104"),
+      poly("#d7e6ae", "56,60 60,60 60,104 54,104"),
+      poly("#a9bd7c", "60,60 64,60 66,104 60,104"),
+      poly("#f3f6f9", "53.6,60 56,60 54,104 51,104"),
+      poly("#c3ccd6", "64,60 66.4,60 69,104 66,104"),
+      poly("#2b3546", "52.6,70 53.6,72 52.6,74 51.6,72"),
+      poly("#2b3546", "52,86 53,88 52,90 51,88"),
+      poly("#2b3546", "67,78 68,80 67,82 66,80"),
+      poly("#2b3546", "67.8,94 68.8,96 67.8,98 66.8,96"),
+      poly(fr.wn[0], "42,58 48,57 46,80 38,78"),
+      poly(fr.wn[1], "72,57 80,60 84,64 78,68 72,66"),
+      poly(fr.sk[1], "80,61 86.6,60 87.4,66.6 81,67.4"),
+      poly("#f3f6f9", "40,55 60,51 60,66 42,63"),
+      poly("#c3ccd6", "60,51 80,55 78,63 60,66"),
+      poly("#2b3546", "46,58 47,60 46,62 45,60"),
+      poly("#2b3546", "54,59 55,61 54,63 53,61"),
+      poly("#2b3546", "66,59 67,61 66,63 65,61"),
+      poly("#2b3546", "74,58 75,60 74,62 73,60"),
+      poly(fr.sk[0], "44,104 54,104 52,107 40,107"),
+      poly(fr.sk[1], "66,104 76,104 80,107 68,107"),
+      poly(fr.sk[0], "40,42 50,35 60,34 60,52 46,50"),
+      poly(fr.sk[1], "60,34 70,35 80,42 74,50 60,52"),
+      poly("#c4e0a0", "46,46 60,48 60,52 48,50"),
+      poly("#8fb172", "60,48 74,46 72,50 60,52"),
+      poly(fr.gd[0], "52,33 52,22 55.6,26.4 60,19 60,33"),
+      poly(fr.gd[1], "60,19 64.4,26.4 68,22 68,33 60,33"),
+      poly("#d4374f", "60,26.6 62,29 60,31.4 58,29"),
+      poly(fr.sk[0], "41,39 45,30 54,30 56,37 48,41"),
+      poly(fr.sk[1], "79,39 75,30 66,30 64,37 72,41"),
+      poly("#f6cf52", "45,35 53,34 52,37.4 46,37.8"),
+      poly("#f6cf52", "75,35 67,34 68,37.4 74,37.8"),
+      poly(fr.sk[1], "44,33.6 54,32.2 53.4,35 44.6,35.8"),
+      poly("#46754a", "76,33.6 66,32.2 66.6,35 75.4,35.8"),
+      poly("#16202a", "47,36.2 51,35.8 51,36.8 47,37.2"),
+      poly("#16202a", "73,36.2 69,35.8 69,36.8 73,37.2"),
+      poly("#2e4a33", "43,44.6 60,47.6 77,44.6 77,45.8 60,49 43,45.8"),
+    ],
+  },
+  // Owl archmage: violet robe, feather cloak, pointed hat, glowing crystal staff
+  owl: {
+    n: 4,
+    rarity: "epic",
+    accent: "#a78bfa",
+    art: [
+      circ("soft", 31, 27, 12, 0.55),
+      poly("#a07c52", "30,34 32,34 34,104 32,104"),
+      poly("#a9f1ff", "31,18 35.4,26 31,35"),
+      poly("#3cb5cf", "31,18 31,35 26.6,26"),
+      poly(ow.vi[0], "60,56 46,58 38,104 60,104"),
+      poly(ow.vi[1], "60,56 74,58 82,104 60,104"),
+      poly("#f2c14e", "58.6,60 60,60 60,104 57.6,104"),
+      poly("#b8862a", "60,60 61.4,60 62.4,104 60,104"),
+      poly("#f2c14e", "44,98 46,100 44,102 42,100"),
+      poly("#b8862a", "76,98 78,100 76,102 74,100"),
+      poly(ow.fe[0], "46,50 37,58 33,88 42,81 46,92 51,74"),
+      poly(ow.fe[1], "74,50 83,58 87,88 78,81 74,92 69,74"),
+      poly("#f2c14e", "31,56 37,55.4 37,60.6 31,61"),
+      poly(ow.fe[0], "46,40 52,33 60,31 60,56 50,54 44,48"),
+      poly(ow.fe[1], "60,31 68,33 74,40 76,48 70,54 60,56"),
+      poly("#ccd2e8", "48,42 60,40.6 60,54 52,52"),
+      poly("#9ea6c6", "60,40.6 72,42 68,52 60,54"),
+      poly(ow.fe[0], "46,41 41,30 51,37"),
+      poly(ow.fe[1], "74,41 79,30 69,37"),
+      circ("soft", 54, 46, 6, 0.5),
+      circ("soft", 66, 46, 6, 0.5),
+      circ("#ffd25e", 54, 46, 3.6),
+      circ("#ffd25e", 66, 46, 3.6),
+      circ("#1a1730", 54.6, 46.4, 1.6),
+      circ("#1a1730", 65.4, 46.4, 1.6),
+      poly("#3a3f5e", "47.6,41.4 58.4,43.6 57.6,41.2 49,39.4"),
+      poly("#3a3f5e", "72.4,41.4 61.6,43.6 62.4,41.2 71,39.4"),
+      poly("#f2c14e", "58,48 60,48 60,53.4"),
+      poly("#b8862a", "60,48 62,48 60,53.4"),
+      poly(ow.vi[0], "46,34 60,8 60,34"),
+      poly(ow.vi[1], "60,8 74,34 60,34"),
+      poly(ow.vi[1], "60,8 71,5 64,13"),
+      poly("#3b3270", "36,33 84,33 80,37 40,37"),
+      poly("#f2c14e", "47,30 60,30 60,33 46,33"),
+      poly("#b8862a", "60,30 73,30 74,33 60,33"),
+      poly("#f6f2ff", "55,19 56.4,21 55,23 53.6,21"),
+      poly("#f6f2ff", "64,24 65,25.6 64,27.2 63,25.6"),
+    ],
+  },
+  // Ember drake: steel-blue scales, ember wings and belly plates, bone horns
+  dragon: {
+    n: 5,
+    rarity: "legendary",
+    accent: "#f2c14e",
+    art: [
+      poly(dr.wg[0], "54,54 36,30 22,34 26,46 19,54 32,58 28,68 46,64"),
+      poly(dr.bd[1], "54,54 36,30 34,32.4 52,56.4"),
+      poly(dr.wg[1], "66,54 84,30 98,34 94,46 101,54 88,58 92,68 74,64"),
+      poly(dr.bd[2], "66,54 84,30 86,32.4 68,56.4"),
+      poly(dr.bd[1], "66,90 84,96 98,92 104,84 100,96 86,102 68,98"),
+      poly(dr.em[0], "104,84 109,77 106,89"),
+      poly(dr.bd[0], "48,80 58,82 56,96 50,100 44,94"),
+      poly(dr.bd[0], "46,100 56,100 58,104 42,104"),
+      poly(dr.bd[1], "62,82 72,80 76,94 70,100 64,96"),
+      poly(dr.bd[1], "64,100 74,100 78,104 62,104"),
+      poly("#f6f2ea", "42,104 43.6,101.6 45,104"),
+      poly("#f6f2ea", "75,104 76.6,101.6 78,104"),
+      poly(dr.bd[0], "48,52 60,48 60,88 50,86 44,70"),
+      poly(dr.bd[1], "60,48 72,52 76,70 70,86 60,88"),
+      poly(dr.em[0], "54,56 60,54 60,86 54,84 52,70"),
+      poly(dr.em[1], "60,54 66,56 68,70 66,84 60,86"),
+      ...[62, 68, 74, 80].map((y) => poly("#9b5320", `52.6,${y} 67.6,${y} 67.6,${y + 0.9} 52.6,${y + 0.9}`, 0.55)),
+      poly(dr.bd[0], "46,56 40,66 44,74 48,70 46,64"),
+      poly(dr.bd[1], "74,56 80,66 76,74 72,70 74,64"),
+      poly("#f6f2ea", "40,66 38,70 41.4,68"),
+      poly("#f6f2ea", "80,66 82,70 78.6,68"),
+      poly(dr.bd[0], "54,40 60,40 60,52 56,52"),
+      poly(dr.bd[1], "60,40 66,40 64,52 60,52"),
+      poly(dr.bn[0], "52,28 41,13 45,15.4 56,26"),
+      poly(dr.bn[1], "68,28 79,13 75,15.4 64,26"),
+      poly(dr.bn[0], "50,33 43,27 51,30.4"),
+      poly(dr.bn[1], "70,33 77,27 69,30.4"),
+      poly(dr.bd[0], "50,28 60,24 60,44 54,46 48,38"),
+      poly(dr.bd[1], "60,24 70,28 72,38 66,46 60,44"),
+      poly("#7896bb", "54,40 60,38 60,50 56,48"),
+      poly(dr.bd[2], "60,38 66,40 64,48 60,50"),
+      poly(dr.bd[2], "56,25 60,20 60,24.6"),
+      poly("#22344a", "60,20 64,25 60,24.6"),
+      poly("#ffd75a", "52,34 57.6,36 52.6,37.4"),
+      poly("#ffd75a", "68,34 62.4,36 67.4,37.4"),
+      poly("#16202a", "57.2,47 58.4,46.4 58.4,47.4"),
+      poly("#16202a", "62.8,47 61.6,46.4 61.6,47.4"),
+      poly(dr.em[0], "70,46 72,48 70,50 68,48", 0.9),
+      poly("#ffd75a", "76,42 77.2,43.4 76,44.8 74.8,43.4"),
+      poly(dr.em[0], "82,48 83,49.2 82,50.4 81,49.2", 0.7),
+    ],
+  },
+};
+
+// Collection order = gem number (common first, legendary last)
 export const WIN_MASCOT_KEYS = Object.keys(WIN_MASCOTS);
