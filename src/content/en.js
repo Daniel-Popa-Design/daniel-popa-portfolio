@@ -175,7 +175,8 @@ const en = {
           resultLabel: "Result",
           result:
             "One component stylesheet serves all eight brands. A rebrand only touches the local color file, and dark mode just remaps variables.",
-          deeperLabel: "Go deeper: the technical details",
+          moreLabel: "How I approached it",
+          deeperLabel: "Technical details",
           deeper:
             "Dark mode remaps the variables under [data-theme=\"dark\"] – the components themselves don't change. About 4,800 gray references use the same scale and stay consistent everywhere. Countdown example: the title uses the semantic role --modTtl (light → --gr80 · #333333, dark → --gr5 · #f2f2f2), the digit tiles use the unsemantic value --Cc25 (Northstar: #285b78 light, #020202 dark). Happy to walk through the details in an interview.",
         },
@@ -213,7 +214,8 @@ const en = {
           resultLabel: "Result",
           result:
             "The content is in place before the ad arrives – the page stays still while you read.",
-          deeperLabel: "Go deeper: the technical details",
+          moreLabel: "How I approached it",
+          deeperLabel: "Technical details",
           deeper:
             "The measure is called Cumulative Layout Shift (CLS), one of Google's Core Web Vitals; the target is 0.1 or lower for most visits. Ad slots and images get fixed dimensions (min-height, aspect-ratio, width/height), so the browser keeps the room free from the start. The European Accessibility Act points to the standard EN 301 549, which builds on WCAG 2.1 level AA. Happy to walk through the details in an interview.",
         },
@@ -250,7 +252,8 @@ const en = {
           resultLabel: "Result",
           result:
             "The article is one step away, and readers can see where they are at all times.",
-          deeperLabel: "Go deeper: the technical details",
+          moreLabel: "How I approached it",
+          deeperLabel: "Technical details",
           deeper:
             "Related WCAG 2.2 criteria: 2.4.1 Bypass Blocks (skip link), 2.4.7 Focus Visible and 2.5.8 Target Size (Minimum). Click targets are 44 px, well above the 24 px minimum. Animations switch off when the device asks for reduced motion (prefers-reduced-motion). Happy to walk through the details in an interview.",
         },

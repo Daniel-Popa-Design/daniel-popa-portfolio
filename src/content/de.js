@@ -175,7 +175,8 @@ const de = {
           resultLabel: "Ergebnis",
           result:
             "Ein Komponenten-Stylesheet bedient alle acht Marken. Ein Rebranding ändert nur die lokale Farbdatei, der Dunkelmodus belegt lediglich Variablen neu.",
-          deeperLabel: "Tiefer einsteigen: die technischen Details",
+          moreLabel: "So bin ich vorgegangen",
+          deeperLabel: "Technische Details",
           deeper:
             "Der Dunkelmodus setzt die Variablen unter [data-theme=\"dark\"] neu – die Komponenten selbst bleiben unverändert. Rund 4.800 Grau-Referenzen nutzen dieselbe Skala und bleiben überall konsistent. Beispiel Countdown: Der Titel nutzt die semantische Rolle --modTtl (hell → --gr80 · #333333, dunkel → --gr5 · #f2f2f2), die Ziffern-Kacheln den unsemantischen Wert --Cc25 (Northstar: #285b78 hell, #020202 dunkel). Gern erkläre ich die Details im Gespräch.",
         },
@@ -214,7 +215,8 @@ const de = {
           resultLabel: "Ergebnis",
           result:
             "Der Inhalt steht, bevor die Werbung kommt – die Seite bleibt beim Lesen still.",
-          deeperLabel: "Tiefer einsteigen: die technischen Details",
+          moreLabel: "So bin ich vorgegangen",
+          deeperLabel: "Technische Details",
           deeper:
             "Die Kennzahl heißt Cumulative Layout Shift (CLS) und gehört zu Googles Core Web Vitals; das Ziel liegt bei 0,1 oder weniger für die meisten Besuche. Werbeplätze und Bilder erhalten feste Maße (min-height, aspect-ratio, width/height), sodass der Browser den Platz von Anfang an freihält. Der European Accessibility Act verweist auf die Norm EN 301 549, die auf WCAG 2.1 Level AA aufbaut. Gern erkläre ich die Details im Gespräch.",
         },
@@ -251,7 +253,8 @@ const de = {
           resultLabel: "Ergebnis",
           result:
             "Der Artikel ist einen Schritt entfernt, und Lesende sehen jederzeit, wo sie sich befinden.",
-          deeperLabel: "Tiefer einsteigen: die technischen Details",
+          moreLabel: "So bin ich vorgegangen",
+          deeperLabel: "Technische Details",
           deeper:
             "Relevante WCAG-2.2-Kriterien: 2.4.1 Blöcke umgehen (Skip-Link), 2.4.7 Fokus sichtbar und 2.5.8 Zielgröße (Minimum). Klickziele sind 44 px groß – deutlich über dem Minimum von 24 px. Animationen werden abgeschaltet, wenn das Gerät reduzierte Bewegung anfordert (prefers-reduced-motion). Gern erkläre ich die Details im Gespräch.",
         },

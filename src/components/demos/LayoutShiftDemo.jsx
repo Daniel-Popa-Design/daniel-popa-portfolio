@@ -42,7 +42,7 @@ export function LayoutShiftDemo({ text, language }) {
 
     return (
       <figure className="cls-demo" data-mode={mode} data-loaded={promoLoaded}>
-        <h5 className="cls-demo__title">{isBefore ? text.before : text.after}</h5>
+        <h4 className="cls-demo__title">{isBefore ? text.before : text.after}</h4>
         <div className="cls-demo__stage">
           <div className="cls-demo__step">
             <span className="cls-demo__label">

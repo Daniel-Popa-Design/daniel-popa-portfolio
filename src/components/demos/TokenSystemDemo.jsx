@@ -60,7 +60,7 @@ export function TokenSystemDemo({ text, onPreview }) {
     <div className="quality-layout-demo">
       <div className="cls-demo__panels" role="group" aria-label={demo.label}>
         <figure className="cls-demo ds-demo">
-          <h5 className="cls-demo__title">{demo.layersTitle}</h5>
+          <h4 className="cls-demo__title">{demo.layersTitle}</h4>
           <ol className="ds-layers">
             <li>
               <span className="ds-layers__name">{demo.gray}</span>
@@ -118,7 +118,7 @@ export function TokenSystemDemo({ text, onPreview }) {
         </figure>
 
         <figure className="cls-demo ds-demo">
-          <h5 className="cls-demo__title">{demo.modulesTitle}</h5>
+          <h4 className="cls-demo__title">{demo.modulesTitle}</h4>
           <div className="ds-variants" aria-hidden="true">
             {sketchVariants.map(([domain, theme], index) => (
               <div

@@ -44,7 +44,7 @@ export function SkipLinkDemo({ text, onPreview }) {
     <div className="quality-layout-demo">
       <div className="cls-demo__panels" role="group" aria-label={text.skipLabel}>
         <figure className="cls-demo skip-demo">
-          <h5 className="cls-demo__title">{text.before}</h5>
+          <h4 className="cls-demo__title">{text.before}</h4>
           <DemoBrowser>
             <div className="skip-demo__page">
               {/* Same labelled menu as the live demo; focus walks through it */}
@@ -70,7 +70,7 @@ export function SkipLinkDemo({ text, onPreview }) {
         </figure>
 
         <figure className="cls-demo skip-demo">
-          <h5 className="cls-demo__title">{text.after}</h5>
+          <h4 className="cls-demo__title">{text.after}</h4>
           <DemoBrowser>
             <div className="skip-demo__page">
               <span className="skip-demo__skip" data-focused={step === 1}>
