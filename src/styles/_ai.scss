@@ -1136,18 +1136,72 @@
   background: var(--sb-fail);
 }
 
-.portfolio-shell .sbp-gate__outcome {
-  min-height: 1.5em;
-  margin: 0;
-  font-size: 0.9375rem;
-  font-weight: 650;
+// Gate result as a notification: icon | title + text, tinted surface with a
+// coloured left edge — red error (blocked) or green success (done)
+.sbp-notice {
+  --notice: var(--sb-fail);
+
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  padding: 12px 16px 12px 14px;
+  border: 1px solid color-mix(in srgb, var(--notice) 35%, #fff);
+  border-left: 4px solid var(--notice);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--notice) 7%, #fff);
+  animation: sbp-notice-in 220ms ease-out;
 
   &[data-outcome="done"] {
-    color: var(--sb-ok);
+    --notice: var(--sb-ok);
   }
 
-  &[data-outcome="blocked"] {
-    color: var(--sb-fail);
+  p {
+    margin: 0;
+  }
+}
+
+.sbp-notice__icon {
+  width: 24px;
+  height: 24px;
+
+  circle {
+    fill: var(--notice);
+  }
+
+  path {
+    fill: none;
+    stroke: #fff;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2.4;
+  }
+}
+
+.portfolio-shell .sbp-notice p {
+  color: var(--ink-soft);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.portfolio-shell .sbp-notice strong {
+  display: block;
+  margin-bottom: 2px;
+  color: color-mix(in srgb, var(--notice) 80%, #000);
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+@keyframes sbp-notice-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sbp-notice {
+    animation: none;
   }
 }
 
@@ -1178,4 +1232,34 @@
   .portfolio-shell .sbp-gate li .sbp-gate__num {
     animation: none !important;
   }
+}
+
+// ---------------------------------------------------------------------------
+// Case mark — the ring of the case numbers in the hero badge's red, with the
+// Ai/Ki mark instead of a number
+// ---------------------------------------------------------------------------
+
+// .portfolio-shell: _expertise.scss (ring colours) loads after this file
+.portfolio-shell .quality-card__number--ai {
+  .number-mark__rim {
+    fill: color-mix(in srgb, var(--accent-red) 62%, #fff);
+  }
+
+  .number-mark__face {
+    fill: var(--accent-red);
+  }
+}
+
+// More specific than `.portfolio-shell .number-mark svg` (fills the mark)
+.portfolio-shell .quality-card__number--ai .ai-mark {
+  width: 58%;
+  height: auto;
+  overflow: visible;
+}
+
+// The text slot holds the mark: no digit nudge
+.portfolio-shell .quality-card__number--ai .number-mark__text {
+  display: grid;
+  place-items: center;
+  padding-top: 0;
 }

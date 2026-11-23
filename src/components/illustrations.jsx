@@ -21,9 +21,11 @@ function BadgeShell() {
 // crossbar or arm of their own: a "bone" (round blob, thin neck, round dot)
 // runs from the lower left up to the dot of the "i" and stands in for it.
 // Where the bone crosses a letter, a mask cuts a gap around it.
+// `box` frames the mark on its own (same size for both, centred on each).
 const AI_MARKS = {
   // A without crossbar + i stem
   ai: {
+    box: "22 43 258 189",
     transform: "translate(22.9 31) scale(.18)",
     letters: "M103 52H142L218 226H182L122.5 90L63.5 226H28Z M236 112H269V226H236Z",
     bone: "M143.75 179.23Q143.02 165.56 159.19 152.32L222.14 100.8Q238.31 87.56 251.56 90.98L231.75 66.77Q232.48 80.44 216.31 93.68L153.36 145.2Q137.19 158.44 123.94 155.02ZM102 176a21 21 0 1 0 42 0a21 21 0 1 0 -42 0ZM231.5 70a21 21 0 1 0 42 0a21 21 0 1 0 -42 0Z",
@@ -31,6 +33,7 @@ const AI_MARKS = {
   // Complete K (stem, upper arm, leg) with an opening under the junction
   // that holds the blob, like the A's counter; the bone crosses the leg + i
   ki: {
+    box: "19.5 43 258 189",
     transform: "translate(23.27 31.25) scale(.18)",
     letters: "M40 52H74V104L126 52H176L129.7 98.3L200 226H160L104 124L74 154V226H40Z M219 112H253V226H219Z",
     bone: "M124.89 192.15Q123.45 178.54 138.91 164.48L207.28 102.33Q222.74 88.27 236.15 91L215.11 67.85Q216.55 81.46 201.09 95.52L132.72 157.67Q117.26 171.73 103.85 169ZM83 190a21 21 0 1 0 42 0a21 21 0 1 0 -42 0ZM215 70a21 21 0 1 0 42 0a21 21 0 1 0 -42 0Z",
@@ -40,21 +43,41 @@ const AI_MARKS = {
 // AI badge — the same hexagon as the 10+ badge, with the "Ai" mark (English)
 // or the matching "Ki" mark (German) in place of the number. Decorative:
 // the label next to it carries the meaning.
-export function AiBadge({ mark = "ai" }) {
+// Letters + bone of one mark, with the mask that cuts the gap around the bone
+function AiMarkGlyphs({ mark, className }) {
   const maskId = useId();
-  const { transform, letters, bone } = AI_MARKS[mark] ?? AI_MARKS.ai;
+  const { letters, bone } = AI_MARKS[mark] ?? AI_MARKS.ai;
+  return (
+    <>
+      <mask id={maskId} maskUnits="userSpaceOnUse" x="0" y="0" width="334" height="270">
+        <rect width="334" height="270" fill="#fff" />
+        {/* The bone, widened by a stroke: the gap around it */}
+        <path d={bone} fill="#000" stroke="#000" strokeWidth="18" strokeLinejoin="round" />
+      </mask>
+      <path className={className} d={letters} mask={`url(#${maskId})`} />
+      <path className={className} d={bone} />
+    </>
+  );
+}
+
+export function AiBadge({ mark = "ai" }) {
+  const { transform } = AI_MARKS[mark] ?? AI_MARKS.ai;
   return (
     <svg className="hero-badge hero-badge--ai" viewBox="0 0 100 112" aria-hidden="true">
       <BadgeShell />
       <g transform={transform}>
-        <mask id={maskId} maskUnits="userSpaceOnUse" x="0" y="0" width="334" height="270">
-          <rect width="334" height="270" fill="#fff" />
-          {/* The bone, widened by a stroke: the gap around it */}
-          <path d={bone} fill="#000" stroke="#000" strokeWidth="18" strokeLinejoin="round" />
-        </mask>
-        <path className="hero-badge__number" d={letters} mask={`url(#${maskId})`} />
-        <path className="hero-badge__number" d={bone} />
+        <AiMarkGlyphs className="hero-badge__number" mark={mark} />
       </g>
+    </svg>
+  );
+}
+
+// The mark on its own, in currentColor — e.g. inside the KI case's ring mark
+export function AiMark({ mark = "ai", className = "" }) {
+  const { box } = AI_MARKS[mark] ?? AI_MARKS.ai;
+  return (
+    <svg className={`ai-mark ${className}`} viewBox={box} fill="currentColor" aria-hidden="true">
+      <AiMarkGlyphs mark={mark} />
     </svg>
   );
 }

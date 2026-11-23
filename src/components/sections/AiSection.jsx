@@ -1,10 +1,12 @@
-// KI: AI in the workflow — case study 04 (Storybook) and its live demo.
-// Phase 2 target of the hero AI badge (#ki).
+// KI: AI in the workflow — the Storybook case and its live demo. First
+// section after the hero, independent of the three classic case studies;
+// phase 2 target of the hero AI badge (#ki).
 
 import { useState } from "react";
 import { QualityStory } from "../demos/QualityStory.jsx";
 import { StorybookDemo } from "../demos/StorybookDemo.jsx";
 import { StorybookPreview } from "../demos/StorybookPreview.jsx";
+import { AiMark } from "../illustrations.jsx";
 import { NoteCard, NumberMark } from "../ui.jsx";
 
 export function AiSection({ text, language }) {
@@ -35,9 +37,10 @@ export function AiSection({ text, language }) {
           className="quality-card quality-card--wide badge-card"
           aria-labelledby="ai-storybook-title"
         >
-          {/* Continues the numbering of the three case studies above */}
-          <NumberMark shape="ring" className="quality-card__number" hidden>
-            04
+          {/* Not numbered: the hero badge's Ai/Ki mark in the red of the
+              badge ties the case to the hero instead */}
+          <NumberMark shape="ring" className="quality-card__number quality-card__number--ai" hidden>
+            <AiMark mark={text.aiBadge.mark} />
           </NumberMark>
           <div className="quality-card__copy">
             <h3 id="ai-storybook-title">{ai.card.title}</h3>

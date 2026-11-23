@@ -79,8 +79,8 @@ function App({ initialLanguage }) {
         {/* tabIndex -1: the skip link moves keyboard focus here reliably */}
         <main id="main" tabIndex={-1}>
           <Hero text={text} />
-          <WorkSection text={text} language={language} />
           <AiSection text={text} language={language} />
+          <WorkSection text={text} language={language} />
           <AboutSection text={text} />
           <Testimonial text={text} />
           <ExpertiseSection text={text} />

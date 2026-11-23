@@ -362,9 +362,26 @@ function GateStory({ text }) {
         ))}
       </ol>
 
-      <p className="sbp-gate__outcome" data-outcome={outcome ?? "none"} aria-live="polite">
-        {outcome === "done" ? text.done : outcome === "blocked" ? text.blocked : ""}
-      </p>
+      {/* The live region stays in the DOM so the result is announced when it
+          appears; the notice inside is an error (blocked) or success (done) */}
+      <div className="sbp-gate__outcome" aria-live="polite">
+        {outcome && (
+          <div className="sbp-notice" data-outcome={outcome}>
+            <svg className="sbp-notice__icon" aria-hidden="true" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="11" />
+              {outcome === "blocked" ? (
+                <path d="M12 6.5v7M12 17.2v.3" />
+              ) : (
+                <path d="M7 12.4l3.2 3.2L17 8.8" />
+              )}
+            </svg>
+            <p>
+              <strong>{outcome === "blocked" ? text.blockedTitle : text.doneTitle}</strong>
+              {outcome === "blocked" ? text.blocked : text.done}
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
