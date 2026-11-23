@@ -6,12 +6,63 @@ import { useId } from "react";
 // light edge, the face in the main red, and a white "10+". The slanted glyphs
 // are the previous badge's own (src/assets/Hero-Badge.backup.svg), now drawn
 // as solid fills instead of outlines.
-export function HeroBadge() {
+// Rim, edge and face shared by both hero badges
+function BadgeShell() {
   return (
-    <svg className="hero-badge" viewBox="0 0 100 112" role="img" aria-label="10+">
+    <>
       <path className="hero-badge__rim" d="M45.28 16.08 Q50.00 13.35 54.72 16.08 L82.22 31.95 Q86.94 34.68 86.94 40.13 L86.94 71.87 Q86.94 77.32 82.22 80.05 L54.72 95.92 Q50.00 98.65 45.28 95.92 L17.78 80.05 Q13.06 77.32 13.06 71.87 L13.06 40.13 Q13.06 34.67 17.78 31.95Z" />
       <path className="hero-badge__edge" d="M50.00 25.00 L76.85 40.50 L76.85 71.50 L50.00 87.00 L23.15 71.50 L23.15 40.50Z" />
       <path className="hero-badge__face" d="M50.00 25.00 L76.85 40.50 L76.85 71.50 L50.00 87.00 L23.15 71.50 L23.15 40.50Z" />
+    </>
+  );
+}
+
+// "Ai" / "Ki" marks, drawn on a 334 × 270 grid. The letters have no
+// crossbar or arm of their own: a "bone" (round blob, thin neck, round dot)
+// runs from the lower left up to the dot of the "i" and stands in for it.
+// Where the bone crosses a letter, a mask cuts a gap around it.
+const AI_MARKS = {
+  // A without crossbar + i stem
+  ai: {
+    transform: "translate(22.9 31) scale(.18)",
+    letters: "M103 52H142L218 226H182L122.5 90L63.5 226H28Z M236 112H269V226H236Z",
+    bone: "M143.75 179.23Q143.02 165.56 159.19 152.32L222.14 100.8Q238.31 87.56 251.56 90.98L231.75 66.77Q232.48 80.44 216.31 93.68L153.36 145.2Q137.19 158.44 123.94 155.02ZM102 176a21 21 0 1 0 42 0a21 21 0 1 0 -42 0ZM231.5 70a21 21 0 1 0 42 0a21 21 0 1 0 -42 0Z",
+  },
+  // Complete K (stem, upper arm, leg) with an opening under the junction
+  // that holds the blob, like the A's counter; the bone crosses the leg + i
+  ki: {
+    transform: "translate(23.27 31.25) scale(.18)",
+    letters: "M40 52H74V104L126 52H176L129.7 98.3L200 226H160L104 124L74 154V226H40Z M219 112H253V226H219Z",
+    bone: "M124.89 192.15Q123.45 178.54 138.91 164.48L207.28 102.33Q222.74 88.27 236.15 91L215.11 67.85Q216.55 81.46 201.09 95.52L132.72 157.67Q117.26 171.73 103.85 169ZM83 190a21 21 0 1 0 42 0a21 21 0 1 0 -42 0ZM215 70a21 21 0 1 0 42 0a21 21 0 1 0 -42 0Z",
+  },
+};
+
+// AI badge — the same hexagon as the 10+ badge, with the "Ai" mark (English)
+// or the matching "Ki" mark (German) in place of the number. Decorative:
+// the label next to it carries the meaning.
+export function AiBadge({ mark = "ai" }) {
+  const maskId = useId();
+  const { transform, letters, bone } = AI_MARKS[mark] ?? AI_MARKS.ai;
+  return (
+    <svg className="hero-badge hero-badge--ai" viewBox="0 0 100 112" aria-hidden="true">
+      <BadgeShell />
+      <g transform={transform}>
+        <mask id={maskId} maskUnits="userSpaceOnUse" x="0" y="0" width="334" height="270">
+          <rect width="334" height="270" fill="#fff" />
+          {/* The bone, widened by a stroke: the gap around it */}
+          <path d={bone} fill="#000" stroke="#000" strokeWidth="18" strokeLinejoin="round" />
+        </mask>
+        <path className="hero-badge__number" d={letters} mask={`url(#${maskId})`} />
+        <path className="hero-badge__number" d={bone} />
+      </g>
+    </svg>
+  );
+}
+
+export function HeroBadge() {
+  return (
+    <svg className="hero-badge" viewBox="0 0 100 112" role="img" aria-label="10+">
+      <BadgeShell />
       {/* Glyphs scaled from the old 176 × 210 badge space, "10" centred */}
       <g transform="translate(17.3 21.2) scale(.36)">
         <path className="hero-badge__number" d="M52.29,61.77h15.23c.36,0,.64.12.86.38.21.25.29.55.21.91l-8.9,72.48c-.07.36-.23.66-.48.91-.25.25-.55.38-.91.38h-14.8c-.36,0-.64-.12-.86-.38-.21-.25-.29-.55-.21-.91l6.97-56.72c0-.14-.07-.29-.21-.43-.14-.14-.29-.18-.43-.11l-10.4,2.47-.43.11c-.72,0-1-.39-.86-1.18l1.18-11.26c.14-.71.54-1.21,1.18-1.5l11.26-4.83c.5-.21,1.04-.32,1.61-.32Z" />

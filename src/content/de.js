@@ -32,7 +32,7 @@ const de = {
   hero: {
     role: ["Senior Webdesigner", "Frontend-Entwicklung"],
     intro:
-      "Mit über 10 Jahren Erfahrung verwandle ich komplexe Ideen in klare, durchdachte digitale Erlebnisse.",
+      "Seit über 10 Jahren gestalte und optimiere ich Websites und digitale Anwendungen. Dabei verbinde ich UI/UX Design mit praktischer Frontend-Erfahrung, verbessere bestehende Lösungen und nutze KI-Tools gezielt, um Design- und Entwicklungsprozesse effizienter zu gestalten.",
     work: "Meine Arbeiten ansehen",
     downloadCv: "Lebenslauf herunterladen",
     about: "Über mich",
@@ -44,7 +44,13 @@ const de = {
   },
   heroBadge: {
     exp1: "Jahre Erfahrung",
-    exp2: "im Webdesign",
+    exp2: "in UX/UI & Frontend",
+  },
+  // Counterpart to the 10+ badge. Phase 2: link to the KI section (#ki).
+  aiBadge: {
+    mark: "ki", // "Ki" mark in the badge (illustrations.jsx)
+    title: "KI-gestützt",
+    text: "Design & Entwicklung",
   },
   work: {
     eyebrow: "Was hinter der Oberfläche steckt",
@@ -65,7 +71,7 @@ const de = {
         icon: "bulb",
         label: "Warum das wichtig ist",
         text:
-          "Ein Komponenten-Stylesheet bedient alle acht Marken: Ein Rebranding ändert nur die lokale Farbdatei, der Dunkelmodus belegt lediglich Variablen unter [data-theme=\"dark\"] neu, und rund 4.800 Grau-Referenzen bleiben überall konsistent – ohne ausufernde Sammlung einzelner semantischer Namen.",
+          "Ein Komponenten-Stylesheet bedient alle sieben Marken: Ein Rebranding ändert nur die lokale Farbdatei, der Dunkelmodus belegt lediglich Variablen unter [data-theme=\"dark\"] neu, und rund 4.800 Grau-Referenzen bleiben überall konsistent – ohne ausufernde Sammlung einzelner semantischer Namen.",
       },
       {
         icon: "puzzle",
@@ -141,18 +147,18 @@ const de = {
   quality: {
     cards: [
       {
-        title: "Ein Farbsystem für acht Marken",
+        title: "Ein Farbsystem für sieben Marken",
         description:
           "Gemeinsame Komponenten, die sich über Tokens an jede Marke und jeden Modus anpassen.",
         story: {
           situationLabel: "Situation",
           situation:
-            "Ein Publishing-System betreibt acht Portale mit eigener Markenidentität – aber mit denselben Komponenten, etwa Umfrage oder Release-Countdown. Jede Marke braucht ihre Farben, jedes Modul einen Hell- und einen Dunkelmodus.",
+            "Ein Publishing-System betreibt sieben Portale mit eigener Markenidentität – aber mit denselben Komponenten, etwa Umfrage oder Release-Countdown. Jede Marke braucht ihre Farben, jedes Modul einen Hell- und einen Dunkelmodus.",
           whyLabel: "Warum es zählt",
           why: [
             {
               term: "Wartung",
-              text: "Ohne System entsteht pro Marke ein eigenes Stylesheet – jede Änderung müsste achtmal umgesetzt werden.",
+              text: "Ohne System entsteht pro Marke ein eigenes Stylesheet – jede Änderung müsste siebenmal umgesetzt werden.",
             },
             {
               term: "Konsistenz",
@@ -174,7 +180,7 @@ const de = {
           ],
           resultLabel: "Ergebnis",
           result:
-            "Ein Komponenten-Stylesheet bedient alle acht Marken. Ein Rebranding ändert nur die lokale Farbdatei, der Dunkelmodus belegt lediglich Variablen neu.",
+            "Ein Komponenten-Stylesheet bedient alle sieben Marken. Ein Rebranding ändert nur die lokale Farbdatei, der Dunkelmodus belegt lediglich Variablen neu.",
           moreLabel: "So bin ich vorgegangen",
           deeperLabel: "Technische Details",
           deeper:
@@ -316,6 +322,176 @@ const de = {
       summaryValue: "9 → 2",
       summary:
         "Pro Artikel 7 Tastendrücke weniger. Bei Schaltersteuerung ist jeder davon ein eigener Druck – und der Fokusrahmen zeigt jederzeit die Position.",
+    },
+  },
+  // KI section. Facts follow the Storybook branches of the publishing system
+  // (storybook_implementation / storybook_pcgh / storybook_static).
+  ai: {
+    eyebrow: "KI im Workflow",
+    title: "Schneller zur geprüften Komponente",
+    noteLabel: "Kontext",
+    noteTab: "1 Fallstudie",
+    aside:
+      "Wie ich KI im Alltag einsetze: als Pair-Programmer für Werkzeuge, die Design und Entwicklung zusammenbringen. Ich entscheide, was gebaut wird und wie es aussieht – die KI schreibt Gerüst und Prüflogik mit, ich prüfe jeden Schritt. Portal- und Inhaltsnamen sind fiktiv, die Skizzen nachgebaute Konzeptbeispiele.",
+    card: {
+      title: "Storybook: Module prüfen, bevor sie live gehen",
+      description:
+        "Ein Prüfstand für das Seiten-CSS aller Marken – mit KI-Unterstützung (Claude Code) im Team aufgebaut.",
+      story: {
+        situationLabel: "Situation",
+        situation:
+          "Sieben Marken teilen sich ein CSS-System, doch neue Module ließen sich nur auf der Live- oder Testseite ansehen. Wie ein Modul auf einer anderen Marke, im Dunkelmodus oder mobil wirkt, zeigte sich oft erst spät – Kontrastfehler fielen meist gar nicht auf.",
+        whyLabel: "Warum es zählt",
+        why: [
+          {
+            term: "Design",
+            text: "Varianten ohne Backend vergleichen – Marke, Hell/Dunkel und Mobil per Klick.",
+          },
+          {
+            term: "Qualität",
+            text: "Kontrast und Barrierefreiheit gehören in den Entwurf, nicht in die Nachkontrolle.",
+          },
+          {
+            term: "Team",
+            text: "Design, Entwicklung, Redaktion und Produkt sehen dasselbe Modul im selben Zustand.",
+          },
+        ],
+        solutionLabel: "Umsetzung",
+        solutionLead:
+          "Storybook haben wir zu zweit aufgebaut, mit Claude Code als Pair-Programmer. Mein Teil – die Seite von Design und Frontend:",
+        steps: [
+          "Das echte Seiten-CSS in Storybook gebracht: gemeinsames CSS-Paket für alle Stories, Basis-Styles und Schriften – jede Story zeigt das Modul wie auf der Seite.",
+          "Landingpage-Module als Stories aus echtem Live-Markup (Desktop und Mobil), Buttons mit WCAG-2.2-Kontrastprüfung und kopierbarem Markup.",
+          "Den UI-Editor gebaut: eigenes HTML eingeben und live mit dem Seiten-CSS sehen – mit Kontrast inklusive Hover, Klassen ohne CSS-Regel und der SCSS-Datei, aus der eine Regel kommt.",
+          "Das Countdown-Modul in Storybook entworfen: sieben Varianten, Läuft/Abgelaufen, Hell/Dunkel, Desktop/Mobil – danach als Produktionsmodul live gebracht.",
+        ],
+        resultLabel: "Ergebnis",
+        result:
+          "Neue Module entstehen und werden geprüft, bevor sie die Seite erreichen: Das Countdown-Modul ging in unter zwei Wochen von der ersten Story in Produktion, und der Kontrast-Audit über drei Kernmarken sank im Team von 1.708 Befunden auf 0.",
+        moreLabel: "So bin ich vorgegangen",
+        deeperLabel: "Technische Details",
+        // Toggletip on the first mention in the technical details
+        glossary: [
+          {
+            term: "Storybook 10",
+            title: "Was ist Storybook?",
+            text: "Eine Open-Source-Werkstatt für die Bausteine einer Website: Jedes Modul wird dort einzeln entwickelt, in allen Varianten getestet und dokumentiert – außerhalb der echten Seite. Besucher sehen sie nie; „10“ ist die Versionsnummer. Bei uns läuft sie mit Vite, demselben Build-Tool wie die Website, direkt auf dem bestehenden SCSS – was dort stimmt, stimmt auch auf der Seite.",
+          },
+        ],
+        deeper:
+          "Storybook 10 mit Vite auf dem bestehenden SCSS – kein Nachbau in React: Jede Story nutzt echtes Markup aus Seiten-Snapshots. Der Theme-Wechsel setzt nur data-theme, ein Markenwechsel lädt die lokalen Farb- und Schriftdateien neu. Darauf setzen automatische Tests auf: Interaktionstests (Vitest), Accessibility mit axe, visuelle Regression gegen Golden Masters (Playwright, Pixel und berechnete Styles) und ein Deploy-Gate, das nur bei grünen Tests ausliefert.",
+      },
+    },
+    demo: {
+      label: "Skizze: Storybook als Werkbank und Prüfstand",
+      benchTitle: "Die Werkbank",
+      benchCaption: "Ein Modul, jede Marke und jeder Modus – ohne Backend",
+      matrixTitle: "Ein Klick, alle Ansichten",
+      matrixCaption: "Gefunden, bevor es live geht",
+      tree: [
+        ["Module", ["Countdown", "Umfrage"]],
+        ["Guideline", ["UI-Editor", "Buttons"]],
+      ],
+      portal: "Portal",
+      mode: "Modus",
+      viewport: "Viewport",
+      light: "Hell",
+      dark: "Dunkel",
+      desktop: "Desktop",
+      mobile: "Mobil",
+      panelTabs: ["Accessibility", "Visual", "Interactions"],
+      countdownTag: "Release",
+      countdownTitle: "Shadowstone",
+      units: ["Tage", "Std.", "Min.", "Sek."],
+      run: "Tests starten",
+      running: "Tests laufen …",
+      fix: "Fix übernehmen und neu prüfen",
+      again: "Erneut prüfen",
+      idle: "8 Ansichten: 2 Portale × Hell/Dunkel × Desktop/Mobil",
+      found: "1 Befund: Button Sekundär · 2,53 : 1 (mindestens 4,5 : 1)",
+      passed: "8 von 8 Ansichten grün",
+      viewStatus: { idle: "nicht geprüft", running: "läuft", ok: "bestanden", fail: "Befund" },
+      previewButton: "Storybook-Demo öffnen",
+      previewHint: "UI-Editor, Testlauf und Deploy-Gate zum Ausprobieren",
+    },
+    preview: {
+      title: "Live-Demo: Storybook nachgebaut",
+      lead: "Drei Werkzeuge aus dem echten Setup, vereinfacht zum Ausprobieren. Links eine Story wählen.",
+      close: "Demo schließen",
+      navLabel: "Stories",
+      stories: {
+        editor: "UI-Editor",
+        tests: "Testlauf",
+        gate: "Deploy-Gate",
+      },
+      mine: "Mein Teil",
+      team: "Team",
+      editor: {
+        intro:
+          "Im echten UI-Editor schreibt man HTML und sieht es live mit dem Seiten-CSS. Die Prüfungen laufen nach jedem Speichern einer SCSS-Datei automatisch neu. Hier: der Kontrast-Check zum Ausprobieren.",
+        surface: "Fläche",
+        text: "Textfarbe",
+        opacity: "Deckkraft",
+        surfaces: { page: "Seite hell", dark: "Seite dunkel", brand: "Markenfläche" },
+        sample: "Fließtext auf der Fläche",
+        link: "Ein Link im Text",
+        ratio: "Kontrast",
+        levels: ["AA Text", "AA groß", "AAA Text"],
+        hover: "Hover",
+        checksTitle: "Was der UI-Editor außerdem prüft",
+        checks: [
+          ["Klassen ohne CSS-Regel", ".newCard · .newCardTitle – Regel in einer SCSS-Datei anlegen, die Vorschau übernimmt sie ohne Neuladen."],
+          ["Herkunft einer Regel", ".btn.btnPrim → buttons.scss · Farbe --PrCl1 aus colorsLocal.scss"],
+          ["Hover-Zustände", "Kontrast wird auch für :hover berechnet – Links und Buttons fallen sonst oft durch."],
+        ],
+      },
+      tests: {
+        intro:
+          "„Aktuelle Ansicht“ = Portal + Modus + Viewport der Toolbar. Rot heißt: in dieser Ansicht betroffen. Gelb: nur in einer anderen Ansicht. Stell die Toolbar auf die betroffene Ansicht – aus Gelb wird Rot.",
+        current: "Aktuelle Ansicht",
+        stories: ["Countdown", "Umfrage", "Button Sekundär"],
+        statusOk: "Alle Ansichten bestanden",
+        statusRed: "Befund in dieser Ansicht: .btnSec 2,53 : 1",
+        statusYellow: "Nur in anderer Ansicht: AFTERGLOW · Dunkel · Mobil (.btnSec 2,53 : 1)",
+        visualTitle: "Visual Regression",
+        visualModes: { baseline: "Golden Master", current: "Aktuell", diff: "Diff" },
+        // Explanation next to the sketch, follows the selected view
+        visualExplain: {
+          baseline:
+            "Die freigegebene Referenz: Jemand hat das Modul geprüft und gesagt „so soll es aussehen“. Dieser Screenshot liegt im Git.",
+          current:
+            "Der neue Screenshot aus diesem Testlauf, nach einer CSS-Änderung. Hier ist der Button um 2 px verrutscht – mit bloßem Auge kaum zu sehen.",
+          diff:
+            "Beide Bilder übereinander: Orange ist jeder Pixel, der abweicht. Hier genau der Button.",
+        },
+        visualFlowTitle: "So läuft der Vergleich",
+        visualFlow: [
+          "Eine SCSS-Datei ändert sich – gewollt oder aus Versehen.",
+          "Der Test macht neue Screenshots und vergleicht sie mit dem Golden Master. Dazu die berechneten Styles – sie finden auch Änderungen, die im Bild verdeckt sind.",
+          "Alles gleich: grün. Etwas weicht ab: rot – der Diff zeigt, wo.",
+          "Ein Mensch entscheidet: Fehler → CSS korrigieren. Gewollt → den neuen Screenshot bewusst als Golden Master übernehmen.",
+        ],
+        legend: [
+          ["red", "Befund in der aktuellen Ansicht"],
+          ["yellow", "Befund nur in einer anderen Ansicht"],
+          ["green", "Geprüft und in Ordnung"],
+        ],
+      },
+      gate: {
+        intro:
+          "Das Deploy-Gate liefert nur aus, wenn alle Stufen grün sind. Neue Referenzbilder werden nie automatisch übernommen – nur bewusst, nach Prüfung.",
+        start: "Gate starten",
+        simulate: "Fehler simulieren (Button 2 px verschoben)",
+        steps: [
+          ["Voraussetzungen", "kein paralleler Lauf, Server bereit"],
+          ["Interactions", "play-Funktionen aller Stories"],
+          ["Visual Regression", "Pixel + Styles gegen Golden Master"],
+          ["Kontrast-Audit", "Marken × Hell/Dunkel × Desktop/Mobil"],
+          ["Deploy", "CSS-Build auf den Server"],
+        ],
+        done: "Alle Stufen grün – ausgeliefert.",
+        blocked: "Gestoppt bei Visual Regression: 1 Modul sieht anders aus als sein Golden Master. Nichts wurde ausgeliefert – erst prüft ein Mensch den Diff: Fehler beheben oder neuen Stand freigeben.",
+      },
     },
   },
   about: {

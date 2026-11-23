@@ -3,6 +3,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AboutSection } from "./components/sections/AboutSection.jsx";
+import { AiSection } from "./components/sections/AiSection.jsx";
 import { ContactSection } from "./components/sections/ContactSection.jsx";
 import { ExpertiseSection } from "./components/sections/ExpertiseSection.jsx";
 import { GameSection } from "./components/sections/GameSection.jsx";
@@ -79,11 +80,12 @@ function App({ initialLanguage }) {
         <main id="main" tabIndex={-1}>
           <Hero text={text} />
           <WorkSection text={text} language={language} />
+          <AiSection text={text} language={language} />
           <AboutSection text={text} />
           <Testimonial text={text} />
           <ExpertiseSection text={text} />
-          <GameSection text={text} language={language} />
           <ContactSection text={text} />
+          <GameSection text={text} language={language} />
         </main>
       </div>
 

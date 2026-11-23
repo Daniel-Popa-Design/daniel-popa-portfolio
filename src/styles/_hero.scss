@@ -96,13 +96,14 @@
   top: -0.08em;
 }
 
+// Wide enough for the intro to run to about four lines on desktop
 .hero__bottom {
-  max-width: 560px;
+  max-width: 640px;
   padding: 0;
 }
 
 .hero .hero__intro {
-  max-width: 540px;
+  max-width: 100%;
   margin: clamp(28px, 3.5vw, 44px) 0 0;
   color: var(--ink-soft);
   font-size: clamp(1rem, 1.4vw, 1.1875rem);
@@ -263,8 +264,8 @@
 
 .hero-art__badge__wrapper {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 30px;
+  left: -20px;
   display: flex;
   align-items: center;
 }
@@ -321,7 +322,7 @@
   flex-direction: column;
   gap: 1px;
   margin-left: -14px;
-  padding: 8px 14px 8px 20px;
+  padding: 5px 10px 4px 10px;
   border: 1px solid var(--line);
   border-radius: 0 12px 12px 0;
   background: #fff;
@@ -337,6 +338,27 @@
   > span + span {
     color: var(--ink-soft);
     font-weight: 500;
+  }
+}
+
+// AI badge — mirror of the 10+ badge: bottom right, one step lower and
+// breaking out of the ring, so the two zigzag across the shirt. The offsets
+// are fixed (the badges are), so the labels never overlap at any portrait
+// size. The label tab sits behind the badge's left corner.
+.hero-art__badge__wrapper--ai {
+  right: -10px;
+  bottom: -18px;
+
+  .hero-badge {
+    width: clamp(84px, 10vw, 92px);
+  }
+  left: auto;
+  flex-direction: row-reverse;
+
+  .hero-art__badge__text {
+    margin-right: -14px;
+    margin-left: 0;
+    border-radius: 12px 0 0 12px;
   }
 }
 

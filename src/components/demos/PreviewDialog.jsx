@@ -3,7 +3,7 @@
 import { useEffect, useId, useRef } from "react";
 import { countdownDomains } from "./portalData.js";
 
-function PreviewSwitcher({ legend, options, value, onChange }) {
+export function PreviewSwitcher({ legend, options, value, onChange }) {
   return (
     <fieldset className="module-preview__switcher">
       <legend>{legend}</legend>

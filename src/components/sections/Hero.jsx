@@ -2,7 +2,7 @@
 
 import { Portrait } from "../Portrait.jsx";
 import { ArrowIcon } from "../icons.jsx";
-import { HeroBadge } from "../illustrations.jsx";
+import { AiBadge, HeroBadge } from "../illustrations.jsx";
 
 export function Hero({ text }) {
   return (
@@ -59,6 +59,15 @@ export function Hero({ text }) {
               <span>
                 {text.heroBadge.exp2}
               </span>
+            </div>
+          </div>
+          {/* AI badge, mirrored on the right: label points left */}
+          <div className="hero-art__badge__wrapper hero-art__badge__wrapper--ai">
+            <AiBadge mark={text.aiBadge.mark} />
+
+            <div className="hero-art__badge__text">
+              <span>{text.aiBadge.title}</span>
+              <span>{text.aiBadge.text}</span>
             </div>
           </div>
           <div className="hero-art__portrait__background" />

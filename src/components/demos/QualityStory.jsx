@@ -1,5 +1,7 @@
 // Case-study story (demo, result, folded approach) and the wireframe browser frame.
 
+import { GlossaryText } from "../ui.jsx";
+
 // Wireframe browser window used by the practice demos (decorative)
 export function DemoBrowser({ children }) {
   return (
@@ -64,7 +66,9 @@ export function QualityStory({ story, metric, children }) {
         <div className="quality-story__row">
           <h4>{story.deeperLabel}</h4>
           <div>
-            <p>{story.deeper}</p>
+            <p>
+              <GlossaryText glossary={story.glossary} text={story.deeper} />
+            </p>
             {metric && <p className="quality-card__metric">{metric}</p>}
           </div>
         </div>

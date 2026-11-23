@@ -63,6 +63,75 @@ export function NoteCard({ label, tab, children }) {
 // Text clamped to `lines` lines; a Read more / Show less toggle appears only
 // when the full text is longer. Re-measured on resize (ResizeObserver).
 // Text clamped to N lines with a "read more" toggle (only when it overflows)
+// Toggletip for a technical term in running text: dotted term + ⓘ.
+// Opens on click/tap and keyboard (Enter/Space), and on hover where a mouse
+// exists; Escape or a click outside closes it. A plain tooltip (or title="")
+// would be invisible on touch screens.
+export function InfoTerm({ term, title, children }) {
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef(null);
+  const bubbleId = useId();
+
+  useEffect(() => {
+    if (!open) return undefined;
+    const onPointer = (event) => {
+      if (!rootRef.current?.contains(event.target)) setOpen(false);
+    };
+    const onKey = (event) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointer);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onPointer);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  return (
+    <span className="info-term" data-open={open} ref={rootRef}>
+      <button
+        aria-controls={bubbleId}
+        aria-expanded={open}
+        className="info-term__trigger"
+        onClick={() => setOpen((current) => !current)}
+        type="button"
+      >
+        {term}
+        <svg aria-hidden="true" viewBox="0 0 16 16">
+          <circle cx="8" cy="8" r="6.6" />
+          <path d="M8 7.2v4M8 4.9v.1" />
+        </svg>
+      </button>
+      <span className="info-term__bubble" id={bubbleId} role="note">
+        <strong>{title}</strong>
+        {children}
+      </span>
+    </span>
+  );
+}
+
+// Running text with glossary terms: each { term, title, text } found in the
+// text becomes an InfoTerm (first occurrence only)
+export function GlossaryText({ text, glossary = [] }) {
+  let parts = [text];
+  for (const entry of glossary) {
+    parts = parts.flatMap((part) => {
+      if (typeof part !== "string") return [part];
+      const index = part.indexOf(entry.term);
+      if (index === -1) return [part];
+      return [
+        part.slice(0, index),
+        <InfoTerm key={entry.term} term={entry.term} title={entry.title}>
+          {entry.text}
+        </InfoTerm>,
+        part.slice(index + entry.term.length),
+      ];
+    });
+  }
+  return parts;
+}
+
 export function ClampedText({ text, lines = 4, className = "", moreLabel, lessLabel }) {
   const textRef = useRef(null);
   const [overflows, setOverflows] = useState(false);

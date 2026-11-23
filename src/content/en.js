@@ -32,7 +32,7 @@ const en = {
   hero: {
     role: ["Senior Web Designer", "Frontend Development"],
     intro:
-      "With over 10 years of experience, I turn complex ideas into clear, thoughtful digital experiences.",
+      "For over 10 years, I have been designing and optimizing websites and digital applications. I combine UI/UX design with hands-on frontend experience, improve existing solutions, and use AI tools purposefully to make design and development processes more efficient.",
     work: "Explore my work",
     downloadCv: "Download my CV (German)",
     about: "About me",
@@ -44,7 +44,13 @@ const en = {
   },
   heroBadge: {
     exp1: "Years of experience",
-    exp2: "in web design",
+    exp2: "in UX/UI & frontend",
+  },
+  // Counterpart to the 10+ badge. Phase 2: link to the AI section (#ki).
+  aiBadge: {
+    mark: "ai", // "Ai" mark in the badge (illustrations.jsx)
+    title: "AI-assisted",
+    text: "design & development",
   },
   work: {
     eyebrow: "Behind the interface",
@@ -65,7 +71,7 @@ const en = {
         icon: "bulb",
         label: "Why it matters",
         text:
-          "One component stylesheet serves all eight brands: a rebrand only touches the local color file, dark mode just remaps variables under [data-theme=\"dark\"], and about 4,800 gray references stay consistent everywhere – without a sprawling catalog of one-off semantic names.",
+          "One component stylesheet serves all seven brands: a rebrand only touches the local color file, dark mode just remaps variables under [data-theme=\"dark\"], and about 4,800 gray references stay consistent everywhere – without a sprawling catalog of one-off semantic names.",
       },
       {
         icon: "puzzle",
@@ -141,18 +147,18 @@ const en = {
   quality: {
     cards: [
       {
-        title: "One color system for eight brands",
+        title: "One color system for seven brands",
         description:
           "Shared components that adapt to every brand and mode through tokens.",
         story: {
           situationLabel: "Situation",
           situation:
-            "A publishing system runs eight portals, each with its own brand – but they share the same components, such as polls and release countdowns. Every brand needs its own colors, every module a light and a dark mode.",
+            "A publishing system runs seven portals, each with its own brand – but they share the same components, such as polls and release countdowns. Every brand needs its own colors, every module a light and a dark mode.",
           whyLabel: "Why it matters",
           why: [
             {
               term: "Maintenance",
-              text: "Without a system, every brand gets its own stylesheet – and every change has to be made eight times.",
+              text: "Without a system, every brand gets its own stylesheet – and every change has to be made seven times.",
             },
             {
               term: "Consistency",
@@ -174,7 +180,7 @@ const en = {
           ],
           resultLabel: "Result",
           result:
-            "One component stylesheet serves all eight brands. A rebrand only touches the local color file, and dark mode just remaps variables.",
+            "One component stylesheet serves all seven brands. A rebrand only touches the local color file, and dark mode just remaps variables.",
           moreLabel: "How I approached it",
           deeperLabel: "Technical details",
           deeper:
@@ -314,6 +320,176 @@ const en = {
       summaryValue: "9 → 2",
       summary:
         "7 fewer key presses per article. With switch control each one is a separate press – and the focus ring always shows where you are.",
+    },
+  },
+  // AI section. Facts follow the Storybook branches of the publishing system
+  // (storybook_implementation / storybook_pcgh / storybook_static).
+  ai: {
+    eyebrow: "AI in my workflow",
+    title: "Faster to a tested component",
+    noteLabel: "Context",
+    noteTab: "1 case study",
+    aside:
+      "How I use AI day to day: as a pair programmer for tools that bring design and development together. I decide what gets built and how it looks – the AI helps write the scaffolding and the checks, and I review every step. Portal and content names are fictional; the sketches are rebuilt concept examples.",
+    card: {
+      title: "Storybook: checking modules before they go live",
+      description:
+        "A test bench for every brand's site CSS – built as a team with AI support (Claude Code).",
+      story: {
+        situationLabel: "Situation",
+        situation:
+          "Seven brands share one CSS system, yet new modules could only be viewed on the live or staging site. How a module looks on another brand, in dark mode or on mobile often showed up late – and contrast errors mostly went unnoticed.",
+        whyLabel: "Why it matters",
+        why: [
+          {
+            term: "Design",
+            text: "Compare variants without a backend – brand, light/dark and mobile in one click.",
+          },
+          {
+            term: "Quality",
+            text: "Contrast and accessibility belong in the design, not in a final check.",
+          },
+          {
+            term: "Team",
+            text: "Design, development, editorial and product see the same module in the same state.",
+          },
+        ],
+        solutionLabel: "What I did",
+        solutionLead:
+          "Two of us built the Storybook, with Claude Code as a pair programmer. My part – the design and frontend side:",
+        steps: [
+          "Brought the real site CSS into Storybook: a shared CSS pack for all stories, base styles and fonts – every story shows the module exactly as on the site.",
+          "Landing-page modules as stories from real live markup (desktop and mobile); buttons with a WCAG 2.2 contrast check and copyable markup.",
+          "Built the UI editor: type your own HTML and see it live with the site CSS – with contrast including hover, classes without a CSS rule, and the SCSS file a rule comes from.",
+          "Designed the countdown module in Storybook: seven variants, running/expired, light/dark, desktop/mobile – then shipped it as a production module.",
+        ],
+        resultLabel: "Result",
+        result:
+          "New modules are built and tested before they reach the site: the countdown module went from its first story to production in under two weeks, and as a team we brought the contrast audit across three core brands from 1,708 findings down to 0.",
+        moreLabel: "How I approached it",
+        deeperLabel: "Technical details",
+        // Toggletip on the first mention in the technical details
+        glossary: [
+          {
+            term: "Storybook 10",
+            title: "What is Storybook?",
+            text: "An open-source workshop for a website's building blocks: every module is developed, tested in all its variants and documented on its own – outside the real site. Visitors never see it; “10” is the version number. We run it with Vite, the same build tool as the site, directly on the existing SCSS – so what looks right there looks right on the site.",
+          },
+        ],
+        deeper:
+          "Storybook 10 with Vite on top of the existing SCSS – no React rebuild: every story uses real markup from page snapshots. Switching the theme only sets data-theme; switching the brand reloads the local colour and font files. On top of that run automated tests: interaction tests (Vitest), accessibility with axe, visual regression against golden masters (Playwright, pixels and computed styles) and a deploy gate that only ships when every test is green.",
+      },
+    },
+    demo: {
+      label: "Sketch: Storybook as workbench and test bench",
+      benchTitle: "The workbench",
+      benchCaption: "One module, every brand and mode – no backend needed",
+      matrixTitle: "One click, every view",
+      matrixCaption: "Caught before it goes live",
+      tree: [
+        ["Modules", ["Countdown", "Poll"]],
+        ["Guideline", ["UI editor", "Buttons"]],
+      ],
+      portal: "Portal",
+      mode: "Mode",
+      viewport: "Viewport",
+      light: "Light",
+      dark: "Dark",
+      desktop: "Desktop",
+      mobile: "Mobile",
+      panelTabs: ["Accessibility", "Visual", "Interactions"],
+      countdownTag: "Release",
+      countdownTitle: "Shadowstone",
+      units: ["Days", "Hrs", "Min", "Sec"],
+      run: "Run tests",
+      running: "Running tests …",
+      fix: "Apply fix and test again",
+      again: "Test again",
+      idle: "8 views: 2 portals × light/dark × desktop/mobile",
+      found: "1 finding: secondary button · 2.53 : 1 (at least 4.5 : 1)",
+      passed: "8 of 8 views green",
+      viewStatus: { idle: "not tested", running: "running", ok: "passed", fail: "finding" },
+      previewButton: "Open the Storybook demo",
+      previewHint: "Try the UI editor, a test run and the deploy gate",
+    },
+    preview: {
+      title: "Live demo: Storybook rebuilt",
+      lead: "Three tools from the real setup, simplified so you can try them. Pick a story on the left.",
+      close: "Close demo",
+      navLabel: "Stories",
+      stories: {
+        editor: "UI editor",
+        tests: "Test run",
+        gate: "Deploy gate",
+      },
+      mine: "My part",
+      team: "Team",
+      editor: {
+        intro:
+          "In the real UI editor you write HTML and see it live with the site CSS. The checks re-run automatically every time an SCSS file is saved. Here: the contrast check to try out.",
+        surface: "Surface",
+        text: "Text colour",
+        opacity: "Opacity",
+        surfaces: { page: "Light page", dark: "Dark page", brand: "Brand surface" },
+        sample: "Body text on the surface",
+        link: "A link in the text",
+        ratio: "Contrast",
+        levels: ["AA text", "AA large", "AAA text"],
+        hover: "Hover",
+        checksTitle: "What else the UI editor checks",
+        checks: [
+          ["Classes without a CSS rule", ".newCard · .newCardTitle – add the rule to an SCSS file and the preview picks it up without a reload."],
+          ["Where a rule comes from", ".btn.btnPrim → buttons.scss · colour --PrCl1 from colorsLocal.scss"],
+          ["Hover states", "Contrast is also calculated for :hover – links and buttons often fail there otherwise."],
+        ],
+      },
+      tests: {
+        intro:
+          "“Current view” = portal + mode + viewport in the toolbar. Red means: affected in this view. Yellow: only in another view. Set the toolbar to the affected view – yellow turns red.",
+        current: "Current view",
+        stories: ["Countdown", "Poll", "Secondary button"],
+        statusOk: "All views passed",
+        statusRed: "Finding in this view: .btnSec 2.53 : 1",
+        statusYellow: "Only in another view: AFTERGLOW · Dark · Mobile (.btnSec 2.53 : 1)",
+        visualTitle: "Visual regression",
+        visualModes: { baseline: "Golden master", current: "Current", diff: "Diff" },
+        // Explanation next to the sketch, follows the selected view
+        visualExplain: {
+          baseline:
+            "The approved reference: someone checked the module and said “this is how it should look”. This screenshot is stored in Git.",
+          current:
+            "The new screenshot from this test run, after a CSS change. Here the button has shifted by 2 px – barely visible to the eye.",
+          diff:
+            "Both images on top of each other: every pixel that differs is orange. Here, exactly the button.",
+        },
+        visualFlowTitle: "How the comparison works",
+        visualFlow: [
+          "An SCSS file changes – on purpose or by accident.",
+          "The test takes new screenshots and compares them with the golden master – plus the computed styles, which also catch changes hidden from view.",
+          "Everything matches: green. Something differs: red – the diff shows where.",
+          "A person decides: a bug → fix the CSS. Intended → accept the new screenshot as the golden master, on purpose.",
+        ],
+        legend: [
+          ["red", "Finding in the current view"],
+          ["yellow", "Finding only in another view"],
+          ["green", "Tested and fine"],
+        ],
+      },
+      gate: {
+        intro:
+          "The deploy gate only ships when every stage is green. New reference images are never accepted automatically – only on purpose, after review.",
+        start: "Start the gate",
+        simulate: "Simulate a bug (button shifted 2 px)",
+        steps: [
+          ["Prerequisites", "no parallel run, server ready"],
+          ["Interactions", "play functions of every story"],
+          ["Visual regression", "pixels + styles vs. golden master"],
+          ["Contrast audit", "brands × light/dark × desktop/mobile"],
+          ["Deploy", "CSS build to the server"],
+        ],
+        done: "Every stage green – shipped.",
+        blocked: "Stopped at visual regression: 1 module looks different from its golden master. Nothing was shipped – a person checks the diff first: fix the bug, or approve the new look.",
+      },
     },
   },
   about: {
